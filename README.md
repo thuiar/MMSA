@@ -20,7 +20,7 @@
 
 
 ### File Tree
-
+> Our code is organized with "Dataset+Model".
 ```
 MMSA
 ├── asserts                         ## images folder
@@ -48,8 +48,6 @@ MMSA
 │   ├── optimizerTop.py            ## optimizer
 ```
 
-- Our code is organized with "Dataset+Model".
-
 ### Usage
 ---
 #### Prerequisites
@@ -57,7 +55,7 @@ MMSA
 - pytorch >= 1.2
 
 #### Dataset
-![Annotations](assets/Annotations.pdf)
+![Annotations](assets/Annotations.png)
 - download CH-SIMS from [Baidu Yun Disk](www.baidu.com)(code: `****`) or [Microsoft Drive](www.biying.com).
 - data preprocessing
 > We provide raw data and features extracted by functions in `data/getFeature.py`.
