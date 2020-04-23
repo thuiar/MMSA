@@ -73,7 +73,9 @@ pip install -r requirements.txt
 > 2. Check the hyperparameters in `config_run.py` (or `config_debug.py`). Config the parameters related to datasets or models.  
 
 - Run
-> python run.py
+```
+python run.py
+```
 
 ### Citation
 
