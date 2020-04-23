@@ -1,0 +1,9 @@
+/.vscode
+**/__pycache__
+**.pth
+**.pkl
+**.npy
+.ipynb_checkpoints
+**.npz
+**jupyter
+**DataPre.py

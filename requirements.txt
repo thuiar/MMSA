@@ -1,0 +1,11 @@
+transformers==2.1.1
+torch==1.2.0
+pandas==0.25.1
+numpy==1.17.2
+aip==1.0.0.5
+moviepy==1.0.1
+tqdm==4.36.1
+librosa==0.7.1
+facenet_pytorch==0.4.0
+Pillow==6.2.1
+scikit_learn==0.22
