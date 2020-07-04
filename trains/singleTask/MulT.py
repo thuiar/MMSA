@@ -6,16 +6,16 @@ import torch
 from torch import nn
 import torch.nn.functional as F
 
-from models.modules.transformer import TransformerEncoder
+from models.subNets.transformers.transformer import TransformerEncoder
 
-__all__ = ['MMULTModel']
+__all__ = ['MulT']
 
-class MMULTModel(nn.Module):
+class MulT(nn.Module):
     def __init__(self, args):
         """
         Construct a MulT model.
         """
-        super(MMULTModel, self).__init__()
+        super(MULT, self).__init__()
         dst_feature_dims, nheads = args.dst_feature_dim_nheads
         self.orig_d_l, self.orig_d_a, self.orig_d_v = args.feature_dims
         self.d_l = self.d_a = self.d_v = dst_feature_dims
@@ -31,11 +31,6 @@ class MMULTModel(nn.Module):
         self.output_dropout = args.output_dropout
         self.text_dropout = args.text_dropout
         self.attn_mask = args.attn_mask
-
-        self.post_text_prob, self.post_audio_prob, self.post_video_prob = args.post_dropouts
-        self.post_text_dim = args.post_text_dim
-        self.post_audio_dim = args.post_audio_dim
-        self.post_video_dim = args.post_video_dim
 
         combined_dim = self.d_l + self.d_a + self.d_v
 
@@ -68,24 +63,6 @@ class MMULTModel(nn.Module):
         self.trans_l_mem = self.get_network(self_type='l_mem', layers=3)
         self.trans_a_mem = self.get_network(self_type='a_mem', layers=3)
         self.trans_v_mem = self.get_network(self_type='v_mem', layers=3)
-
-        # define the classify layer for text
-        self.post_text_dropout = nn.Dropout(p=self.post_text_prob)
-        self.post_text_layer_1 = nn.Linear(self.d_l*2, self.post_text_dim)
-        self.post_text_layer_2 = nn.Linear(self.post_text_dim, self.post_text_dim)
-        self.post_text_layer_3 = nn.Linear(self.post_text_dim, 1)
-
-        # define the classify layer for audio
-        self.post_audio_dropout = nn.Dropout(p=self.post_audio_prob)
-        self.post_audio_layer_1 = nn.Linear(self.d_a*2, self.post_audio_dim)
-        self.post_audio_layer_2 = nn.Linear(self.post_audio_dim, self.post_audio_dim)
-        self.post_audio_layer_3 = nn.Linear(self.post_audio_dim, 1)
-
-        # define the classify layer for video
-        self.post_video_dropout = nn.Dropout(p=self.post_video_prob)
-        self.post_video_layer_1 = nn.Linear(self.d_v*2, self.post_video_dim)
-        self.post_video_layer_2 = nn.Linear(self.post_video_dim, self.post_video_dim)
-        self.post_video_layer_3 = nn.Linear(self.post_video_dim, 1)
        
         # Projection layers
         self.proj1 = nn.Linear(combined_dim, combined_dim)
@@ -162,42 +139,19 @@ class MMULTModel(nn.Module):
             if type(h_vs) == tuple:
                 h_vs = h_vs[0]
             last_h_v = last_hs = h_vs[-1]
-
-        # text
-        x_t = self.post_text_dropout(last_h_l)
-        x_t = F.relu(self.post_text_layer_1(x_t), inplace=True)
-        x_t = F.relu(self.post_text_layer_2(x_t), inplace=True)
-        output_text = self.post_text_layer_3(x_t)
-        # audio
-        x_a = self.post_audio_dropout(last_h_a)
-        x_a = F.relu(self.post_audio_layer_1(x_a), inplace=True)
-        x_a = F.relu(self.post_audio_layer_2(x_a), inplace=True)
-        output_audio = self.post_audio_layer_3(x_a)
-        # video
-        x_v = self.post_video_dropout(last_h_v)
-        x_v = F.relu(self.post_video_layer_1(x_v), inplace=True)
-        x_v = F.relu(self.post_video_layer_2(x_v), inplace=True)
-        output_video = self.post_video_layer_3(x_v)
         
-        # fusion
         if self.partial_mode == 3:
             last_hs = torch.cat([last_h_l, last_h_a, last_h_v], dim=1)
-
+        
         # A residual block
         last_hs_proj = self.proj2(F.dropout(F.relu(self.proj1(last_hs), inplace=True), p=self.output_dropout, training=self.training))
         last_hs_proj += last_hs
         
         output = self.out_layer(last_hs_proj)
-
         res = {
             'Feature_t': last_h_l,
             'Feature_a': last_h_a,
             'Feature_v': last_h_v,
-            'Feature_f': last_hs,
-            'M': output,
-            'T': output_text,
-            'A': output_audio,
-            'V': output_video
+            'M': output
         }
-        # return output, last_hs
         return res

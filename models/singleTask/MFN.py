@@ -6,11 +6,11 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-__all__ = ['MMFN']
+__all__ = ['MFN']
 
-class MMFN(nn.Module):
+class MFN(nn.Module):
 	def __init__(self, args):
-		super(MMFN, self).__init__()
+		super(MFN, self).__init__()
 		self.d_l,self.d_a,self.d_v = args.feature_dims
 		self.dh_l,self.dh_a,self.dh_v = args.hidden_dims
 		total_h_dim = self.dh_l+self.dh_a+self.dh_v
@@ -30,11 +30,6 @@ class MMFN(nn.Module):
 		gamma1_dropout = args.gamma1Config["drop"]
 		gamma2_dropout = args.gamma2Config["drop"]
 		out_dropout = args.outConfig["drop"]
-
-		self.post_text_prob, self.post_audio_prob, self.post_video_prob = args.post_dropouts
-		self.post_text_dim = args.post_text_dim
-		self.post_audio_dim = args.post_audio_dim
-		self.post_video_dim = args.post_video_dim
 
 		self.lstm_l = nn.LSTMCell(self.d_l, self.dh_l)
 		self.lstm_a = nn.LSTMCell(self.d_a, self.dh_a)
@@ -56,28 +51,10 @@ class MMFN(nn.Module):
 		self.gamma2_fc2 = nn.Linear(h_gamma2, self.mem_dim)
 		self.gamma2_dropout = nn.Dropout(gamma2_dropout)
 
-		# define the classify layer for text
-		self.post_text_dropout = nn.Dropout(p=self.post_text_prob)
-		self.post_text_layer_1 = nn.Linear(self.dh_l, self.post_text_dim)
-		self.post_text_layer_2 = nn.Linear(self.post_text_dim, self.post_text_dim)
-		self.post_text_layer_3 = nn.Linear(self.post_text_dim, 1)
-
-        # define the classify layer for audio 
-		self.post_audio_dropout = nn.Dropout(p=self.post_audio_prob)
-		self.post_audio_layer_1 = nn.Linear(self.dh_a, self.post_audio_dim)
-		self.post_audio_layer_2 = nn.Linear(self.post_audio_dim, self.post_audio_dim)
-		self.post_audio_layer_3 = nn.Linear(self.post_audio_dim, 1)
-
-        # define the classify layer for video
-		self.post_video_dropout = nn.Dropout(p=self.post_video_prob)
-		self.post_video_layer_1 = nn.Linear(self.dh_v, self.post_video_dim)
-		self.post_video_layer_2 = nn.Linear(self.post_video_dim, self.post_video_dim)
-		self.post_video_layer_3 = nn.Linear(self.post_video_dim, 1)
-	
 		self.out_fc1 = nn.Linear(final_out, h_out)
 		self.out_fc2 = nn.Linear(h_out, output_dim)
 		self.out_dropout = nn.Dropout(out_dropout)
-
+		
 	def forward(self, text_x, audio_x, video_x):
 		'''
         Args:
@@ -141,36 +118,10 @@ class MMFN(nn.Module):
 		last_h_l = all_h_ls[-1]
 		last_h_a = all_h_as[-1]
 		last_h_v = all_h_vs[-1]
-
-		# text
-		x_t = self.post_text_dropout(last_h_l)
-		x_t = F.relu(self.post_text_layer_1(x_t), inplace=True)
-		x_t = F.relu(self.post_text_layer_2(x_t), inplace=True)
-		output_text = self.post_text_layer_3(x_t)
-        # audio
-		x_a = self.post_audio_dropout(last_h_a)
-		x_a = F.relu(self.post_audio_layer_1(x_a), inplace=True)
-		x_a = F.relu(self.post_audio_layer_2(x_a), inplace=True)
-		output_audio = self.post_audio_layer_3(x_a)
-        # video
-		x_v = self.post_video_dropout(last_h_v)
-		x_v = F.relu(self.post_video_layer_1(x_v), inplace=True)
-		x_v = F.relu(self.post_video_layer_2(x_v), inplace=True)
-		output_video = self.post_video_layer_3(x_v)
-
-		# fusion
 		last_mem = all_mems[-1]
 		last_hs = torch.cat([last_h_l,last_h_a,last_h_v,last_mem], dim=1)
 		output = self.out_fc2(self.out_dropout(F.relu(self.out_fc1(last_hs))))
-
 		res = {
-			'Feature_t': last_h_l,
-            'Feature_a': last_h_a,
-            'Feature_v': last_h_v,
-            'Feature_f': last_hs,
-            'M': output,
-            'T': output_text,
-            'A': output_audio,
-            'V': output_video
+			'M': output
 		}
 		return res

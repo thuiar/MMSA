@@ -14,7 +14,7 @@ from transformers import *
 class getFeatures():
     def __init__(self, working_dir):
         self.data_dir = os.path.join(working_dir, 'Processed')
-        self.label_path = os.path.join(working_dir, 'label/sentiment')
+        self.label_path = os.path.join(working_dir, 'metadata/sentiment')
         # padding
         self.padding_mode = 'zeros'
         self.padding_location = 'back'
@@ -82,7 +82,7 @@ class getFeatures():
         tokenizer_class = BertTokenizer
         model_class = BertModel
         # directory is fine
-        pretrained_weights = '/home/sharing/disk3/pretrained_embedding/Chinese/bert/pytorch'
+        pretrained_weights = '/home/sharing/disk3/pretrained_embedding/bert/chinese_L-12_H-768_A-12'
         tokenizer = tokenizer_class.from_pretrained(pretrained_weights)
         model = model_class.from_pretrained(pretrained_weights)
         # add_special_tokens will add start and end token
@@ -152,7 +152,7 @@ class getFeatures():
     
     def handleImages(self):
         image_dirs = sorted(glob(os.path.join(self.data_dir, 'video/AlignedFaces', '*/*')))
-        for image_dir in tqdm(image_dirs[1449:]):
+        for image_dir in tqdm(image_dirs):
             output_dir = image_dir.replace('AlignedFaces', 'OpenFace2')
             if not os.path.exists(output_dir):
                 os.makedirs(output_dir)
@@ -167,11 +167,7 @@ class getFeatures():
 
         features_T, features_A, features_V = [], [], []
         label_T, label_A, label_V, label_M = [], [], [], []
-        data = np.load(os.path.join(self.data_dir, output_dir, 'data.npz'))
-        
-        feature_T = data['feature_T']
-        feature_A = data['feature_A']
-        feature_V = data['feature_V']
+
         for i in tqdm(range(len(df_label_T))):
             video_id, clip_id = df_label_T.loc[i, ['video_id', 'clip_id']]
             clip_id = '%04d' % clip_id
@@ -197,6 +193,8 @@ class getFeatures():
         feature_V = self.__paddingSequence(features_V)
         # save
         save_path = os.path.join(self.data_dir, output_dir, 'data.npz')
+        if not os.path.exists(os.path.dirname(save_path)):
+            os.makedirs(os.path.dirname(save_path))
         np.savez(save_path, \
                  feature_T=feature_T, feature_A=feature_A, feature_V=feature_V, \
                  label_T=np.array(label_T), label_A=np.array(label_A), \
@@ -205,9 +203,9 @@ class getFeatures():
         print('Features are saved in %s!' %save_path)
     
 if __name__ == "__main__":
-    working_dir = '/home/sharing/disk2/multimodal-sentiment-dataset/MSA-ZH'
+    working_dir = '/home/sharing/disk3/dataset/multimodal-sentiment-dataset/CH-SIMS'
     gf = getFeatures(working_dir)
     
-    gf.handleImages()
+    # gf.handleImages()
 
     gf.results('features')

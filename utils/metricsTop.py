@@ -10,10 +10,10 @@ __all__ = ['MetricsTop']
 class MetricsTop():
     def __init__(self):
         self.metrics_dict = {
-            'mosi': self.__eval_mosi_regression,
-            'mosei': self.__eval_mosei_regression,
-            'sims': self.__eval_sims_regression,
-            'iemocap': self.__eval_iemocap_classification
+            'MOSI': self.__eval_mosi_regression,
+            'MOSEI': self.__eval_mosei_regression,
+            'SIMS': self.__eval_sims_regression,
+            'IEMOCAP': self.__eval_iemocap_classification
         }
 
     def __multiclass_acc(self, y_pred, y_true):
@@ -143,4 +143,4 @@ class MetricsTop():
         return eval_results
     
     def getMetics(self, datasetName):
-        return self.metrics_dict[datasetName.lower()]
+        return self.metrics_dict[datasetName.upper()]

@@ -6,14 +6,16 @@ import torch
 from torch import nn
 import torch.nn.functional as F
 
-from models.modules.transformer import TransformerEncoder
+from models.subNets.transformers.transformer import TransformerEncoder
 
-class MULTModel(nn.Module):
+__all__ = ['MulT']
+
+class MulT(nn.Module):
     def __init__(self, args):
         """
         Construct a MulT model.
         """
-        super(MULTModel, self).__init__()
+        super(MULT, self).__init__()
         dst_feature_dims, nheads = args.dst_feature_dim_nheads
         self.orig_d_l, self.orig_d_a, self.orig_d_v = args.feature_dims
         self.d_l = self.d_a = self.d_v = dst_feature_dims
@@ -152,5 +154,4 @@ class MULTModel(nn.Module):
             'Feature_v': last_h_v,
             'M': output
         }
-        # return output, last_hs
         return res

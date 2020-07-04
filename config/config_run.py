@@ -31,7 +31,7 @@ class Storage(dict):
 class Config():
     def __init__(self, input_args):
         # parameters for data
-        self.data_dir = '/home/sharing/disk2/multimodal-sentiment-dataset'
+        self.data_dir = '/home/sharing/disk3/dataset/multimodal-sentiment-dataset'
         # global parameters for running
         try:
             self.global_running = vars(input_args)
@@ -276,9 +276,9 @@ class Config():
                 'need_align': True,
                 # Tuning
                 'early_stop': 20,
-                'patience': 0, # when to decay learning rate
                 # Logistics
-                'weight_decay': 0.0
+                'weight_decay': 0.0,
+                'KeyEval': 'Mult_acc_2',
             },
             # dataset
             'datasetParas':{
@@ -291,7 +291,6 @@ class Config():
                     # ref Original Paper
                     'batch_size': 16,
                     'learning_rate': 1e-3,
-                    'grad_clip': 0.0, # gradient clip value (default: 0.8)
                 },
                 'sims':{
                     'hidden_dims': 16,
@@ -302,7 +301,6 @@ class Config():
                     # ref Original Paper
                     'batch_size': 128,
                     'learning_rate': 1e-3,
-                    'grad_clip': 0.0, # gradient clip value (default: 0.8)
                 },
             },
         }
@@ -314,7 +312,7 @@ class Config():
                 'need_align': False,
                 'need_normalize': True,
                 # Tuning
-                'early_stop': 1,
+                'early_stop': 20,
                 'patience': 0, # when to decay learning rate
                 # Logistics
                 'weight_decay': 0.0,
@@ -483,25 +481,3 @@ class Config():
                             **self.HYPER_MODEL_MAP[model_name]()['commonParas'],
                             **self.HYPER_DATASET_MAP[dataset_name]))
         return res
-
-if __name__ == "__main__":
-    def parse_args():
-        parser = argparse.ArgumentParser()
-        parser.add_argument('--debug_mode', type=bool, default=False,
-                            help='if true, less data will be loaded')
-        parser.add_argument('--modelName', type=str, default='lf_dnn',
-                            help='support mult/tfn/lmf/mfn/ef_lstm/lf_dnn')
-        parser.add_argument('--datasetName', type=str, default='mosi',
-                            help='support mosi')
-        parser.add_argument('--times', type=int, default=5,
-                            help='how many times will be runned')
-        parser.add_argument('--model_save_path', type=str, default='model_save',
-                            help='path to save model.')
-        parser.add_argument('--gpu_ids', type=list, default=[2],
-                            help='indicates the gpus will be used.')
-        return parser.parse_args()
-        
-    args = parse_args()
-    config = Config(args)
-    args = config.get_config()
-    print(args)

@@ -60,7 +60,7 @@ MMSA
 - data preprocessing
 > We provide raw data and features extracted by functions in `data/getFeature.py`.
 
-#### Run the codes
+#### Run the Code
 - Clone this repo and install requirements.
 ```
 git clone https://github.com/thuiar/MMSA  
@@ -68,7 +68,7 @@ cd MMSA
 pip install -r requirements.txt
 ```
 
-- Check Parameters
+- Check parameters
 > 1. Check the hyperparameters in `run.py`.  
 > 2. Check the hyperparameters in `config_run.py` (or `config_debug.py`). Config the parameters related to datasets or models.  
 
