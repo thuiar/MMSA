@@ -5,4 +5,4 @@ from trains.singleTask.TFN import TFN
 from trains.singleTask.MFN import MFN
 from trains.singleTask.MulT import MulT
 
-__all__ = ['EF_LSTM', 'LF_DNN', 'LMF', 'TFN', 'MulT']
+__all__ = ['EF_LSTM', 'LF_DNN', 'LMF', 'TFN', 'MFN', 'MulT']

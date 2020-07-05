@@ -47,12 +47,12 @@ class MetricsTop():
         binary_preds = (test_preds[non_zeros] > 0)
 
         eval_results = {
+            "Accuracy": accuracy_score(binary_truth, binary_preds),
+            "Mult_acc_5": mult_a5,
+            "Mult_acc_7": mult_a7,
+            "F1 score": f_score,
             "MAE": mae,
             "Correlation Coefficient": corr,
-            "Mult_acc_7": mult_a7,
-            "Mult_acc_5": mult_a5,
-            "F1 score": f_score,
-            "Accuracy": accuracy_score(binary_truth, binary_preds)
         }
         return eval_results
 
@@ -101,12 +101,12 @@ class MetricsTop():
         f_score = f1_score(test_preds_a2, test_truth_a2, average='weighted')
 
         eval_results = {
+            "Mult_acc_2": mult_a2,
+            "Mult_acc_3": mult_a3,
+            "Mult_acc_5": mult_a5,
+            "F1_score": f_score,
             "MAE": mae,
             "Corr": corr, # Correlation Coefficient
-            "Mult_acc_5": mult_a5,
-            "Mult_acc_3": mult_a3,
-            "Mult_acc_2": mult_a2,
-            "F1_score": f_score,
         }
         return eval_results
 

@@ -1,157 +1,107 @@
-"""
-paper: Multimodal Transformer for Unaligned Multimodal Language Sequences
-ref: https://github.com/yaohungt/Multimodal-Transformer
-"""
+import os
+import time
+import argparse
+import numpy as np
+from glob import glob
+from tqdm import tqdm
+
 import torch
-from torch import nn
-import torch.nn.functional as F
+import torch.nn as nn
+from torch import optim
+from torch.optim.lr_scheduler import ReduceLROnPlateau
 
-from models.subNets.transformers.transformer import TransformerEncoder
+from utils.functions import dict_to_str
+from utils.metricsTop import MetricsTop
 
-__all__ = ['MulT']
-
-class MulT(nn.Module):
+class MulT():
     def __init__(self, args):
-        """
-        Construct a MulT model.
-        """
-        super(MULT, self).__init__()
-        dst_feature_dims, nheads = args.dst_feature_dim_nheads
-        self.orig_d_l, self.orig_d_a, self.orig_d_v = args.feature_dims
-        self.d_l = self.d_a = self.d_v = dst_feature_dims
-        self.vonly, self.aonly, self.lonly = args.vonly, args.aonly, args.lonly
-        self.num_heads = nheads
-        self.layers = args.nlevels
-        self.attn_dropout = args.attn_dropout
-        self.attn_dropout_a = args.attn_dropout_a
-        self.attn_dropout_v = args.attn_dropout_v
-        self.relu_dropout = args.relu_dropout
-        self.embed_dropout = args.embed_dropout
-        self.res_dropout = args.res_dropout
-        self.output_dropout = args.output_dropout
-        self.text_dropout = args.text_dropout
-        self.attn_mask = args.attn_mask
+        assert args.tasks in ['M']
 
-        combined_dim = self.d_l + self.d_a + self.d_v
+        self.args = args
+        self.criterion = nn.L1Loss()
+        self.metrics = MetricsTop().getMetics(args.datasetName)
 
-        self.partial_mode = self.lonly + self.aonly + self.vonly
-        if self.partial_mode == 1:
-            combined_dim = 2 * self.d_l   # assuming d_l == d_a == d_v
-        else:
-            combined_dim = 2 * (self.d_l + self.d_a + self.d_v)
-        
-        output_dim = args.num_classes        # This is actually not a hyperparameter :-)
+    def do_train(self, model, dataloader):
+        optimizer = optim.Adam(model.parameters(), lr=self.args.learning_rate, weight_decay=self.args.weight_decay)
+        scheduler = ReduceLROnPlateau(optimizer, mode='max', factor=0.1, verbose=True, patience=self.args.patience)
+        # initilize results
+        best_acc = 0
+        epochs, best_epoch = 0, 0
+        # loop util earlystop
+        while True: 
+            epochs += 1
+            # train
+            y_pred, y_true = [], []
+            losses = []
+            model.train()
+            train_loss = 0.0
+            with tqdm(dataloader['train']) as td:
+                for batch_data in td:
+                    vision = batch_data['vision'].to(self.args.device)
+                    audio = batch_data['audio'].to(self.args.device)
+                    text = batch_data['text'].to(self.args.device)
+                    labels = batch_data['labels'][self.args.tasks].to(self.args.device).view(-1, 1)
+                    # clear gradient
+                    optimizer.zero_grad()
+                    # forward
+                    outputs = model(text, audio, vision)
+                    # compute loss
+                    loss = self.criterion(outputs[self.args.tasks], labels)
+                    # backward
+                    loss.backward()
+                    # update
+                    optimizer.step()
+                    # store results
+                    train_loss += loss.item()
+                    y_pred.append(outputs[self.args.tasks].cpu())
+                    y_true.append(labels.cpu())
+            train_loss = train_loss / len(dataloader['train'])
+            print("TRAIN-(%s) (%d/%d/%d)>> loss: %.4f " % (self.args.modelName, \
+                        epochs - best_epoch, epochs, self.args.cur_time, train_loss))
+            pred, true = torch.cat(y_pred), torch.cat(y_true)
+            train_results = self.metrics(pred, true)
+            print('%s: >> ' %(self.args.tasks) + dict_to_str(train_results))
+            # validation
+            val_results = self.do_test(model, dataloader['valid'], mode="VAL")
+            val_acc = val_results[self.args.tasks][self.args.KeyEval]
+            if self.args.patience > 0:
+                scheduler.step(val_acc)
+            # save best model
+            if val_acc > best_acc:
+                best_acc, best_epoch = val_acc, epochs
+                model_path = os.path.join(self.args.model_save_path,\
+                                    f'{self.args.modelName}-{self.args.datasetName}-{self.args.tasks}.pth')
+                if os.path.exists(model_path):
+                    os.remove(model_path)
+                # save model
+                torch.save(model.cpu().state_dict(), model_path)
+                model.to(self.args.device)
+            # early stop
+            if epochs - best_epoch >= self.args.early_stop:
+                return
 
-        # 1. Temporal convolutional layers
-        self.proj_l = nn.Conv1d(self.orig_d_l, self.d_l, kernel_size=args.conv1d_kernel_size_l, padding=0, bias=False)
-        self.proj_a = nn.Conv1d(self.orig_d_a, self.d_a, kernel_size=args.conv1d_kernel_size_a, padding=0, bias=False)
-        self.proj_v = nn.Conv1d(self.orig_d_v, self.d_v, kernel_size=args.conv1d_kernel_size_v, padding=0, bias=False)
-
-        # 2. Crossmodal Attentions
-        if self.lonly:
-            self.trans_l_with_a = self.get_network(self_type='la')
-            self.trans_l_with_v = self.get_network(self_type='lv')
-        if self.aonly:
-            self.trans_a_with_l = self.get_network(self_type='al')
-            self.trans_a_with_v = self.get_network(self_type='av')
-        if self.vonly:
-            self.trans_v_with_l = self.get_network(self_type='vl')
-            self.trans_v_with_a = self.get_network(self_type='va')
-        
-        # 3. Self Attentions (Could be replaced by LSTMs, GRUs, etc.)
-        #    [e.g., self.trans_x_mem = nn.LSTM(self.d_x, self.d_x, 1)
-        self.trans_l_mem = self.get_network(self_type='l_mem', layers=3)
-        self.trans_a_mem = self.get_network(self_type='a_mem', layers=3)
-        self.trans_v_mem = self.get_network(self_type='v_mem', layers=3)
-       
-        # Projection layers
-        self.proj1 = nn.Linear(combined_dim, combined_dim)
-        self.proj2 = nn.Linear(combined_dim, combined_dim)
-        self.out_layer = nn.Linear(combined_dim, output_dim)
-
-    def get_network(self, self_type='l', layers=-1):
-        if self_type in ['l', 'al', 'vl']:
-            embed_dim, attn_dropout = self.d_l, self.attn_dropout
-        elif self_type in ['a', 'la', 'va']:
-            embed_dim, attn_dropout = self.d_a, self.attn_dropout_a
-        elif self_type in ['v', 'lv', 'av']:
-            embed_dim, attn_dropout = self.d_v, self.attn_dropout_v
-        elif self_type == 'l_mem':
-            embed_dim, attn_dropout = 2*self.d_l, self.attn_dropout
-        elif self_type == 'a_mem':
-            embed_dim, attn_dropout = 2*self.d_a, self.attn_dropout
-        elif self_type == 'v_mem':
-            embed_dim, attn_dropout = 2*self.d_v, self.attn_dropout
-        else:
-            raise ValueError("Unknown network type")
-        
-        return TransformerEncoder(embed_dim=embed_dim,
-                                  num_heads=self.num_heads,
-                                  layers=max(self.layers, layers),
-                                  attn_dropout=attn_dropout,
-                                  relu_dropout=self.relu_dropout,
-                                  res_dropout=self.res_dropout,
-                                  embed_dropout=self.embed_dropout,
-                                  attn_mask=self.attn_mask)
-            
-    def forward(self, x_l, x_a, x_v):
-        """
-        text, audio, and vision should have dimension [batch_size, seq_len, n_features]
-        """
-        x_l = F.dropout(x_l.transpose(1, 2), p=self.text_dropout, training=self.training)
-        x_a = x_a.transpose(1, 2)
-        x_v = x_v.transpose(1, 2)
-       
-        # Project the textual/visual/audio features
-        proj_x_l = x_l if self.orig_d_l == self.d_l else self.proj_l(x_l)
-        proj_x_a = x_a if self.orig_d_a == self.d_a else self.proj_a(x_a)
-        proj_x_v = x_v if self.orig_d_v == self.d_v else self.proj_v(x_v)
-        proj_x_a = proj_x_a.permute(2, 0, 1)
-        proj_x_v = proj_x_v.permute(2, 0, 1)
-        proj_x_l = proj_x_l.permute(2, 0, 1)
-
-        if self.lonly:
-            # (V,A) --> L
-            h_l_with_as = self.trans_l_with_a(proj_x_l, proj_x_a, proj_x_a)    # Dimension (L, N, d_l)
-            h_l_with_vs = self.trans_l_with_v(proj_x_l, proj_x_v, proj_x_v)    # Dimension (L, N, d_l)
-            h_ls = torch.cat([h_l_with_as, h_l_with_vs], dim=2)
-            h_ls = self.trans_l_mem(h_ls)
-            if type(h_ls) == tuple:
-                h_ls = h_ls[0]
-            last_h_l = last_hs = h_ls[-1]   # Take the last output for prediction
-
-        if self.aonly:
-            # (L,V) --> A
-            h_a_with_ls = self.trans_a_with_l(proj_x_a, proj_x_l, proj_x_l)
-            h_a_with_vs = self.trans_a_with_v(proj_x_a, proj_x_v, proj_x_v)
-            h_as = torch.cat([h_a_with_ls, h_a_with_vs], dim=2)
-            h_as = self.trans_a_mem(h_as)
-            if type(h_as) == tuple:
-                h_as = h_as[0]
-            last_h_a = last_hs = h_as[-1]
-
-        if self.vonly:
-            # (L,A) --> V
-            h_v_with_ls = self.trans_v_with_l(proj_x_v, proj_x_l, proj_x_l)
-            h_v_with_as = self.trans_v_with_a(proj_x_v, proj_x_a, proj_x_a)
-            h_vs = torch.cat([h_v_with_ls, h_v_with_as], dim=2)
-            h_vs = self.trans_v_mem(h_vs)
-            if type(h_vs) == tuple:
-                h_vs = h_vs[0]
-            last_h_v = last_hs = h_vs[-1]
-        
-        if self.partial_mode == 3:
-            last_hs = torch.cat([last_h_l, last_h_a, last_h_v], dim=1)
-        
-        # A residual block
-        last_hs_proj = self.proj2(F.dropout(F.relu(self.proj1(last_hs), inplace=True), p=self.output_dropout, training=self.training))
-        last_hs_proj += last_hs
-        
-        output = self.out_layer(last_hs_proj)
-        res = {
-            'Feature_t': last_h_l,
-            'Feature_a': last_h_a,
-            'Feature_v': last_h_v,
-            'M': output
+    def do_test(self, model, dataloader, mode="VAL"):
+        model.eval()
+        y_pred, y_true = [], []
+        eval_loss = 0.0
+        with torch.no_grad():
+            with tqdm(dataloader) as td:
+                for batch_data in td:
+                    vision = batch_data['vision'].to(self.args.device)
+                    audio = batch_data['audio'].to(self.args.device)
+                    text = batch_data['text'].to(self.args.device)
+                    labels = batch_data['labels'][self.args.tasks].to(self.args.device).view(-1, 1)
+                    outputs = model(text, audio, vision)
+                    loss = self.criterion(outputs[self.args.tasks], labels)
+                    eval_loss += loss.item()
+                    y_pred.append(outputs[self.args.tasks].cpu())
+                    y_true.append(labels.cpu())
+        eval_loss = eval_loss / len(dataloader)
+        print(mode+"-(%s)" % self.args.modelName + " >> loss: %.4f " % eval_loss)
+        pred, true = torch.cat(y_pred), torch.cat(y_true)
+        results = self.metrics(pred, true)
+        print('%s: >> ' %(self.args.tasks) + dict_to_str(results))
+        tmp = {
+            self.args.tasks: results
         }
-        return res
+        return tmp

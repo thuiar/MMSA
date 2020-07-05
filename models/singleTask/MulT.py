@@ -15,7 +15,7 @@ class MulT(nn.Module):
         """
         Construct a MulT model.
         """
-        super(MULT, self).__init__()
+        super(MulT, self).__init__()
         dst_feature_dims, nheads = args.dst_feature_dim_nheads
         self.orig_d_l, self.orig_d_a, self.orig_d_v = args.feature_dims
         self.d_l = self.d_a = self.d_v = dst_feature_dims

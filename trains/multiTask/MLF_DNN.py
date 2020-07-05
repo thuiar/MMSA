@@ -5,22 +5,24 @@ import numpy as np
 from glob import glob
 from tqdm import tqdm
 
+import torch
 import torch.nn as nn
 from torch import optim
 
 from utils.functions import dict_to_str
 from utils.metricsTop import MetricsTop
 
-class EF_LSTM():
+class MLF_DNN():
     def __init__(self, args):
-        assert args.tasks in ['M']
-
         self.args = args
         self.criterion = nn.L1Loss()
-        self.metrics = MetricsTop().getMetics(args.metricsName)
+        self.metrics = MetricsTop().getMetics(args.datasetName)
 
     def do_train(self, model, dataloader):
-        optimizer = optim.Adam(model.parameters(), lr=self.args.learning_rate, weight_decay=self.args.weight_decay)
+        optimizer = optim.Adam([{"params": list(model.Model.text_subnet.parameters()), "weight_decay": self.args.text_weight_decay},
+                                {"params": list(model.Model.audio_subnet.parameters()), "weight_decay": self.args.audio_weight_decay},
+                                {"params": list(model.Model.video_subnet.parameters()), "weight_decay": self.args.video_weight_decay}],
+                                lr=self.args.learning_rate)
         # initilize results
         best_acc = 0
         epochs, best_epoch = 0, 0
@@ -41,49 +43,51 @@ class EF_LSTM():
                     labels = batch_data['labels']
                     for k in labels.keys():
                         labels[k] = labels[k].to(self.args.device).view(-1, 1)
-                # clear gradient
                     # clear gradient
                     optimizer.zero_grad()
                     # forward
                     outputs = model(text, audio, vision)
                     # compute loss
-                    loss = self.criterion(outputs, labels)
+                    loss = 0.0
+                    for m in self.args.tasks:
+                        loss += eval('self.args.'+m) * self.criterion(outputs[m], labels[m])
                     # backward
                     loss.backward()
                     # update
                     optimizer.step()
                     # store results
                     train_loss += loss.item()
-                    y_pred.append(outputs[self.args.tasks].cpu())
-                    y_true.append(labels[self.args.tasks].cpu())
+                    for m in self.args.tasks:
+                        y_pred[m].append(outputs[m].cpu())
+                        y_true[m].append(labels['M'].cpu())
             train_loss = train_loss / len(dataloader['train'])
-            print("TRAIN-(%s) (%d/%d/%d)>> loss: %.4f " % (args.modelName, \
-                        epochs - best_epoch, epochs, args.cur_time, train_loss))
-            pred, true = torch.cat(y_pred), torch.cat(y_true)
-            train_results = metrics(pred, true)
-            print('%s: >> ' %(self.args.tasks) + dict_to_str(train_results))
+            print("TRAIN-(%s) (%d/%d/%d)>> loss: %.4f " % (self.args.modelName, \
+                        epochs - best_epoch, epochs, self.args.cur_time, train_loss))
+            for m in self.args.tasks:
+                pred, true = torch.cat(y_pred[m]), torch.cat(y_true[m])
+                train_results = self.metrics(pred, true)
+                print('%s: >> ' %(m) + dict_to_str(train_results))
             # validation
             val_results = do_test(model, dataloader['valid'], mode="VAL")
-            val_acc = val_results[self.args.tasks][self.args.KeyEval]
+            val_acc = val_results[self.args.tasks[0]][self.args.KeyEval]
             # save best model
             if val_acc > best_acc:
                 best_acc, best_epoch = val_acc, epochs
-                old_models = glob(os.path.join(args.model_save_path,\
-                                    f'{self.args.modelName}-{self.args.datasetName}-{self.args.tasks}.pth'))
-                for old_model_path in old_models:
-                    os.remove(old_model_path)
-                # save model
-                new_model_path = os.path.join(args.model_save_path,\
+                model_path = os.path.join(self.args.model_save_path,\
                                     f'{self.args.modelName}-{self.args.datasetName}-{self.args.tasks}.pth')
-                torch.save(model.cpu().state_dict(), new_model_path)
+                if os.path.exists(model_path):
+                    os.remove(model_path)
+                # save model
+                torch.save(model.cpu().state_dict(), model_path)
                 model.to(self.args.device)
             # early stop
-            if epochs - best_epoch >= args.early_stop:
+            if epochs - best_epoch >= self.args.early_stop:
                 return
 
     def do_test(self, model, dataloader, mode="VAL"):
         model.eval()
-        y_pred, y_true = [], []
+        y_pred = {'M': [], 'T': [], 'A': [], 'V': []}
+        y_true = {'M': [], 'T': [], 'A': [], 'V': []}
         eval_loss = 0.0
         with torch.no_grad():
             with tqdm(dataloader) as td:
@@ -91,15 +95,23 @@ class EF_LSTM():
                     vision = batch_data['vision'].to(self.args.device)
                     audio = batch_data['audio'].to(self.args.device)
                     text = batch_data['text'].to(self.args.device)
-                    labels = batch_data['labels'][self.args.tasks].to(self.args.device).view(-1, 1)
+                    labels = batch_data['labels']
+                    for k in labels.keys():
+                        labels[k] = labels[k].to(self.args.device).view(-1, 1)
                     outputs = model(text, audio, vision)
-                    loss = self.criterion(outputs, labels)
+                    loss = 0.0
+                    for m in self.args.tasks:
+                        loss += eval('self.args.'+m) * self.criterion(y_pred[m], y_true[m])
                     eval_loss += loss.item()
-                    y_pred.append(outputs[self.args.tasks].cpu())
-                    y_true.append(labels[self.args.tasks].cpu())
+                    for m in self.args.tasks:
+                        y_pred[m].append(outputs[m].cpu())
+                        y_true[m].append(labels['M'].cpu())
         eval_loss = eval_loss / len(dataloader)
         print(mode+"-(%s)" % self.args.modelName + " >> loss: %.4f " % eval_loss)
-        pred, true = torch.cat(y_pred), torch.cat(y_true)
-        results = metrics(pred, true)
-        print('%s: >> ' %(self.args.tasks) + dict_to_str(results))
-        return results
+        return_res = {}
+        for m in self.args.tasks:
+            pred, true = torch.cat(y_pred[m]), torch.cat(y_true[m])
+            results = self.metrics(pred, true)
+            print('%s: >> ' %(m) + dict_to_str(results))
+            return_res[m] = results
+        return return_res

@@ -206,6 +206,6 @@ if __name__ == "__main__":
     working_dir = '/home/sharing/disk3/dataset/multimodal-sentiment-dataset/CH-SIMS'
     gf = getFeatures(working_dir)
     
-    # gf.handleImages()
+    gf.handleImages()
 
     gf.results('features')

@@ -91,16 +91,6 @@ class MMDataset(Dataset):
         return sample
 
 def MMDataLoader(args):
-    # if 'is_ten_fold' in args.keys() and args.is_ten_fold:
-    #     # 10 fold cross-validation
-    #     k_fold_value = args.cur_time - 1
-    #     test_index = [i for i in range(k_fold_value, args.nsamples, 10)]
-    #     not_test_index = [i for i in range(args.nsamples) if i not in test_index]
-
-    #     val_index = [not_test_index[i] for i in range(0, len(not_test_index), 10)]
-    #     train_index = [i for i in range(args.nsamples) if i not in test_index and i not in val_index]
-    # else:
-    # fixed split
     test_index = np.array(pd.read_csv(os.path.join(args.label_dir, 'test_index.csv'))).reshape(-1)
     train_index = np.array(pd.read_csv(os.path.join(args.label_dir, 'train_index.csv'))).reshape(-1)
     val_index = np.array(pd.read_csv(os.path.join(args.label_dir, 'val_index.csv'))).reshape(-1)

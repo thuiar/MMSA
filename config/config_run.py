@@ -93,6 +93,7 @@ class Config():
                 'patience': 8, # when to decay learning rate (default: 20)
                 # Logistics
                 'weight_decay': 0.0,
+                'KeyEval': 'Mult_acc_2',
             },
             # dataset
             'datasetParas':{
@@ -145,9 +146,9 @@ class Config():
                 'need_normalize': True,
                 # Tuning
                 'early_stop': 20,
-                'patience': 0, # when to decay learning rate
                 # Logistics
                 'weight_decay': 0.0,
+                'KeyEval': 'Mult_acc_2',
             },
             # dataset
             'datasetParas':{
@@ -186,7 +187,7 @@ class Config():
                 'need_normalize': True,
                 # Tuning
                 'early_stop': 20,
-                'patience': 0, # when to decay learning rate, 0 means don't use adaptive learning rate
+                'KeyEval': 'Mult_acc_2',
             },
             # dataset
             'datasetParas':{
@@ -228,9 +229,9 @@ class Config():
                 'need_align': True,
                 # Tuning
                 'early_stop': 20,
-                'patience': 0, # when to decay learning rate
                 # Logistics
                 'weight_decay': 0.0,
+                'KeyEval': 'Mult_acc_2',
             },
             # dataset
             'datasetParas':{
@@ -316,6 +317,7 @@ class Config():
                 'patience': 0, # when to decay learning rate
                 # Logistics
                 'weight_decay': 0.0,
+                'KeyEval': 'Mult_acc_2',
             },
             # dataset
             'datasetParas':{
@@ -355,9 +357,9 @@ class Config():
                 'need_normalize': True,
                 # Tuning
                 'early_stop': 20,
-                'patience': 0, # when to decay learning rate
                 # Logistics
                 'weight_decay': 0.0,
+                'KeyEval': 'Mult_acc_2',
             },
             # dataset
             'datasetParas':{
@@ -395,7 +397,7 @@ class Config():
                 'need_normalize': True,
                 # Tuning
                 'early_stop': 20,
-                'patience': 0, # when to decay learning rate, 0 means don't use adaptive learning rate
+                'KeyEval': 'Mult_acc_2',
             },
             # dataset
             'datasetParas':{
@@ -437,10 +439,9 @@ class Config():
                 'need_normalize': True,
                 # Tuning
                 'early_stop': 20,
-                'patience': 0, # when to decay learning rate
                 # Logistics
                 'weight_decay': 0.0,
-                'is_ten_fold': False
+                'KeyEval': 'Mult_acc_2',
             },
             # dataset
             'datasetParas':{
