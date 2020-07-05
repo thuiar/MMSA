@@ -1,6 +1,6 @@
 """
 paper: Multimodal Transformer for Unaligned Multimodal Language Sequences
-ref: https://github.com/yaohungt/Multimodal-Transformer
+From: https://github.com/yaohungt/Multimodal-Transformer
 """
 import torch
 from torch import nn

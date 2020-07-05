@@ -1,6 +1,6 @@
 """
 paper: Efficient Low-rank Multimodal Fusion with Modality-Specific Factors
-ref: https://github.com/Justin1904/Low-rank-Multimodal-Fusion
+From: https://github.com/Justin1904/Low-rank-Multimodal-Fusion
 """
 from __future__ import print_function
 import torch

@@ -1,7 +1,7 @@
 """
 paper1: Benchmarking Multimodal Sentiment Analysis
 paper2: Recognizing Emotions in Video Using Multimodal DNN Feature Fusion
-ref: https://github.com/rhoposit/MultimodalDNN
+From: https://github.com/rhoposit/MultimodalDNN
 """
 import torch
 import torch.nn as nn

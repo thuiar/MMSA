@@ -6,5 +6,3 @@
 .ipynb_checkpoints
 **.npz
 **jupyter
-.gitignore
-results

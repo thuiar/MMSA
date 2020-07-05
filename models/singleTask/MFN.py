@@ -1,6 +1,6 @@
 """
 paper: Memory Fusion Network for Multi-View Sequential Learning
-ref: https://github.com/A2Zadeh/TensorFusionNetwork
+From: https://github.com/pliang279/MFN
 """
 import torch
 import torch.nn as nn

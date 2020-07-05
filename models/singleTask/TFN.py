@@ -1,6 +1,6 @@
 """
 paper: Tensor Fusion Network for Multimodal Sentiment Analysis
-ref: https://github.com/A2Zadeh/TensorFusionNetwork
+From: https://github.com/A2Zadeh/TensorFusionNetwork
 """
 from __future__ import print_function
 import torch
