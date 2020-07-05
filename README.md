@@ -24,13 +24,13 @@ Please cite our paper if you find our work useful for your research:
 > md5: `6a92dccd83373b48ac83257bddab2538`
 
 1. [Baidu Yun Disk](https://pan.baidu.com/s/1CmLdhYSVnNFAyA0DkR6tdA)[code: `ozo2`] 
-2. [Google Drive]()[code: `****`]
+2. [Google Drive](https://drive.google.com/file/d/1z6snOkOoy100F33lzmHHB_DUGJ47DaQo/view?usp=sharing)
 
 ### Support Models
 In this framework, we support the following methods:
 
-|     Type    |                    ModelName                   |                                          From                                          |
-|:-----------:|:----------------------------------------------:|:--------------------------------------------------------------------------------------:|
+|     Type    |   Model Name      |     From                |
+|:-----------:|:----------------:|:------------------------:|
 | Single-Task |[EF_LSTM](models/singleTask/EF_LSTM.py)|[MultimodalDNN](https://github.com/rhoposit/MultimodalDNN)|
 | Single-Task |[LF_DNN](models/singleTask/LF_DNN.py)|      -       |
 | Single-Task |[TFN](models/singleTask/TFN.py)|[TensorFusionNetwork](https://github.com/A2Zadeh/TensorFusionNetwork)|
@@ -77,8 +77,7 @@ python data/getFeature.py --data_dir [path_to_CH-SIMS] --openface2Path [path_to_
 ```
 5. Then, you can see the preprocessed features in the `path/to/CH-SIMS/Processed/features/data.npz`
 
-#### Run models
-> you can set parameters in `config_run.py`. And then run `run.py`
+#### Run
 
 ```
 python run.py --modelName *** --datasetName sims --tasks MTAV

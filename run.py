@@ -129,9 +129,9 @@ def run_normal(seeds):
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--debug_mode', type=bool, default=True,
+    parser.add_argument('--debug_mode', type=bool, default=False,
                         help='adjust parameters ?')
-    parser.add_argument('--modelName', type=str, default='lf_dnn',
+    parser.add_argument('--modelName', type=str, default='mfn',
                         help='support mult/tfn/lmf/mfn/ef_lstm/lf_dnn/mtfn/mlmf/mlf_dnn')
     parser.add_argument('--datasetName', type=str, default='sims',
                         help='support mosi/sims')
