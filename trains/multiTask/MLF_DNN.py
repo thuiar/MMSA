@@ -68,7 +68,7 @@ class MLF_DNN():
                 train_results = self.metrics(pred, true)
                 print('%s: >> ' %(m) + dict_to_str(train_results))
             # validation
-            val_results = do_test(model, dataloader['valid'], mode="VAL")
+            val_results = self.do_test(model, dataloader['valid'], mode="VAL")
             val_acc = val_results[self.args.tasks[0]][self.args.KeyEval]
             # save best model
             if val_acc > best_acc:
@@ -101,7 +101,7 @@ class MLF_DNN():
                     outputs = model(text, audio, vision)
                     loss = 0.0
                     for m in self.args.tasks:
-                        loss += eval('self.args.'+m) * self.criterion(y_pred[m], y_true[m])
+                        loss += eval('self.args.'+m) * self.criterion(outputs[m], labels[m])
                     eval_loss += loss.item()
                     for m in self.args.tasks:
                         y_pred[m].append(outputs[m].cpu())

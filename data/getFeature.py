@@ -1,4 +1,5 @@
 import os
+import argparse
 import librosa
 import struct
 import pandas as pd
@@ -9,15 +10,16 @@ from tqdm import tqdm
 import torch
 from transformers import *
 
-# from log import *
-
 class getFeatures():
-    def __init__(self, working_dir):
+    def __init__(self, working_dir, openface2Path, pretrainedBertPath):
         self.data_dir = os.path.join(working_dir, 'Processed')
         self.label_path = os.path.join(working_dir, 'metadata/sentiment')
         # padding
         self.padding_mode = 'zeros'
         self.padding_location = 'back'
+        # toolkits path
+        self.openface2Path = openface2Path
+        self.pretrainedBertPath = pretrainedBertPath
 
     def __read_hog(self, filename, batch_size=5000):
         """
@@ -82,7 +84,8 @@ class getFeatures():
         tokenizer_class = BertTokenizer
         model_class = BertModel
         # directory is fine
-        pretrained_weights = '/home/sharing/disk3/pretrained_embedding/bert/chinese_L-12_H-768_A-12'
+        # pretrained_weights = '/home/sharing/disk3/pretrained_embedding/Chinese/bert/pytorch'
+        pretrained_weights = pretrainedBertPath
         tokenizer = tokenizer_class.from_pretrained(pretrained_weights)
         model = model_class.from_pretrained(pretrained_weights)
         # add_special_tokens will add start and end token
@@ -152,11 +155,12 @@ class getFeatures():
     
     def handleImages(self):
         image_dirs = sorted(glob(os.path.join(self.data_dir, 'video/AlignedFaces', '*/*')))
-        for image_dir in tqdm(image_dirs):
+        for image_dir in tqdm(image_dirs[1449:]):
             output_dir = image_dir.replace('AlignedFaces', 'OpenFace2')
             if not os.path.exists(output_dir):
                 os.makedirs(output_dir)
-            cmd = '/home/iyuge2/ToolKits/OpenFace/build/bin/FeatureExtraction -fdir ' + image_dir + ' -out_dir ' + output_dir
+            # cmd = '/home/****/ToolKits/OpenFace/build/bin/FeatureExtraction -fdir ' + image_dir + ' -out_dir ' + output_dir
+            cmd = self.openface2Path + ' -fdir ' + image_dir + ' -out_dir ' + output_dir
             os.system(cmd)
 
     def results(self, output_dir):
@@ -167,7 +171,6 @@ class getFeatures():
 
         features_T, features_A, features_V = [], [], []
         label_T, label_A, label_V, label_M = [], [], [], []
-
         for i in tqdm(range(len(df_label_T))):
             video_id, clip_id = df_label_T.loc[i, ['video_id', 'clip_id']]
             clip_id = '%04d' % clip_id
@@ -193,18 +196,27 @@ class getFeatures():
         feature_V = self.__paddingSequence(features_V)
         # save
         save_path = os.path.join(self.data_dir, output_dir, 'data.npz')
-        if not os.path.exists(os.path.dirname(save_path)):
-            os.makedirs(os.path.dirname(save_path))
         np.savez(save_path, \
                  feature_T=feature_T, feature_A=feature_A, feature_V=feature_V, \
                  label_T=np.array(label_T), label_A=np.array(label_A), \
                  label_V=np.array(label_V), label_M=np.array(label_M))
 
         print('Features are saved in %s!' %save_path)
-    
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--data_dir', type=str,
+                        help='path to CH-SIMS')
+    parser.add_argument('--openface2Path', type=str,
+                        help='path to FeatureExtraction tool in openface2')
+    parser.add_argument('--pretrainedBertPath', type=str,
+                        help='path to pretrained bert directory')
+    return parser.parse_args()
+
 if __name__ == "__main__":
-    working_dir = '/home/sharing/disk3/dataset/multimodal-sentiment-dataset/CH-SIMS'
-    gf = getFeatures(working_dir)
+    args = parse_args()
+    # data_dir = '/path/to/MSA-ZH'
+    gf = getFeatures(args.data_dir, args.openface2Path, args.pretrainedBertPath)
     
     gf.handleImages()
 

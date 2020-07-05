@@ -1,4 +1,4 @@
-/.vscode
+.vscode
 **/__pycache__
 **.pth
 **.pkl
@@ -6,4 +6,5 @@
 .ipynb_checkpoints
 **.npz
 **jupyter
-**DataPre.py
+.gitignore
+results

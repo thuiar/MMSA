@@ -32,7 +32,7 @@ class Storage(dict):
 class ConfigDebug():
     def __init__(self, input_args):
         # parameters for data
-        self.data_dir = '/home/sharing/disk2/multimodal-sentiment-dataset'
+        self.data_dir = '/home/sharing/disk3/dataset/multimodal-sentiment-dataset'
         # global parameters for running
         self.global_running = vars(input_args)
         # hyper parameters for models
@@ -65,6 +65,7 @@ class ConfigDebug():
                 # (batch_size, input_lens, feature_dim)
                 'input_lens': (39, 400, 55), # (text, audio, video)
                 'feature_dims': (768, 33, 709), # (text, audio, video)
+                'KeyEval': 'Mult_acc_2',
             }
         }
         return tmp
@@ -133,7 +134,6 @@ class ConfigDebug():
                 'need_normalize': True,
                 # Tuning
                 'early_stop': 20,
-                'patience': 0, # when to decay learning rate
                 # Logistics
                 'weight_decay': 0.0,
             },
@@ -168,7 +168,6 @@ class ConfigDebug():
                 'need_normalize': True,
                 # Tuning
                 'early_stop': 20,
-                'patience': 0, # when to decay learning rate, 0 means don't use adaptive learning rate
                 'seed': 1111,
             },
             # dataset
@@ -205,7 +204,6 @@ class ConfigDebug():
                 'need_align': True,
                 # Tuning
                 'early_stop': 20,
-                'patience': 0, # when to decay learning rate
                 # Logistics
                 'weight_decay': 0.0,
             },
@@ -246,7 +244,6 @@ class ConfigDebug():
                 'need_align': True,
                 # Tuning
                 'early_stop': 20,
-                'patience': 0, # when to decay learning rate
                 # Logistics
                 'weight_decay': 0.0,
             },
@@ -282,7 +279,6 @@ class ConfigDebug():
                 'need_normalize': True,
                 # Tuning
                 'early_stop': 20,
-                'patience': 0, # when to decay learning rate
                 # Logistics
                 'weight_decay': 0.0,
                 'seed': 1111,
@@ -321,7 +317,6 @@ class ConfigDebug():
                 'need_normalize': True,
                 # Tuning
                 'early_stop': 20,
-                'patience': 0, # when to decay learning rate
                 # Logistics
                 'weight_decay': 0.0,
             },
@@ -367,7 +362,6 @@ class ConfigDebug():
                 'need_normalize': True,
                 # Tuning
                 'early_stop': 20,
-                'patience': 0, # when to decay learning rate, 0 means don't use adaptive learning rate
             },
             'datasetParas':{
                 'sims':{
@@ -413,7 +407,6 @@ class ConfigDebug():
                 'need_normalize': True,
                 # Tuning
                 'early_stop': 20,
-                'patience': 0, # when to decay learning rate
                 # Logistics
             },
             # dataset

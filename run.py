@@ -129,13 +129,13 @@ def run_normal(seeds):
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--debug_mode', type=bool, default=False,
+    parser.add_argument('--debug_mode', type=bool, default=True,
                         help='adjust parameters ?')
-    parser.add_argument('--modelName', type=str, default='mlmf',
+    parser.add_argument('--modelName', type=str, default='lf_dnn',
                         help='support mult/tfn/lmf/mfn/ef_lstm/lf_dnn/mtfn/mlmf/mlf_dnn')
     parser.add_argument('--datasetName', type=str, default='sims',
                         help='support mosi/sims')
-    parser.add_argument('--tasks', type=str, default='MTAV',
+    parser.add_argument('--tasks', type=str, default='M',
                         help='M/T/A/V/MTAV/...')
     parser.add_argument('--num_workers', type=int, default=8,
                         help='num workers of loading data')
