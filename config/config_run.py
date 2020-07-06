@@ -29,14 +29,14 @@ class Storage(dict):
         return "<" + self.__class__.__name__ + dict.__repr__(self) + ">"
 
 class Config():
-    def __init__(self, input_args):
+    def __init__(self, args):
         # parameters for data
-        self.data_dir = '/home/sharing/disk3/dataset/multimodal-sentiment-dataset'
+        self.data_dir = args.data_dir
         # global parameters for running
         try:
-            self.global_running = vars(input_args)
+            self.global_running = vars(args)
         except TypeError:
-            self.global_running = input_args
+            self.global_running = args
         # hyper parameters for models
         self.HYPER_MODEL_MAP = {
             'mult': self.__MULT,

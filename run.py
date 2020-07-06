@@ -135,7 +135,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--debug_mode', type=bool, default=False,
                         help='adjust parameters ?')
-    parser.add_argument('--modelName', type=str, default='mtfn',
+    parser.add_argument('--modelName', type=str, default='mlf_dnn',
                         help='support mult/tfn/lmf/mfn/ef_lstm/lf_dnn/mtfn/mlmf/mlf_dnn')
     parser.add_argument('--datasetName', type=str, default='sims',
                         help='support mosi/sims')
@@ -147,7 +147,9 @@ def parse_args():
                         help='path to save model.')
     parser.add_argument('--res_save_path', type=str, default='results/result_saves',
                         help='path to save results.')
-    parser.add_argument('--gpu_ids', type=list, default=[3],
+    parser.add_argument('--data_dir', type=str, default='/home/sharing/disk3/dataset/multimodal-sentiment-dataset',
+                        help='path to data directory')
+    parser.add_argument('--gpu_ids', type=list, default=[0],
                         help='indicates the gpus will be used.')
     return parser.parse_args()
 

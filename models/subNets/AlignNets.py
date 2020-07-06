@@ -13,6 +13,7 @@ class CTCModule(nn.Module):
         This module is performing alignment from A (e.g., audio) to B (e.g., text).
         :param in_dim: Dimension for input modality A
         :param out_seq_len: Sequence length for output modality B
+        From: https://github.com/yaohungt/Multimodal-Transformer
         '''
         super(CTCModule, self).__init__()
         # Use LSTM for predicting the position from A to B

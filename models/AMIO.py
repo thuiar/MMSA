@@ -33,7 +33,7 @@ class AMIO(nn.Module):
         text_seq_len, _, _ = args.input_lens
         # simulating word-align network (for seq_len_T == seq_len_A == seq_len_V)
         if(self.need_align):
-            self.alignNet = AlignSubNet(args, 'ctc')
+            self.alignNet = AlignSubNet(args, 'avg_pool')
             if 'input_lens' in args.keys():
                 args.input_lens = self.alignNet.get_seq_len()
         lastModel = MODEL_MAP[args.modelName]
