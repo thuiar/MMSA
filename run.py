@@ -48,7 +48,11 @@ def run(args):
     model.load_state_dict(torch.load(pretrained_path))
     model.to(device)
     # do test
-    results = atio.do_test(model, dataloader['test'], mode="TEST")
+    if args.debug_mode: 
+        # using valid dataset to debug hyper parameters
+        results = atio.do_test(model, dataloader['valid'], mode="VAL")
+    else:
+        results = atio.do_test(model, dataloader['test'], mode="TEST")
     return results
 
 def run_debug(seeds, debug_times=50):
@@ -131,11 +135,11 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--debug_mode', type=bool, default=False,
                         help='adjust parameters ?')
-    parser.add_argument('--modelName', type=str, default='mfn',
+    parser.add_argument('--modelName', type=str, default='mtfn',
                         help='support mult/tfn/lmf/mfn/ef_lstm/lf_dnn/mtfn/mlmf/mlf_dnn')
     parser.add_argument('--datasetName', type=str, default='sims',
                         help='support mosi/sims')
-    parser.add_argument('--tasks', type=str, default='M',
+    parser.add_argument('--tasks', type=str, default='MTAV',
                         help='M/T/A/V/MTAV/...')
     parser.add_argument('--num_workers', type=int, default=8,
                         help='num workers of loading data')
@@ -143,7 +147,7 @@ def parse_args():
                         help='path to save model.')
     parser.add_argument('--res_save_path', type=str, default='results/result_saves',
                         help='path to save results.')
-    parser.add_argument('--gpu_ids', type=list, default=[2],
+    parser.add_argument('--gpu_ids', type=list, default=[3],
                         help='indicates the gpus will be used.')
     return parser.parse_args()
 

@@ -402,29 +402,29 @@ class Config():
             # dataset
             'datasetParas':{
                 'sims':{
-                    'hidden_dims': (128, 16, 128),
-                    'post_text_dim': 32,
-                    'post_audio_dim': 4,
-                    'post_video_dim': 32,
+                    'hidden_dims': (64, 16, 64),
+                    'post_text_dim': 64,
+                    'post_audio_dim': 5,
+                    'post_video_dim': 16,
                     # dropout
                     'post_dropouts': (0.3,0.3,0.3),
-                    'dropouts': (0.3, 0.3, 0.3, 0.3),
+                    'dropouts': (0.2, 0.2, 0.2, 0.2),
                     'output_dim': 1,
                     'criterion': 'L1Loss',
-                    'rank': 3,
+                    'rank': 4,
                     'use_softmax': False,
                     # ref Original Paper
-                    'batch_size': 32,
-                    'learning_rate': 2e-3,
-                    'factor_lr': 1e-3, # factor_learning_rate
-                    'weight_decay': 1e-3,
+                    'batch_size': 64,
+                    'learning_rate': 0.001,
+                    'factor_lr': 0.0005, # factor_learning_rate
+                    'weight_decay': 0.001,
                     'grad_clip': 0.0, # gradient clip value
-                    'M': 0.6,
-                    'T': 0.4,
-                    'A': 0.6,
-                    'V': 0.4,
-                    'text_weight_decay': 0.0,
-                    'audio_weight_decay': 1e-3,
+                    'M': 0.4,
+                    'T': 0.6,
+                    'A': 1.0,
+                    'V': 0.2,
+                    'text_weight_decay': 1e-4,
+                    'audio_weight_decay': 1e-5,
                     'video_weight_decay': 1e-4, 
                 },
             },
@@ -446,27 +446,27 @@ class Config():
             # dataset
             'datasetParas':{
                 'sims':{
-                    'hidden_dims': (64, 32, 64),
+                    'hidden_dims': (128, 16, 128),
                     'text_out': 32,
-                    'post_fusion_dim': 64,
+                    'post_fusion_dim': 128,
                     'post_text_dim':32,
-                    'post_audio_dim': 4,
-                    'post_video_dim': 8,
+                    'post_audio_dim': 5,
+                    'post_video_dim': 16,
                     'dropouts': (0.2, 0.2, 0.2),
-                    'post_dropouts': (0.4,0.4,0.4,0.4),
+                    'post_dropouts': (0.5,0.5,0.5,0.5),
                     'criterion': 'L1Loss',
                     'num_classes': 1, # compute regression
                     # ref Original Paper
-                    'batch_size': 128,
-                    'learning_rate': 5e-3,
-                    'grad_clip': 0.0, # gradient clip value (default: 0.8)
-                    'M': 0.2,
-                    'T': 0.8,
+                    'batch_size': 64,
+                    'learning_rate': 0.0005,
+                    'grad_clip': 0.0,
+                    'M': 0.8,
+                    'T': 0.6,
                     'A': 0.4,
-                    'V': 0.8,
-                    'text_weight_decay': 1e-4,
-                    'audio_weight_decay': 1e-3,
-                    'video_weight_decay': 1e-4,
+                    'V': 0.2,
+                    'text_weight_decay': 0.0,
+                    'audio_weight_decay': 0.0,
+                    'video_weight_decay': 0.0,
                 },
             },
         }
