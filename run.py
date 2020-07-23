@@ -135,11 +135,11 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--debug_mode', type=bool, default=False,
                         help='adjust parameters ?')
-    parser.add_argument('--modelName', type=str, default='mlf_dnn',
+    parser.add_argument('--modelName', type=str, default='ef_lstm',
                         help='support mult/tfn/lmf/mfn/ef_lstm/lf_dnn/mtfn/mlmf/mlf_dnn')
     parser.add_argument('--datasetName', type=str, default='sims',
                         help='support mosi/sims')
-    parser.add_argument('--tasks', type=str, default='MTAV',
+    parser.add_argument('--tasks', type=str, default='M',
                         help='M/T/A/V/MTAV/...')
     parser.add_argument('--num_workers', type=int, default=8,
                         help='num workers of loading data')
@@ -149,7 +149,7 @@ def parse_args():
                         help='path to save results.')
     parser.add_argument('--data_dir', type=str, default='/home/sharing/disk3/dataset/multimodal-sentiment-dataset',
                         help='path to data directory')
-    parser.add_argument('--gpu_ids', type=list, default=[0],
+    parser.add_argument('--gpu_ids', type=list, default=[2],
                         help='indicates the gpus will be used.')
     return parser.parse_args()
 

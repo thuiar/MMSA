@@ -1,5 +1,5 @@
 """
-AIO -- All Model in One
+AIO -- All Trains in One
 """
 import torch
 import torch.nn as nn
