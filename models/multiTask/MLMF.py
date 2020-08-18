@@ -180,7 +180,7 @@ class MLMF(nn.Module):
         output_audio = self.post_audio_layer_3(x_a)
         # video
         x_v = self.post_video_dropout(video_h)
-        x_v = F.relu(self.post_video_layer_1(video_h), inplace=True)
+        x_v = F.relu(self.post_video_layer_1(x_v), inplace=True)
         x_v = F.relu(self.post_video_layer_2(x_v), inplace=True)
         output_video = self.post_video_layer_3(x_v)
 
