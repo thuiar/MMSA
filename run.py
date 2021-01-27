@@ -3,10 +3,13 @@ import time
 import random
 import logging
 import torch
+import pynvml
 import argparse
 import numpy as np
 import pandas as pd
+import multiprocessing as mp
 from tqdm import tqdm
+from multiprocessing import Pool
 
 from config.config_run import Config
 from config.config_debug import ConfigDebug
@@ -79,6 +82,7 @@ def run_tune(args, tune_times=50):
         args = init_args
         config = ConfigDebug(args)
         args = config.get_config()
+        print(args)
         # print debugging params
         logger.info("#"*40 + '%s-(%d/%d)' %(args.modelName, i+1, tune_times) + '#'*40)
         for k,v in args.items():
@@ -170,13 +174,49 @@ def set_log(args):
     fh.setFormatter(formatter_file)
     logger.addHandler(fh)
     # add StreamHandler to terminal outputs
-    formatter_stream = logging.Formatter('%(message)s')
-    ch = logging.StreamHandler()
-    ch.setLevel(logging.DEBUG)
-    ch.setFormatter(formatter_stream)
-    logger.addHandler(ch)
+    # formatter_stream = logging.Formatter('%(message)s')
+    # ch = logging.StreamHandler()
+    # ch.setLevel(logging.DEBUG)
+    # ch.setFormatter(formatter_stream)
+    # logger.addHandler(ch)
     return logger
-        
+
+def worker(cur_task):
+    args = parse_args()
+    args.is_tune = True if cur_task['is_tune'] else False
+    args.train_mode = cur_task['train_mode']
+    args.modelName = cur_task['modelName']
+    args.datasetName = cur_task['datasetName']
+    try:
+        global logger
+        logger = set_log(args)
+        # load free-most gpus
+        pynvml.nvmlInit()
+        dst_gpu_id, min_mem_used = 0, 1e16
+        for g_id in [0, 1, 2, 3]:
+            handle = pynvml.nvmlDeviceGetHandleByIndex(g_id)
+            meminfo = pynvml.nvmlDeviceGetMemoryInfo(handle)
+            mem_used = meminfo.used
+            if mem_used < min_mem_used:
+                min_meminfo = mem_used
+                dst_gpu_id = g_id
+        logger.info(f'Find gpu: {dst_gpu_id}, with memory: {min_meminfo} left!')
+        print(f'Find gpu: {dst_gpu_id}, with memory: {min_meminfo} left!')
+        args.gpu_ids[0] = dst_gpu_id
+        args.seeds = [1111,1112, 1113, 1114, 1115]
+        if args.is_tune:
+            run_tune(args, tune_times=cur_task['tune_times'])
+        else:
+            run_normal(args)
+        df = pd.read_csv('tasks.csv')
+        df.loc[cur_task['index'], 'state'] = 1  # 任务完成
+    except Exception as e:
+        logger.error(e)
+        df = pd.read_csv('tasks.csv')
+        df.loc[cur_task['index'], 'state'] = -1 # 任务出错
+    finally:
+        df.to_csv('tasks.csv', index=None)
+
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--is_tune', type=bool, default=False,
@@ -198,10 +238,21 @@ def parse_args():
     return parser.parse_args()
 
 if __name__ == '__main__':
-    args = parse_args()
-    logger = set_log(args)
-    args.seeds = [1111,1112, 1113, 1114, 1115]
-    if args.is_tune:
-        run_tune(args, tune_times=50)
-    else:
-        run_normal(args)
+    mp.set_start_method('spawn')
+    # load uncompleted tasks
+    df = pd.read_csv('tasks.csv')
+    left_tasks = []
+    for index in range(len(df)):
+        if df.loc[index, 'state'] != 1:
+            cur_task = {name:df.loc[index,name] for name in df.columns}
+            cur_task['index'] = index
+            left_tasks.append(cur_task)
+    # create process pools
+    po = Pool(4)
+    for cur_task in left_tasks:
+        po.apply_async(worker, (cur_task,))
+    # close and wait
+    print('-----start--------')
+    po.close()
+    po.join()
+    print('-----end--------')

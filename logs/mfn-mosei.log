@@ -2510,3 +2510,4 @@
 2021-01-27 23:21:11:INFO:VAL-(graph_mfn) >>  Has0_acc_2: 0.7557  Has0_F1_score: 0.7439  Non0_acc_2: 0.8143  Non0_F1_score: 0.8123  Mult_acc_5: 0.5366  Mult_acc_7: 0.5254  MAE: 0.5568  Corr: 0.6749  Loss: 0.5554 
 2021-01-27 23:25:03:INFO:TRAIN-(graph_mfn) (2/23/1)>> loss: 0.5104  Has0_acc_2: 0.8108  Has0_F1_score: 0.8062  Non0_acc_2: 0.8466  Non0_F1_score: 0.8473  Mult_acc_5: 0.5892  Mult_acc_7: 0.5690  MAE: 0.5103  Corr: 0.7662 
 2021-01-27 23:25:10:INFO:VAL-(graph_mfn) >>  Has0_acc_2: 0.7221  Has0_F1_score: 0.7070  Non0_acc_2: 0.7969  Non0_F1_score: 0.7936  Mult_acc_5: 0.5318  Mult_acc_7: 0.5216  MAE: 0.5589  Corr: 0.6626  Loss: 0.5598 
+2021-01-28 01:00:16:ERROR:name 'logger' is not defined

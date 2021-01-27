@@ -2798,3 +2798,121 @@
 2021-01-27 04:31:08:INFO:TEST-(lf_dnn) >>  Has0_acc_2: 0.8246  Has0_F1_score: 0.8249  Non0_acc_2: 0.8354  Non0_F1_score: 0.8392  Mult_acc_5: 0.5111  Mult_acc_7: 0.5031  MAE: 0.5763  Corr: 0.7241  Loss: 0.5763 
 2021-01-27 04:31:08:INFO:Start saving results...
 2021-01-27 04:31:08:INFO:Results are saved to results/results/mosei-lf_dnn-regression-tune.csv...
+2021-01-28 00:59:40:ERROR:name 'logger' is not defined
+2021-01-28 01:11:11:INFO:########################################lf_dnn-(1/50)########################################
+2021-01-28 01:11:11:INFO:hidden_dims:(64, 32, 64)
+2021-01-28 01:11:11:INFO:text_out:32
+2021-01-28 01:11:11:INFO:post_fusion_dim:128
+2021-01-28 01:11:11:INFO:dropouts:(0.3, 0.3, 0.3, 0.5)
+2021-01-28 01:11:11:INFO:batch_size:32
+2021-01-28 01:11:11:INFO:learning_rate:0.001
+2021-01-28 01:11:11:INFO:weight_decay:0.0
+2021-01-28 01:11:11:INFO:##########################################################################################
+2021-01-28 01:11:11:INFO:Start running lf_dnn...
+2021-01-28 01:11:11:INFO:Let's use 1 GPUs!
+2021-01-28 01:18:07:INFO:########################################lf_dnn-(1/50)########################################
+2021-01-28 01:18:07:INFO:hidden_dims:(64, 32, 64)
+2021-01-28 01:18:07:INFO:text_out:256
+2021-01-28 01:18:07:INFO:post_fusion_dim:32
+2021-01-28 01:18:07:INFO:dropouts:(0.4, 0.4, 0.4, 0.4)
+2021-01-28 01:18:07:INFO:batch_size:64
+2021-01-28 01:18:07:INFO:learning_rate:0.002
+2021-01-28 01:18:07:INFO:weight_decay:0.005
+2021-01-28 01:18:07:INFO:##########################################################################################
+2021-01-28 01:18:07:INFO:Start running lf_dnn...
+2021-01-28 01:18:07:INFO:Let's use 1 GPUs!
+2021-01-28 01:20:13:INFO:########################################lf_dnn-(1/50)########################################
+2021-01-28 01:20:13:INFO:hidden_dims:(128, 16, 128)
+2021-01-28 01:20:13:INFO:text_out:128
+2021-01-28 01:20:13:INFO:post_fusion_dim:32
+2021-01-28 01:20:13:INFO:dropouts:(0.4, 0.4, 0.4, 0.4)
+2021-01-28 01:20:13:INFO:batch_size:32
+2021-01-28 01:20:13:INFO:learning_rate:0.0005
+2021-01-28 01:20:13:INFO:weight_decay:0.001
+2021-01-28 01:20:13:INFO:##########################################################################################
+2021-01-28 01:20:13:INFO:Start running lf_dnn...
+2021-01-28 01:20:13:INFO:Let's use 1 GPUs!
+2021-01-28 02:02:36:INFO:########################################lf_dnn-(1/50)########################################
+2021-01-28 02:02:36:INFO:hidden_dims:(64, 32, 64)
+2021-01-28 02:02:36:INFO:text_out:128
+2021-01-28 02:02:36:INFO:post_fusion_dim:16
+2021-01-28 02:02:36:INFO:dropouts:(0.2, 0.2, 0.2, 0.2)
+2021-01-28 02:02:36:INFO:batch_size:64
+2021-01-28 02:02:36:INFO:learning_rate:0.0005
+2021-01-28 02:02:36:INFO:weight_decay:0.01
+2021-01-28 02:02:36:INFO:##########################################################################################
+2021-01-28 02:02:36:INFO:Start running lf_dnn...
+2021-01-28 02:02:36:INFO:Let's use 1 GPUs!
+2021-01-28 02:03:12:INFO:Find gpu: 0, with memory: 11337728 left!
+2021-01-28 02:03:12:INFO:########################################lf_dnn-(1/50)########################################
+2021-01-28 02:03:12:INFO:hidden_dims:(64, 32, 64)
+2021-01-28 02:03:12:INFO:text_out:32
+2021-01-28 02:03:12:INFO:post_fusion_dim:64
+2021-01-28 02:03:12:INFO:dropouts:(0.3, 0.3, 0.3, 0.5)
+2021-01-28 02:03:12:INFO:batch_size:32
+2021-01-28 02:03:12:INFO:learning_rate:0.002
+2021-01-28 02:03:12:INFO:weight_decay:0.01
+2021-01-28 02:03:12:INFO:##########################################################################################
+2021-01-28 02:03:12:INFO:Start running lf_dnn...
+2021-01-28 02:03:12:INFO:Let's use 1 GPUs!
+2021-01-28 02:03:26:INFO:train samples: (16326,)
+2021-01-28 02:06:16:INFO:Find gpu: 0, with memory: 11337728 left!
+2021-01-28 02:06:16:INFO:########################################lf_dnn-(1/50)########################################
+2021-01-28 02:06:16:INFO:hidden_dims:(256, 32, 256)
+2021-01-28 02:06:16:INFO:text_out:32
+2021-01-28 02:06:16:INFO:post_fusion_dim:16
+2021-01-28 02:06:16:INFO:dropouts:(0.4, 0.4, 0.4, 0.4)
+2021-01-28 02:06:16:INFO:batch_size:32
+2021-01-28 02:06:16:INFO:learning_rate:0.001
+2021-01-28 02:06:16:INFO:weight_decay:0.01
+2021-01-28 02:06:16:INFO:##########################################################################################
+2021-01-28 02:06:16:INFO:Start running lf_dnn...
+2021-01-28 02:06:16:INFO:Let's use 1 GPUs!
+2021-01-28 02:06:30:INFO:train samples: (16326,)
+2021-01-28 02:06:46:INFO:valid samples: (1871,)
+2021-01-28 02:07:01:INFO:test samples: (4659,)
+2021-01-28 02:07:06:INFO:The model has 1209803 trainable parameters
+2021-01-28 02:07:17:INFO:TRAIN-(lf_dnn) (1/1/1)>> loss: 0.7232  Has0_acc_2: 0.7505  Has0_F1_score: 0.7504  Non0_acc_2: 0.7588  Non0_F1_score: 0.7658  Mult_acc_5: 0.4459  Mult_acc_7: 0.4438  MAE: 0.7231  Corr: 0.5179 
+2021-01-28 02:07:18:INFO:VAL-(lf_dnn) >>  Has0_acc_2: 0.7451  Has0_F1_score: 0.7314  Non0_acc_2: 0.7935  Non0_F1_score: 0.7893  Mult_acc_5: 0.5045  Mult_acc_7: 0.4992  MAE: 0.6005  Corr: 0.6433  Loss: 0.5999 
+2021-01-28 02:07:30:INFO:TRAIN-(lf_dnn) (1/2/1)>> loss: 0.6471  Has0_acc_2: 0.7898  Has0_F1_score: 0.7854  Non0_acc_2: 0.8125  Non0_F1_score: 0.8136  Mult_acc_5: 0.4816  Mult_acc_7: 0.4763  MAE: 0.6475  Corr: 0.6383 
+2021-01-28 02:07:31:INFO:VAL-(lf_dnn) >>  Has0_acc_2: 0.8076  Has0_F1_score: 0.8052  Non0_acc_2: 0.8213  Non0_F1_score: 0.8241  Mult_acc_5: 0.5195  Mult_acc_7: 0.5136  MAE: 0.5865  Corr: 0.6539  Loss: 0.5865 
+2021-01-28 02:07:41:INFO:TRAIN-(lf_dnn) (1/3/1)>> loss: 0.6249  Has0_acc_2: 0.8017  Has0_F1_score: 0.7985  Non0_acc_2: 0.8229  Non0_F1_score: 0.8246  Mult_acc_5: 0.4952  Mult_acc_7: 0.4876  MAE: 0.6253  Corr: 0.6648 
+2021-01-28 02:07:42:INFO:VAL-(lf_dnn) >>  Has0_acc_2: 0.7883  Has0_F1_score: 0.7802  Non0_acc_2: 0.8248  Non0_F1_score: 0.8238  Mult_acc_5: 0.5072  Mult_acc_7: 0.5024  MAE: 0.5815  Corr: 0.6550  Loss: 0.5797 
+2021-01-28 02:08:16:INFO:Find gpu: 0, with memory: 11337728 left!
+2021-01-28 02:08:16:INFO:########################################lf_dnn-(1/50)########################################
+2021-01-28 02:08:16:INFO:hidden_dims:(64, 16, 64)
+2021-01-28 02:08:16:INFO:text_out:256
+2021-01-28 02:08:16:INFO:post_fusion_dim:128
+2021-01-28 02:08:16:INFO:dropouts:(0.4, 0.4, 0.4, 0.4)
+2021-01-28 02:08:16:INFO:batch_size:64
+2021-01-28 02:08:16:INFO:learning_rate:0.0005
+2021-01-28 02:08:16:INFO:weight_decay:0.005
+2021-01-28 02:08:16:INFO:##########################################################################################
+2021-01-28 02:08:16:INFO:Start running lf_dnn...
+2021-01-28 02:08:16:INFO:Let's use 1 GPUs!
+2021-01-28 02:08:31:INFO:train samples: (16326,)
+2021-01-28 02:08:46:INFO:valid samples: (1871,)
+2021-01-28 02:09:00:INFO:test samples: (4659,)
+2021-01-28 02:09:06:INFO:The model has 302507 trainable parameters
+2021-01-28 02:09:13:INFO:TRAIN-(lf_dnn) (1/1/1)>> loss: 0.7116  Has0_acc_2: 0.7538  Has0_F1_score: 0.7508  Non0_acc_2: 0.7652  Non0_F1_score: 0.7689  Mult_acc_5: 0.4516  Mult_acc_7: 0.4485  MAE: 0.7125  Corr: 0.5325 
+2021-01-28 02:09:13:INFO:VAL-(lf_dnn) >>  Has0_acc_2: 0.8087  Has0_F1_score: 0.8186  Non0_acc_2: 0.7955  Non0_F1_score: 0.8104  Mult_acc_5: 0.4869  Mult_acc_7: 0.4869  MAE: 0.6089  Corr: 0.6358  Loss: 0.6052 
+2021-01-28 02:09:19:INFO:TRAIN-(lf_dnn) (1/2/1)>> loss: 0.6097  Has0_acc_2: 0.7933  Has0_F1_score: 0.7896  Non0_acc_2: 0.8193  Non0_F1_score: 0.8211  Mult_acc_5: 0.5075  Mult_acc_7: 0.4962  MAE: 0.6111  Corr: 0.6737 
+2021-01-28 02:09:20:INFO:VAL-(lf_dnn) >>  Has0_acc_2: 0.8092  Has0_F1_score: 0.8075  Non0_acc_2: 0.8150  Non0_F1_score: 0.8180  Mult_acc_5: 0.5318  Mult_acc_7: 0.5211  MAE: 0.5874  Corr: 0.6498  Loss: 0.5833 
+2021-01-28 02:09:27:INFO:TRAIN-(lf_dnn) (1/3/1)>> loss: 0.5940  Has0_acc_2: 0.7982  Has0_F1_score: 0.7936  Non0_acc_2: 0.8243  Non0_F1_score: 0.8251  Mult_acc_5: 0.5172  Mult_acc_7: 0.5052  MAE: 0.5948  Corr: 0.6902 
+2021-01-28 02:09:28:INFO:VAL-(lf_dnn) >>  Has0_acc_2: 0.8140  Has0_F1_score: 0.8124  Non0_acc_2: 0.8268  Non0_F1_score: 0.8301  Mult_acc_5: 0.5366  Mult_acc_7: 0.5259  MAE: 0.5611  Corr: 0.6836  Loss: 0.5589 
+2021-01-28 02:09:36:INFO:TRAIN-(lf_dnn) (1/4/1)>> loss: 0.5818  Has0_acc_2: 0.7958  Has0_F1_score: 0.7918  Non0_acc_2: 0.8229  Non0_F1_score: 0.8243  Mult_acc_5: 0.5296  Mult_acc_7: 0.5150  MAE: 0.5819  Corr: 0.7002 
+2021-01-28 02:09:36:INFO:VAL-(lf_dnn) >>  Has0_acc_2: 0.6745  Has0_F1_score: 0.6569  Non0_acc_2: 0.7712  Non0_F1_score: 0.7661  Mult_acc_5: 0.5329  Mult_acc_7: 0.5265  MAE: 0.5717  Corr: 0.6606  Loss: 0.5716 
+2021-01-28 02:09:42:INFO:TRAIN-(lf_dnn) (2/5/1)>> loss: 0.5779  Has0_acc_2: 0.7929  Has0_F1_score: 0.7884  Non0_acc_2: 0.8218  Non0_F1_score: 0.8230  Mult_acc_5: 0.5359  Mult_acc_7: 0.5213  MAE: 0.5766  Corr: 0.7080 
+2021-01-28 02:09:42:INFO:VAL-(lf_dnn) >>  Has0_acc_2: 0.8167  Has0_F1_score: 0.8261  Non0_acc_2: 0.7969  Non0_F1_score: 0.8102  Mult_acc_5: 0.5313  Mult_acc_7: 0.5222  MAE: 0.5687  Corr: 0.6757  Loss: 0.5688 
+2021-01-28 02:09:49:INFO:TRAIN-(lf_dnn) (3/6/1)>> loss: 0.5666  Has0_acc_2: 0.7997  Has0_F1_score: 0.7952  Non0_acc_2: 0.8307  Non0_F1_score: 0.8316  Mult_acc_5: 0.5431  Mult_acc_7: 0.5275  MAE: 0.5676  Corr: 0.7173 
+2021-01-28 02:09:49:INFO:VAL-(lf_dnn) >>  Has0_acc_2: 0.8263  Has0_F1_score: 0.8325  Non0_acc_2: 0.8136  Non0_F1_score: 0.8232  Mult_acc_5: 0.5061  Mult_acc_7: 0.4960  MAE: 0.5778  Corr: 0.6845  Loss: 0.5774 
+2021-01-28 02:09:55:INFO:TRAIN-(lf_dnn) (4/7/1)>> loss: 0.5697  Has0_acc_2: 0.7960  Has0_F1_score: 0.7921  Non0_acc_2: 0.8223  Non0_F1_score: 0.8237  Mult_acc_5: 0.5417  Mult_acc_7: 0.5263  MAE: 0.5685  Corr: 0.7141 
+2021-01-28 02:09:56:INFO:VAL-(lf_dnn) >>  Has0_acc_2: 0.7082  Has0_F1_score: 0.6924  Non0_acc_2: 0.7879  Non0_F1_score: 0.7846  Mult_acc_5: 0.5222  Mult_acc_7: 0.5158  MAE: 0.5667  Corr: 0.6602  Loss: 0.5622 
+2021-01-28 02:10:01:INFO:TRAIN-(lf_dnn) (5/8/1)>> loss: 0.5555  Has0_acc_2: 0.7954  Has0_F1_score: 0.7910  Non0_acc_2: 0.8261  Non0_F1_score: 0.8272  Mult_acc_5: 0.5545  Mult_acc_7: 0.5379  MAE: 0.5543  Corr: 0.7284 
+2021-01-28 02:10:02:INFO:VAL-(lf_dnn) >>  Has0_acc_2: 0.8242  Has0_F1_score: 0.8249  Non0_acc_2: 0.8261  Non0_F1_score: 0.8308  Mult_acc_5: 0.5323  Mult_acc_7: 0.5211  MAE: 0.5509  Corr: 0.6933  Loss: 0.5493 
+2021-01-28 02:10:08:INFO:TRAIN-(lf_dnn) (1/9/1)>> loss: 0.5506  Has0_acc_2: 0.8023  Has0_F1_score: 0.7987  Non0_acc_2: 0.8301  Non0_F1_score: 0.8316  Mult_acc_5: 0.5562  Mult_acc_7: 0.5395  MAE: 0.5497  Corr: 0.7332 
+2021-01-28 02:10:08:INFO:VAL-(lf_dnn) >>  Has0_acc_2: 0.8193  Has0_F1_score: 0.8189  Non0_acc_2: 0.8275  Non0_F1_score: 0.8315  Mult_acc_5: 0.5297  Mult_acc_7: 0.5174  MAE: 0.5540  Corr: 0.6915  Loss: 0.5586 
+2021-01-28 02:10:14:INFO:TRAIN-(lf_dnn) (2/10/1)>> loss: 0.5469  Has0_acc_2: 0.8023  Has0_F1_score: 0.7982  Non0_acc_2: 0.8326  Non0_F1_score: 0.8337  Mult_acc_5: 0.5570  Mult_acc_7: 0.5408  MAE: 0.5475  Corr: 0.7357 
+2021-01-28 02:10:15:INFO:VAL-(lf_dnn) >>  Has0_acc_2: 0.7579  Has0_F1_score: 0.7474  Non0_acc_2: 0.8199  Non0_F1_score: 0.8196  Mult_acc_5: 0.5393  Mult_acc_7: 0.5291  MAE: 0.5524  Corr: 0.6793  Loss: 0.5571 
+2021-01-28 02:10:21:INFO:TRAIN-(lf_dnn) (3/11/1)>> loss: 0.5406  Has0_acc_2: 0.8050  Has0_F1_score: 0.8010  Non0_acc_2: 0.8359  Non0_F1_score: 0.8371  Mult_acc_5: 0.5623  Mult_acc_7: 0.5447  MAE: 0.5414  Corr: 0.7400 
+2021-01-28 02:10:21:INFO:VAL-(lf_dnn) >>  Has0_acc_2: 0.7461  Has0_F1_score: 0.7329  Non0_acc_2: 0.8192  Non0_F1_score: 0.8166  Mult_acc_5: 0.5318  Mult_acc_7: 0.5195  MAE: 0.5659  Corr: 0.6749  Loss: 0.5679 

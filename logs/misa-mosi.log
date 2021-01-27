@@ -766,3 +766,4 @@
 2021-01-27 01:00:44:INFO:VAL-(misa) >>  Has0_acc_2: 0.8253  Has0_F1_score: 0.8257  Non0_acc_2: 0.8426  Non0_F1_score: 0.8437  Mult_acc_5: 0.5284  Mult_acc_7: 0.4410  MAE: 0.7326  Corr: 0.7882  Loss: 1.0438 
 2021-01-27 01:00:46:INFO:TEST-(misa) >>  Has0_acc_2: 0.8163  Has0_F1_score: 0.8169  Non0_acc_2: 0.8338  Non0_F1_score: 0.8338  Mult_acc_5: 0.4854  Mult_acc_7: 0.4242  MAE: 0.7500  Corr: 0.7860  Loss: 1.0296 
 2021-01-27 01:00:46:INFO:Results are saved to results/results/mosi-misa-regression.csv...
+2021-01-28 01:00:40:ERROR:name 'logger' is not defined

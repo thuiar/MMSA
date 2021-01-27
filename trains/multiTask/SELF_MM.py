@@ -97,7 +97,7 @@ class SELF_MM():
 
         saved_labels = {}
         # init labels
-        print("Init labels...")
+        logger.info("Init labels...")
         with tqdm(dataloader['train']) as td:
             for batch_data in td:
                 labels_m = batch_data['labels']['M'].view(-1).to(self.args.device)
@@ -105,7 +105,7 @@ class SELF_MM():
                 self.init_labels(indexes, labels_m)
 
         # initilize results
-        print("Start training...")
+        logger.info("Start training...")
         epochs, best_epoch = 0, 0
         min_or_max = 'min' if self.args.KeyEval in ['Loss'] else 'max'
         best_valid = 1e8 if min_or_max == 'min' else 0

@@ -5044,3 +5044,17 @@
 2021-01-27 08:39:32:INFO:TEST-(tfn) >>  Has0_acc_2: 0.7997  Has0_F1_score: 0.7937  Non0_acc_2: 0.8283  Non0_F1_score: 0.8277  Mult_acc_5: 0.5254  Mult_acc_7: 0.5106  MAE: 0.5750  Corr: 0.7237  Loss: 0.5758 
 2021-01-27 08:39:32:INFO:Start saving results...
 2021-01-27 08:39:32:INFO:Results are saved to results/results/mosei-tfn-regression-tune.csv...
+2021-01-28 00:59:49:ERROR:name 'logger' is not defined
+2021-01-28 01:11:20:INFO:########################################ef_lstm-(1/50)########################################
+2021-01-28 01:11:20:INFO:hidden_dims:32
+2021-01-28 01:11:20:INFO:num_layers:2
+2021-01-28 01:11:20:INFO:dropout:0.4
+2021-01-28 01:11:20:INFO:batch_size:32
+2021-01-28 01:11:20:INFO:learning_rate:0.002
+2021-01-28 01:11:20:INFO:weight_decay:0.0
+2021-01-28 01:11:20:INFO:##########################################################################################
+2021-01-28 01:11:20:INFO:Start running ef_lstm...
+2021-01-28 01:11:20:INFO:Let's use 1 GPUs!
+2021-01-28 01:11:24:INFO:train samples: (16326,)
+2021-01-28 01:11:29:INFO:valid samples: (1871,)
+2021-01-28 01:11:33:INFO:test samples: (4659,)

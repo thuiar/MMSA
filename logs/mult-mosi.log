@@ -1684,3 +1684,4 @@
 2021-01-27 16:23:55:INFO:valid samples: (229,)
 2021-01-27 16:23:56:INFO:test samples: (686,)
 2021-01-27 16:23:58:INFO:The model has 1558443 trainable parameters
+2021-01-28 01:00:31:ERROR:name 'logger' is not defined

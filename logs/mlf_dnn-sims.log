@@ -3233,3 +3233,4 @@
 2021-01-27 00:54:56:INFO:A: >>  Mult_acc_2: 0.6937  Mult_acc_3: 0.5427  Mult_acc_5: 0.2123  F1_score: 0.8191  MAE: 0.5850  Corr: 0.1711 
 2021-01-27 00:54:56:INFO:V: >>  Mult_acc_2: 0.6937  Mult_acc_3: 0.5295  Mult_acc_5: 0.2079  F1_score: 0.8191  MAE: 0.5769  Corr: 0.4103 
 2021-01-27 00:54:56:INFO:Results are saved to results/results/sims-mlf_dnn-regression.csv...
+2021-01-28 01:00:49:ERROR:name 'logger' is not defined
