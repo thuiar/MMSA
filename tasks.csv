@@ -1,11 +1,11 @@
 is_tune,train_mode,modelName,datasetName,state,tune_times
 1,regression,lf_dnn,mosi,1,50
 1,regression,lf_dnn,mosei,1,50
-1,regression,lf_dnn,sims,0,50
+1,regression,lf_dnn,sims,1,50
 1,regression,ef_lstm,mosi,1,50
 1,regression,ef_lstm,mosei,1,50
 1,regression,ef_lstm,sims,0,50
-1,regression,tfn,mosi,0,10
+1,regression,tfn,mosi,1,10
 1,regression,tfn,mosei,1,50
 1,regression,tfn,sims,0,50
 1,regression,lmf,mosi,1,50

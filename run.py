@@ -29,6 +29,20 @@ def run(args):
         os.makedirs(args.model_save_dir)
     args.model_save_path = os.path.join(args.model_save_dir,\
                                         f'{args.modelName}-{args.datasetName}-{args.train_mode}.pth')
+    # load free-most gpu
+    pynvml.nvmlInit()
+    dst_gpu_id, min_mem_used = 0, 1e16
+    for g_id in [0, 1, 2, 3]:
+        handle = pynvml.nvmlDeviceGetHandleByIndex(g_id)
+        meminfo = pynvml.nvmlDeviceGetMemoryInfo(handle)
+        mem_used = meminfo.used
+        print(mem_used)
+        if mem_used < min_mem_used:
+            min_mem_used = mem_used
+            dst_gpu_id = g_id
+    print(f'Find gpu: {dst_gpu_id}, use memory: {min_mem_used}!')
+    logger.info(f'Find gpu: {dst_gpu_id}, with memory: {min_mem_used} left!')
+    args.gpu_ids[0] = dst_gpu_id
     # device
     using_cuda = len(args.gpu_ids) > 0 and torch.cuda.is_available()
     logger.info("Let's use %d GPUs!" % len(args.gpu_ids))
@@ -77,6 +91,8 @@ def run_tune(args, tune_times=50):
         os.makedirs(os.path.dirname(save_file_path))
     
     for i in range(tune_times):
+        # load free-most gpus
+        pynvml.nvmlInit()
         # cancel random seed
         setup_seed(int(time.time()))
         args = init_args
@@ -182,6 +198,7 @@ def set_log(args):
     return logger
 
 def worker(cur_task):
+    time.sleep(random.random()*60) # avoid use the same gpu at first
     args = parse_args()
     args.is_tune = True if cur_task['is_tune'] else False
     args.train_mode = cur_task['train_mode']
@@ -190,19 +207,6 @@ def worker(cur_task):
     try:
         global logger
         logger = set_log(args)
-        # load free-most gpus
-        pynvml.nvmlInit()
-        dst_gpu_id, min_mem_used = 0, 1e16
-        for g_id in [0, 1, 2, 3]:
-            handle = pynvml.nvmlDeviceGetHandleByIndex(g_id)
-            meminfo = pynvml.nvmlDeviceGetMemoryInfo(handle)
-            mem_used = meminfo.used
-            if mem_used < min_mem_used:
-                min_meminfo = mem_used
-                dst_gpu_id = g_id
-        logger.info(f'Find gpu: {dst_gpu_id}, with memory: {min_meminfo} left!')
-        print(f'Find gpu: {dst_gpu_id}, with memory: {min_meminfo} left!')
-        args.gpu_ids[0] = dst_gpu_id
         args.seeds = [1111,1112, 1113, 1114, 1115]
         if args.is_tune:
             run_tune(args, tune_times=cur_task['tune_times'])

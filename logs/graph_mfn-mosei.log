@@ -63,3 +63,22 @@
 2021-01-27 23:25:03:INFO:TRAIN-(graph_mfn) (2/23/1)>> loss: 0.5104  Has0_acc_2: 0.8108  Has0_F1_score: 0.8062  Non0_acc_2: 0.8466  Non0_F1_score: 0.8473  Mult_acc_5: 0.5892  Mult_acc_7: 0.5690  MAE: 0.5103  Corr: 0.7662 
 2021-01-27 23:25:10:INFO:VAL-(graph_mfn) >>  Has0_acc_2: 0.7221  Has0_F1_score: 0.7070  Non0_acc_2: 0.7969  Non0_F1_score: 0.7936  Mult_acc_5: 0.5318  Mult_acc_7: 0.5216  MAE: 0.5589  Corr: 0.6626  Loss: 0.5598 
 2021-01-28 01:00:25:ERROR:name 'logger' is not defined
+2021-01-28 02:35:10:INFO:Find gpu: 3, with memory: 7938572288 left!
+2021-01-28 02:35:10:INFO:########################################graph_mfn-(1/50)########################################
+2021-01-28 02:35:10:INFO:hidden_dims:(64, 16, 64)
+2021-01-28 02:35:10:INFO:memsize:64
+2021-01-28 02:35:10:INFO:inner_node_dim:128
+2021-01-28 02:35:10:INFO:NNConfig:{'drop': 0.0, 'shapes': 128}
+2021-01-28 02:35:10:INFO:gamma1Config:{'drop': 0.7, 'shapes': 64}
+2021-01-28 02:35:10:INFO:gamma2Config:{'drop': 0.0, 'shapes': 128}
+2021-01-28 02:35:10:INFO:outConfig:{'drop': 0.7, 'shapes': 32}
+2021-01-28 02:35:10:INFO:batch_size:32
+2021-01-28 02:35:10:INFO:learning_rate:0.002
+2021-01-28 02:35:10:INFO:weight_decay:0.0
+2021-01-28 02:35:10:INFO:##########################################################################################
+2021-01-28 02:35:10:INFO:Start running graph_mfn...
+2021-01-28 02:35:10:INFO:Let's use 1 GPUs!
+2021-01-28 02:35:15:INFO:train samples: (16326,)
+2021-01-28 02:35:19:INFO:valid samples: (1871,)
+2021-01-28 02:35:24:INFO:test samples: (4659,)
+2021-01-28 02:35:24:INFO:The model has 451756 trainable parameters

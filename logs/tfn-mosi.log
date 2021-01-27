@@ -3680,3 +3680,628 @@
 2021-01-28 01:11:28:INFO:train samples: (1284,)
 2021-01-28 01:11:29:INFO:valid samples: (229,)
 2021-01-28 01:11:29:INFO:test samples: (686,)
+2021-01-28 02:17:39:INFO:Find gpu: 3, with memory: 11337728 left!
+2021-01-28 02:17:39:INFO:########################################tfn-(1/10)########################################
+2021-01-28 02:17:39:INFO:hidden_dims:(128, 32, 128)
+2021-01-28 02:17:39:INFO:text_out:64
+2021-01-28 02:17:39:INFO:post_fusion_dim:64
+2021-01-28 02:17:39:INFO:dropouts:(0.3, 0.3, 0.3, 0.5)
+2021-01-28 02:17:39:INFO:batch_size:128
+2021-01-28 02:17:39:INFO:learning_rate:0.0005
+2021-01-28 02:17:39:INFO:##########################################################################################
+2021-01-28 02:17:39:INFO:Start running tfn...
+2021-01-28 02:17:39:INFO:Let's use 1 GPUs!
+2021-01-28 02:17:40:INFO:train samples: (1284,)
+2021-01-28 02:17:40:INFO:valid samples: (229,)
+2021-01-28 02:17:41:INFO:test samples: (686,)
+2021-01-28 02:17:45:INFO:The model has 18219507 trainable parameters
+2021-01-28 02:17:48:INFO:TRAIN-(tfn) (1/1/1)>> loss: 1.2481  Has0_acc_2: 0.5911  Has0_F1_score: 0.6772  Non0_acc_2: 0.5768  Non0_F1_score: 0.6648  Mult_acc_5: 0.1947  Mult_acc_7: 0.1947  MAE: 1.3073  Corr: 0.1315 
+2021-01-28 02:17:48:INFO:VAL-(tfn) >>  Has0_acc_2: 0.5983  Has0_F1_score: 0.7409  Non0_acc_2: 0.5741  Non0_F1_score: 0.7213  Mult_acc_5: 0.2271  Mult_acc_7: 0.2271  MAE: 1.3583  Corr: 0.4923  Loss: 1.3538 
+2021-01-28 02:17:48:INFO:TRAIN-(tfn) (1/2/1)>> loss: 1.0658  Has0_acc_2: 0.6737  Has0_F1_score: 0.6783  Non0_acc_2: 0.6816  Non0_F1_score: 0.6874  Mult_acc_5: 0.2671  Mult_acc_7: 0.2593  MAE: 1.0862  Corr: 0.4705 
+2021-01-28 02:17:48:INFO:VAL-(tfn) >>  Has0_acc_2: 0.6725  Has0_F1_score: 0.6981  Non0_acc_2: 0.6620  Non0_F1_score: 0.6886  Mult_acc_5: 0.3319  Mult_acc_7: 0.2751  MAE: 1.1758  Corr: 0.5461  Loss: 1.1790 
+2021-01-28 02:17:49:INFO:TRAIN-(tfn) (1/3/1)>> loss: 0.9799  Has0_acc_2: 0.7282  Has0_F1_score: 0.7277  Non0_acc_2: 0.7425  Non0_F1_score: 0.7426  Mult_acc_5: 0.3442  Mult_acc_7: 0.3061  MAE: 1.0102  Corr: 0.5682 
+2021-01-28 02:17:49:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7118  Has0_F1_score: 0.7335  Non0_acc_2: 0.7037  Non0_F1_score: 0.7261  Mult_acc_5: 0.3188  Mult_acc_7: 0.2664  MAE: 1.1327  Corr: 0.5837  Loss: 1.1402 
+2021-01-28 02:17:50:INFO:TRAIN-(tfn) (1/4/1)>> loss: 0.9404  Has0_acc_2: 0.7523  Has0_F1_score: 0.7512  Non0_acc_2: 0.7628  Non0_F1_score: 0.7622  Mult_acc_5: 0.3769  Mult_acc_7: 0.3505  MAE: 0.9492  Corr: 0.6177 
+2021-01-28 02:17:50:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7467  Has0_F1_score: 0.7467  Non0_acc_2: 0.7593  Non0_F1_score: 0.7605  Mult_acc_5: 0.2751  Mult_acc_7: 0.2620  MAE: 1.1153  Corr: 0.6131  Loss: 1.1205 
+2021-01-28 02:17:51:INFO:TRAIN-(tfn) (1/5/1)>> loss: 0.8989  Has0_acc_2: 0.7921  Has0_F1_score: 0.7922  Non0_acc_2: 0.8018  Non0_F1_score: 0.8024  Mult_acc_5: 0.3699  Mult_acc_7: 0.3481  MAE: 0.8758  Corr: 0.6771 
+2021-01-28 02:17:51:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7424  Has0_F1_score: 0.7400  Non0_acc_2: 0.7731  Non0_F1_score: 0.7719  Mult_acc_5: 0.2751  Mult_acc_7: 0.2533  MAE: 1.0894  Corr: 0.6260  Loss: 1.0903 
+2021-01-28 02:17:52:INFO:TRAIN-(tfn) (1/6/1)>> loss: 0.7802  Has0_acc_2: 0.8037  Has0_F1_score: 0.8030  Non0_acc_2: 0.8180  Non0_F1_score: 0.8178  Mult_acc_5: 0.4470  Mult_acc_7: 0.4112  MAE: 0.8207  Corr: 0.7181 
+2021-01-28 02:17:52:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7642  Has0_F1_score: 0.7619  Non0_acc_2: 0.7917  Non0_F1_score: 0.7906  Mult_acc_5: 0.2576  Mult_acc_7: 0.2358  MAE: 1.0581  Corr: 0.6541  Loss: 1.0630 
+2021-01-28 02:17:53:INFO:TRAIN-(tfn) (1/7/1)>> loss: 0.7893  Has0_acc_2: 0.8209  Has0_F1_score: 0.8204  Non0_acc_2: 0.8359  Non0_F1_score: 0.8359  Mult_acc_5: 0.4151  Mult_acc_7: 0.3941  MAE: 0.7851  Corr: 0.7466 
+2021-01-28 02:17:53:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7598  Has0_F1_score: 0.7581  Non0_acc_2: 0.7870  Non0_F1_score: 0.7868  Mult_acc_5: 0.3231  Mult_acc_7: 0.2620  MAE: 0.9978  Corr: 0.6694  Loss: 0.9968 
+2021-01-28 02:17:54:INFO:TRAIN-(tfn) (1/8/1)>> loss: 0.7118  Has0_acc_2: 0.8185  Has0_F1_score: 0.8178  Non0_acc_2: 0.8310  Non0_F1_score: 0.8307  Mult_acc_5: 0.4634  Mult_acc_7: 0.4260  MAE: 0.7355  Corr: 0.7661 
+2021-01-28 02:17:54:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7555  Has0_F1_score: 0.7534  Non0_acc_2: 0.7824  Non0_F1_score: 0.7818  Mult_acc_5: 0.3450  Mult_acc_7: 0.2751  MAE: 0.9931  Corr: 0.6711  Loss: 0.9882 
+2021-01-28 02:17:54:INFO:TRAIN-(tfn) (1/9/1)>> loss: 0.6794  Has0_acc_2: 0.8450  Has0_F1_score: 0.8446  Non0_acc_2: 0.8546  Non0_F1_score: 0.8545  Mult_acc_5: 0.4829  Mult_acc_7: 0.4455  MAE: 0.6919  Corr: 0.7916 
+2021-01-28 02:17:54:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7686  Has0_F1_score: 0.7697  Non0_acc_2: 0.7824  Non0_F1_score: 0.7847  Mult_acc_5: 0.3537  Mult_acc_7: 0.2795  MAE: 0.9958  Corr: 0.6593  Loss: 0.9937 
+2021-01-28 02:17:55:INFO:TRAIN-(tfn) (2/10/1)>> loss: 0.6836  Has0_acc_2: 0.8279  Has0_F1_score: 0.8272  Non0_acc_2: 0.8440  Non0_F1_score: 0.8438  Mult_acc_5: 0.4782  Mult_acc_7: 0.4400  MAE: 0.6974  Corr: 0.7889 
+2021-01-28 02:17:55:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7773  Has0_F1_score: 0.7775  Non0_acc_2: 0.7963  Non0_F1_score: 0.7977  Mult_acc_5: 0.3668  Mult_acc_7: 0.2969  MAE: 0.9900  Corr: 0.6694  Loss: 0.9816 
+2021-01-28 02:17:56:INFO:TRAIN-(tfn) (1/11/1)>> loss: 0.6736  Has0_acc_2: 0.8520  Has0_F1_score: 0.8514  Non0_acc_2: 0.8668  Non0_F1_score: 0.8665  Mult_acc_5: 0.5195  Mult_acc_7: 0.4798  MAE: 0.6394  Corr: 0.8209 
+2021-01-28 02:17:56:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7773  Has0_F1_score: 0.7752  Non0_acc_2: 0.8056  Non0_F1_score: 0.8045  Mult_acc_5: 0.3843  Mult_acc_7: 0.3100  MAE: 0.9814  Corr: 0.6641  Loss: 0.9685 
+2021-01-28 02:17:57:INFO:TRAIN-(tfn) (1/12/1)>> loss: 0.7077  Has0_acc_2: 0.8302  Has0_F1_score: 0.8298  Non0_acc_2: 0.8489  Non0_F1_score: 0.8488  Mult_acc_5: 0.4393  Mult_acc_7: 0.4026  MAE: 0.7043  Corr: 0.7958 
+2021-01-28 02:17:57:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7817  Has0_F1_score: 0.7817  Non0_acc_2: 0.8056  Non0_F1_score: 0.8069  Mult_acc_5: 0.3799  Mult_acc_7: 0.2969  MAE: 1.0106  Corr: 0.6606  Loss: 1.0215 
+2021-01-28 02:17:57:INFO:TRAIN-(tfn) (2/13/1)>> loss: 0.6714  Has0_acc_2: 0.8489  Has0_F1_score: 0.8486  Non0_acc_2: 0.8619  Non0_F1_score: 0.8619  Mult_acc_5: 0.5179  Mult_acc_7: 0.4712  MAE: 0.6719  Corr: 0.8106 
+2021-01-28 02:17:58:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7729  Has0_F1_score: 0.7725  Non0_acc_2: 0.7963  Non0_F1_score: 0.7973  Mult_acc_5: 0.3362  Mult_acc_7: 0.2751  MAE: 0.9948  Corr: 0.6628  Loss: 0.9918 
+2021-01-28 02:17:58:INFO:TRAIN-(tfn) (3/14/1)>> loss: 0.6281  Has0_acc_2: 0.8520  Has0_F1_score: 0.8514  Non0_acc_2: 0.8643  Non0_F1_score: 0.8641  Mult_acc_5: 0.5460  Mult_acc_7: 0.4984  MAE: 0.6333  Corr: 0.8290 
+2021-01-28 02:17:58:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7511  Has0_F1_score: 0.7529  Non0_acc_2: 0.7639  Non0_F1_score: 0.7670  Mult_acc_5: 0.3930  Mult_acc_7: 0.3144  MAE: 1.0001  Corr: 0.6611  Loss: 1.0049 
+2021-01-28 02:17:59:INFO:TRAIN-(tfn) (4/15/1)>> loss: 0.6403  Has0_acc_2: 0.8474  Has0_F1_score: 0.8467  Non0_acc_2: 0.8619  Non0_F1_score: 0.8616  Mult_acc_5: 0.5304  Mult_acc_7: 0.4829  MAE: 0.6468  Corr: 0.8172 
+2021-01-28 02:17:59:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7642  Has0_F1_score: 0.7634  Non0_acc_2: 0.7870  Non0_F1_score: 0.7877  Mult_acc_5: 0.3362  Mult_acc_7: 0.2707  MAE: 0.9904  Corr: 0.6630  Loss: 0.9923 
+2021-01-28 02:18:00:INFO:TRAIN-(tfn) (5/16/1)>> loss: 0.6285  Has0_acc_2: 0.8621  Has0_F1_score: 0.8618  Non0_acc_2: 0.8749  Non0_F1_score: 0.8749  Mult_acc_5: 0.5093  Mult_acc_7: 0.4727  MAE: 0.6225  Corr: 0.8359 
+2021-01-28 02:18:00:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7773  Has0_F1_score: 0.7751  Non0_acc_2: 0.8056  Non0_F1_score: 0.8045  Mult_acc_5: 0.3930  Mult_acc_7: 0.3144  MAE: 0.9745  Corr: 0.6636  Loss: 0.9797 
+2021-01-28 02:18:00:INFO:TRAIN-(tfn) (6/17/1)>> loss: 0.5708  Has0_acc_2: 0.8614  Has0_F1_score: 0.8609  Non0_acc_2: 0.8781  Non0_F1_score: 0.8781  Mult_acc_5: 0.5654  Mult_acc_7: 0.5296  MAE: 0.5732  Corr: 0.8506 
+2021-01-28 02:18:00:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7729  Has0_F1_score: 0.7712  Non0_acc_2: 0.7963  Non0_F1_score: 0.7958  Mult_acc_5: 0.3799  Mult_acc_7: 0.2969  MAE: 0.9582  Corr: 0.6735  Loss: 0.9517 
+2021-01-28 02:18:01:INFO:TRAIN-(tfn) (1/18/1)>> loss: 0.6061  Has0_acc_2: 0.8785  Has0_F1_score: 0.8781  Non0_acc_2: 0.8968  Non0_F1_score: 0.8968  Mult_acc_5: 0.5903  Mult_acc_7: 0.5397  MAE: 0.5517  Corr: 0.8595 
+2021-01-28 02:18:01:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7817  Has0_F1_score: 0.7795  Non0_acc_2: 0.8102  Non0_F1_score: 0.8092  Mult_acc_5: 0.3843  Mult_acc_7: 0.3057  MAE: 0.9453  Corr: 0.6920  Loss: 0.9414 
+2021-01-28 02:18:02:INFO:TRAIN-(tfn) (1/19/1)>> loss: 0.5309  Has0_acc_2: 0.8847  Has0_F1_score: 0.8843  Non0_acc_2: 0.9001  Non0_F1_score: 0.8999  Mult_acc_5: 0.6059  Mult_acc_7: 0.5498  MAE: 0.5306  Corr: 0.8706 
+2021-01-28 02:18:02:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7904  Has0_F1_score: 0.7885  Non0_acc_2: 0.8148  Non0_F1_score: 0.8140  Mult_acc_5: 0.3930  Mult_acc_7: 0.3144  MAE: 0.9544  Corr: 0.6755  Loss: 0.9534 
+2021-01-28 02:18:03:INFO:TRAIN-(tfn) (2/20/1)>> loss: 0.4943  Has0_acc_2: 0.8816  Has0_F1_score: 0.8812  Non0_acc_2: 0.8976  Non0_F1_score: 0.8975  Mult_acc_5: 0.6012  Mult_acc_7: 0.5537  MAE: 0.5228  Corr: 0.8740 
+2021-01-28 02:18:03:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7904  Has0_F1_score: 0.7884  Non0_acc_2: 0.8194  Non0_F1_score: 0.8185  Mult_acc_5: 0.3974  Mult_acc_7: 0.3057  MAE: 0.9351  Corr: 0.6962  Loss: 0.9308 
+2021-01-28 02:18:03:INFO:TRAIN-(tfn) (1/21/1)>> loss: 0.5169  Has0_acc_2: 0.8801  Has0_F1_score: 0.8795  Non0_acc_2: 0.9041  Non0_F1_score: 0.9039  Mult_acc_5: 0.5903  Mult_acc_7: 0.5436  MAE: 0.5361  Corr: 0.8717 
+2021-01-28 02:18:03:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7948  Has0_F1_score: 0.7929  Non0_acc_2: 0.8194  Non0_F1_score: 0.8186  Mult_acc_5: 0.4192  Mult_acc_7: 0.3362  MAE: 0.9392  Corr: 0.6934  Loss: 0.9423 
+2021-01-28 02:18:04:INFO:TRAIN-(tfn) (2/22/1)>> loss: 0.5199  Has0_acc_2: 0.8855  Has0_F1_score: 0.8851  Non0_acc_2: 0.8993  Non0_F1_score: 0.8991  Mult_acc_5: 0.6199  Mult_acc_7: 0.5771  MAE: 0.5126  Corr: 0.8818 
+2021-01-28 02:18:04:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7904  Has0_F1_score: 0.7908  Non0_acc_2: 0.8056  Non0_F1_score: 0.8069  Mult_acc_5: 0.4236  Mult_acc_7: 0.3275  MAE: 0.9204  Corr: 0.7016  Loss: 0.9237 
+2021-01-28 02:18:05:INFO:TRAIN-(tfn) (1/23/1)>> loss: 0.4830  Has0_acc_2: 0.8871  Has0_F1_score: 0.8867  Non0_acc_2: 0.9050  Non0_F1_score: 0.9048  Mult_acc_5: 0.6293  Mult_acc_7: 0.5810  MAE: 0.4932  Corr: 0.8863 
+2021-01-28 02:18:05:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7773  Has0_F1_score: 0.7795  Non0_acc_2: 0.7917  Non0_F1_score: 0.7950  Mult_acc_5: 0.4323  Mult_acc_7: 0.3362  MAE: 0.9375  Corr: 0.6771  Loss: 0.9301 
+2021-01-28 02:18:05:INFO:TRAIN-(tfn) (2/24/1)>> loss: 0.4788  Has0_acc_2: 0.8902  Has0_F1_score: 0.8900  Non0_acc_2: 0.9058  Non0_F1_score: 0.9059  Mult_acc_5: 0.6308  Mult_acc_7: 0.5880  MAE: 0.4847  Corr: 0.8893 
+2021-01-28 02:18:05:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7729  Has0_F1_score: 0.7790  Non0_acc_2: 0.7778  Non0_F1_score: 0.7846  Mult_acc_5: 0.4279  Mult_acc_7: 0.3275  MAE: 0.9263  Corr: 0.7039  Loss: 0.9344 
+2021-01-28 02:18:06:INFO:TRAIN-(tfn) (3/25/1)>> loss: 0.4758  Has0_acc_2: 0.8941  Has0_F1_score: 0.8940  Non0_acc_2: 0.9058  Non0_F1_score: 0.9059  Mult_acc_5: 0.6316  Mult_acc_7: 0.5779  MAE: 0.4893  Corr: 0.8906 
+2021-01-28 02:18:06:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7904  Has0_F1_score: 0.7912  Non0_acc_2: 0.8056  Non0_F1_score: 0.8074  Mult_acc_5: 0.4585  Mult_acc_7: 0.3537  MAE: 0.9119  Corr: 0.7029  Loss: 0.9193 
+2021-01-28 02:18:06:INFO:TRAIN-(tfn) (1/26/1)>> loss: 0.4545  Has0_acc_2: 0.8995  Has0_F1_score: 0.8991  Non0_acc_2: 0.9163  Non0_F1_score: 0.9162  Mult_acc_5: 0.6690  Mult_acc_7: 0.6215  MAE: 0.4508  Corr: 0.9045 
+2021-01-28 02:18:06:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7642  Has0_F1_score: 0.7675  Non0_acc_2: 0.7778  Non0_F1_score: 0.7823  Mult_acc_5: 0.4498  Mult_acc_7: 0.3581  MAE: 0.9357  Corr: 0.6931  Loss: 0.9298 
+2021-01-28 02:18:07:INFO:TRAIN-(tfn) (2/27/1)>> loss: 0.5241  Has0_acc_2: 0.9050  Has0_F1_score: 0.9048  Non0_acc_2: 0.9212  Non0_F1_score: 0.9212  Mult_acc_5: 0.6550  Mult_acc_7: 0.6028  MAE: 0.4510  Corr: 0.9091 
+2021-01-28 02:18:07:INFO:VAL-(tfn) >>  Has0_acc_2: 0.8253  Has0_F1_score: 0.8241  Non0_acc_2: 0.8472  Non0_F1_score: 0.8469  Mult_acc_5: 0.4629  Mult_acc_7: 0.3668  MAE: 0.8750  Corr: 0.7123  Loss: 0.8644 
+2021-01-28 02:18:07:INFO:TRAIN-(tfn) (1/28/1)>> loss: 0.4264  Has0_acc_2: 0.9081  Has0_F1_score: 0.9078  Non0_acc_2: 0.9228  Non0_F1_score: 0.9227  Mult_acc_5: 0.6581  Mult_acc_7: 0.6028  MAE: 0.4384  Corr: 0.9151 
+2021-01-28 02:18:07:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7948  Has0_F1_score: 0.7928  Non0_acc_2: 0.8287  Non0_F1_score: 0.8279  Mult_acc_5: 0.4629  Mult_acc_7: 0.3624  MAE: 0.8923  Corr: 0.7110  Loss: 0.8894 
+2021-01-28 02:18:08:INFO:TRAIN-(tfn) (2/29/1)>> loss: 0.4757  Has0_acc_2: 0.9050  Has0_F1_score: 0.9046  Non0_acc_2: 0.9228  Non0_F1_score: 0.9227  Mult_acc_5: 0.6737  Mult_acc_7: 0.6176  MAE: 0.4372  Corr: 0.9149 
+2021-01-28 02:18:08:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7948  Has0_F1_score: 0.7935  Non0_acc_2: 0.8241  Non0_F1_score: 0.8241  Mult_acc_5: 0.4148  Mult_acc_7: 0.3231  MAE: 0.8864  Corr: 0.7155  Loss: 0.8831 
+2021-01-28 02:18:08:INFO:TRAIN-(tfn) (3/30/1)>> loss: 0.4150  Has0_acc_2: 0.9206  Has0_F1_score: 0.9203  Non0_acc_2: 0.9374  Non0_F1_score: 0.9373  Mult_acc_5: 0.6791  Mult_acc_7: 0.6207  MAE: 0.4211  Corr: 0.9225 
+2021-01-28 02:18:08:INFO:VAL-(tfn) >>  Has0_acc_2: 0.8079  Has0_F1_score: 0.8064  Non0_acc_2: 0.8333  Non0_F1_score: 0.8329  Mult_acc_5: 0.4323  Mult_acc_7: 0.3493  MAE: 0.8897  Corr: 0.7180  Loss: 0.8907 
+2021-01-28 02:18:09:INFO:TRAIN-(tfn) (4/31/1)>> loss: 0.4140  Has0_acc_2: 0.9229  Has0_F1_score: 0.9226  Non0_acc_2: 0.9423  Non0_F1_score: 0.9423  Mult_acc_5: 0.6900  Mult_acc_7: 0.6425  MAE: 0.4023  Corr: 0.9264 
+2021-01-28 02:18:09:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7991  Has0_F1_score: 0.8008  Non0_acc_2: 0.8148  Non0_F1_score: 0.8175  Mult_acc_5: 0.4629  Mult_acc_7: 0.3581  MAE: 0.8865  Corr: 0.7067  Loss: 0.8799 
+2021-01-28 02:18:10:INFO:TRAIN-(tfn) (5/32/1)>> loss: 0.3995  Has0_acc_2: 0.9198  Has0_F1_score: 0.9196  Non0_acc_2: 0.9374  Non0_F1_score: 0.9375  Mult_acc_5: 0.7142  Mult_acc_7: 0.6667  MAE: 0.3871  Corr: 0.9313 
+2021-01-28 02:18:10:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7817  Has0_F1_score: 0.7810  Non0_acc_2: 0.8056  Non0_F1_score: 0.8062  Mult_acc_5: 0.4454  Mult_acc_7: 0.3406  MAE: 0.8763  Corr: 0.7160  Loss: 0.8784 
+2021-01-28 02:18:10:INFO:TRAIN-(tfn) (6/33/1)>> loss: 0.3901  Has0_acc_2: 0.9315  Has0_F1_score: 0.9314  Non0_acc_2: 0.9456  Non0_F1_score: 0.9456  Mult_acc_5: 0.7157  Mult_acc_7: 0.6589  MAE: 0.3754  Corr: 0.9358 
+2021-01-28 02:18:10:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7817  Has0_F1_score: 0.7804  Non0_acc_2: 0.8102  Non0_F1_score: 0.8103  Mult_acc_5: 0.4192  Mult_acc_7: 0.3319  MAE: 0.9126  Corr: 0.6969  Loss: 0.9041 
+2021-01-28 02:18:11:INFO:TRAIN-(tfn) (7/34/1)>> loss: 0.3739  Has0_acc_2: 0.9104  Has0_F1_score: 0.9100  Non0_acc_2: 0.9350  Non0_F1_score: 0.9349  Mult_acc_5: 0.7087  Mult_acc_7: 0.6589  MAE: 0.3776  Corr: 0.9350 
+2021-01-28 02:18:11:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7555  Has0_F1_score: 0.7532  Non0_acc_2: 0.7870  Non0_F1_score: 0.7859  Mult_acc_5: 0.4498  Mult_acc_7: 0.3537  MAE: 0.9458  Corr: 0.6861  Loss: 0.9261 
+2021-01-28 02:18:11:INFO:TRAIN-(tfn) (8/35/1)>> loss: 0.3900  Has0_acc_2: 0.9167  Has0_F1_score: 0.9163  Non0_acc_2: 0.9391  Non0_F1_score: 0.9390  Mult_acc_5: 0.7033  Mult_acc_7: 0.6488  MAE: 0.3754  Corr: 0.9335 
+2021-01-28 02:18:11:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7860  Has0_F1_score: 0.7849  Non0_acc_2: 0.8148  Non0_F1_score: 0.8151  Mult_acc_5: 0.4367  Mult_acc_7: 0.3406  MAE: 0.9089  Corr: 0.6914  Loss: 0.9023 
+2021-01-28 02:18:12:INFO:TEST-(tfn) >>  Has0_acc_2: 0.7595  Has0_F1_score: 0.7596  Non0_acc_2: 0.7713  Non0_F1_score: 0.7708  Mult_acc_5: 0.3659  Mult_acc_7: 0.3265  MAE: 0.9800  Corr: 0.6333  Loss: 0.9638 
+2021-01-28 02:18:12:INFO:Start saving results...
+2021-01-28 02:18:12:INFO:Results are saved to results/results/mosi-tfn-regression-tune.csv...
+2021-01-28 02:18:12:INFO:########################################tfn-(2/10)########################################
+2021-01-28 02:18:12:INFO:hidden_dims:(64, 16, 64)
+2021-01-28 02:18:12:INFO:text_out:128
+2021-01-28 02:18:12:INFO:post_fusion_dim:64
+2021-01-28 02:18:12:INFO:dropouts:(0.3, 0.3, 0.3, 0.3)
+2021-01-28 02:18:12:INFO:batch_size:32
+2021-01-28 02:18:12:INFO:learning_rate:0.001
+2021-01-28 02:18:12:INFO:##########################################################################################
+2021-01-28 02:18:12:INFO:Start running tfn...
+2021-01-28 02:18:12:INFO:Let's use 1 GPUs!
+2021-01-28 02:18:12:INFO:train samples: (1284,)
+2021-01-28 02:18:13:INFO:valid samples: (229,)
+2021-01-28 02:18:13:INFO:test samples: (686,)
+2021-01-28 02:18:13:INFO:The model has 9359347 trainable parameters
+2021-01-28 02:18:14:INFO:TRAIN-(tfn) (1/1/1)>> loss: 1.1493  Has0_acc_2: 0.6713  Has0_F1_score: 0.6786  Non0_acc_2: 0.6759  Non0_F1_score: 0.6842  Mult_acc_5: 0.2375  Mult_acc_7: 0.2251  MAE: 1.1449  Corr: 0.4243 
+2021-01-28 02:18:14:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7293  Has0_F1_score: 0.7366  Non0_acc_2: 0.7361  Non0_F1_score: 0.7448  Mult_acc_5: 0.3275  Mult_acc_7: 0.2926  MAE: 1.1252  Corr: 0.5497  Loss: 1.1063 
+2021-01-28 02:18:15:INFO:TRAIN-(tfn) (1/2/1)>> loss: 0.8718  Has0_acc_2: 0.7741  Has0_F1_score: 0.7731  Non0_acc_2: 0.7896  Non0_F1_score: 0.7892  Mult_acc_5: 0.3972  Mult_acc_7: 0.3699  MAE: 0.8634  Corr: 0.6734 
+2021-01-28 02:18:15:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7555  Has0_F1_score: 0.7532  Non0_acc_2: 0.7778  Non0_F1_score: 0.7767  Mult_acc_5: 0.3275  Mult_acc_7: 0.2707  MAE: 1.0346  Corr: 0.6267  Loss: 1.0492 
+2021-01-28 02:18:16:INFO:TRAIN-(tfn) (1/3/1)>> loss: 0.7913  Has0_acc_2: 0.8069  Has0_F1_score: 0.8059  Non0_acc_2: 0.8221  Non0_F1_score: 0.8216  Mult_acc_5: 0.4229  Mult_acc_7: 0.3933  MAE: 0.7954  Corr: 0.7264 
+2021-01-28 02:18:16:INFO:VAL-(tfn) >>  Has0_acc_2: 0.8122  Has0_F1_score: 0.8115  Non0_acc_2: 0.8333  Non0_F1_score: 0.8336  Mult_acc_5: 0.2751  Mult_acc_7: 0.2402  MAE: 1.0399  Corr: 0.6382  Loss: 1.0207 
+2021-01-28 02:18:18:INFO:TRAIN-(tfn) (1/4/1)>> loss: 0.7159  Has0_acc_2: 0.8240  Has0_F1_score: 0.8233  Non0_acc_2: 0.8392  Non0_F1_score: 0.8389  Mult_acc_5: 0.4852  Mult_acc_7: 0.4525  MAE: 0.7181  Corr: 0.7785 
+2021-01-28 02:18:18:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7686  Has0_F1_score: 0.7761  Non0_acc_2: 0.7778  Non0_F1_score: 0.7864  Mult_acc_5: 0.3406  Mult_acc_7: 0.2664  MAE: 1.0218  Corr: 0.6664  Loss: 1.0102 
+2021-01-28 02:18:19:INFO:TRAIN-(tfn) (1/5/1)>> loss: 0.6616  Has0_acc_2: 0.8559  Has0_F1_score: 0.8554  Non0_acc_2: 0.8668  Non0_F1_score: 0.8666  Mult_acc_5: 0.5148  Mult_acc_7: 0.4688  MAE: 0.6581  Corr: 0.8102 
+2021-01-28 02:18:19:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7729  Has0_F1_score: 0.7710  Non0_acc_2: 0.7963  Non0_F1_score: 0.7956  Mult_acc_5: 0.3668  Mult_acc_7: 0.2969  MAE: 0.9444  Corr: 0.6976  Loss: 0.8918 
+2021-01-28 02:18:20:INFO:TRAIN-(tfn) (1/6/1)>> loss: 0.5911  Has0_acc_2: 0.8707  Has0_F1_score: 0.8704  Non0_acc_2: 0.8887  Non0_F1_score: 0.8888  Mult_acc_5: 0.5530  Mult_acc_7: 0.5101  MAE: 0.5885  Corr: 0.8460 
+2021-01-28 02:18:20:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7773  Has0_F1_score: 0.7752  Non0_acc_2: 0.8009  Non0_F1_score: 0.7999  Mult_acc_5: 0.3624  Mult_acc_7: 0.2751  MAE: 0.9378  Corr: 0.6872  Loss: 0.9754 
+2021-01-28 02:18:22:INFO:TRAIN-(tfn) (2/7/1)>> loss: 0.5332  Has0_acc_2: 0.8816  Has0_F1_score: 0.8811  Non0_acc_2: 0.9017  Non0_F1_score: 0.9016  Mult_acc_5: 0.5849  Mult_acc_7: 0.5358  MAE: 0.5354  Corr: 0.8730 
+2021-01-28 02:18:22:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7860  Has0_F1_score: 0.7841  Non0_acc_2: 0.8102  Non0_F1_score: 0.8093  Mult_acc_5: 0.3799  Mult_acc_7: 0.2882  MAE: 0.8970  Corr: 0.7058  Loss: 0.9691 
+2021-01-28 02:18:23:INFO:TRAIN-(tfn) (3/8/1)>> loss: 0.5163  Has0_acc_2: 0.8824  Has0_F1_score: 0.8819  Non0_acc_2: 0.8976  Non0_F1_score: 0.8974  Mult_acc_5: 0.5958  Mult_acc_7: 0.5444  MAE: 0.5175  Corr: 0.8835 
+2021-01-28 02:18:23:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7948  Has0_F1_score: 0.7940  Non0_acc_2: 0.8194  Non0_F1_score: 0.8199  Mult_acc_5: 0.4017  Mult_acc_7: 0.3144  MAE: 0.9224  Corr: 0.6983  Loss: 0.8965 
+2021-01-28 02:18:24:INFO:TRAIN-(tfn) (4/9/1)>> loss: 0.4461  Has0_acc_2: 0.8995  Has0_F1_score: 0.8992  Non0_acc_2: 0.9163  Non0_F1_score: 0.9162  Mult_acc_5: 0.6542  Mult_acc_7: 0.6090  MAE: 0.4474  Corr: 0.9107 
+2021-01-28 02:18:24:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7642  Has0_F1_score: 0.7620  Non0_acc_2: 0.7917  Non0_F1_score: 0.7905  Mult_acc_5: 0.3799  Mult_acc_7: 0.3013  MAE: 0.9609  Corr: 0.6721  Loss: 0.9037 
+2021-01-28 02:18:25:INFO:TRAIN-(tfn) (5/10/1)>> loss: 0.4524  Has0_acc_2: 0.9026  Has0_F1_score: 0.9023  Non0_acc_2: 0.9188  Non0_F1_score: 0.9186  Mult_acc_5: 0.6690  Mult_acc_7: 0.6160  MAE: 0.4430  Corr: 0.9098 
+2021-01-28 02:18:25:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7860  Has0_F1_score: 0.7907  Non0_acc_2: 0.8056  Non0_F1_score: 0.8116  Mult_acc_5: 0.3886  Mult_acc_7: 0.3013  MAE: 0.9438  Corr: 0.7054  Loss: 0.9551 
+2021-01-28 02:18:26:INFO:TRAIN-(tfn) (6/11/1)>> loss: 0.4128  Has0_acc_2: 0.9097  Has0_F1_score: 0.9093  Non0_acc_2: 0.9253  Non0_F1_score: 0.9251  Mult_acc_5: 0.6752  Mult_acc_7: 0.6207  MAE: 0.4105  Corr: 0.9277 
+2021-01-28 02:18:26:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7729  Has0_F1_score: 0.7708  Non0_acc_2: 0.8009  Non0_F1_score: 0.8000  Mult_acc_5: 0.4236  Mult_acc_7: 0.3493  MAE: 0.9429  Corr: 0.6803  Loss: 1.0089 
+2021-01-28 02:18:27:INFO:TRAIN-(tfn) (7/12/1)>> loss: 0.3867  Has0_acc_2: 0.9104  Has0_F1_score: 0.9103  Non0_acc_2: 0.9293  Non0_F1_score: 0.9294  Mult_acc_5: 0.6908  Mult_acc_7: 0.6425  MAE: 0.3908  Corr: 0.9344 
+2021-01-28 02:18:27:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7729  Has0_F1_score: 0.7722  Non0_acc_2: 0.7963  Non0_F1_score: 0.7969  Mult_acc_5: 0.4410  Mult_acc_7: 0.3406  MAE: 0.9101  Corr: 0.6987  Loss: 0.8653 
+2021-01-28 02:18:28:INFO:TRAIN-(tfn) (1/13/1)>> loss: 0.3497  Has0_acc_2: 0.9276  Has0_F1_score: 0.9274  Non0_acc_2: 0.9431  Non0_F1_score: 0.9431  Mult_acc_5: 0.7313  Mult_acc_7: 0.6791  MAE: 0.3494  Corr: 0.9440 
+2021-01-28 02:18:29:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7511  Has0_F1_score: 0.7497  Non0_acc_2: 0.7824  Non0_F1_score: 0.7818  Mult_acc_5: 0.4061  Mult_acc_7: 0.3275  MAE: 0.9700  Corr: 0.6806  Loss: 0.9545 
+2021-01-28 02:18:29:INFO:TRAIN-(tfn) (2/14/1)>> loss: 0.3782  Has0_acc_2: 0.9260  Has0_F1_score: 0.9258  Non0_acc_2: 0.9423  Non0_F1_score: 0.9423  Mult_acc_5: 0.6947  Mult_acc_7: 0.6417  MAE: 0.3805  Corr: 0.9372 
+2021-01-28 02:18:29:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7773  Has0_F1_score: 0.7764  Non0_acc_2: 0.8009  Non0_F1_score: 0.8014  Mult_acc_5: 0.3799  Mult_acc_7: 0.3057  MAE: 0.9200  Corr: 0.6892  Loss: 0.9462 
+2021-01-28 02:18:30:INFO:TRAIN-(tfn) (3/15/1)>> loss: 0.3141  Has0_acc_2: 0.9393  Has0_F1_score: 0.9391  Non0_acc_2: 0.9513  Non0_F1_score: 0.9512  Mult_acc_5: 0.7562  Mult_acc_7: 0.7056  MAE: 0.3165  Corr: 0.9543 
+2021-01-28 02:18:30:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7729  Has0_F1_score: 0.7719  Non0_acc_2: 0.8009  Non0_F1_score: 0.8014  Mult_acc_5: 0.4498  Mult_acc_7: 0.3581  MAE: 0.9254  Corr: 0.6835  Loss: 0.9241 
+2021-01-28 02:18:31:INFO:TRAIN-(tfn) (4/16/1)>> loss: 0.2765  Has0_acc_2: 0.9455  Has0_F1_score: 0.9453  Non0_acc_2: 0.9618  Non0_F1_score: 0.9618  Mult_acc_5: 0.7928  Mult_acc_7: 0.7469  MAE: 0.2804  Corr: 0.9617 
+2021-01-28 02:18:31:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7686  Has0_F1_score: 0.7674  Non0_acc_2: 0.7963  Non0_F1_score: 0.7966  Mult_acc_5: 0.4498  Mult_acc_7: 0.3537  MAE: 0.9162  Corr: 0.6939  Loss: 0.9588 
+2021-01-28 02:18:32:INFO:TRAIN-(tfn) (5/17/1)>> loss: 0.2689  Has0_acc_2: 0.9494  Has0_F1_score: 0.9493  Non0_acc_2: 0.9659  Non0_F1_score: 0.9659  Mult_acc_5: 0.7905  Mult_acc_7: 0.7484  MAE: 0.2675  Corr: 0.9668 
+2021-01-28 02:18:32:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7686  Has0_F1_score: 0.7671  Non0_acc_2: 0.7963  Non0_F1_score: 0.7963  Mult_acc_5: 0.4498  Mult_acc_7: 0.3537  MAE: 0.9330  Corr: 0.6837  Loss: 0.8931 
+2021-01-28 02:18:33:INFO:TRAIN-(tfn) (6/18/1)>> loss: 0.2587  Has0_acc_2: 0.9509  Has0_F1_score: 0.9508  Non0_acc_2: 0.9667  Non0_F1_score: 0.9667  Mult_acc_5: 0.7928  Mult_acc_7: 0.7469  MAE: 0.2593  Corr: 0.9681 
+2021-01-28 02:18:33:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7686  Has0_F1_score: 0.7674  Non0_acc_2: 0.7963  Non0_F1_score: 0.7966  Mult_acc_5: 0.4017  Mult_acc_7: 0.3319  MAE: 0.9440  Corr: 0.6758  Loss: 0.9562 
+2021-01-28 02:18:34:INFO:TRAIN-(tfn) (7/19/1)>> loss: 0.2311  Has0_acc_2: 0.9579  Has0_F1_score: 0.9578  Non0_acc_2: 0.9789  Non0_F1_score: 0.9789  Mult_acc_5: 0.8178  Mult_acc_7: 0.7749  MAE: 0.2322  Corr: 0.9746 
+2021-01-28 02:18:34:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7773  Has0_F1_score: 0.7764  Non0_acc_2: 0.8009  Non0_F1_score: 0.8014  Mult_acc_5: 0.4367  Mult_acc_7: 0.3450  MAE: 0.9352  Corr: 0.6790  Loss: 0.9139 
+2021-01-28 02:18:35:INFO:TRAIN-(tfn) (8/20/1)>> loss: 0.2713  Has0_acc_2: 0.9470  Has0_F1_score: 0.9469  Non0_acc_2: 0.9659  Non0_F1_score: 0.9659  Mult_acc_5: 0.7921  Mult_acc_7: 0.7477  MAE: 0.2733  Corr: 0.9676 
+2021-01-28 02:18:35:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7642  Has0_F1_score: 0.7620  Non0_acc_2: 0.7963  Non0_F1_score: 0.7952  Mult_acc_5: 0.4061  Mult_acc_7: 0.3013  MAE: 0.9497  Corr: 0.6718  Loss: 0.9740 
+2021-01-28 02:18:36:INFO:TEST-(tfn) >>  Has0_acc_2: 0.7347  Has0_F1_score: 0.7340  Non0_acc_2: 0.7439  Non0_F1_score: 0.7424  Mult_acc_5: 0.3950  Mult_acc_7: 0.3455  MAE: 1.0401  Corr: 0.6069  Loss: 1.0406 
+2021-01-28 02:18:36:INFO:Start saving results...
+2021-01-28 02:18:36:INFO:Results are saved to results/results/mosi-tfn-regression-tune.csv...
+2021-01-28 02:18:36:INFO:########################################tfn-(3/10)########################################
+2021-01-28 02:18:36:INFO:hidden_dims:(128, 16, 128)
+2021-01-28 02:18:36:INFO:text_out:128
+2021-01-28 02:18:36:INFO:post_fusion_dim:32
+2021-01-28 02:18:36:INFO:dropouts:(0.2, 0.2, 0.2, 0.2)
+2021-01-28 02:18:36:INFO:batch_size:32
+2021-01-28 02:18:36:INFO:learning_rate:0.0005
+2021-01-28 02:18:36:INFO:##########################################################################################
+2021-01-28 02:18:36:INFO:Start running tfn...
+2021-01-28 02:18:36:INFO:Let's use 1 GPUs!
+2021-01-28 02:18:36:INFO:train samples: (1284,)
+2021-01-28 02:18:37:INFO:valid samples: (229,)
+2021-01-28 02:18:37:INFO:test samples: (686,)
+2021-01-28 02:18:37:INFO:The model has 9566515 trainable parameters
+2021-01-28 02:18:39:INFO:TRAIN-(tfn) (1/1/1)>> loss: 1.1654  Has0_acc_2: 0.5989  Has0_F1_score: 0.5974  Non0_acc_2: 0.6028  Non0_F1_score: 0.6022  Mult_acc_5: 0.2352  Mult_acc_7: 0.2321  MAE: 1.1826  Corr: 0.3666 
+2021-01-28 02:18:39:INFO:VAL-(tfn) >>  Has0_acc_2: 0.6900  Has0_F1_score: 0.6911  Non0_acc_2: 0.7269  Non0_F1_score: 0.7279  Mult_acc_5: 0.2358  Mult_acc_7: 0.2358  MAE: 1.1947  Corr: 0.6046  Loss: 1.1245 
+2021-01-28 02:18:40:INFO:TRAIN-(tfn) (1/2/1)>> loss: 0.8950  Has0_acc_2: 0.7648  Has0_F1_score: 0.7637  Non0_acc_2: 0.7790  Non0_F1_score: 0.7785  Mult_acc_5: 0.3536  Mult_acc_7: 0.3341  MAE: 0.9027  Corr: 0.6524 
+2021-01-28 02:18:40:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7817  Has0_F1_score: 0.7796  Non0_acc_2: 0.8102  Non0_F1_score: 0.8092  Mult_acc_5: 0.3537  Mult_acc_7: 0.2838  MAE: 0.9393  Corr: 0.7077  Loss: 0.9311 
+2021-01-28 02:18:42:INFO:TRAIN-(tfn) (1/3/1)>> loss: 0.7799  Has0_acc_2: 0.8232  Has0_F1_score: 0.8226  Non0_acc_2: 0.8343  Non0_F1_score: 0.8341  Mult_acc_5: 0.4346  Mult_acc_7: 0.4050  MAE: 0.7766  Corr: 0.7382 
+2021-01-28 02:18:42:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7773  Has0_F1_score: 0.7829  Non0_acc_2: 0.7870  Non0_F1_score: 0.7936  Mult_acc_5: 0.3624  Mult_acc_7: 0.2969  MAE: 0.9855  Corr: 0.7257  Loss: 1.0120 
+2021-01-28 02:18:43:INFO:TRAIN-(tfn) (2/4/1)>> loss: 0.7254  Has0_acc_2: 0.8326  Has0_F1_score: 0.8318  Non0_acc_2: 0.8473  Non0_F1_score: 0.8469  Mult_acc_5: 0.4852  Mult_acc_7: 0.4502  MAE: 0.7169  Corr: 0.7777 
+2021-01-28 02:18:43:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7773  Has0_F1_score: 0.7751  Non0_acc_2: 0.8056  Non0_F1_score: 0.8045  Mult_acc_5: 0.3624  Mult_acc_7: 0.2795  MAE: 0.9170  Corr: 0.7261  Loss: 0.9500 
+2021-01-28 02:18:44:INFO:TRAIN-(tfn) (3/5/1)>> loss: 0.6435  Has0_acc_2: 0.8505  Has0_F1_score: 0.8498  Non0_acc_2: 0.8643  Non0_F1_score: 0.8641  Mult_acc_5: 0.5195  Mult_acc_7: 0.4844  MAE: 0.6457  Corr: 0.8153 
+2021-01-28 02:18:44:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7773  Has0_F1_score: 0.7757  Non0_acc_2: 0.8056  Non0_F1_score: 0.8053  Mult_acc_5: 0.4192  Mult_acc_7: 0.3144  MAE: 0.8989  Corr: 0.7160  Loss: 0.8735 
+2021-01-28 02:18:45:INFO:TRAIN-(tfn) (1/6/1)>> loss: 0.6113  Has0_acc_2: 0.8668  Has0_F1_score: 0.8663  Non0_acc_2: 0.8790  Non0_F1_score: 0.8787  Mult_acc_5: 0.5561  Mult_acc_7: 0.5086  MAE: 0.6100  Corr: 0.8396 
+2021-01-28 02:18:46:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7773  Has0_F1_score: 0.7752  Non0_acc_2: 0.8056  Non0_F1_score: 0.8045  Mult_acc_5: 0.3974  Mult_acc_7: 0.3144  MAE: 0.8989  Corr: 0.7149  Loss: 0.8558 
+2021-01-28 02:18:46:INFO:TRAIN-(tfn) (1/7/1)>> loss: 0.5629  Has0_acc_2: 0.8777  Has0_F1_score: 0.8772  Non0_acc_2: 0.8952  Non0_F1_score: 0.8951  Mult_acc_5: 0.5724  Mult_acc_7: 0.5280  MAE: 0.5612  Corr: 0.8626 
+2021-01-28 02:18:47:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7860  Has0_F1_score: 0.7847  Non0_acc_2: 0.8102  Non0_F1_score: 0.8101  Mult_acc_5: 0.4148  Mult_acc_7: 0.3275  MAE: 0.9065  Corr: 0.7085  Loss: 0.8865 
+2021-01-28 02:18:47:INFO:TRAIN-(tfn) (2/8/1)>> loss: 0.5430  Has0_acc_2: 0.8699  Has0_F1_score: 0.8695  Non0_acc_2: 0.8895  Non0_F1_score: 0.8895  Mult_acc_5: 0.5942  Mult_acc_7: 0.5405  MAE: 0.5390  Corr: 0.8695 
+2021-01-28 02:18:48:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7467  Has0_F1_score: 0.7459  Non0_acc_2: 0.7685  Non0_F1_score: 0.7693  Mult_acc_5: 0.4279  Mult_acc_7: 0.3450  MAE: 0.8869  Corr: 0.7182  Loss: 0.9226 
+2021-01-28 02:18:49:INFO:TRAIN-(tfn) (3/9/1)>> loss: 0.4999  Has0_acc_2: 0.8879  Has0_F1_score: 0.8874  Non0_acc_2: 0.9074  Non0_F1_score: 0.9073  Mult_acc_5: 0.6207  Mult_acc_7: 0.5709  MAE: 0.4990  Corr: 0.8875 
+2021-01-28 02:18:49:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7686  Has0_F1_score: 0.7663  Non0_acc_2: 0.7963  Non0_F1_score: 0.7952  Mult_acc_5: 0.4148  Mult_acc_7: 0.3319  MAE: 0.9267  Corr: 0.6843  Loss: 0.9361 
+2021-01-28 02:18:50:INFO:TRAIN-(tfn) (4/10/1)>> loss: 0.4604  Has0_acc_2: 0.9112  Has0_F1_score: 0.9109  Non0_acc_2: 0.9301  Non0_F1_score: 0.9300  Mult_acc_5: 0.6456  Mult_acc_7: 0.5880  MAE: 0.4600  Corr: 0.9036 
+2021-01-28 02:18:50:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7642  Has0_F1_score: 0.7631  Non0_acc_2: 0.7824  Non0_F1_score: 0.7826  Mult_acc_5: 0.4498  Mult_acc_7: 0.3581  MAE: 0.8966  Corr: 0.7044  Loss: 0.8829 
+2021-01-28 02:18:51:INFO:TRAIN-(tfn) (5/11/1)>> loss: 0.4313  Has0_acc_2: 0.9058  Has0_F1_score: 0.9054  Non0_acc_2: 0.9220  Non0_F1_score: 0.9219  Mult_acc_5: 0.6558  Mult_acc_7: 0.6067  MAE: 0.4308  Corr: 0.9160 
+2021-01-28 02:18:51:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7642  Has0_F1_score: 0.7619  Non0_acc_2: 0.7963  Non0_F1_score: 0.7952  Mult_acc_5: 0.4367  Mult_acc_7: 0.3493  MAE: 0.9259  Corr: 0.6740  Loss: 0.9431 
+2021-01-28 02:18:53:INFO:TRAIN-(tfn) (6/12/1)>> loss: 0.3973  Has0_acc_2: 0.9167  Has0_F1_score: 0.9164  Non0_acc_2: 0.9342  Non0_F1_score: 0.9341  Mult_acc_5: 0.7025  Mult_acc_7: 0.6495  MAE: 0.3883  Corr: 0.9296 
+2021-01-28 02:18:53:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7598  Has0_F1_score: 0.7576  Non0_acc_2: 0.7870  Non0_F1_score: 0.7861  Mult_acc_5: 0.4236  Mult_acc_7: 0.3362  MAE: 0.9142  Corr: 0.6968  Loss: 0.9249 
+2021-01-28 02:18:54:INFO:TRAIN-(tfn) (7/13/1)>> loss: 0.3931  Has0_acc_2: 0.9213  Has0_F1_score: 0.9211  Non0_acc_2: 0.9423  Non0_F1_score: 0.9423  Mult_acc_5: 0.7009  Mult_acc_7: 0.6519  MAE: 0.3926  Corr: 0.9283 
+2021-01-28 02:18:54:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7467  Has0_F1_score: 0.7443  Non0_acc_2: 0.7778  Non0_F1_score: 0.7766  Mult_acc_5: 0.4236  Mult_acc_7: 0.3406  MAE: 0.9430  Corr: 0.6760  Loss: 0.9742 
+2021-01-28 02:18:56:INFO:TRAIN-(tfn) (8/14/1)>> loss: 0.3632  Has0_acc_2: 0.9245  Has0_F1_score: 0.9242  Non0_acc_2: 0.9456  Non0_F1_score: 0.9455  Mult_acc_5: 0.7142  Mult_acc_7: 0.6659  MAE: 0.3603  Corr: 0.9404 
+2021-01-28 02:18:56:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7555  Has0_F1_score: 0.7531  Non0_acc_2: 0.7870  Non0_F1_score: 0.7859  Mult_acc_5: 0.4105  Mult_acc_7: 0.3319  MAE: 0.9409  Corr: 0.6780  Loss: 0.9285 
+2021-01-28 02:18:56:INFO:TEST-(tfn) >>  Has0_acc_2: 0.8017  Has0_F1_score: 0.8025  Non0_acc_2: 0.8155  Non0_F1_score: 0.8158  Mult_acc_5: 0.3717  Mult_acc_7: 0.3309  MAE: 0.9328  Corr: 0.6883  Loss: 0.9307 
+2021-01-28 02:18:56:INFO:Start saving results...
+2021-01-28 02:18:56:INFO:Results are saved to results/results/mosi-tfn-regression-tune.csv...
+2021-01-28 02:18:56:INFO:########################################tfn-(4/10)########################################
+2021-01-28 02:18:56:INFO:hidden_dims:(64, 32, 64)
+2021-01-28 02:18:56:INFO:text_out:32
+2021-01-28 02:18:56:INFO:post_fusion_dim:64
+2021-01-28 02:18:56:INFO:dropouts:(0.3, 0.3, 0.3, 0.5)
+2021-01-28 02:18:56:INFO:batch_size:32
+2021-01-28 02:18:56:INFO:learning_rate:0.002
+2021-01-28 02:18:56:INFO:##########################################################################################
+2021-01-28 02:18:56:INFO:Start running tfn...
+2021-01-28 02:18:56:INFO:Let's use 1 GPUs!
+2021-01-28 02:18:57:INFO:train samples: (1284,)
+2021-01-28 02:18:57:INFO:valid samples: (229,)
+2021-01-28 02:18:58:INFO:test samples: (686,)
+2021-01-28 02:18:58:INFO:The model has 4762131 trainable parameters
+2021-01-28 02:18:59:INFO:TRAIN-(tfn) (1/1/1)>> loss: 1.1069  Has0_acc_2: 0.6643  Has0_F1_score: 0.6666  Non0_acc_2: 0.6653  Non0_F1_score: 0.6682  Mult_acc_5: 0.2874  Mult_acc_7: 0.2710  MAE: 1.1099  Corr: 0.4457 
+2021-01-28 02:18:59:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7031  Has0_F1_score: 0.7042  Non0_acc_2: 0.7176  Non0_F1_score: 0.7206  Mult_acc_5: 0.2707  Mult_acc_7: 0.2533  MAE: 1.1139  Corr: 0.5664  Loss: 1.1303 
+2021-01-28 02:19:00:INFO:TRAIN-(tfn) (1/2/1)>> loss: 0.8858  Has0_acc_2: 0.7741  Has0_F1_score: 0.7732  Non0_acc_2: 0.7872  Non0_F1_score: 0.7868  Mult_acc_5: 0.3746  Mult_acc_7: 0.3489  MAE: 0.8867  Corr: 0.6665 
+2021-01-28 02:19:00:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7511  Has0_F1_score: 0.7500  Non0_acc_2: 0.7870  Non0_F1_score: 0.7865  Mult_acc_5: 0.3144  Mult_acc_7: 0.2795  MAE: 1.0451  Corr: 0.6403  Loss: 1.0424 
+2021-01-28 02:19:01:INFO:TRAIN-(tfn) (1/3/1)>> loss: 0.8446  Has0_acc_2: 0.7905  Has0_F1_score: 0.7897  Non0_acc_2: 0.8026  Non0_F1_score: 0.8023  Mult_acc_5: 0.4003  Mult_acc_7: 0.3746  MAE: 0.8469  Corr: 0.6878 
+2021-01-28 02:19:01:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7642  Has0_F1_score: 0.7646  Non0_acc_2: 0.7824  Non0_F1_score: 0.7842  Mult_acc_5: 0.3362  Mult_acc_7: 0.2751  MAE: 0.9917  Corr: 0.6650  Loss: 0.9720 
+2021-01-28 02:19:02:INFO:TRAIN-(tfn) (1/4/1)>> loss: 0.7548  Has0_acc_2: 0.8240  Has0_F1_score: 0.8235  Non0_acc_2: 0.8335  Non0_F1_score: 0.8333  Mult_acc_5: 0.4431  Mult_acc_7: 0.4073  MAE: 0.7547  Corr: 0.7578 
+2021-01-28 02:19:02:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7467  Has0_F1_score: 0.7477  Non0_acc_2: 0.7546  Non0_F1_score: 0.7566  Mult_acc_5: 0.3493  Mult_acc_7: 0.2795  MAE: 1.0027  Corr: 0.6663  Loss: 0.9940 
+2021-01-28 02:19:03:INFO:TRAIN-(tfn) (2/5/1)>> loss: 0.7042  Has0_acc_2: 0.8388  Has0_F1_score: 0.8381  Non0_acc_2: 0.8530  Non0_F1_score: 0.8527  Mult_acc_5: 0.4829  Mult_acc_7: 0.4486  MAE: 0.7048  Corr: 0.7809 
+2021-01-28 02:19:03:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7598  Has0_F1_score: 0.7622  Non0_acc_2: 0.7685  Non0_F1_score: 0.7719  Mult_acc_5: 0.3930  Mult_acc_7: 0.3057  MAE: 1.0194  Corr: 0.6601  Loss: 1.0259 
+2021-01-28 02:19:04:INFO:TRAIN-(tfn) (3/6/1)>> loss: 0.6789  Has0_acc_2: 0.8427  Has0_F1_score: 0.8420  Non0_acc_2: 0.8619  Non0_F1_score: 0.8616  Mult_acc_5: 0.5093  Mult_acc_7: 0.4696  MAE: 0.6796  Corr: 0.7966 
+2021-01-28 02:19:04:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7511  Has0_F1_score: 0.7491  Non0_acc_2: 0.7685  Non0_F1_score: 0.7677  Mult_acc_5: 0.4105  Mult_acc_7: 0.3493  MAE: 0.9654  Corr: 0.6709  Loss: 0.9941 
+2021-01-28 02:19:06:INFO:TRAIN-(tfn) (4/7/1)>> loss: 0.6522  Has0_acc_2: 0.8528  Has0_F1_score: 0.8523  Non0_acc_2: 0.8676  Non0_F1_score: 0.8675  Mult_acc_5: 0.5148  Mult_acc_7: 0.4727  MAE: 0.6523  Corr: 0.8152 
+2021-01-28 02:19:06:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7773  Has0_F1_score: 0.7761  Non0_acc_2: 0.7917  Non0_F1_score: 0.7915  Mult_acc_5: 0.4148  Mult_acc_7: 0.3275  MAE: 0.9438  Corr: 0.6803  Loss: 0.9416 
+2021-01-28 02:19:07:INFO:TRAIN-(tfn) (1/8/1)>> loss: 0.5734  Has0_acc_2: 0.8707  Has0_F1_score: 0.8702  Non0_acc_2: 0.8920  Non0_F1_score: 0.8918  Mult_acc_5: 0.5732  Mult_acc_7: 0.5226  MAE: 0.5586  Corr: 0.8619 
+2021-01-28 02:19:07:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7904  Has0_F1_score: 0.7883  Non0_acc_2: 0.8148  Non0_F1_score: 0.8138  Mult_acc_5: 0.4192  Mult_acc_7: 0.3275  MAE: 0.9365  Corr: 0.6763  Loss: 0.9037 
+2021-01-28 02:19:09:INFO:TRAIN-(tfn) (1/9/1)>> loss: 0.5819  Has0_acc_2: 0.8715  Has0_F1_score: 0.8709  Non0_acc_2: 0.8879  Non0_F1_score: 0.8877  Mult_acc_5: 0.5592  Mult_acc_7: 0.5070  MAE: 0.5756  Corr: 0.8578 
+2021-01-28 02:19:09:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7555  Has0_F1_score: 0.7604  Non0_acc_2: 0.7685  Non0_F1_score: 0.7748  Mult_acc_5: 0.4017  Mult_acc_7: 0.3100  MAE: 1.0822  Corr: 0.6112  Loss: 1.0879 
+2021-01-28 02:19:10:INFO:TRAIN-(tfn) (2/10/1)>> loss: 0.5484  Has0_acc_2: 0.8769  Has0_F1_score: 0.8768  Non0_acc_2: 0.8903  Non0_F1_score: 0.8905  Mult_acc_5: 0.5989  Mult_acc_7: 0.5467  MAE: 0.5540  Corr: 0.8643 
+2021-01-28 02:19:10:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7904  Has0_F1_score: 0.7900  Non0_acc_2: 0.8056  Non0_F1_score: 0.8062  Mult_acc_5: 0.4367  Mult_acc_7: 0.3450  MAE: 0.9072  Corr: 0.7057  Loss: 0.8762 
+2021-01-28 02:19:11:INFO:TRAIN-(tfn) (1/11/1)>> loss: 0.4596  Has0_acc_2: 0.8917  Has0_F1_score: 0.8914  Non0_acc_2: 0.9090  Non0_F1_score: 0.9089  Mult_acc_5: 0.6495  Mult_acc_7: 0.5997  MAE: 0.4602  Corr: 0.9066 
+2021-01-28 02:19:11:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7642  Has0_F1_score: 0.7714  Non0_acc_2: 0.7731  Non0_F1_score: 0.7815  Mult_acc_5: 0.4498  Mult_acc_7: 0.3755  MAE: 0.9388  Corr: 0.6592  Loss: 0.9040 
+2021-01-28 02:19:12:INFO:TRAIN-(tfn) (2/12/1)>> loss: 0.4384  Has0_acc_2: 0.9050  Has0_F1_score: 0.9046  Non0_acc_2: 0.9228  Non0_F1_score: 0.9227  Mult_acc_5: 0.6456  Mult_acc_7: 0.6020  MAE: 0.4389  Corr: 0.9173 
+2021-01-28 02:19:12:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7948  Has0_F1_score: 0.7946  Non0_acc_2: 0.8102  Non0_F1_score: 0.8110  Mult_acc_5: 0.4410  Mult_acc_7: 0.3493  MAE: 0.8899  Corr: 0.7016  Loss: 0.8583 
+2021-01-28 02:19:13:INFO:TRAIN-(tfn) (1/13/1)>> loss: 0.4137  Has0_acc_2: 0.9198  Has0_F1_score: 0.9196  Non0_acc_2: 0.9358  Non0_F1_score: 0.9358  Mult_acc_5: 0.6776  Mult_acc_7: 0.6262  MAE: 0.4092  Corr: 0.9294 
+2021-01-28 02:19:13:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7511  Has0_F1_score: 0.7501  Non0_acc_2: 0.7639  Non0_F1_score: 0.7641  Mult_acc_5: 0.4454  Mult_acc_7: 0.3581  MAE: 0.9512  Corr: 0.6696  Loss: 0.9304 
+2021-01-28 02:19:15:INFO:TRAIN-(tfn) (2/14/1)>> loss: 0.4132  Has0_acc_2: 0.9073  Has0_F1_score: 0.9070  Non0_acc_2: 0.9301  Non0_F1_score: 0.9301  Mult_acc_5: 0.6830  Mult_acc_7: 0.6301  MAE: 0.4163  Corr: 0.9263 
+2021-01-28 02:19:15:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7991  Has0_F1_score: 0.7982  Non0_acc_2: 0.8148  Non0_F1_score: 0.8148  Mult_acc_5: 0.4323  Mult_acc_7: 0.3319  MAE: 0.9192  Corr: 0.6866  Loss: 0.9275 
+2021-01-28 02:19:16:INFO:TRAIN-(tfn) (3/15/1)>> loss: 0.3502  Has0_acc_2: 0.9260  Has0_F1_score: 0.9258  Non0_acc_2: 0.9439  Non0_F1_score: 0.9439  Mult_acc_5: 0.7157  Mult_acc_7: 0.6674  MAE: 0.3544  Corr: 0.9440 
+2021-01-28 02:19:16:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7686  Has0_F1_score: 0.7692  Non0_acc_2: 0.7824  Non0_F1_score: 0.7842  Mult_acc_5: 0.4323  Mult_acc_7: 0.3362  MAE: 0.9813  Corr: 0.6441  Loss: 1.0241 
+2021-01-28 02:19:18:INFO:TRAIN-(tfn) (4/16/1)>> loss: 0.3511  Has0_acc_2: 0.9299  Has0_F1_score: 0.9297  Non0_acc_2: 0.9496  Non0_F1_score: 0.9496  Mult_acc_5: 0.7391  Mult_acc_7: 0.6815  MAE: 0.3527  Corr: 0.9448 
+2021-01-28 02:19:18:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7729  Has0_F1_score: 0.7708  Non0_acc_2: 0.8009  Non0_F1_score: 0.8000  Mult_acc_5: 0.4541  Mult_acc_7: 0.3712  MAE: 0.9268  Corr: 0.6899  Loss: 0.9331 
+2021-01-28 02:19:20:INFO:TRAIN-(tfn) (5/17/1)>> loss: 0.3150  Has0_acc_2: 0.9237  Has0_F1_score: 0.9234  Non0_acc_2: 0.9456  Non0_F1_score: 0.9455  Mult_acc_5: 0.7609  Mult_acc_7: 0.7079  MAE: 0.3183  Corr: 0.9536 
+2021-01-28 02:19:20:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7686  Has0_F1_score: 0.7688  Non0_acc_2: 0.7870  Non0_F1_score: 0.7885  Mult_acc_5: 0.4105  Mult_acc_7: 0.3275  MAE: 0.9568  Corr: 0.6695  Loss: 0.9031 
+2021-01-28 02:19:21:INFO:TRAIN-(tfn) (6/18/1)>> loss: 0.3157  Has0_acc_2: 0.9416  Has0_F1_score: 0.9415  Non0_acc_2: 0.9537  Non0_F1_score: 0.9537  Mult_acc_5: 0.7453  Mult_acc_7: 0.6963  MAE: 0.3159  Corr: 0.9533 
+2021-01-28 02:19:21:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7555  Has0_F1_score: 0.7531  Non0_acc_2: 0.7778  Non0_F1_score: 0.7766  Mult_acc_5: 0.4629  Mult_acc_7: 0.3712  MAE: 0.9237  Corr: 0.6943  Loss: 0.9248 
+2021-01-28 02:19:23:INFO:TRAIN-(tfn) (7/19/1)>> loss: 0.3051  Has0_acc_2: 0.9393  Has0_F1_score: 0.9391  Non0_acc_2: 0.9578  Non0_F1_score: 0.9577  Mult_acc_5: 0.7765  Mult_acc_7: 0.7266  MAE: 0.2938  Corr: 0.9600 
+2021-01-28 02:19:23:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7817  Has0_F1_score: 0.7817  Non0_acc_2: 0.8009  Non0_F1_score: 0.8021  Mult_acc_5: 0.4410  Mult_acc_7: 0.3493  MAE: 0.9093  Corr: 0.6953  Loss: 0.9074 
+2021-01-28 02:19:24:INFO:TRAIN-(tfn) (8/20/1)>> loss: 0.2772  Has0_acc_2: 0.9455  Has0_F1_score: 0.9454  Non0_acc_2: 0.9578  Non0_F1_score: 0.9578  Mult_acc_5: 0.7882  Mult_acc_7: 0.7407  MAE: 0.2791  Corr: 0.9641 
+2021-01-28 02:19:25:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7424  Has0_F1_score: 0.7400  Non0_acc_2: 0.7639  Non0_F1_score: 0.7628  Mult_acc_5: 0.3755  Mult_acc_7: 0.3057  MAE: 0.9903  Corr: 0.6458  Loss: 1.0244 
+2021-01-28 02:19:25:INFO:TEST-(tfn) >>  Has0_acc_2: 0.7580  Has0_F1_score: 0.7574  Non0_acc_2: 0.7622  Non0_F1_score: 0.7608  Mult_acc_5: 0.4038  Mult_acc_7: 0.3586  MAE: 0.9826  Corr: 0.6381  Loss: 0.9833 
+2021-01-28 02:19:25:INFO:Start saving results...
+2021-01-28 02:19:25:INFO:Results are saved to results/results/mosi-tfn-regression-tune.csv...
+2021-01-28 02:19:25:INFO:########################################tfn-(5/10)########################################
+2021-01-28 02:19:25:INFO:hidden_dims:(128, 32, 128)
+2021-01-28 02:19:25:INFO:text_out:128
+2021-01-28 02:19:25:INFO:post_fusion_dim:64
+2021-01-28 02:19:25:INFO:dropouts:(0.4, 0.4, 0.4, 0.4)
+2021-01-28 02:19:25:INFO:batch_size:128
+2021-01-28 02:19:25:INFO:learning_rate:0.0005
+2021-01-28 02:19:25:INFO:##########################################################################################
+2021-01-28 02:19:25:INFO:Start running tfn...
+2021-01-28 02:19:25:INFO:Let's use 1 GPUs!
+2021-01-28 02:19:25:INFO:train samples: (1284,)
+2021-01-28 02:19:26:INFO:valid samples: (229,)
+2021-01-28 02:19:26:INFO:test samples: (686,)
+2021-01-28 02:19:27:INFO:The model has 35664435 trainable parameters
+2021-01-28 02:19:27:INFO:TRAIN-(tfn) (1/1/1)>> loss: 1.2753  Has0_acc_2: 0.5935  Has0_F1_score: 0.6891  Non0_acc_2: 0.5784  Non0_F1_score: 0.6761  Mult_acc_5: 0.1994  Mult_acc_7: 0.1994  MAE: 1.2811  Corr: 0.2784 
+2021-01-28 02:19:27:INFO:VAL-(tfn) >>  Has0_acc_2: 0.5983  Has0_F1_score: 0.7486  Non0_acc_2: 0.5741  Non0_F1_score: 0.7294  Mult_acc_5: 0.2489  Mult_acc_7: 0.2489  MAE: 1.3492  Corr: 0.4647  Loss: 1.3454 
+2021-01-28 02:19:29:INFO:TRAIN-(tfn) (1/2/1)>> loss: 1.0595  Has0_acc_2: 0.6830  Has0_F1_score: 0.6923  Non0_acc_2: 0.6872  Non0_F1_score: 0.6976  Mult_acc_5: 0.2850  Mult_acc_7: 0.2718  MAE: 1.0755  Corr: 0.4898 
+2021-01-28 02:19:29:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7162  Has0_F1_score: 0.7233  Non0_acc_2: 0.7222  Non0_F1_score: 0.7308  Mult_acc_5: 0.3275  Mult_acc_7: 0.2751  MAE: 1.1078  Corr: 0.5891  Loss: 1.1136 
+2021-01-28 02:19:30:INFO:TRAIN-(tfn) (1/3/1)>> loss: 0.9083  Has0_acc_2: 0.7547  Has0_F1_score: 0.7535  Non0_acc_2: 0.7677  Non0_F1_score: 0.7671  Mult_acc_5: 0.3575  Mult_acc_7: 0.3170  MAE: 0.9465  Corr: 0.6219 
+2021-01-28 02:19:30:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7205  Has0_F1_score: 0.7205  Non0_acc_2: 0.7407  Non0_F1_score: 0.7426  Mult_acc_5: 0.2489  Mult_acc_7: 0.2489  MAE: 1.1120  Corr: 0.6170  Loss: 1.1019 
+2021-01-28 02:19:32:INFO:TRAIN-(tfn) (1/4/1)>> loss: 0.8809  Has0_acc_2: 0.7780  Has0_F1_score: 0.7772  Non0_acc_2: 0.7912  Non0_F1_score: 0.7910  Mult_acc_5: 0.3598  Mult_acc_7: 0.3396  MAE: 0.8661  Corr: 0.6860 
+2021-01-28 02:19:32:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7511  Has0_F1_score: 0.7523  Non0_acc_2: 0.7639  Non0_F1_score: 0.7664  Mult_acc_5: 0.2664  Mult_acc_7: 0.2576  MAE: 1.0685  Corr: 0.6394  Loss: 1.0733 
+2021-01-28 02:19:33:INFO:TRAIN-(tfn) (1/5/1)>> loss: 0.8683  Has0_acc_2: 0.7897  Has0_F1_score: 0.7887  Non0_acc_2: 0.8067  Non0_F1_score: 0.8062  Mult_acc_5: 0.4252  Mult_acc_7: 0.3956  MAE: 0.8302  Corr: 0.7104 
+2021-01-28 02:19:33:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7555  Has0_F1_score: 0.7547  Non0_acc_2: 0.7731  Non0_F1_score: 0.7737  Mult_acc_5: 0.3362  Mult_acc_7: 0.2969  MAE: 1.0341  Corr: 0.6592  Loss: 1.0321 
+2021-01-28 02:19:34:INFO:TRAIN-(tfn) (1/6/1)>> loss: 0.7922  Has0_acc_2: 0.8232  Has0_F1_score: 0.8224  Non0_acc_2: 0.8383  Non0_F1_score: 0.8380  Mult_acc_5: 0.4299  Mult_acc_7: 0.4042  MAE: 0.7584  Corr: 0.7595 
+2021-01-28 02:19:34:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7686  Has0_F1_score: 0.7667  Non0_acc_2: 0.7963  Non0_F1_score: 0.7958  Mult_acc_5: 0.3362  Mult_acc_7: 0.2838  MAE: 0.9835  Corr: 0.6836  Loss: 0.9840 
+2021-01-28 02:19:35:INFO:TRAIN-(tfn) (1/7/1)>> loss: 0.7850  Has0_acc_2: 0.8100  Has0_F1_score: 0.8095  Non0_acc_2: 0.8188  Non0_F1_score: 0.8188  Mult_acc_5: 0.4564  Mult_acc_7: 0.4229  MAE: 0.7690  Corr: 0.7491 
+2021-01-28 02:19:36:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7729  Has0_F1_score: 0.7711  Non0_acc_2: 0.8056  Non0_F1_score: 0.8046  Mult_acc_5: 0.3144  Mult_acc_7: 0.2795  MAE: 1.0228  Corr: 0.6780  Loss: 1.0276 
+2021-01-28 02:19:36:INFO:TRAIN-(tfn) (2/8/1)>> loss: 0.7553  Has0_acc_2: 0.8154  Has0_F1_score: 0.8149  Non0_acc_2: 0.8286  Non0_F1_score: 0.8286  Mult_acc_5: 0.4338  Mult_acc_7: 0.4026  MAE: 0.7894  Corr: 0.7330 
+2021-01-28 02:19:36:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7598  Has0_F1_score: 0.7591  Non0_acc_2: 0.7917  Non0_F1_score: 0.7915  Mult_acc_5: 0.3537  Mult_acc_7: 0.3013  MAE: 1.0096  Corr: 0.6690  Loss: 1.0075 
+2021-01-28 02:19:37:INFO:TRAIN-(tfn) (3/9/1)>> loss: 0.6980  Has0_acc_2: 0.8178  Has0_F1_score: 0.8172  Non0_acc_2: 0.8327  Non0_F1_score: 0.8325  Mult_acc_5: 0.4548  Mult_acc_7: 0.4213  MAE: 0.7525  Corr: 0.7562 
+2021-01-28 02:19:37:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7860  Has0_F1_score: 0.7893  Non0_acc_2: 0.8009  Non0_F1_score: 0.8053  Mult_acc_5: 0.3144  Mult_acc_7: 0.2533  MAE: 0.9863  Corr: 0.6911  Loss: 0.9849 
+2021-01-28 02:19:38:INFO:TRAIN-(tfn) (4/10/1)>> loss: 0.7032  Has0_acc_2: 0.8411  Has0_F1_score: 0.8413  Non0_acc_2: 0.8497  Non0_F1_score: 0.8502  Mult_acc_5: 0.4759  Mult_acc_7: 0.4502  MAE: 0.7002  Corr: 0.7866 
+2021-01-28 02:19:38:INFO:VAL-(tfn) >>  Has0_acc_2: 0.8035  Has0_F1_score: 0.8037  Non0_acc_2: 0.8194  Non0_F1_score: 0.8205  Mult_acc_5: 0.3450  Mult_acc_7: 0.2751  MAE: 0.9635  Corr: 0.6804  Loss: 0.9589 
+2021-01-28 02:19:39:INFO:TRAIN-(tfn) (1/11/1)>> loss: 0.6925  Has0_acc_2: 0.8489  Has0_F1_score: 0.8484  Non0_acc_2: 0.8619  Non0_F1_score: 0.8618  Mult_acc_5: 0.5132  Mult_acc_7: 0.4735  MAE: 0.6677  Corr: 0.8022 
+2021-01-28 02:19:39:INFO:VAL-(tfn) >>  Has0_acc_2: 0.8122  Has0_F1_score: 0.8105  Non0_acc_2: 0.8380  Non0_F1_score: 0.8372  Mult_acc_5: 0.3231  Mult_acc_7: 0.2576  MAE: 0.9724  Corr: 0.6854  Loss: 0.9771 
+2021-01-28 02:19:40:INFO:TRAIN-(tfn) (2/12/1)>> loss: 0.6784  Has0_acc_2: 0.8536  Has0_F1_score: 0.8532  Non0_acc_2: 0.8643  Non0_F1_score: 0.8643  Mult_acc_5: 0.4922  Mult_acc_7: 0.4587  MAE: 0.6828  Corr: 0.7988 
+2021-01-28 02:19:40:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7773  Has0_F1_score: 0.7795  Non0_acc_2: 0.7917  Non0_F1_score: 0.7950  Mult_acc_5: 0.4148  Mult_acc_7: 0.3057  MAE: 0.9769  Corr: 0.6641  Loss: 0.9839 
+2021-01-28 02:19:41:INFO:TRAIN-(tfn) (3/13/1)>> loss: 0.6765  Has0_acc_2: 0.8606  Has0_F1_score: 0.8603  Non0_acc_2: 0.8708  Non0_F1_score: 0.8708  Mult_acc_5: 0.5389  Mult_acc_7: 0.4883  MAE: 0.6664  Corr: 0.8128 
+2021-01-28 02:19:41:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7773  Has0_F1_score: 0.7846  Non0_acc_2: 0.7778  Non0_F1_score: 0.7855  Mult_acc_5: 0.3450  Mult_acc_7: 0.2882  MAE: 0.9950  Corr: 0.6825  Loss: 0.9931 
+2021-01-28 02:19:42:INFO:TRAIN-(tfn) (4/14/1)>> loss: 0.6559  Has0_acc_2: 0.8590  Has0_F1_score: 0.8588  Non0_acc_2: 0.8749  Non0_F1_score: 0.8750  Mult_acc_5: 0.5350  Mult_acc_7: 0.4914  MAE: 0.6413  Corr: 0.8213 
+2021-01-28 02:19:42:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7467  Has0_F1_score: 0.7536  Non0_acc_2: 0.7500  Non0_F1_score: 0.7577  Mult_acc_5: 0.3843  Mult_acc_7: 0.3057  MAE: 1.0138  Corr: 0.6673  Loss: 1.0178 
+2021-01-28 02:19:42:INFO:TRAIN-(tfn) (5/15/1)>> loss: 0.6609  Has0_acc_2: 0.8372  Has0_F1_score: 0.8368  Non0_acc_2: 0.8522  Non0_F1_score: 0.8521  Mult_acc_5: 0.4984  Mult_acc_7: 0.4634  MAE: 0.6929  Corr: 0.8003 
+2021-01-28 02:19:43:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7686  Has0_F1_score: 0.7715  Non0_acc_2: 0.7778  Non0_F1_score: 0.7816  Mult_acc_5: 0.3712  Mult_acc_7: 0.2969  MAE: 0.9915  Corr: 0.6679  Loss: 0.9993 
+2021-01-28 02:19:43:INFO:TRAIN-(tfn) (6/16/1)>> loss: 0.6342  Has0_acc_2: 0.8590  Has0_F1_score: 0.8588  Non0_acc_2: 0.8716  Non0_F1_score: 0.8717  Mult_acc_5: 0.5561  Mult_acc_7: 0.5132  MAE: 0.6078  Corr: 0.8349 
+2021-01-28 02:19:44:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7948  Has0_F1_score: 0.7928  Non0_acc_2: 0.8194  Non0_F1_score: 0.8185  Mult_acc_5: 0.3843  Mult_acc_7: 0.2969  MAE: 0.9532  Corr: 0.6754  Loss: 0.9631 
+2021-01-28 02:19:44:INFO:TRAIN-(tfn) (7/17/1)>> loss: 0.5685  Has0_acc_2: 0.8668  Has0_F1_score: 0.8664  Non0_acc_2: 0.8855  Non0_F1_score: 0.8854  Mult_acc_5: 0.5709  Mult_acc_7: 0.5226  MAE: 0.5871  Corr: 0.8471 
+2021-01-28 02:19:44:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7729  Has0_F1_score: 0.7708  Non0_acc_2: 0.8009  Non0_F1_score: 0.8000  Mult_acc_5: 0.3755  Mult_acc_7: 0.2969  MAE: 0.9551  Corr: 0.6692  Loss: 0.9511 
+2021-01-28 02:19:46:INFO:TRAIN-(tfn) (1/18/1)>> loss: 0.5563  Has0_acc_2: 0.8917  Has0_F1_score: 0.8915  Non0_acc_2: 0.9058  Non0_F1_score: 0.9057  Mult_acc_5: 0.5880  Mult_acc_7: 0.5413  MAE: 0.5414  Corr: 0.8650 
+2021-01-28 02:19:46:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7817  Has0_F1_score: 0.7798  Non0_acc_2: 0.8148  Non0_F1_score: 0.8144  Mult_acc_5: 0.4061  Mult_acc_7: 0.3144  MAE: 0.9426  Corr: 0.6665  Loss: 0.9389 
+2021-01-28 02:19:47:INFO:TRAIN-(tfn) (1/19/1)>> loss: 0.5873  Has0_acc_2: 0.8910  Has0_F1_score: 0.8908  Non0_acc_2: 0.9082  Non0_F1_score: 0.9083  Mult_acc_5: 0.6051  Mult_acc_7: 0.5514  MAE: 0.5380  Corr: 0.8703 
+2021-01-28 02:19:47:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7817  Has0_F1_score: 0.7830  Non0_acc_2: 0.7917  Non0_F1_score: 0.7939  Mult_acc_5: 0.3974  Mult_acc_7: 0.3057  MAE: 0.9285  Corr: 0.6811  Loss: 0.9220 
+2021-01-28 02:19:48:INFO:TRAIN-(tfn) (1/20/1)>> loss: 0.5013  Has0_acc_2: 0.8956  Has0_F1_score: 0.8957  Non0_acc_2: 0.9098  Non0_F1_score: 0.9101  Mult_acc_5: 0.6176  Mult_acc_7: 0.5685  MAE: 0.5049  Corr: 0.8839 
+2021-01-28 02:19:48:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7948  Has0_F1_score: 0.7973  Non0_acc_2: 0.8009  Non0_F1_score: 0.8041  Mult_acc_5: 0.3974  Mult_acc_7: 0.3057  MAE: 0.9088  Corr: 0.7082  Loss: 0.9202 
+2021-01-28 02:19:50:INFO:TRAIN-(tfn) (1/21/1)>> loss: 0.4574  Has0_acc_2: 0.9065  Has0_F1_score: 0.9064  Non0_acc_2: 0.9228  Non0_F1_score: 0.9229  Mult_acc_5: 0.6417  Mult_acc_7: 0.5981  MAE: 0.4727  Corr: 0.8921 
+2021-01-28 02:19:50:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7729  Has0_F1_score: 0.7707  Non0_acc_2: 0.7963  Non0_F1_score: 0.7952  Mult_acc_5: 0.4105  Mult_acc_7: 0.3188  MAE: 0.9153  Corr: 0.6842  Loss: 0.9243 
+2021-01-28 02:19:50:INFO:TRAIN-(tfn) (2/22/1)>> loss: 0.4845  Has0_acc_2: 0.8847  Has0_F1_score: 0.8843  Non0_acc_2: 0.9058  Non0_F1_score: 0.9056  Mult_acc_5: 0.6231  Mult_acc_7: 0.5740  MAE: 0.5057  Corr: 0.8836 
+2021-01-28 02:19:50:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7773  Has0_F1_score: 0.7752  Non0_acc_2: 0.8056  Non0_F1_score: 0.8045  Mult_acc_5: 0.4629  Mult_acc_7: 0.3712  MAE: 0.8862  Corr: 0.7004  Loss: 0.8758 
+2021-01-28 02:19:52:INFO:TRAIN-(tfn) (1/23/1)>> loss: 0.4878  Has0_acc_2: 0.8731  Has0_F1_score: 0.8726  Non0_acc_2: 0.8895  Non0_F1_score: 0.8894  Mult_acc_5: 0.6324  Mult_acc_7: 0.5826  MAE: 0.4999  Corr: 0.8876 
+2021-01-28 02:19:52:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7773  Has0_F1_score: 0.7751  Non0_acc_2: 0.8009  Non0_F1_score: 0.7998  Mult_acc_5: 0.4760  Mult_acc_7: 0.3843  MAE: 0.9239  Corr: 0.6794  Loss: 0.9211 
+2021-01-28 02:19:52:INFO:TRAIN-(tfn) (2/24/1)>> loss: 0.4829  Has0_acc_2: 0.8925  Has0_F1_score: 0.8922  Non0_acc_2: 0.9106  Non0_F1_score: 0.9106  Mult_acc_5: 0.6324  Mult_acc_7: 0.5826  MAE: 0.4939  Corr: 0.8866 
+2021-01-28 02:19:52:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7686  Has0_F1_score: 0.7665  Non0_acc_2: 0.7963  Non0_F1_score: 0.7952  Mult_acc_5: 0.4498  Mult_acc_7: 0.3581  MAE: 0.9217  Corr: 0.6743  Loss: 0.9131 
+2021-01-28 02:19:53:INFO:TRAIN-(tfn) (3/25/1)>> loss: 0.4646  Has0_acc_2: 0.8941  Has0_F1_score: 0.8937  Non0_acc_2: 0.9131  Non0_F1_score: 0.9130  Mult_acc_5: 0.6316  Mult_acc_7: 0.5771  MAE: 0.4781  Corr: 0.8959 
+2021-01-28 02:19:53:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7904  Has0_F1_score: 0.7894  Non0_acc_2: 0.8056  Non0_F1_score: 0.8056  Mult_acc_5: 0.4454  Mult_acc_7: 0.3537  MAE: 0.9157  Corr: 0.6734  Loss: 0.9134 
+2021-01-28 02:19:54:INFO:TRAIN-(tfn) (4/26/1)>> loss: 0.4331  Has0_acc_2: 0.9073  Has0_F1_score: 0.9073  Non0_acc_2: 0.9188  Non0_F1_score: 0.9189  Mult_acc_5: 0.6815  Mult_acc_7: 0.6254  MAE: 0.4417  Corr: 0.9052 
+2021-01-28 02:19:54:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7380  Has0_F1_score: 0.7494  Non0_acc_2: 0.7407  Non0_F1_score: 0.7532  Mult_acc_5: 0.4367  Mult_acc_7: 0.3406  MAE: 0.9574  Corr: 0.6731  Loss: 0.9590 
+2021-01-28 02:19:55:INFO:TRAIN-(tfn) (5/27/1)>> loss: 0.4905  Has0_acc_2: 0.8972  Has0_F1_score: 0.8971  Non0_acc_2: 0.9123  Non0_F1_score: 0.9124  Mult_acc_5: 0.6425  Mult_acc_7: 0.5888  MAE: 0.4821  Corr: 0.8971 
+2021-01-28 02:19:55:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7598  Has0_F1_score: 0.7650  Non0_acc_2: 0.7685  Non0_F1_score: 0.7748  Mult_acc_5: 0.4367  Mult_acc_7: 0.3624  MAE: 0.9435  Corr: 0.6742  Loss: 0.9357 
+2021-01-28 02:19:55:INFO:TRAIN-(tfn) (6/28/1)>> loss: 0.4799  Has0_acc_2: 0.8777  Has0_F1_score: 0.8773  Non0_acc_2: 0.8952  Non0_F1_score: 0.8951  Mult_acc_5: 0.6176  Mult_acc_7: 0.5631  MAE: 0.5103  Corr: 0.8823 
+2021-01-28 02:19:55:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7555  Has0_F1_score: 0.7650  Non0_acc_2: 0.7546  Non0_F1_score: 0.7647  Mult_acc_5: 0.4236  Mult_acc_7: 0.3362  MAE: 0.9638  Corr: 0.6492  Loss: 0.9682 
+2021-01-28 02:19:56:INFO:TRAIN-(tfn) (7/29/1)>> loss: 0.4821  Has0_acc_2: 0.9065  Has0_F1_score: 0.9062  Non0_acc_2: 0.9220  Non0_F1_score: 0.9219  Mult_acc_5: 0.6674  Mult_acc_7: 0.6114  MAE: 0.4514  Corr: 0.9070 
+2021-01-28 02:19:56:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7598  Has0_F1_score: 0.7622  Non0_acc_2: 0.7778  Non0_F1_score: 0.7816  Mult_acc_5: 0.4410  Mult_acc_7: 0.3624  MAE: 0.9322  Corr: 0.6508  Loss: 0.9380 
+2021-01-28 02:19:56:INFO:TRAIN-(tfn) (8/30/1)>> loss: 0.3856  Has0_acc_2: 0.9151  Has0_F1_score: 0.9150  Non0_acc_2: 0.9293  Non0_F1_score: 0.9294  Mult_acc_5: 0.6970  Mult_acc_7: 0.6449  MAE: 0.3954  Corr: 0.9239 
+2021-01-28 02:19:56:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7555  Has0_F1_score: 0.7564  Non0_acc_2: 0.7778  Non0_F1_score: 0.7804  Mult_acc_5: 0.4410  Mult_acc_7: 0.3581  MAE: 0.8994  Corr: 0.6851  Loss: 0.8959 
+2021-01-28 02:19:57:INFO:TEST-(tfn) >>  Has0_acc_2: 0.7813  Has0_F1_score: 0.7832  Non0_acc_2: 0.7973  Non0_F1_score: 0.7984  Mult_acc_5: 0.4257  Mult_acc_7: 0.3688  MAE: 0.9134  Corr: 0.6742  Loss: 0.9055 
+2021-01-28 02:19:57:INFO:Start saving results...
+2021-01-28 02:19:57:INFO:Results are saved to results/results/mosi-tfn-regression-tune.csv...
+2021-01-28 02:19:57:INFO:########################################tfn-(6/10)########################################
+2021-01-28 02:19:57:INFO:hidden_dims:(64, 32, 64)
+2021-01-28 02:19:57:INFO:text_out:32
+2021-01-28 02:19:57:INFO:post_fusion_dim:32
+2021-01-28 02:19:57:INFO:dropouts:(0.2, 0.2, 0.2, 0.2)
+2021-01-28 02:19:57:INFO:batch_size:128
+2021-01-28 02:19:57:INFO:learning_rate:0.001
+2021-01-28 02:19:57:INFO:##########################################################################################
+2021-01-28 02:19:57:INFO:Start running tfn...
+2021-01-28 02:19:57:INFO:Let's use 1 GPUs!
+2021-01-28 02:19:57:INFO:train samples: (1284,)
+2021-01-28 02:19:58:INFO:valid samples: (229,)
+2021-01-28 02:19:58:INFO:test samples: (686,)
+2021-01-28 02:19:58:INFO:The model has 2493843 trainable parameters
+2021-01-28 02:19:59:INFO:TRAIN-(tfn) (1/1/1)>> loss: 1.2789  Has0_acc_2: 0.4969  Has0_F1_score: 0.4964  Non0_acc_2: 0.5020  Non0_F1_score: 0.5025  Mult_acc_5: 0.1931  Mult_acc_7: 0.1931  MAE: 1.3283  Corr: 0.0477 
+2021-01-28 02:19:59:INFO:VAL-(tfn) >>  Has0_acc_2: 0.5983  Has0_F1_score: 0.7486  Non0_acc_2: 0.5741  Non0_F1_score: 0.7294  Mult_acc_5: 0.2140  Mult_acc_7: 0.2140  MAE: 1.4025  Corr: 0.4605  Loss: 1.3983 
+2021-01-28 02:19:59:INFO:TRAIN-(tfn) (1/2/1)>> loss: 1.2283  Has0_acc_2: 0.6628  Has0_F1_score: 0.6952  Non0_acc_2: 0.6548  Non0_F1_score: 0.6877  Mult_acc_5: 0.2040  Mult_acc_7: 0.2040  MAE: 1.2236  Corr: 0.4635 
+2021-01-28 02:19:59:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7511  Has0_F1_score: 0.7493  Non0_acc_2: 0.7685  Non0_F1_score: 0.7680  Mult_acc_5: 0.2489  Mult_acc_7: 0.2489  MAE: 1.2457  Corr: 0.5926  Loss: 1.2425 
+2021-01-28 02:20:00:INFO:TRAIN-(tfn) (1/3/1)>> loss: 1.0257  Has0_acc_2: 0.7593  Has0_F1_score: 0.7583  Non0_acc_2: 0.7725  Non0_F1_score: 0.7721  Mult_acc_5: 0.3014  Mult_acc_7: 0.2897  MAE: 1.0157  Corr: 0.5501 
+2021-01-28 02:20:00:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7817  Has0_F1_score: 0.7804  Non0_acc_2: 0.7963  Non0_F1_score: 0.7960  Mult_acc_5: 0.2751  Mult_acc_7: 0.2751  MAE: 1.0604  Corr: 0.6619  Loss: 1.0560 
+2021-01-28 02:20:00:INFO:TRAIN-(tfn) (1/4/1)>> loss: 0.9496  Has0_acc_2: 0.7843  Has0_F1_score: 0.7842  Non0_acc_2: 0.7977  Non0_F1_score: 0.7982  Mult_acc_5: 0.3590  Mult_acc_7: 0.3396  MAE: 0.9163  Corr: 0.6413 
+2021-01-28 02:20:00:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7817  Has0_F1_score: 0.7796  Non0_acc_2: 0.8009  Non0_F1_score: 0.7999  Mult_acc_5: 0.2620  Mult_acc_7: 0.2620  MAE: 1.1056  Corr: 0.6416  Loss: 1.0985 
+2021-01-28 02:20:01:INFO:TRAIN-(tfn) (2/5/1)>> loss: 0.8302  Has0_acc_2: 0.7913  Has0_F1_score: 0.7906  Non0_acc_2: 0.8067  Non0_F1_score: 0.8066  Mult_acc_5: 0.3808  Mult_acc_7: 0.3583  MAE: 0.8564  Corr: 0.6871 
+2021-01-28 02:20:01:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7904  Has0_F1_score: 0.7886  Non0_acc_2: 0.8056  Non0_F1_score: 0.8047  Mult_acc_5: 0.3188  Mult_acc_7: 0.2838  MAE: 1.0126  Corr: 0.6776  Loss: 1.0112 
+2021-01-28 02:20:01:INFO:TRAIN-(tfn) (1/6/1)>> loss: 0.7814  Has0_acc_2: 0.8209  Has0_F1_score: 0.8203  Non0_acc_2: 0.8367  Non0_F1_score: 0.8367  Mult_acc_5: 0.4237  Mult_acc_7: 0.4034  MAE: 0.7778  Corr: 0.7392 
+2021-01-28 02:20:01:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7729  Has0_F1_score: 0.7749  Non0_acc_2: 0.7824  Non0_F1_score: 0.7853  Mult_acc_5: 0.4017  Mult_acc_7: 0.3450  MAE: 0.9841  Corr: 0.6680  Loss: 0.9925 
+2021-01-28 02:20:02:INFO:TRAIN-(tfn) (1/7/1)>> loss: 0.8717  Has0_acc_2: 0.8006  Has0_F1_score: 0.8006  Non0_acc_2: 0.8107  Non0_F1_score: 0.8111  Mult_acc_5: 0.4097  Mult_acc_7: 0.3746  MAE: 0.8219  Corr: 0.7152 
+2021-01-28 02:20:02:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7817  Has0_F1_score: 0.7796  Non0_acc_2: 0.8009  Non0_F1_score: 0.7999  Mult_acc_5: 0.3057  Mult_acc_7: 0.2620  MAE: 1.0123  Corr: 0.6569  Loss: 1.0134 
+2021-01-28 02:20:02:INFO:TRAIN-(tfn) (2/8/1)>> loss: 0.7554  Has0_acc_2: 0.8333  Has0_F1_score: 0.8327  Non0_acc_2: 0.8465  Non0_F1_score: 0.8462  Mult_acc_5: 0.4517  Mult_acc_7: 0.4174  MAE: 0.7396  Corr: 0.7598 
+2021-01-28 02:20:03:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7773  Has0_F1_score: 0.7775  Non0_acc_2: 0.7870  Non0_F1_score: 0.7881  Mult_acc_5: 0.3624  Mult_acc_7: 0.3013  MAE: 0.9892  Corr: 0.6743  Loss: 0.9913 
+2021-01-28 02:20:03:INFO:TRAIN-(tfn) (1/9/1)>> loss: 0.7932  Has0_acc_2: 0.8403  Has0_F1_score: 0.8399  Non0_acc_2: 0.8530  Non0_F1_score: 0.8529  Mult_acc_5: 0.4385  Mult_acc_7: 0.4136  MAE: 0.7408  Corr: 0.7754 
+2021-01-28 02:20:03:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7773  Has0_F1_score: 0.7764  Non0_acc_2: 0.7917  Non0_F1_score: 0.7918  Mult_acc_5: 0.3974  Mult_acc_7: 0.3144  MAE: 0.9782  Corr: 0.6768  Loss: 0.9746 
+2021-01-28 02:20:04:INFO:TRAIN-(tfn) (1/10/1)>> loss: 0.6986  Has0_acc_2: 0.8497  Has0_F1_score: 0.8492  Non0_acc_2: 0.8635  Non0_F1_score: 0.8634  Mult_acc_5: 0.4766  Mult_acc_7: 0.4424  MAE: 0.7019  Corr: 0.7843 
+2021-01-28 02:20:04:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7642  Has0_F1_score: 0.7631  Non0_acc_2: 0.7824  Non0_F1_score: 0.7826  Mult_acc_5: 0.3362  Mult_acc_7: 0.2707  MAE: 0.9791  Corr: 0.6791  Loss: 0.9766 
+2021-01-28 02:20:04:INFO:TRAIN-(tfn) (2/11/1)>> loss: 0.6998  Has0_acc_2: 0.8583  Has0_F1_score: 0.8580  Non0_acc_2: 0.8716  Non0_F1_score: 0.8717  Mult_acc_5: 0.5093  Mult_acc_7: 0.4751  MAE: 0.6618  Corr: 0.8082 
+2021-01-28 02:20:04:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7773  Has0_F1_score: 0.7751  Non0_acc_2: 0.8009  Non0_F1_score: 0.7998  Mult_acc_5: 0.3843  Mult_acc_7: 0.3188  MAE: 0.9441  Corr: 0.6949  Loss: 0.9324 
+2021-01-28 02:20:05:INFO:TRAIN-(tfn) (1/12/1)>> loss: 0.6385  Has0_acc_2: 0.8715  Has0_F1_score: 0.8711  Non0_acc_2: 0.8871  Non0_F1_score: 0.8870  Mult_acc_5: 0.5241  Mult_acc_7: 0.4883  MAE: 0.6373  Corr: 0.8260 
+2021-01-28 02:20:05:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7904  Has0_F1_score: 0.7884  Non0_acc_2: 0.8102  Non0_F1_score: 0.8092  Mult_acc_5: 0.3755  Mult_acc_7: 0.3057  MAE: 0.9385  Corr: 0.7034  Loss: 0.9376 
+2021-01-28 02:20:05:INFO:TRAIN-(tfn) (2/13/1)>> loss: 0.6773  Has0_acc_2: 0.8450  Has0_F1_score: 0.8445  Non0_acc_2: 0.8587  Non0_F1_score: 0.8585  Mult_acc_5: 0.5117  Mult_acc_7: 0.4782  MAE: 0.6651  Corr: 0.8041 
+2021-01-28 02:20:05:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7948  Has0_F1_score: 0.7928  Non0_acc_2: 0.8148  Non0_F1_score: 0.8138  Mult_acc_5: 0.3930  Mult_acc_7: 0.3362  MAE: 0.9233  Corr: 0.7108  Loss: 0.9298 
+2021-01-28 02:20:06:INFO:TRAIN-(tfn) (1/14/1)>> loss: 0.7100  Has0_acc_2: 0.8326  Has0_F1_score: 0.8318  Non0_acc_2: 0.8497  Non0_F1_score: 0.8493  Mult_acc_5: 0.4618  Mult_acc_7: 0.4307  MAE: 0.7052  Corr: 0.7894 
+2021-01-28 02:20:06:INFO:VAL-(tfn) >>  Has0_acc_2: 0.8079  Has0_F1_score: 0.8090  Non0_acc_2: 0.8148  Non0_F1_score: 0.8165  Mult_acc_5: 0.3886  Mult_acc_7: 0.3144  MAE: 0.9601  Corr: 0.7141  Loss: 0.9641 
+2021-01-28 02:20:06:INFO:TRAIN-(tfn) (2/15/1)>> loss: 0.6215  Has0_acc_2: 0.8575  Has0_F1_score: 0.8568  Non0_acc_2: 0.8765  Non0_F1_score: 0.8763  Mult_acc_5: 0.5319  Mult_acc_7: 0.4945  MAE: 0.6172  Corr: 0.8295 
+2021-01-28 02:20:07:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7948  Has0_F1_score: 0.7949  Non0_acc_2: 0.8102  Non0_F1_score: 0.8113  Mult_acc_5: 0.4279  Mult_acc_7: 0.3406  MAE: 0.9244  Corr: 0.7129  Loss: 0.9290 
+2021-01-28 02:20:07:INFO:TRAIN-(tfn) (1/16/1)>> loss: 0.5635  Has0_acc_2: 0.8847  Has0_F1_score: 0.8843  Non0_acc_2: 0.8993  Non0_F1_score: 0.8991  Mult_acc_5: 0.5787  Mult_acc_7: 0.5374  MAE: 0.5680  Corr: 0.8552 
+2021-01-28 02:20:07:INFO:VAL-(tfn) >>  Has0_acc_2: 0.8079  Has0_F1_score: 0.8075  Non0_acc_2: 0.8194  Non0_F1_score: 0.8199  Mult_acc_5: 0.4148  Mult_acc_7: 0.3319  MAE: 0.9211  Corr: 0.7153  Loss: 0.9156 
+2021-01-28 02:20:08:INFO:TRAIN-(tfn) (1/17/1)>> loss: 0.5210  Has0_acc_2: 0.8910  Has0_F1_score: 0.8906  Non0_acc_2: 0.9098  Non0_F1_score: 0.9097  Mult_acc_5: 0.5872  Mult_acc_7: 0.5436  MAE: 0.5427  Corr: 0.8673 
+2021-01-28 02:20:08:INFO:VAL-(tfn) >>  Has0_acc_2: 0.8035  Has0_F1_score: 0.8016  Non0_acc_2: 0.8241  Non0_F1_score: 0.8231  Mult_acc_5: 0.4323  Mult_acc_7: 0.3450  MAE: 0.9232  Corr: 0.6967  Loss: 0.9240 
+2021-01-28 02:20:08:INFO:TRAIN-(tfn) (2/18/1)>> loss: 0.5320  Has0_acc_2: 0.8956  Has0_F1_score: 0.8953  Non0_acc_2: 0.9098  Non0_F1_score: 0.9098  Mult_acc_5: 0.6044  Mult_acc_7: 0.5553  MAE: 0.5263  Corr: 0.8767 
+2021-01-28 02:20:08:INFO:VAL-(tfn) >>  Has0_acc_2: 0.8035  Has0_F1_score: 0.8019  Non0_acc_2: 0.8241  Non0_F1_score: 0.8235  Mult_acc_5: 0.4367  Mult_acc_7: 0.3493  MAE: 0.9039  Corr: 0.7046  Loss: 0.8939 
+2021-01-28 02:20:09:INFO:TRAIN-(tfn) (1/19/1)>> loss: 0.4789  Has0_acc_2: 0.8956  Has0_F1_score: 0.8953  Non0_acc_2: 0.9131  Non0_F1_score: 0.9130  Mult_acc_5: 0.6223  Mult_acc_7: 0.5717  MAE: 0.5065  Corr: 0.8818 
+2021-01-28 02:20:09:INFO:VAL-(tfn) >>  Has0_acc_2: 0.8079  Has0_F1_score: 0.8105  Non0_acc_2: 0.8194  Non0_F1_score: 0.8228  Mult_acc_5: 0.4017  Mult_acc_7: 0.3144  MAE: 0.9523  Corr: 0.6979  Loss: 0.9568 
+2021-01-28 02:20:09:INFO:TRAIN-(tfn) (2/20/1)>> loss: 0.5215  Has0_acc_2: 0.8746  Has0_F1_score: 0.8741  Non0_acc_2: 0.8936  Non0_F1_score: 0.8934  Mult_acc_5: 0.5755  Mult_acc_7: 0.5249  MAE: 0.5477  Corr: 0.8711 
+2021-01-28 02:20:09:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7817  Has0_F1_score: 0.7830  Non0_acc_2: 0.7917  Non0_F1_score: 0.7939  Mult_acc_5: 0.4148  Mult_acc_7: 0.3231  MAE: 0.9433  Corr: 0.7045  Loss: 0.9396 
+2021-01-28 02:20:10:INFO:TRAIN-(tfn) (3/21/1)>> loss: 0.5380  Has0_acc_2: 0.8980  Has0_F1_score: 0.8979  Non0_acc_2: 0.9106  Non0_F1_score: 0.9107  Mult_acc_5: 0.6067  Mult_acc_7: 0.5475  MAE: 0.5301  Corr: 0.8813 
+2021-01-28 02:20:10:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7904  Has0_F1_score: 0.7904  Non0_acc_2: 0.8056  Non0_F1_score: 0.8065  Mult_acc_5: 0.3755  Mult_acc_7: 0.3100  MAE: 0.9384  Corr: 0.6969  Loss: 0.9358 
+2021-01-28 02:20:10:INFO:TRAIN-(tfn) (4/22/1)>> loss: 0.4656  Has0_acc_2: 0.9112  Has0_F1_score: 0.9111  Non0_acc_2: 0.9228  Non0_F1_score: 0.9229  Mult_acc_5: 0.6410  Mult_acc_7: 0.5857  MAE: 0.4830  Corr: 0.8963 
+2021-01-28 02:20:10:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7860  Has0_F1_score: 0.7842  Non0_acc_2: 0.8009  Non0_F1_score: 0.8000  Mult_acc_5: 0.4323  Mult_acc_7: 0.3493  MAE: 0.9106  Corr: 0.6963  Loss: 0.9162 
+2021-01-28 02:20:11:INFO:TRAIN-(tfn) (5/23/1)>> loss: 0.4977  Has0_acc_2: 0.9128  Has0_F1_score: 0.9124  Non0_acc_2: 0.9326  Non0_F1_score: 0.9325  Mult_acc_5: 0.6262  Mult_acc_7: 0.5779  MAE: 0.4762  Corr: 0.9014 
+2021-01-28 02:20:11:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7817  Has0_F1_score: 0.7797  Non0_acc_2: 0.8009  Non0_F1_score: 0.8000  Mult_acc_5: 0.4367  Mult_acc_7: 0.3493  MAE: 0.9192  Corr: 0.7010  Loss: 0.9199 
+2021-01-28 02:20:11:INFO:TRAIN-(tfn) (6/24/1)>> loss: 0.5035  Has0_acc_2: 0.9112  Has0_F1_score: 0.9110  Non0_acc_2: 0.9301  Non0_F1_score: 0.9302  Mult_acc_5: 0.6340  Mult_acc_7: 0.5919  MAE: 0.4621  Corr: 0.9056 
+2021-01-28 02:20:12:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7904  Has0_F1_score: 0.7886  Non0_acc_2: 0.8102  Non0_F1_score: 0.8095  Mult_acc_5: 0.4585  Mult_acc_7: 0.3712  MAE: 0.9202  Corr: 0.6895  Loss: 0.9210 
+2021-01-28 02:20:12:INFO:TRAIN-(tfn) (7/25/1)>> loss: 0.5265  Has0_acc_2: 0.8972  Has0_F1_score: 0.8969  Non0_acc_2: 0.9163  Non0_F1_score: 0.9163  Mult_acc_5: 0.6355  Mult_acc_7: 0.5779  MAE: 0.4778  Corr: 0.9005 
+2021-01-28 02:20:12:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7686  Has0_F1_score: 0.7665  Non0_acc_2: 0.7917  Non0_F1_score: 0.7906  Mult_acc_5: 0.4148  Mult_acc_7: 0.3406  MAE: 0.9399  Corr: 0.6805  Loss: 0.9402 
+2021-01-28 02:20:12:INFO:TRAIN-(tfn) (8/26/1)>> loss: 0.4703  Has0_acc_2: 0.9042  Has0_F1_score: 0.9038  Non0_acc_2: 0.9253  Non0_F1_score: 0.9251  Mult_acc_5: 0.6044  Mult_acc_7: 0.5592  MAE: 0.4786  Corr: 0.9022 
+2021-01-28 02:20:12:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7860  Has0_F1_score: 0.7840  Non0_acc_2: 0.8102  Non0_F1_score: 0.8092  Mult_acc_5: 0.4105  Mult_acc_7: 0.3188  MAE: 0.9208  Corr: 0.6939  Loss: 0.9181 
+2021-01-28 02:20:13:INFO:TEST-(tfn) >>  Has0_acc_2: 0.7580  Has0_F1_score: 0.7574  Non0_acc_2: 0.7637  Non0_F1_score: 0.7623  Mult_acc_5: 0.3863  Mult_acc_7: 0.3455  MAE: 0.9871  Corr: 0.6559  Loss: 0.9936 
+2021-01-28 02:20:13:INFO:Start saving results...
+2021-01-28 02:20:13:INFO:Results are saved to results/results/mosi-tfn-regression-tune.csv...
+2021-01-28 02:20:13:INFO:########################################tfn-(7/10)########################################
+2021-01-28 02:20:13:INFO:hidden_dims:(64, 32, 64)
+2021-01-28 02:20:13:INFO:text_out:128
+2021-01-28 02:20:13:INFO:post_fusion_dim:32
+2021-01-28 02:20:13:INFO:dropouts:(0.4, 0.4, 0.4, 0.4)
+2021-01-28 02:20:13:INFO:batch_size:32
+2021-01-28 02:20:13:INFO:learning_rate:0.005
+2021-01-28 02:20:13:INFO:##########################################################################################
+2021-01-28 02:20:13:INFO:Start running tfn...
+2021-01-28 02:20:13:INFO:Let's use 1 GPUs!
+2021-01-28 02:20:13:INFO:train samples: (1284,)
+2021-01-28 02:20:14:INFO:valid samples: (229,)
+2021-01-28 02:20:14:INFO:test samples: (686,)
+2021-01-28 02:20:14:INFO:The model has 9089523 trainable parameters
+2021-01-28 02:20:15:INFO:TRAIN-(tfn) (1/1/1)>> loss: 1.1243  Has0_acc_2: 0.6776  Has0_F1_score: 0.6926  Non0_acc_2: 0.6759  Non0_F1_score: 0.6916  Mult_acc_5: 0.2843  Mult_acc_7: 0.2695  MAE: 1.1128  Corr: 0.4448 
+2021-01-28 02:20:15:INFO:VAL-(tfn) >>  Has0_acc_2: 0.6507  Has0_F1_score: 0.7072  Non0_acc_2: 0.6528  Non0_F1_score: 0.7153  Mult_acc_5: 0.2620  Mult_acc_7: 0.2620  MAE: 1.1751  Corr: 0.5889  Loss: 1.1764 
+2021-01-28 02:20:17:INFO:TRAIN-(tfn) (1/2/1)>> loss: 0.9404  Has0_acc_2: 0.7757  Has0_F1_score: 0.7753  Non0_acc_2: 0.7888  Non0_F1_score: 0.7889  Mult_acc_5: 0.3481  Mult_acc_7: 0.3240  MAE: 0.9448  Corr: 0.6263 
+2021-01-28 02:20:17:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7249  Has0_F1_score: 0.7231  Non0_acc_2: 0.7546  Non0_F1_score: 0.7537  Mult_acc_5: 0.2576  Mult_acc_7: 0.2445  MAE: 1.1188  Corr: 0.6128  Loss: 1.1088 
+2021-01-28 02:20:19:INFO:TRAIN-(tfn) (1/3/1)>> loss: 0.8746  Has0_acc_2: 0.7788  Has0_F1_score: 0.7778  Non0_acc_2: 0.7937  Non0_F1_score: 0.7932  Mult_acc_5: 0.3699  Mult_acc_7: 0.3435  MAE: 0.8772  Corr: 0.6721 
+2021-01-28 02:20:19:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7860  Has0_F1_score: 0.7930  Non0_acc_2: 0.7963  Non0_F1_score: 0.8042  Mult_acc_5: 0.3668  Mult_acc_7: 0.2838  MAE: 1.0417  Corr: 0.6695  Loss: 1.0647 
+2021-01-28 02:20:20:INFO:TRAIN-(tfn) (1/4/1)>> loss: 0.8063  Has0_acc_2: 0.8170  Has0_F1_score: 0.8164  Non0_acc_2: 0.8278  Non0_F1_score: 0.8276  Mult_acc_5: 0.4252  Mult_acc_7: 0.3847  MAE: 0.8090  Corr: 0.7254 
+2021-01-28 02:20:21:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7991  Has0_F1_score: 0.7982  Non0_acc_2: 0.8102  Non0_F1_score: 0.8101  Mult_acc_5: 0.4236  Mult_acc_7: 0.3362  MAE: 0.9132  Corr: 0.7138  Loss: 0.9268 
+2021-01-28 02:20:22:INFO:TRAIN-(tfn) (1/5/1)>> loss: 0.7192  Has0_acc_2: 0.8318  Has0_F1_score: 0.8310  Non0_acc_2: 0.8473  Non0_F1_score: 0.8470  Mult_acc_5: 0.4696  Mult_acc_7: 0.4307  MAE: 0.7253  Corr: 0.7714 
+2021-01-28 02:20:22:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7817  Has0_F1_score: 0.7810  Non0_acc_2: 0.7917  Non0_F1_score: 0.7918  Mult_acc_5: 0.3581  Mult_acc_7: 0.2838  MAE: 0.9626  Corr: 0.6758  Loss: 0.9527 
+2021-01-28 02:20:23:INFO:TRAIN-(tfn) (2/6/1)>> loss: 0.6721  Has0_acc_2: 0.8419  Has0_F1_score: 0.8412  Non0_acc_2: 0.8578  Non0_F1_score: 0.8575  Mult_acc_5: 0.4953  Mult_acc_7: 0.4556  MAE: 0.6775  Corr: 0.8042 
+2021-01-28 02:20:23:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7773  Has0_F1_score: 0.7829  Non0_acc_2: 0.7870  Non0_F1_score: 0.7936  Mult_acc_5: 0.3799  Mult_acc_7: 0.3013  MAE: 0.9859  Corr: 0.6870  Loss: 0.9770 
+2021-01-28 02:20:24:INFO:TRAIN-(tfn) (3/7/1)>> loss: 0.6288  Has0_acc_2: 0.8668  Has0_F1_score: 0.8665  Non0_acc_2: 0.8814  Non0_F1_score: 0.8814  Mult_acc_5: 0.5062  Mult_acc_7: 0.4650  MAE: 0.6333  Corr: 0.8329 
+2021-01-28 02:20:24:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7860  Has0_F1_score: 0.7852  Non0_acc_2: 0.7963  Non0_F1_score: 0.7963  Mult_acc_5: 0.4017  Mult_acc_7: 0.3362  MAE: 0.9418  Corr: 0.6809  Loss: 0.9632 
+2021-01-28 02:20:25:INFO:TRAIN-(tfn) (4/8/1)>> loss: 0.5792  Has0_acc_2: 0.8684  Has0_F1_score: 0.8679  Non0_acc_2: 0.8895  Non0_F1_score: 0.8894  Mult_acc_5: 0.5639  Mult_acc_7: 0.5195  MAE: 0.5825  Corr: 0.8491 
+2021-01-28 02:20:25:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7860  Has0_F1_score: 0.7841  Non0_acc_2: 0.8102  Non0_F1_score: 0.8093  Mult_acc_5: 0.3930  Mult_acc_7: 0.3188  MAE: 0.9572  Corr: 0.6781  Loss: 0.9278 
+2021-01-28 02:20:26:INFO:TRAIN-(tfn) (5/9/1)>> loss: 0.5484  Has0_acc_2: 0.8824  Has0_F1_score: 0.8820  Non0_acc_2: 0.8976  Non0_F1_score: 0.8975  Mult_acc_5: 0.5685  Mult_acc_7: 0.5288  MAE: 0.5528  Corr: 0.8687 
+2021-01-28 02:20:27:INFO:VAL-(tfn) >>  Has0_acc_2: 0.8079  Has0_F1_score: 0.8064  Non0_acc_2: 0.8241  Non0_F1_score: 0.8235  Mult_acc_5: 0.4803  Mult_acc_7: 0.3755  MAE: 0.8710  Corr: 0.7212  Loss: 0.8350 
+2021-01-28 02:20:28:INFO:TRAIN-(tfn) (1/10/1)>> loss: 0.5192  Has0_acc_2: 0.8847  Has0_F1_score: 0.8844  Non0_acc_2: 0.9009  Non0_F1_score: 0.9009  Mult_acc_5: 0.6075  Mult_acc_7: 0.5615  MAE: 0.5195  Corr: 0.8821 
+2021-01-28 02:20:28:INFO:VAL-(tfn) >>  Has0_acc_2: 0.8035  Has0_F1_score: 0.8049  Non0_acc_2: 0.8148  Non0_F1_score: 0.8170  Mult_acc_5: 0.4323  Mult_acc_7: 0.3231  MAE: 0.9220  Corr: 0.7025  Loss: 0.9160 
+2021-01-28 02:20:30:INFO:TRAIN-(tfn) (2/11/1)>> loss: 0.5190  Has0_acc_2: 0.8941  Has0_F1_score: 0.8939  Non0_acc_2: 0.9058  Non0_F1_score: 0.9058  Mult_acc_5: 0.6051  Mult_acc_7: 0.5537  MAE: 0.5094  Corr: 0.8892 
+2021-01-28 02:20:30:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7991  Has0_F1_score: 0.8019  Non0_acc_2: 0.8102  Non0_F1_score: 0.8138  Mult_acc_5: 0.4323  Mult_acc_7: 0.3493  MAE: 0.9306  Corr: 0.7001  Loss: 0.9128 
+2021-01-28 02:20:31:INFO:TRAIN-(tfn) (3/12/1)>> loss: 0.4692  Has0_acc_2: 0.9019  Has0_F1_score: 0.9016  Non0_acc_2: 0.9204  Non0_F1_score: 0.9204  Mult_acc_5: 0.6480  Mult_acc_7: 0.5942  MAE: 0.4535  Corr: 0.9087 
+2021-01-28 02:20:32:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7642  Has0_F1_score: 0.7628  Non0_acc_2: 0.7870  Non0_F1_score: 0.7870  Mult_acc_5: 0.4105  Mult_acc_7: 0.3231  MAE: 0.9149  Corr: 0.7010  Loss: 0.8999 
+2021-01-28 02:20:33:INFO:TRAIN-(tfn) (4/13/1)>> loss: 0.4273  Has0_acc_2: 0.9112  Has0_F1_score: 0.9111  Non0_acc_2: 0.9285  Non0_F1_score: 0.9286  Mult_acc_5: 0.6713  Mult_acc_7: 0.6192  MAE: 0.4257  Corr: 0.9203 
+2021-01-28 02:20:33:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7904  Has0_F1_score: 0.7890  Non0_acc_2: 0.8056  Non0_F1_score: 0.8051  Mult_acc_5: 0.4236  Mult_acc_7: 0.3275  MAE: 0.9182  Corr: 0.6874  Loss: 0.9056 
+2021-01-28 02:20:34:INFO:TRAIN-(tfn) (5/14/1)>> loss: 0.3911  Has0_acc_2: 0.9299  Has0_F1_score: 0.9297  Non0_acc_2: 0.9472  Non0_F1_score: 0.9472  Mult_acc_5: 0.6994  Mult_acc_7: 0.6464  MAE: 0.3922  Corr: 0.9287 
+2021-01-28 02:20:35:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7904  Has0_F1_score: 0.7908  Non0_acc_2: 0.8009  Non0_F1_score: 0.8021  Mult_acc_5: 0.4454  Mult_acc_7: 0.3493  MAE: 0.8958  Corr: 0.7036  Loss: 0.8780 
+2021-01-28 02:20:36:INFO:TRAIN-(tfn) (6/15/1)>> loss: 0.3900  Has0_acc_2: 0.9245  Has0_F1_score: 0.9244  Non0_acc_2: 0.9399  Non0_F1_score: 0.9400  Mult_acc_5: 0.6994  Mult_acc_7: 0.6495  MAE: 0.3911  Corr: 0.9305 
+2021-01-28 02:20:36:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7904  Has0_F1_score: 0.7890  Non0_acc_2: 0.8102  Non0_F1_score: 0.8098  Mult_acc_5: 0.4367  Mult_acc_7: 0.3275  MAE: 0.8966  Corr: 0.7099  Loss: 0.8690 
+2021-01-28 02:20:38:INFO:TRAIN-(tfn) (7/16/1)>> loss: 0.3797  Has0_acc_2: 0.9276  Has0_F1_score: 0.9274  Non0_acc_2: 0.9472  Non0_F1_score: 0.9472  Mult_acc_5: 0.7173  Mult_acc_7: 0.6706  MAE: 0.3725  Corr: 0.9364 
+2021-01-28 02:20:38:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7860  Has0_F1_score: 0.7871  Non0_acc_2: 0.7963  Non0_F1_score: 0.7982  Mult_acc_5: 0.4192  Mult_acc_7: 0.3406  MAE: 0.9298  Corr: 0.6803  Loss: 0.9291 
+2021-01-28 02:20:39:INFO:TRAIN-(tfn) (8/17/1)>> loss: 0.3515  Has0_acc_2: 0.9229  Has0_F1_score: 0.9228  Non0_acc_2: 0.9366  Non0_F1_score: 0.9367  Mult_acc_5: 0.7235  Mult_acc_7: 0.6745  MAE: 0.3519  Corr: 0.9424 
+2021-01-28 02:20:40:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7817  Has0_F1_score: 0.7847  Non0_acc_2: 0.7917  Non0_F1_score: 0.7956  Mult_acc_5: 0.4541  Mult_acc_7: 0.3581  MAE: 0.9313  Corr: 0.6788  Loss: 0.9308 
+2021-01-28 02:20:40:INFO:TEST-(tfn) >>  Has0_acc_2: 0.7668  Has0_F1_score: 0.7670  Non0_acc_2: 0.7759  Non0_F1_score: 0.7756  Mult_acc_5: 0.3892  Mult_acc_7: 0.3455  MAE: 0.9602  Corr: 0.6501  Loss: 0.9676 
+2021-01-28 02:20:40:INFO:Start saving results...
+2021-01-28 02:20:40:INFO:Results are saved to results/results/mosi-tfn-regression-tune.csv...
+2021-01-28 02:20:40:INFO:########################################tfn-(8/10)########################################
+2021-01-28 02:20:40:INFO:hidden_dims:(64, 16, 64)
+2021-01-28 02:20:40:INFO:text_out:128
+2021-01-28 02:20:40:INFO:post_fusion_dim:128
+2021-01-28 02:20:40:INFO:dropouts:(0.2, 0.2, 0.2, 0.2)
+2021-01-28 02:20:40:INFO:batch_size:128
+2021-01-28 02:20:40:INFO:learning_rate:0.005
+2021-01-28 02:20:40:INFO:##########################################################################################
+2021-01-28 02:20:40:INFO:Start running tfn...
+2021-01-28 02:20:40:INFO:Let's use 1 GPUs!
+2021-01-28 02:20:41:INFO:train samples: (1284,)
+2021-01-28 02:20:41:INFO:valid samples: (229,)
+2021-01-28 02:20:41:INFO:test samples: (686,)
+2021-01-28 02:20:42:INFO:The model has 18494707 trainable parameters
+2021-01-28 02:20:42:INFO:TRAIN-(tfn) (1/1/1)>> loss: 1.3316  Has0_acc_2: 0.5428  Has0_F1_score: 0.5992  Non0_acc_2: 0.5321  Non0_F1_score: 0.5907  Mult_acc_5: 0.1994  Mult_acc_7: 0.1994  MAE: 1.3376  Corr: 0.0605 
+2021-01-28 02:20:42:INFO:VAL-(tfn) >>  Has0_acc_2: 0.5983  Has0_F1_score: 0.7486  Non0_acc_2: 0.5741  Non0_F1_score: 0.7294  Mult_acc_5: 0.2795  Mult_acc_7: 0.2271  MAE: 1.3232  Corr: 0.3879  Loss: 1.3286 
+2021-01-28 02:20:43:INFO:TRAIN-(tfn) (1/2/1)>> loss: 1.1136  Has0_acc_2: 0.6760  Has0_F1_score: 0.6749  Non0_acc_2: 0.6872  Non0_F1_score: 0.6871  Mult_acc_5: 0.2921  Mult_acc_7: 0.2601  MAE: 1.1098  Corr: 0.4588 
+2021-01-28 02:20:43:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7162  Has0_F1_score: 0.7137  Non0_acc_2: 0.7407  Non0_F1_score: 0.7399  Mult_acc_5: 0.2052  Mult_acc_7: 0.2052  MAE: 1.1781  Corr: 0.5268  Loss: 1.1846 
+2021-01-28 02:20:43:INFO:TRAIN-(tfn) (1/3/1)>> loss: 0.9042  Has0_acc_2: 0.7679  Has0_F1_score: 0.7670  Non0_acc_2: 0.7847  Non0_F1_score: 0.7845  Mult_acc_5: 0.3450  Mult_acc_7: 0.3271  MAE: 0.9297  Corr: 0.6326 
+2021-01-28 02:20:43:INFO:VAL-(tfn) >>  Has0_acc_2: 0.6769  Has0_F1_score: 0.6777  Non0_acc_2: 0.7037  Non0_F1_score: 0.7052  Mult_acc_5: 0.3362  Mult_acc_7: 0.2751  MAE: 1.1386  Corr: 0.5874  Loss: 1.1360 
+2021-01-28 02:20:44:INFO:TRAIN-(tfn) (1/4/1)>> loss: 0.9508  Has0_acc_2: 0.7593  Has0_F1_score: 0.7584  Non0_acc_2: 0.7750  Non0_F1_score: 0.7747  Mult_acc_5: 0.3497  Mult_acc_7: 0.3240  MAE: 0.9558  Corr: 0.6067 
+2021-01-28 02:20:44:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7773  Has0_F1_score: 0.7755  Non0_acc_2: 0.8009  Non0_F1_score: 0.8003  Mult_acc_5: 0.2576  Mult_acc_7: 0.2576  MAE: 1.1001  Corr: 0.6413  Loss: 1.1068 
+2021-01-28 02:20:45:INFO:TRAIN-(tfn) (1/5/1)>> loss: 0.8209  Has0_acc_2: 0.7967  Has0_F1_score: 0.7957  Non0_acc_2: 0.8115  Non0_F1_score: 0.8110  Mult_acc_5: 0.4089  Mult_acc_7: 0.3707  MAE: 0.8406  Corr: 0.7116 
+2021-01-28 02:20:45:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7729  Has0_F1_score: 0.7738  Non0_acc_2: 0.7870  Non0_F1_score: 0.7890  Mult_acc_5: 0.3362  Mult_acc_7: 0.2751  MAE: 1.0310  Corr: 0.6369  Loss: 1.0244 
+2021-01-28 02:20:45:INFO:TRAIN-(tfn) (1/6/1)>> loss: 0.8402  Has0_acc_2: 0.8092  Has0_F1_score: 0.8085  Non0_acc_2: 0.8245  Non0_F1_score: 0.8243  Mult_acc_5: 0.4268  Mult_acc_7: 0.3972  MAE: 0.7946  Corr: 0.7342 
+2021-01-28 02:20:46:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7293  Has0_F1_score: 0.7290  Non0_acc_2: 0.7593  Non0_F1_score: 0.7596  Mult_acc_5: 0.3668  Mult_acc_7: 0.3013  MAE: 1.0114  Corr: 0.6599  Loss: 1.0199 
+2021-01-28 02:20:46:INFO:TRAIN-(tfn) (1/7/1)>> loss: 0.8209  Has0_acc_2: 0.7889  Has0_F1_score: 0.7882  Non0_acc_2: 0.8067  Non0_F1_score: 0.8064  Mult_acc_5: 0.4050  Mult_acc_7: 0.3707  MAE: 0.8290  Corr: 0.7120 
+2021-01-28 02:20:46:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7729  Has0_F1_score: 0.7709  Non0_acc_2: 0.8009  Non0_F1_score: 0.8002  Mult_acc_5: 0.4105  Mult_acc_7: 0.3406  MAE: 0.9738  Corr: 0.6579  Loss: 0.9793 
+2021-01-28 02:20:47:INFO:TRAIN-(tfn) (1/8/1)>> loss: 0.7332  Has0_acc_2: 0.8279  Has0_F1_score: 0.8271  Non0_acc_2: 0.8432  Non0_F1_score: 0.8429  Mult_acc_5: 0.4650  Mult_acc_7: 0.4330  MAE: 0.7295  Corr: 0.7721 
+2021-01-28 02:20:47:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7729  Has0_F1_score: 0.7749  Non0_acc_2: 0.7963  Non0_F1_score: 0.7998  Mult_acc_5: 0.3712  Mult_acc_7: 0.3013  MAE: 0.9931  Corr: 0.6540  Loss: 0.9985 
+2021-01-28 02:20:47:INFO:TRAIN-(tfn) (2/9/1)>> loss: 0.7404  Has0_acc_2: 0.8341  Has0_F1_score: 0.8335  Non0_acc_2: 0.8465  Non0_F1_score: 0.8463  Mult_acc_5: 0.4938  Mult_acc_7: 0.4611  MAE: 0.7100  Corr: 0.7739 
+2021-01-28 02:20:48:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7817  Has0_F1_score: 0.7795  Non0_acc_2: 0.8102  Non0_F1_score: 0.8091  Mult_acc_5: 0.3581  Mult_acc_7: 0.2969  MAE: 1.0032  Corr: 0.6631  Loss: 0.9963 
+2021-01-28 02:20:48:INFO:TRAIN-(tfn) (3/10/1)>> loss: 0.6575  Has0_acc_2: 0.8388  Has0_F1_score: 0.8380  Non0_acc_2: 0.8554  Non0_F1_score: 0.8550  Mult_acc_5: 0.5093  Mult_acc_7: 0.4688  MAE: 0.6692  Corr: 0.8077 
+2021-01-28 02:20:48:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7948  Has0_F1_score: 0.7946  Non0_acc_2: 0.8148  Non0_F1_score: 0.8157  Mult_acc_5: 0.3930  Mult_acc_7: 0.3144  MAE: 0.9625  Corr: 0.6903  Loss: 0.9655 
+2021-01-28 02:20:49:INFO:TRAIN-(tfn) (1/11/1)>> loss: 0.6341  Has0_acc_2: 0.8551  Has0_F1_score: 0.8545  Non0_acc_2: 0.8692  Non0_F1_score: 0.8689  Mult_acc_5: 0.5273  Mult_acc_7: 0.4907  MAE: 0.6434  Corr: 0.8158 
+2021-01-28 02:20:49:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7773  Has0_F1_score: 0.7761  Non0_acc_2: 0.8056  Non0_F1_score: 0.8058  Mult_acc_5: 0.4105  Mult_acc_7: 0.3275  MAE: 0.9624  Corr: 0.6766  Loss: 0.9642 
+2021-01-28 02:20:49:INFO:TRAIN-(tfn) (1/12/1)>> loss: 0.6483  Has0_acc_2: 0.8653  Has0_F1_score: 0.8650  Non0_acc_2: 0.8838  Non0_F1_score: 0.8839  Mult_acc_5: 0.5218  Mult_acc_7: 0.4844  MAE: 0.6373  Corr: 0.8195 
+2021-01-28 02:20:50:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7511  Has0_F1_score: 0.7523  Non0_acc_2: 0.7731  Non0_F1_score: 0.7761  Mult_acc_5: 0.3886  Mult_acc_7: 0.3013  MAE: 1.0228  Corr: 0.6547  Loss: 1.0198 
+2021-01-28 02:20:50:INFO:TRAIN-(tfn) (2/13/1)>> loss: 0.6403  Has0_acc_2: 0.8715  Has0_F1_score: 0.8710  Non0_acc_2: 0.8887  Non0_F1_score: 0.8886  Mult_acc_5: 0.5343  Mult_acc_7: 0.4829  MAE: 0.6057  Corr: 0.8453 
+2021-01-28 02:20:50:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7424  Has0_F1_score: 0.7402  Non0_acc_2: 0.7731  Non0_F1_score: 0.7720  Mult_acc_5: 0.4541  Mult_acc_7: 0.3581  MAE: 0.9701  Corr: 0.6693  Loss: 0.9708 
+2021-01-28 02:20:51:INFO:TRAIN-(tfn) (3/14/1)>> loss: 0.6292  Has0_acc_2: 0.8629  Has0_F1_score: 0.8623  Non0_acc_2: 0.8749  Non0_F1_score: 0.8746  Mult_acc_5: 0.5210  Mult_acc_7: 0.4829  MAE: 0.6395  Corr: 0.8254 
+2021-01-28 02:20:51:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7686  Has0_F1_score: 0.7664  Non0_acc_2: 0.7917  Non0_F1_score: 0.7906  Mult_acc_5: 0.4716  Mult_acc_7: 0.3624  MAE: 0.9582  Corr: 0.6994  Loss: 0.9614 
+2021-01-28 02:20:52:INFO:TRAIN-(tfn) (1/15/1)>> loss: 0.6667  Has0_acc_2: 0.8746  Has0_F1_score: 0.8740  Non0_acc_2: 0.8944  Non0_F1_score: 0.8942  Mult_acc_5: 0.5171  Mult_acc_7: 0.4315  MAE: 0.6645  Corr: 0.8345 
+2021-01-28 02:20:52:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7773  Has0_F1_score: 0.7801  Non0_acc_2: 0.7963  Non0_F1_score: 0.8004  Mult_acc_5: 0.3755  Mult_acc_7: 0.3013  MAE: 0.9801  Corr: 0.6583  Loss: 0.9927 
+2021-01-28 02:20:52:INFO:TRAIN-(tfn) (2/16/1)>> loss: 0.6453  Has0_acc_2: 0.8699  Has0_F1_score: 0.8702  Non0_acc_2: 0.8830  Non0_F1_score: 0.8836  Mult_acc_5: 0.5249  Mult_acc_7: 0.4798  MAE: 0.6307  Corr: 0.8276 
+2021-01-28 02:20:52:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7598  Has0_F1_score: 0.7643  Non0_acc_2: 0.7778  Non0_F1_score: 0.7838  Mult_acc_5: 0.3712  Mult_acc_7: 0.2926  MAE: 0.9811  Corr: 0.6872  Loss: 0.9781 
+2021-01-28 02:20:53:INFO:TRAIN-(tfn) (3/17/1)>> loss: 0.5401  Has0_acc_2: 0.8847  Has0_F1_score: 0.8844  Non0_acc_2: 0.9017  Non0_F1_score: 0.9016  Mult_acc_5: 0.5841  Mult_acc_7: 0.5405  MAE: 0.5523  Corr: 0.8696 
+2021-01-28 02:20:53:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7729  Has0_F1_score: 0.7738  Non0_acc_2: 0.7917  Non0_F1_score: 0.7939  Mult_acc_5: 0.4148  Mult_acc_7: 0.3275  MAE: 0.9663  Corr: 0.6746  Loss: 0.9629 
+2021-01-28 02:20:53:INFO:TRAIN-(tfn) (4/18/1)>> loss: 0.5569  Has0_acc_2: 0.8933  Has0_F1_score: 0.8929  Non0_acc_2: 0.9115  Non0_F1_score: 0.9113  Mult_acc_5: 0.5794  Mult_acc_7: 0.5319  MAE: 0.5447  Corr: 0.8755 
+2021-01-28 02:20:53:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7773  Has0_F1_score: 0.7829  Non0_acc_2: 0.7917  Non0_F1_score: 0.7985  Mult_acc_5: 0.3886  Mult_acc_7: 0.2926  MAE: 1.0527  Corr: 0.6443  Loss: 1.0405 
+2021-01-28 02:20:54:INFO:TRAIN-(tfn) (5/19/1)>> loss: 0.7271  Has0_acc_2: 0.8427  Has0_F1_score: 0.8421  Non0_acc_2: 0.8587  Non0_F1_score: 0.8585  Mult_acc_5: 0.5070  Mult_acc_7: 0.4447  MAE: 0.6859  Corr: 0.8054 
+2021-01-28 02:20:54:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7555  Has0_F1_score: 0.7575  Non0_acc_2: 0.7778  Non0_F1_score: 0.7816  Mult_acc_5: 0.3624  Mult_acc_7: 0.2882  MAE: 1.0081  Corr: 0.6231  Loss: 1.0129 
+2021-01-28 02:20:55:INFO:TRAIN-(tfn) (6/20/1)>> loss: 0.5810  Has0_acc_2: 0.8738  Has0_F1_score: 0.8735  Non0_acc_2: 0.8944  Non0_F1_score: 0.8944  Mult_acc_5: 0.5569  Mult_acc_7: 0.5117  MAE: 0.5794  Corr: 0.8524 
+2021-01-28 02:20:55:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7904  Has0_F1_score: 0.7922  Non0_acc_2: 0.8102  Non0_F1_score: 0.8132  Mult_acc_5: 0.4192  Mult_acc_7: 0.3275  MAE: 0.9625  Corr: 0.6543  Loss: 0.9518 
+2021-01-28 02:20:55:INFO:TRAIN-(tfn) (1/21/1)>> loss: 0.5560  Has0_acc_2: 0.9026  Has0_F1_score: 0.9026  Non0_acc_2: 0.9147  Non0_F1_score: 0.9148  Mult_acc_5: 0.6137  Mult_acc_7: 0.5639  MAE: 0.5031  Corr: 0.8862 
+2021-01-28 02:20:55:INFO:VAL-(tfn) >>  Has0_acc_2: 0.8035  Has0_F1_score: 0.8022  Non0_acc_2: 0.8241  Non0_F1_score: 0.8238  Mult_acc_5: 0.4629  Mult_acc_7: 0.3668  MAE: 0.9283  Corr: 0.6827  Loss: 0.9276 
+2021-01-28 02:20:56:INFO:TRAIN-(tfn) (1/22/1)>> loss: 0.4371  Has0_acc_2: 0.9120  Has0_F1_score: 0.9117  Non0_acc_2: 0.9318  Non0_F1_score: 0.9317  Mult_acc_5: 0.6410  Mult_acc_7: 0.5942  MAE: 0.4540  Corr: 0.9064 
+2021-01-28 02:20:56:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7773  Has0_F1_score: 0.7753  Non0_acc_2: 0.7963  Non0_F1_score: 0.7954  Mult_acc_5: 0.4367  Mult_acc_7: 0.3537  MAE: 0.9477  Corr: 0.6714  Loss: 0.9413 
+2021-01-28 02:20:57:INFO:TRAIN-(tfn) (2/23/1)>> loss: 0.4199  Has0_acc_2: 0.9159  Has0_F1_score: 0.9156  Non0_acc_2: 0.9358  Non0_F1_score: 0.9358  Mult_acc_5: 0.6698  Mult_acc_7: 0.6269  MAE: 0.4227  Corr: 0.9156 
+2021-01-28 02:20:57:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7860  Has0_F1_score: 0.7855  Non0_acc_2: 0.8056  Non0_F1_score: 0.8062  Mult_acc_5: 0.4279  Mult_acc_7: 0.3406  MAE: 0.9220  Corr: 0.6864  Loss: 0.9130 
+2021-01-28 02:20:58:INFO:TRAIN-(tfn) (1/24/1)>> loss: 0.4466  Has0_acc_2: 0.9136  Has0_F1_score: 0.9132  Non0_acc_2: 0.9310  Non0_F1_score: 0.9309  Mult_acc_5: 0.6472  Mult_acc_7: 0.6005  MAE: 0.4394  Corr: 0.9172 
+2021-01-28 02:20:58:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7686  Has0_F1_score: 0.7697  Non0_acc_2: 0.7870  Non0_F1_score: 0.7896  Mult_acc_5: 0.4541  Mult_acc_7: 0.3624  MAE: 0.9692  Corr: 0.6555  Loss: 0.9776 
+2021-01-28 02:20:58:INFO:TRAIN-(tfn) (2/25/1)>> loss: 0.4684  Has0_acc_2: 0.9003  Has0_F1_score: 0.8998  Non0_acc_2: 0.9245  Non0_F1_score: 0.9243  Mult_acc_5: 0.6456  Mult_acc_7: 0.5888  MAE: 0.4605  Corr: 0.9120 
+2021-01-28 02:20:58:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7773  Has0_F1_score: 0.7779  Non0_acc_2: 0.7963  Non0_F1_score: 0.7982  Mult_acc_5: 0.4629  Mult_acc_7: 0.3624  MAE: 0.9700  Corr: 0.6533  Loss: 0.9609 
+2021-01-28 02:20:59:INFO:TRAIN-(tfn) (3/26/1)>> loss: 0.4213  Has0_acc_2: 0.9307  Has0_F1_score: 0.9306  Non0_acc_2: 0.9448  Non0_F1_score: 0.9448  Mult_acc_5: 0.6612  Mult_acc_7: 0.6090  MAE: 0.4281  Corr: 0.9205 
+2021-01-28 02:20:59:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7729  Has0_F1_score: 0.7722  Non0_acc_2: 0.7870  Non0_F1_score: 0.7874  Mult_acc_5: 0.4236  Mult_acc_7: 0.3362  MAE: 0.9373  Corr: 0.6775  Loss: 0.9353 
+2021-01-28 02:21:00:INFO:TRAIN-(tfn) (4/27/1)>> loss: 0.4010  Has0_acc_2: 0.9198  Has0_F1_score: 0.9197  Non0_acc_2: 0.9350  Non0_F1_score: 0.9351  Mult_acc_5: 0.6760  Mult_acc_7: 0.6301  MAE: 0.3959  Corr: 0.9296 
+2021-01-28 02:21:00:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7293  Has0_F1_score: 0.7347  Non0_acc_2: 0.7454  Non0_F1_score: 0.7528  Mult_acc_5: 0.4148  Mult_acc_7: 0.3319  MAE: 0.9981  Corr: 0.6289  Loss: 0.9949 
+2021-01-28 02:21:00:INFO:TRAIN-(tfn) (5/28/1)>> loss: 0.4084  Has0_acc_2: 0.9159  Has0_F1_score: 0.9157  Non0_acc_2: 0.9342  Non0_F1_score: 0.9342  Mult_acc_5: 0.6581  Mult_acc_7: 0.6067  MAE: 0.4082  Corr: 0.9252 
+2021-01-28 02:21:00:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7817  Has0_F1_score: 0.7810  Non0_acc_2: 0.8009  Non0_F1_score: 0.8014  Mult_acc_5: 0.4279  Mult_acc_7: 0.3275  MAE: 0.9341  Corr: 0.6727  Loss: 0.9296 
+2021-01-28 02:21:01:INFO:TRAIN-(tfn) (6/29/1)>> loss: 0.4168  Has0_acc_2: 0.9221  Has0_F1_score: 0.9221  Non0_acc_2: 0.9374  Non0_F1_score: 0.9375  Mult_acc_5: 0.6822  Mult_acc_7: 0.6293  MAE: 0.4064  Corr: 0.9269 
+2021-01-28 02:21:01:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7642  Has0_F1_score: 0.7626  Non0_acc_2: 0.7824  Non0_F1_score: 0.7820  Mult_acc_5: 0.4367  Mult_acc_7: 0.3493  MAE: 0.9413  Corr: 0.6680  Loss: 0.9408 
+2021-01-28 02:21:01:INFO:TRAIN-(tfn) (7/30/1)>> loss: 0.4199  Has0_acc_2: 0.9159  Has0_F1_score: 0.9156  Non0_acc_2: 0.9399  Non0_F1_score: 0.9399  Mult_acc_5: 0.6783  Mult_acc_7: 0.6285  MAE: 0.4258  Corr: 0.9219 
+2021-01-28 02:21:02:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7642  Has0_F1_score: 0.7619  Non0_acc_2: 0.7917  Non0_F1_score: 0.7906  Mult_acc_5: 0.3668  Mult_acc_7: 0.3100  MAE: 0.9664  Corr: 0.6796  Loss: 0.9721 
+2021-01-28 02:21:02:INFO:TRAIN-(tfn) (8/31/1)>> loss: 0.4075  Has0_acc_2: 0.9089  Has0_F1_score: 0.9084  Non0_acc_2: 0.9301  Non0_F1_score: 0.9300  Mult_acc_5: 0.6854  Mult_acc_7: 0.6246  MAE: 0.4091  Corr: 0.9318 
+2021-01-28 02:21:02:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7817  Has0_F1_score: 0.7817  Non0_acc_2: 0.7963  Non0_F1_score: 0.7973  Mult_acc_5: 0.4148  Mult_acc_7: 0.3406  MAE: 0.9373  Corr: 0.6784  Loss: 0.9301 
+2021-01-28 02:21:02:INFO:TEST-(tfn) >>  Has0_acc_2: 0.7595  Has0_F1_score: 0.7590  Non0_acc_2: 0.7713  Non0_F1_score: 0.7701  Mult_acc_5: 0.3717  Mult_acc_7: 0.3280  MAE: 1.0358  Corr: 0.6209  Loss: 1.0441 
+2021-01-28 02:21:02:INFO:Start saving results...
+2021-01-28 02:21:02:INFO:Results are saved to results/results/mosi-tfn-regression-tune.csv...
+2021-01-28 02:21:02:INFO:########################################tfn-(9/10)########################################
+2021-01-28 02:21:02:INFO:hidden_dims:(64, 16, 64)
+2021-01-28 02:21:02:INFO:text_out:64
+2021-01-28 02:21:02:INFO:post_fusion_dim:32
+2021-01-28 02:21:02:INFO:dropouts:(0.3, 0.3, 0.3, 0.5)
+2021-01-28 02:21:02:INFO:batch_size:32
+2021-01-28 02:21:02:INFO:learning_rate:0.005
+2021-01-28 02:21:02:INFO:##########################################################################################
+2021-01-28 02:21:02:INFO:Start running tfn...
+2021-01-28 02:21:02:INFO:Let's use 1 GPUs!
+2021-01-28 02:21:03:INFO:train samples: (1284,)
+2021-01-28 02:21:03:INFO:valid samples: (229,)
+2021-01-28 02:21:04:INFO:test samples: (686,)
+2021-01-28 02:21:04:INFO:The model has 2527539 trainable parameters
+2021-01-28 02:21:04:INFO:TRAIN-(tfn) (1/1/1)>> loss: 1.0654  Has0_acc_2: 0.6838  Has0_F1_score: 0.6859  Non0_acc_2: 0.6872  Non0_F1_score: 0.6900  Mult_acc_5: 0.2897  Mult_acc_7: 0.2702  MAE: 1.0820  Corr: 0.4938 
+2021-01-28 02:21:04:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7336  Has0_F1_score: 0.7458  Non0_acc_2: 0.7454  Non0_F1_score: 0.7595  Mult_acc_5: 0.3755  Mult_acc_7: 0.3013  MAE: 1.1384  Corr: 0.6168  Loss: 1.0795 
+2021-01-28 02:21:05:INFO:TRAIN-(tfn) (1/2/1)>> loss: 0.9252  Has0_acc_2: 0.7617  Has0_F1_score: 0.7605  Non0_acc_2: 0.7734  Non0_F1_score: 0.7728  Mult_acc_5: 0.3660  Mult_acc_7: 0.3411  MAE: 0.9221  Corr: 0.6263 
+2021-01-28 02:21:05:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7729  Has0_F1_score: 0.7725  Non0_acc_2: 0.7824  Non0_F1_score: 0.7829  Mult_acc_5: 0.3100  Mult_acc_7: 0.2838  MAE: 1.0818  Corr: 0.6657  Loss: 1.0697 
+2021-01-28 02:21:06:INFO:TRAIN-(tfn) (1/3/1)>> loss: 0.8452  Has0_acc_2: 0.7983  Has0_F1_score: 0.7973  Non0_acc_2: 0.8107  Non0_F1_score: 0.8102  Mult_acc_5: 0.4042  Mult_acc_7: 0.3723  MAE: 0.8415  Corr: 0.6973 
+2021-01-28 02:21:07:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7467  Has0_F1_score: 0.7444  Non0_acc_2: 0.7639  Non0_F1_score: 0.7628  Mult_acc_5: 0.3406  Mult_acc_7: 0.2795  MAE: 0.9913  Corr: 0.6776  Loss: 1.0864 
+2021-01-28 02:21:08:INFO:TRAIN-(tfn) (2/4/1)>> loss: 0.8065  Has0_acc_2: 0.7866  Has0_F1_score: 0.7858  Non0_acc_2: 0.8002  Non0_F1_score: 0.7999  Mult_acc_5: 0.4120  Mult_acc_7: 0.3816  MAE: 0.8075  Corr: 0.7177 
+2021-01-28 02:21:08:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7380  Has0_F1_score: 0.7356  Non0_acc_2: 0.7639  Non0_F1_score: 0.7626  Mult_acc_5: 0.3581  Mult_acc_7: 0.2707  MAE: 0.9990  Corr: 0.6560  Loss: 0.9700 
+2021-01-28 02:21:09:INFO:TRAIN-(tfn) (1/5/1)>> loss: 0.7351  Has0_acc_2: 0.8326  Has0_F1_score: 0.8318  Non0_acc_2: 0.8489  Non0_F1_score: 0.8486  Mult_acc_5: 0.4517  Mult_acc_7: 0.4182  MAE: 0.7389  Corr: 0.7597 
+2021-01-28 02:21:09:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7424  Has0_F1_score: 0.7401  Non0_acc_2: 0.7731  Non0_F1_score: 0.7719  Mult_acc_5: 0.4105  Mult_acc_7: 0.3144  MAE: 0.9748  Corr: 0.6668  Loss: 1.0214 
+2021-01-28 02:21:10:INFO:TRAIN-(tfn) (2/6/1)>> loss: 0.7074  Has0_acc_2: 0.8403  Has0_F1_score: 0.8396  Non0_acc_2: 0.8570  Non0_F1_score: 0.8567  Mult_acc_5: 0.4798  Mult_acc_7: 0.4322  MAE: 0.7065  Corr: 0.7884 
+2021-01-28 02:21:10:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7467  Has0_F1_score: 0.7443  Non0_acc_2: 0.7639  Non0_F1_score: 0.7626  Mult_acc_5: 0.4585  Mult_acc_7: 0.3581  MAE: 0.9226  Corr: 0.6889  Loss: 0.9310 
+2021-01-28 02:21:11:INFO:TRAIN-(tfn) (1/7/1)>> loss: 0.6413  Has0_acc_2: 0.8614  Has0_F1_score: 0.8607  Non0_acc_2: 0.8749  Non0_F1_score: 0.8746  Mult_acc_5: 0.5296  Mult_acc_7: 0.4875  MAE: 0.6193  Corr: 0.8316 
+2021-01-28 02:21:11:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7293  Has0_F1_score: 0.7316  Non0_acc_2: 0.7407  Non0_F1_score: 0.7445  Mult_acc_5: 0.4017  Mult_acc_7: 0.3144  MAE: 0.9859  Corr: 0.6629  Loss: 0.9504 
+2021-01-28 02:21:12:INFO:TRAIN-(tfn) (2/8/1)>> loss: 0.5818  Has0_acc_2: 0.8847  Has0_F1_score: 0.8843  Non0_acc_2: 0.8976  Non0_F1_score: 0.8975  Mult_acc_5: 0.5553  Mult_acc_7: 0.5132  MAE: 0.5830  Corr: 0.8552 
+2021-01-28 02:21:12:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7598  Has0_F1_score: 0.7576  Non0_acc_2: 0.7870  Non0_F1_score: 0.7859  Mult_acc_5: 0.3930  Mult_acc_7: 0.3057  MAE: 0.9626  Corr: 0.6825  Loss: 0.9215 
+2021-01-28 02:21:13:INFO:TRAIN-(tfn) (1/9/1)>> loss: 0.5330  Has0_acc_2: 0.8863  Has0_F1_score: 0.8858  Non0_acc_2: 0.9066  Non0_F1_score: 0.9064  Mult_acc_5: 0.6012  Mult_acc_7: 0.5498  MAE: 0.5338  Corr: 0.8783 
+2021-01-28 02:21:13:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7598  Has0_F1_score: 0.7577  Non0_acc_2: 0.7824  Non0_F1_score: 0.7816  Mult_acc_5: 0.4061  Mult_acc_7: 0.3188  MAE: 0.9550  Corr: 0.6757  Loss: 0.9792 
+2021-01-28 02:21:14:INFO:TRAIN-(tfn) (2/10/1)>> loss: 0.4948  Has0_acc_2: 0.8910  Has0_F1_score: 0.8906  Non0_acc_2: 0.9123  Non0_F1_score: 0.9122  Mult_acc_5: 0.6301  Mult_acc_7: 0.5818  MAE: 0.4979  Corr: 0.8906 
+2021-01-28 02:21:14:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7773  Has0_F1_score: 0.7764  Non0_acc_2: 0.7963  Non0_F1_score: 0.7966  Mult_acc_5: 0.4279  Mult_acc_7: 0.3275  MAE: 0.9338  Corr: 0.6783  Loss: 0.9519 
+2021-01-28 02:21:15:INFO:TRAIN-(tfn) (3/11/1)>> loss: 0.4580  Has0_acc_2: 0.9112  Has0_F1_score: 0.9109  Non0_acc_2: 0.9301  Non0_F1_score: 0.9301  Mult_acc_5: 0.6620  Mult_acc_7: 0.6083  MAE: 0.4644  Corr: 0.9081 
+2021-01-28 02:21:15:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7424  Has0_F1_score: 0.7410  Non0_acc_2: 0.7593  Non0_F1_score: 0.7593  Mult_acc_5: 0.4192  Mult_acc_7: 0.3275  MAE: 0.9457  Corr: 0.6798  Loss: 0.9446 
+2021-01-28 02:21:16:INFO:TRAIN-(tfn) (4/12/1)>> loss: 0.4446  Has0_acc_2: 0.9104  Has0_F1_score: 0.9101  Non0_acc_2: 0.9293  Non0_F1_score: 0.9293  Mult_acc_5: 0.6565  Mult_acc_7: 0.6075  MAE: 0.4496  Corr: 0.9133 
+2021-01-28 02:21:16:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7729  Has0_F1_score: 0.7710  Non0_acc_2: 0.7963  Non0_F1_score: 0.7956  Mult_acc_5: 0.4279  Mult_acc_7: 0.3362  MAE: 0.9502  Corr: 0.6849  Loss: 0.9554 
+2021-01-28 02:21:17:INFO:TRAIN-(tfn) (5/13/1)>> loss: 0.4129  Has0_acc_2: 0.9252  Has0_F1_score: 0.9250  Non0_acc_2: 0.9423  Non0_F1_score: 0.9423  Mult_acc_5: 0.6737  Mult_acc_7: 0.6106  MAE: 0.4099  Corr: 0.9280 
+2021-01-28 02:21:17:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7424  Has0_F1_score: 0.7402  Non0_acc_2: 0.7685  Non0_F1_score: 0.7674  Mult_acc_5: 0.3843  Mult_acc_7: 0.3144  MAE: 0.9801  Corr: 0.6847  Loss: 0.9536 
+2021-01-28 02:21:18:INFO:TRAIN-(tfn) (6/14/1)>> loss: 0.3956  Has0_acc_2: 0.9245  Has0_F1_score: 0.9242  Non0_acc_2: 0.9415  Non0_F1_score: 0.9415  Mult_acc_5: 0.7002  Mult_acc_7: 0.6503  MAE: 0.3987  Corr: 0.9294 
+2021-01-28 02:21:19:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7336  Has0_F1_score: 0.7313  Non0_acc_2: 0.7593  Non0_F1_score: 0.7584  Mult_acc_5: 0.4192  Mult_acc_7: 0.3144  MAE: 0.9575  Corr: 0.6697  Loss: 1.0056 
+2021-01-28 02:21:20:INFO:TRAIN-(tfn) (7/15/1)>> loss: 0.3872  Has0_acc_2: 0.9322  Has0_F1_score: 0.9320  Non0_acc_2: 0.9521  Non0_F1_score: 0.9520  Mult_acc_5: 0.6978  Mult_acc_7: 0.6386  MAE: 0.3881  Corr: 0.9368 
+2021-01-28 02:21:20:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7555  Has0_F1_score: 0.7536  Non0_acc_2: 0.7824  Non0_F1_score: 0.7820  Mult_acc_5: 0.3799  Mult_acc_7: 0.3188  MAE: 0.9814  Corr: 0.6717  Loss: 0.9645 
+2021-01-28 02:21:21:INFO:TRAIN-(tfn) (8/16/1)>> loss: 0.3890  Has0_acc_2: 0.9299  Has0_F1_score: 0.9298  Non0_acc_2: 0.9448  Non0_F1_score: 0.9448  Mult_acc_5: 0.6963  Mult_acc_7: 0.6449  MAE: 0.3864  Corr: 0.9363 
+2021-01-28 02:21:21:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7424  Has0_F1_score: 0.7413  Non0_acc_2: 0.7593  Non0_F1_score: 0.7596  Mult_acc_5: 0.4148  Mult_acc_7: 0.3188  MAE: 0.9406  Corr: 0.6801  Loss: 0.9547 
+2021-01-28 02:21:21:INFO:TEST-(tfn) >>  Has0_acc_2: 0.7624  Has0_F1_score: 0.7664  Non0_acc_2: 0.7744  Non0_F1_score: 0.7779  Mult_acc_5: 0.4082  Mult_acc_7: 0.3586  MAE: 0.9515  Corr: 0.6374  Loss: 0.9554 
+2021-01-28 02:21:21:INFO:Start saving results...
+2021-01-28 02:21:21:INFO:Results are saved to results/results/mosi-tfn-regression-tune.csv...
+2021-01-28 02:21:21:INFO:########################################tfn-(10/10)########################################
+2021-01-28 02:21:21:INFO:hidden_dims:(64, 32, 64)
+2021-01-28 02:21:21:INFO:text_out:64
+2021-01-28 02:21:21:INFO:post_fusion_dim:16
+2021-01-28 02:21:21:INFO:dropouts:(0.3, 0.3, 0.3, 0.3)
+2021-01-28 02:21:21:INFO:batch_size:32
+2021-01-28 02:21:21:INFO:learning_rate:0.002
+2021-01-28 02:21:21:INFO:##########################################################################################
+2021-01-28 02:21:21:INFO:Start running tfn...
+2021-01-28 02:21:21:INFO:Let's use 1 GPUs!
+2021-01-28 02:21:21:INFO:train samples: (1284,)
+2021-01-28 02:21:22:INFO:valid samples: (229,)
+2021-01-28 02:21:22:INFO:test samples: (686,)
+2021-01-28 02:21:22:INFO:The model has 2460787 trainable parameters
+2021-01-28 02:21:23:INFO:TRAIN-(tfn) (1/1/1)>> loss: 1.1419  Has0_acc_2: 0.6550  Has0_F1_score: 0.6645  Non0_acc_2: 0.6556  Non0_F1_score: 0.6659  Mult_acc_5: 0.2695  Mult_acc_7: 0.2562  MAE: 1.1364  Corr: 0.4131 
+2021-01-28 02:21:23:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7424  Has0_F1_score: 0.7463  Non0_acc_2: 0.7546  Non0_F1_score: 0.7600  Mult_acc_5: 0.3319  Mult_acc_7: 0.2795  MAE: 1.0592  Corr: 0.5928  Loss: 1.0294 
+2021-01-28 02:21:24:INFO:TRAIN-(tfn) (1/2/1)>> loss: 0.9313  Has0_acc_2: 0.7562  Has0_F1_score: 0.7553  Non0_acc_2: 0.7701  Non0_F1_score: 0.7698  Mult_acc_5: 0.3512  Mult_acc_7: 0.3287  MAE: 0.9316  Corr: 0.6285 
+2021-01-28 02:21:24:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7598  Has0_F1_score: 0.7576  Non0_acc_2: 0.7870  Non0_F1_score: 0.7861  Mult_acc_5: 0.3581  Mult_acc_7: 0.3013  MAE: 1.0138  Corr: 0.6519  Loss: 1.0078 
+2021-01-28 02:21:25:INFO:TRAIN-(tfn) (1/3/1)>> loss: 0.8181  Has0_acc_2: 0.8014  Has0_F1_score: 0.8004  Non0_acc_2: 0.8172  Non0_F1_score: 0.8167  Mult_acc_5: 0.4097  Mult_acc_7: 0.3808  MAE: 0.8255  Corr: 0.7051 
+2021-01-28 02:21:25:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7424  Has0_F1_score: 0.7402  Non0_acc_2: 0.7731  Non0_F1_score: 0.7720  Mult_acc_5: 0.3362  Mult_acc_7: 0.2707  MAE: 1.0127  Corr: 0.6332  Loss: 1.0944 
+2021-01-28 02:21:26:INFO:TRAIN-(tfn) (2/4/1)>> loss: 0.7715  Has0_acc_2: 0.8131  Has0_F1_score: 0.8122  Non0_acc_2: 0.8270  Non0_F1_score: 0.8265  Mult_acc_5: 0.4377  Mult_acc_7: 0.4042  MAE: 0.7780  Corr: 0.7351 
+2021-01-28 02:21:26:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7686  Has0_F1_score: 0.7680  Non0_acc_2: 0.7870  Non0_F1_score: 0.7877  Mult_acc_5: 0.3755  Mult_acc_7: 0.3013  MAE: 0.9652  Corr: 0.6855  Loss: 0.9738 
+2021-01-28 02:21:28:INFO:TRAIN-(tfn) (1/5/1)>> loss: 0.7046  Has0_acc_2: 0.8232  Has0_F1_score: 0.8226  Non0_acc_2: 0.8408  Non0_F1_score: 0.8407  Mult_acc_5: 0.4766  Mult_acc_7: 0.4361  MAE: 0.7090  Corr: 0.7793 
+2021-01-28 02:21:28:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7642  Has0_F1_score: 0.7622  Non0_acc_2: 0.7963  Non0_F1_score: 0.7952  Mult_acc_5: 0.3712  Mult_acc_7: 0.2838  MAE: 0.9313  Corr: 0.6957  Loss: 0.8967 
+2021-01-28 02:21:29:INFO:TRAIN-(tfn) (1/6/1)>> loss: 0.6595  Has0_acc_2: 0.8551  Has0_F1_score: 0.8546  Non0_acc_2: 0.8643  Non0_F1_score: 0.8641  Mult_acc_5: 0.5179  Mult_acc_7: 0.4821  MAE: 0.6596  Corr: 0.8067 
+2021-01-28 02:21:29:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7904  Has0_F1_score: 0.7886  Non0_acc_2: 0.8194  Non0_F1_score: 0.8189  Mult_acc_5: 0.3624  Mult_acc_7: 0.2926  MAE: 0.9278  Corr: 0.6952  Loss: 0.9035 
+2021-01-28 02:21:30:INFO:TRAIN-(tfn) (2/7/1)>> loss: 0.5978  Has0_acc_2: 0.8660  Has0_F1_score: 0.8654  Non0_acc_2: 0.8822  Non0_F1_score: 0.8819  Mult_acc_5: 0.5444  Mult_acc_7: 0.4891  MAE: 0.6039  Corr: 0.8367 
+2021-01-28 02:21:30:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7860  Has0_F1_score: 0.7871  Non0_acc_2: 0.8102  Non0_F1_score: 0.8127  Mult_acc_5: 0.4454  Mult_acc_7: 0.3537  MAE: 0.9353  Corr: 0.6924  Loss: 0.9010 
+2021-01-28 02:21:31:INFO:TRAIN-(tfn) (3/8/1)>> loss: 0.6091  Has0_acc_2: 0.8754  Has0_F1_score: 0.8749  Non0_acc_2: 0.8903  Non0_F1_score: 0.8902  Mult_acc_5: 0.5436  Mult_acc_7: 0.4953  MAE: 0.6134  Corr: 0.8375 
+2021-01-28 02:21:31:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7424  Has0_F1_score: 0.7410  Non0_acc_2: 0.7685  Non0_F1_score: 0.7689  Mult_acc_5: 0.4017  Mult_acc_7: 0.3275  MAE: 0.9661  Corr: 0.6568  Loss: 0.9676 
+2021-01-28 02:21:32:INFO:TRAIN-(tfn) (4/9/1)>> loss: 0.5439  Has0_acc_2: 0.8746  Has0_F1_score: 0.8743  Non0_acc_2: 0.8903  Non0_F1_score: 0.8903  Mult_acc_5: 0.5857  Mult_acc_7: 0.5382  MAE: 0.5427  Corr: 0.8698 
+2021-01-28 02:21:33:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7686  Has0_F1_score: 0.7680  Non0_acc_2: 0.7963  Non0_F1_score: 0.7973  Mult_acc_5: 0.4192  Mult_acc_7: 0.3275  MAE: 0.9344  Corr: 0.6698  Loss: 0.9382 
+2021-01-28 02:21:34:INFO:TRAIN-(tfn) (5/10/1)>> loss: 0.4924  Has0_acc_2: 0.8933  Has0_F1_score: 0.8930  Non0_acc_2: 0.9098  Non0_F1_score: 0.9098  Mult_acc_5: 0.6277  Mult_acc_7: 0.5724  MAE: 0.4862  Corr: 0.8928 
+2021-01-28 02:21:34:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7860  Has0_F1_score: 0.7852  Non0_acc_2: 0.8102  Non0_F1_score: 0.8106  Mult_acc_5: 0.4498  Mult_acc_7: 0.3537  MAE: 0.9226  Corr: 0.6849  Loss: 0.8857 
+2021-01-28 02:21:35:INFO:TRAIN-(tfn) (1/11/1)>> loss: 0.4809  Has0_acc_2: 0.9026  Has0_F1_score: 0.9023  Non0_acc_2: 0.9180  Non0_F1_score: 0.9179  Mult_acc_5: 0.6332  Mult_acc_7: 0.5833  MAE: 0.4838  Corr: 0.8920 
+2021-01-28 02:21:35:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7380  Has0_F1_score: 0.7494  Non0_acc_2: 0.7500  Non0_F1_score: 0.7633  Mult_acc_5: 0.4148  Mult_acc_7: 0.3275  MAE: 0.9901  Corr: 0.6501  Loss: 0.9310 
+2021-01-28 02:21:36:INFO:TRAIN-(tfn) (2/12/1)>> loss: 0.5190  Has0_acc_2: 0.8684  Has0_F1_score: 0.8679  Non0_acc_2: 0.8846  Non0_F1_score: 0.8845  Mult_acc_5: 0.6184  Mult_acc_7: 0.5615  MAE: 0.5218  Corr: 0.8765 
+2021-01-28 02:21:37:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7598  Has0_F1_score: 0.7659  Non0_acc_2: 0.7731  Non0_F1_score: 0.7806  Mult_acc_5: 0.3974  Mult_acc_7: 0.3013  MAE: 0.9685  Corr: 0.6666  Loss: 0.9276 
+2021-01-28 02:21:37:INFO:TRAIN-(tfn) (3/13/1)>> loss: 0.4245  Has0_acc_2: 0.9120  Has0_F1_score: 0.9119  Non0_acc_2: 0.9236  Non0_F1_score: 0.9237  Mult_acc_5: 0.6745  Mult_acc_7: 0.6269  MAE: 0.4277  Corr: 0.9180 
+2021-01-28 02:21:37:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7555  Has0_F1_score: 0.7589  Non0_acc_2: 0.7685  Non0_F1_score: 0.7732  Mult_acc_5: 0.4148  Mult_acc_7: 0.3188  MAE: 0.9823  Corr: 0.6741  Loss: 0.9959 
+2021-01-28 02:21:38:INFO:TRAIN-(tfn) (4/14/1)>> loss: 0.3823  Has0_acc_2: 0.9198  Has0_F1_score: 0.9196  Non0_acc_2: 0.9342  Non0_F1_score: 0.9342  Mult_acc_5: 0.7002  Mult_acc_7: 0.6472  MAE: 0.3834  Corr: 0.9330 
+2021-01-28 02:21:38:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7380  Has0_F1_score: 0.7362  Non0_acc_2: 0.7639  Non0_F1_score: 0.7637  Mult_acc_5: 0.4367  Mult_acc_7: 0.3362  MAE: 0.9264  Corr: 0.6815  Loss: 0.9694 
+2021-01-28 02:21:39:INFO:TRAIN-(tfn) (5/15/1)>> loss: 0.3478  Has0_acc_2: 0.9315  Has0_F1_score: 0.9314  Non0_acc_2: 0.9423  Non0_F1_score: 0.9423  Mult_acc_5: 0.7204  Mult_acc_7: 0.6643  MAE: 0.3480  Corr: 0.9460 
+2021-01-28 02:21:39:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7598  Has0_F1_score: 0.7616  Non0_acc_2: 0.7778  Non0_F1_score: 0.7810  Mult_acc_5: 0.4192  Mult_acc_7: 0.3362  MAE: 0.9683  Corr: 0.6595  Loss: 0.9536 
+2021-01-28 02:21:41:INFO:TRAIN-(tfn) (6/16/1)>> loss: 0.3390  Has0_acc_2: 0.9338  Has0_F1_score: 0.9336  Non0_acc_2: 0.9488  Non0_F1_score: 0.9488  Mult_acc_5: 0.7313  Mult_acc_7: 0.6846  MAE: 0.3417  Corr: 0.9467 
+2021-01-28 02:21:41:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7467  Has0_F1_score: 0.7444  Non0_acc_2: 0.7778  Non0_F1_score: 0.7770  Mult_acc_5: 0.4323  Mult_acc_7: 0.3406  MAE: 0.9728  Corr: 0.6518  Loss: 0.9385 
+2021-01-28 02:21:42:INFO:TRAIN-(tfn) (7/17/1)>> loss: 0.3129  Has0_acc_2: 0.9252  Has0_F1_score: 0.9250  Non0_acc_2: 0.9448  Non0_F1_score: 0.9447  Mult_acc_5: 0.7484  Mult_acc_7: 0.7025  MAE: 0.3159  Corr: 0.9529 
+2021-01-28 02:21:42:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7293  Has0_F1_score: 0.7266  Non0_acc_2: 0.7593  Non0_F1_score: 0.7581  Mult_acc_5: 0.4498  Mult_acc_7: 0.3450  MAE: 0.9902  Corr: 0.6486  Loss: 0.9570 
+2021-01-28 02:21:43:INFO:TRAIN-(tfn) (8/18/1)>> loss: 0.2835  Has0_acc_2: 0.9354  Has0_F1_score: 0.9353  Non0_acc_2: 0.9513  Non0_F1_score: 0.9513  Mult_acc_5: 0.7905  Mult_acc_7: 0.7414  MAE: 0.2836  Corr: 0.9611 
+2021-01-28 02:21:43:INFO:VAL-(tfn) >>  Has0_acc_2: 0.7293  Has0_F1_score: 0.7268  Non0_acc_2: 0.7593  Non0_F1_score: 0.7584  Mult_acc_5: 0.4410  Mult_acc_7: 0.3450  MAE: 0.9779  Corr: 0.6496  Loss: 0.9256 
+2021-01-28 02:21:44:INFO:TEST-(tfn) >>  Has0_acc_2: 0.7566  Has0_F1_score: 0.7560  Non0_acc_2: 0.7637  Non0_F1_score: 0.7625  Mult_acc_5: 0.3848  Mult_acc_7: 0.3411  MAE: 1.0319  Corr: 0.6270  Loss: 1.0240 
+2021-01-28 02:21:44:INFO:Start saving results...
+2021-01-28 02:21:44:INFO:Results are saved to results/results/mosi-tfn-regression-tune.csv...
