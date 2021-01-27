@@ -16,7 +16,7 @@ class MFN(nn.Module):
 		total_h_dim = self.dh_l+self.dh_a+self.dh_v
 		self.mem_dim = args.memsize
 		window_dim = args.windowsize
-		output_dim = args.output_dim
+		output_dim = args.num_classes if args.train_mode == "classification" else 1
 		attInShape = total_h_dim*window_dim
 		gammaInShape = attInShape+self.mem_dim
 		final_out = total_h_dim+self.mem_dim

@@ -38,9 +38,8 @@ class LMF(nn.Module):
         self.text_hidden, self.audio_hidden, self.video_hidden = args.hidden_dims
 
         self.text_out= self.text_hidden // 2
-        self.output_dim = args.output_dim 
+        self.output_dim = args.num_classes if args.train_mode == "classification" else 1
         self.rank = args.rank
-        self.use_softmax = args.use_softmax
 
         self.audio_prob, self.video_prob, self.text_prob, self.post_fusion_prob = args.dropouts
 
@@ -98,8 +97,7 @@ class LMF(nn.Module):
         # use linear transformation instead of simple summation, more flexibility
         output = torch.matmul(self.fusion_weights, fusion_zy.permute(1, 0, 2)).squeeze() + self.fusion_bias
         output = output.view(-1, self.output_dim)
-        if self.use_softmax:
-            output = F.softmax(output)
+
         res = {
             'Feature_t': text_h,
             'Feature_a': audio_h,

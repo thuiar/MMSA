@@ -25,6 +25,8 @@ class LF_DNN(nn.Module):
 
         self.audio_prob, self.video_prob, self.text_prob, self.post_fusion_prob = args.dropouts
 
+        output_dim = args.num_classes if args.train_mode == "classification" else 1
+
         # define the pre-fusion subnetworks
         self.audio_subnet = SubNet(self.audio_in, self.audio_hidden, self.audio_prob)
         self.video_subnet = SubNet(self.video_in, self.video_hidden, self.video_prob)
@@ -34,7 +36,7 @@ class LF_DNN(nn.Module):
         self.post_fusion_dropout = nn.Dropout(p=self.post_fusion_prob)
         self.post_fusion_layer_1 = nn.Linear(self.text_out + self.video_hidden + self.audio_hidden, self.post_fusion_dim)
         self.post_fusion_layer_2 = nn.Linear(self.post_fusion_dim, self.post_fusion_dim)
-        self.post_fusion_layer_3 = nn.Linear(self.post_fusion_dim, 1)
+        self.post_fusion_layer_3 = nn.Linear(self.post_fusion_dim, output_dim)
 
 
     def forward(self, text_x, audio_x, video_x):

@@ -34,6 +34,7 @@ class TFN(nn.Module):
         # dimensions are specified in the order of audio, video and text
         self.text_in, self.audio_in, self.video_in = args.feature_dims
         self.text_hidden, self.audio_hidden, self.video_hidden = args.hidden_dims
+        self.output_dim = args.num_classes if args.train_mode == "classification" else 1
 
         self.text_out= args.text_out
         self.post_fusion_dim = args.post_fusion_dim
@@ -49,7 +50,7 @@ class TFN(nn.Module):
         self.post_fusion_dropout = nn.Dropout(p=self.post_fusion_prob)
         self.post_fusion_layer_1 = nn.Linear((self.text_out + 1) * (self.video_hidden + 1) * (self.audio_hidden + 1), self.post_fusion_dim)
         self.post_fusion_layer_2 = nn.Linear(self.post_fusion_dim, self.post_fusion_dim)
-        self.post_fusion_layer_3 = nn.Linear(self.post_fusion_dim, 1)
+        self.post_fusion_layer_3 = nn.Linear(self.post_fusion_dim, self.output_dim)
 
         # in TFN we are doing a regression with constrained output range: (-3, 3), hence we'll apply sigmoid to output
         # shrink it to (0, 1), and scale\shift it back to range (-3, 3)
@@ -92,8 +93,10 @@ class TFN(nn.Module):
         post_fusion_dropped = self.post_fusion_dropout(fusion_tensor)
         post_fusion_y_1 = F.relu(self.post_fusion_layer_1(post_fusion_dropped), inplace=True)
         post_fusion_y_2 = F.relu(self.post_fusion_layer_2(post_fusion_y_1), inplace=True)
-        post_fusion_y_3 = torch.sigmoid(self.post_fusion_layer_3(post_fusion_y_2))
-        output = post_fusion_y_3 * self.output_range + self.output_shift
+        output = self.post_fusion_layer_3(post_fusion_y_2)
+        if self.output_dim == 1: # regression
+            output = torch.sigmoid(output)
+            output = output * self.output_range + self.output_shift
 
         res = {
             'Feature_t': text_h,

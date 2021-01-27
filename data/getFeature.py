@@ -4,6 +4,7 @@ import librosa
 import struct
 import pandas as pd
 import numpy as np
+import pickle as plk
 from glob import glob
 from tqdm import tqdm
 
@@ -80,7 +81,7 @@ class getFeatures():
 
             return is_valid, feature_vectors
 
-    def __getTextEmbedding(self, text):
+    def getTextEmbedding(self, text):
         tokenizer_class = BertTokenizer
         model_class = BertModel
         # directory is fine
@@ -155,7 +156,7 @@ class getFeatures():
     
     def handleImages(self):
         image_dirs = sorted(glob(os.path.join(self.data_dir, 'video/AlignedFaces', '*/*')))
-        for image_dir in tqdm(image_dirs[1449:]):
+        for image_dir in tqdm(image_dirs):
             output_dir = image_dir.replace('AlignedFaces', 'OpenFace2')
             if not os.path.exists(output_dir):
                 os.makedirs(output_dir)
@@ -169,13 +170,15 @@ class getFeatures():
         df_label_V = pd.read_csv(os.path.join(self.label_path, 'label_V.csv'))
         df_label_M = pd.read_csv(os.path.join(self.label_path, 'label_M.csv'))
 
+        ids, rawText = [], []
         features_T, features_A, features_V = [], [], []
         label_T, label_A, label_V, label_M = [], [], [], []
         for i in tqdm(range(len(df_label_T))):
             video_id, clip_id = df_label_T.loc[i, ['video_id', 'clip_id']]
             clip_id = '%04d' % clip_id
             # text
-            embedding_T = self.__getTextEmbedding(df_label_T.loc[i, 'text'])
+            text = df_label_T.loc[i, 'text']
+            embedding_T = self.__getTextEmbedding(text)
             features_T.append(embedding_T)
             # audio
             audio_path = os.path.join(self.data_dir, 'audio', video_id, clip_id + '.wav')
@@ -190,26 +193,35 @@ class getFeatures():
             label_A.append(df_label_A.loc[i, 'label'])
             label_V.append(df_label_V.loc[i, 'label'])
             label_M.append(df_label_M.loc[i, 'label'])
+            # other
+            ids.append(video_id + '_' + clip_id)
+            rawText.append(text)
         # padding
         feature_T = self.__paddingSequence(features_T)
         feature_A = self.__paddingSequence(features_A)
         feature_V = self.__paddingSequence(features_V)
         # save
-        save_path = os.path.join(self.data_dir, output_dir, 'data.npz')
-        np.savez(save_path, \
-                 feature_T=feature_T, feature_A=feature_A, feature_V=feature_V, \
-                 label_T=np.array(label_T), label_A=np.array(label_A), \
-                 label_V=np.array(label_V), label_M=np.array(label_M))
+        results = {}
+        results['feature_T'] = feature_T
+        results['feature_A'] = feature_A
+        results['feature_V'] = feature_V
+        results['label_T'] = label_T
+        results['label_A'] = label_A
+        results['label_V'] = label_V
+        results['label_M'] = label_M
 
+        save_path = os.path.join(self.data_dir, output_dir, 'unaligned.pkl')
+        with open(save_path, 'wb') as wf:
+            plk.dump(results, wf, protocol = 4)
         print('Features are saved in %s!' %save_path)
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--data_dir', type=str,
+    parser.add_argument('--data_dir', type=str, default='/home/sharing/disk3/dataset/multimodal-sentiment-dataset/CH-SIMS',
                         help='path to CH-SIMS')
-    parser.add_argument('--openface2Path', type=str,
+    parser.add_argument('--openface2Path', type=str, default="/home/iyuge2/ToolKits/OpenFace/build/bin/FeatureExtraction",
                         help='path to FeatureExtraction tool in openface2')
-    parser.add_argument('--pretrainedBertPath', type=str,
+    parser.add_argument('--pretrainedBertPath', type=str, default="/home/sharing/disk3/pretrained_embedding/bert/chinese_L-12_H-768_A-12",
                         help='path to pretrained bert directory')
     return parser.parse_args()
 
@@ -218,6 +230,7 @@ if __name__ == "__main__":
     # data_dir = '/path/to/MSA-ZH'
     gf = getFeatures(args.data_dir, args.openface2Path, args.pretrainedBertPath)
     
-    gf.handleImages()
+    # gf.handleImages()
 
-    gf.results('features')
+    # gf.results('features')
+    gf.getTextEmbedding('我喜欢你')

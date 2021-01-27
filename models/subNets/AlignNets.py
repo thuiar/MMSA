@@ -49,8 +49,8 @@ class AlignSubNet(nn.Module):
         assert mode in ['avg_pool', 'ctc', 'conv1d']
 
         in_dim_t, in_dim_a, in_dim_v = args.feature_dims
-        seq_len_t, seq_len_a, seq_len_v = args.input_lens
-        self.dst_len = min(seq_len_t, seq_len_a, seq_len_v)
+        seq_len_t, seq_len_a, seq_len_v = args.seq_lens
+        self.dst_len = seq_len_t
         self.mode = mode
 
         self.ALIGN_WAY = {
@@ -104,4 +104,7 @@ class AlignSubNet(nn.Module):
         return text_x, audio_x, video_x
  
     def forward(self, text_x, audio_x, video_x):
+        # already aligned
+        if text_x.size(1) == audio_x.size(1) == video_x.size(1):
+            return text_x, audio_x, video_x
         return self.ALIGN_WAY[self.mode](text_x, audio_x, video_x)

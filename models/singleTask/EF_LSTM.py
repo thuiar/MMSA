@@ -19,11 +19,11 @@ class EF_LSTM(nn.Module):
         super(EF_LSTM, self).__init__()
         text_in, audio_in, video_in = args.feature_dims
         in_size = text_in + audio_in + video_in
-        input_len = args.input_lens
+        input_len = args.seq_lens
         hidden_size = args.hidden_dims
         num_layers = args.num_layers
         dropout = args.dropout
-        output_dim = args.output_dim 
+        output_dim = args.num_classes if args.train_mode == "classification" else 1
 
         self.norm = nn.BatchNorm1d(input_len)
         self.lstm = nn.LSTM(in_size, hidden_size, num_layers=num_layers, dropout=dropout, bidirectional=False, batch_first=True)

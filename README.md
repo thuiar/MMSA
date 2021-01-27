@@ -80,5 +80,5 @@ python data/getFeature.py --data_dir [path_to_CH-SIMS] --openface2Path [path_to_
 #### Run
 
 ```
-python run.py --modelName *** --datasetName sims --tasks MTAV
+python run.py --modelName *** --datasetName sims
 ```

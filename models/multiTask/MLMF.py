@@ -105,13 +105,12 @@ class MLMF(nn.Module):
         self.text_hidden, self.audio_hidden, self.video_hidden = args.hidden_dims
 
         self.text_out= self.text_hidden // 2
-        self.output_dim = args.output_dim 
+        self.output_dim = args.num_classes if args.train_mode == "classification" else 1
         self.rank = args.rank
-        self.use_softmax = args.use_softmax
 
-        self.audio_prob, self.video_prob, self.text_prob, self.post_fusion_prob = args.dropouts
+        self.audio_prob, self.video_prob, self.text_prob = args.dropouts
 
-        self.post_text_prob, self.post_audio_prob, self.post_video_prob = args.post_dropouts
+        self.post_text_prob, self.post_audio_prob, self.post_video_prob, self.post_fusion_prob = args.post_dropouts
         self.post_text_dim = args.post_text_dim
         self.post_audio_dim = args.post_audio_dim
         self.post_video_dim = args.post_video_dim
@@ -130,19 +129,19 @@ class MLMF(nn.Module):
         self.post_text_dropout = nn.Dropout(p=self.post_text_prob)
         self.post_text_layer_1 = nn.Linear(self.text_out, self.post_text_dim)
         self.post_text_layer_2 = nn.Linear(self.post_text_dim, self.post_text_dim)
-        self.post_text_layer_3 = nn.Linear(self.post_text_dim, 1)
+        self.post_text_layer_3 = nn.Linear(self.post_text_dim, self.output_dim)
 
         # define the classify layer for audio
         self.post_audio_dropout = nn.Dropout(p=self.post_audio_prob)
         self.post_audio_layer_1 = nn.Linear(self.audio_hidden, self.post_audio_dim)
         self.post_audio_layer_2 = nn.Linear(self.post_audio_dim, self.post_audio_dim)
-        self.post_audio_layer_3 = nn.Linear(self.post_audio_dim, 1)
+        self.post_audio_layer_3 = nn.Linear(self.post_audio_dim, self.output_dim)
 
         # define the classify layer for video
         self.post_video_dropout = nn.Dropout(p=self.post_video_prob)
         self.post_video_layer_1 = nn.Linear(self.video_hidden, self.post_video_dim)
         self.post_video_layer_2 = nn.Linear(self.post_video_dim, self.post_video_dim)
-        self.post_video_layer_3 = nn.Linear(self.post_video_dim, 1)
+        self.post_video_layer_3 = nn.Linear(self.post_video_dim, self.output_dim)
 
         self.fusion_weights = Parameter(torch.Tensor(1, self.rank))
         self.fusion_bias = Parameter(torch.Tensor(1, self.output_dim))
@@ -206,8 +205,6 @@ class MLMF(nn.Module):
         # use linear transformation instead of simple summation, more flexibility
         output = torch.matmul(self.fusion_weights, fusion_zy.permute(1, 0, 2)).squeeze() + self.fusion_bias
         output = output.view(-1, self.output_dim)
-        if self.use_softmax:
-            output = F.softmax(output)
         res = {
             'Feature_t': text_h,
             'Feature_a': audio_h,

@@ -114,6 +114,8 @@ class MTFN(nn.Module):
         self.post_audio_dim = args.post_audio_dim
         self.post_video_dim = args.post_video_dim
 
+        self.output_dim = args.num_classes if args.train_mode == "classification" else 1
+
         # define the pre-fusion subnetworks
         self.audio_subnet = SubNet(self.audio_in, self.audio_hidden, self.audio_prob)
         self.video_subnet = SubNet(self.video_in, self.video_hidden, self.video_prob)
@@ -123,25 +125,25 @@ class MTFN(nn.Module):
         self.post_fusion_dropout = nn.Dropout(p=self.post_fusion_prob)
         self.post_fusion_layer_1 = nn.Linear((self.text_out + 1) * (self.video_hidden + 1) * (self.audio_hidden + 1), self.post_fusion_dim)
         self.post_fusion_layer_2 = nn.Linear(self.post_fusion_dim, self.post_fusion_dim)
-        self.post_fusion_layer_3 = nn.Linear(self.post_fusion_dim, 1)
+        self.post_fusion_layer_3 = nn.Linear(self.post_fusion_dim, self.output_dim)
 
         # define the classify layer for text
         self.post_text_dropout = nn.Dropout(p=self.post_text_prob)
         self.post_text_layer_1 = nn.Linear(self.text_out, self.post_text_dim)
         self.post_text_layer_2 = nn.Linear(self.post_text_dim, self.post_text_dim)
-        self.post_text_layer_3 = nn.Linear(self.post_text_dim, 1)
+        self.post_text_layer_3 = nn.Linear(self.post_text_dim, self.output_dim)
 
         # define the classify layer for audio
         self.post_audio_dropout = nn.Dropout(p=self.post_audio_prob)
         self.post_audio_layer_1 = nn.Linear(self.audio_hidden, self.post_audio_dim)
         self.post_audio_layer_2 = nn.Linear(self.post_audio_dim, self.post_audio_dim)
-        self.post_audio_layer_3 = nn.Linear(self.post_audio_dim, 1)
+        self.post_audio_layer_3 = nn.Linear(self.post_audio_dim, self.output_dim)
 
         # define the classify layer for video
         self.post_video_dropout = nn.Dropout(p=self.post_video_prob)
         self.post_video_layer_1 = nn.Linear(self.video_hidden, self.post_video_dim)
         self.post_video_layer_2 = nn.Linear(self.post_video_dim, self.post_video_dim)
-        self.post_video_layer_3 = nn.Linear(self.post_video_dim, 1)
+        self.post_video_layer_3 = nn.Linear(self.post_video_dim, self.output_dim)
 
         # in TFN we are doing a regression with constrained output range: (-3, 3), hence we'll apply sigmoid to output
         # shrink it to (0, 1), and scale\shift it back to range (-3, 3)
@@ -200,8 +202,10 @@ class MTFN(nn.Module):
         post_fusion_dropped = self.post_fusion_dropout(fusion_tensor)
         post_fusion_y_1 = F.relu(self.post_fusion_layer_1(post_fusion_dropped), inplace=True)
         post_fusion_y_2 = F.relu(self.post_fusion_layer_2(post_fusion_y_1), inplace=True)
-        post_fusion_y_3 = torch.sigmoid(self.post_fusion_layer_3(post_fusion_y_2))
-        output_fusion = post_fusion_y_3 * self.output_range + self.output_shift
+        output_fusion = self.post_fusion_layer_3(post_fusion_y_2)
+        if self.output_dim == 1:
+            output_fusion = torch.sigmoid(output_fusion)
+            output_fusion = output_fusion * self.output_range + self.output_shift
 
         res = {
             'Feature_t': text_h,
