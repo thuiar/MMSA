@@ -1,1 +1,1777 @@
 2021-01-28 01:00:46:ERROR:name 'logger' is not defined
+2021-01-28 04:20:42:INFO:########################################misa-(1/50)########################################
+2021-01-28 04:20:42:INFO:batch_size:64
+2021-01-28 04:20:42:INFO:learning_rate:0.0001
+2021-01-28 04:20:42:INFO:hidden_size:128
+2021-01-28 04:20:42:INFO:dropout:0.2
+2021-01-28 04:20:42:INFO:reverse_grad_weight:1.0
+2021-01-28 04:20:42:INFO:diff_weight:0.1
+2021-01-28 04:20:42:INFO:sim_weight:0.8
+2021-01-28 04:20:42:INFO:sp_weight:1.0
+2021-01-28 04:20:42:INFO:recon_weight:0.5
+2021-01-28 04:20:42:INFO:grad_clip:0.8
+2021-01-28 04:20:42:INFO:weight_decay:0.002
+2021-01-28 04:20:42:INFO:##########################################################################################
+2021-01-28 04:20:42:INFO:Start running misa...
+2021-01-28 04:20:42:INFO:Find gpu: 1, with memory: 8282505216 left!
+2021-01-28 04:20:42:INFO:Let's use 1 GPUs!
+2021-01-28 04:20:43:INFO:train samples: (1368,)
+2021-01-28 04:20:45:INFO:valid samples: (456,)
+2021-01-28 04:20:46:INFO:test samples: (457,)
+2021-01-28 04:20:46:INFO:Model name 'pretrained_model/bert_cn' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased, bert-base-finnish-cased-v1, bert-base-finnish-uncased-v1, bert-base-dutch-cased). Assuming 'pretrained_model/bert_cn' is a path, a model identifier, or url to a directory containing tokenizer files.
+2021-01-28 04:20:46:INFO:Didn't find file pretrained_model/bert_cn/added_tokens.json. We won't load it.
+2021-01-28 04:20:46:INFO:Didn't find file pretrained_model/bert_cn/special_tokens_map.json. We won't load it.
+2021-01-28 04:20:46:INFO:Didn't find file pretrained_model/bert_cn/tokenizer_config.json. We won't load it.
+2021-01-28 04:20:46:INFO:loading file pretrained_model/bert_cn/vocab.txt
+2021-01-28 04:20:46:INFO:loading file None
+2021-01-28 04:20:46:INFO:loading file None
+2021-01-28 04:20:46:INFO:loading file None
+2021-01-28 04:20:46:INFO:loading configuration file pretrained_model/bert_cn/config.json
+2021-01-28 04:20:46:INFO:Model config BertConfig {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2021-01-28 04:20:46:INFO:loading weights file pretrained_model/bert_cn/pytorch_model.bin
+2021-01-28 04:20:50:ERROR:CUDA out of memory. Tried to allocate 20.00 MiB (GPU 1; 7.77 GiB total capacity; 352.42 MiB already allocated; 9.50 MiB free; 31.58 MiB cached)
+2021-01-28 22:21:18:INFO:########################################misa-(1/50)########################################
+2021-01-28 22:21:18:INFO:batch_size:64
+2021-01-28 22:21:18:INFO:learning_rate:0.0001
+2021-01-28 22:21:18:INFO:hidden_size:256
+2021-01-28 22:21:18:INFO:dropout:0.2
+2021-01-28 22:21:18:INFO:reverse_grad_weight:0.5
+2021-01-28 22:21:18:INFO:diff_weight:0.5
+2021-01-28 22:21:18:INFO:sim_weight:0.5
+2021-01-28 22:21:18:INFO:sp_weight:0.0
+2021-01-28 22:21:18:INFO:recon_weight:0.8
+2021-01-28 22:21:18:INFO:grad_clip:0.8
+2021-01-28 22:21:18:INFO:weight_decay:0.0
+2021-01-28 22:21:18:INFO:##########################################################################################
+2021-01-28 22:21:18:INFO:Start running misa...
+2021-01-28 22:21:18:INFO:Find gpu: 3, with memory: 2514288640 left!
+2021-01-28 22:21:18:INFO:Let's use 1 GPUs!
+2021-01-28 22:21:20:INFO:train samples: (1368,)
+2021-01-28 22:21:21:INFO:valid samples: (456,)
+2021-01-28 22:21:22:INFO:test samples: (457,)
+2021-01-28 22:21:23:INFO:Model name 'pretrained_model/bert_cn' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased, bert-base-finnish-cased-v1, bert-base-finnish-uncased-v1, bert-base-dutch-cased). Assuming 'pretrained_model/bert_cn' is a path, a model identifier, or url to a directory containing tokenizer files.
+2021-01-28 22:21:23:INFO:Didn't find file pretrained_model/bert_cn/added_tokens.json. We won't load it.
+2021-01-28 22:21:23:INFO:Didn't find file pretrained_model/bert_cn/special_tokens_map.json. We won't load it.
+2021-01-28 22:21:23:INFO:Didn't find file pretrained_model/bert_cn/tokenizer_config.json. We won't load it.
+2021-01-28 22:21:23:INFO:loading file pretrained_model/bert_cn/vocab.txt
+2021-01-28 22:21:23:INFO:loading file None
+2021-01-28 22:21:23:INFO:loading file None
+2021-01-28 22:21:23:INFO:loading file None
+2021-01-28 22:21:23:INFO:loading configuration file pretrained_model/bert_cn/config.json
+2021-01-28 22:21:23:INFO:Model config BertConfig {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2021-01-28 22:21:23:INFO:loading weights file pretrained_model/bert_cn/pytorch_model.bin
+2021-01-28 22:21:28:INFO:The model has 126364781 trainable parameters
+2021-01-28 22:21:42:INFO:TRAIN-(misa) (1/1/1)>> loss: 2.0588  Mult_acc_2: 0.6374  Mult_acc_3: 0.4627  Mult_acc_5: 0.2032  F1_score: 0.6646  MAE: 0.6139  Corr: 0.0874 
+2021-01-28 22:21:43:INFO:VAL-(misa) >>  Mult_acc_2: 0.7193  Mult_acc_3: 0.5197  Mult_acc_5: 0.2061  F1_score: 0.8064  MAE: 0.5484  Corr: 0.4439  Loss: 0.3971 
+2021-01-28 22:21:55:INFO:TRAIN-(misa) (1/2/1)>> loss: 1.2598  Mult_acc_2: 0.7573  Mult_acc_3: 0.6272  Mult_acc_5: 0.2836  F1_score: 0.7590  MAE: 0.4733  Corr: 0.5714 
+2021-01-28 22:21:57:INFO:VAL-(misa) >>  Mult_acc_2: 0.7018  Mult_acc_3: 0.5987  Mult_acc_5: 0.2719  F1_score: 0.6930  MAE: 0.4701  Corr: 0.5659  Loss: 0.3314 
+2021-01-28 22:22:10:INFO:TRAIN-(misa) (1/3/1)>> loss: 0.8475  Mult_acc_2: 0.8114  Mult_acc_3: 0.7317  Mult_acc_5: 0.4335  F1_score: 0.8079  MAE: 0.3504  Corr: 0.7611 
+2021-01-28 22:22:11:INFO:VAL-(misa) >>  Mult_acc_2: 0.6711  Mult_acc_3: 0.5855  Mult_acc_5: 0.3246  F1_score: 0.6581  MAE: 0.4770  Corr: 0.5696  Loss: 0.3509 
+2021-01-28 22:22:22:INFO:TRAIN-(misa) (2/4/1)>> loss: 0.5780  Mult_acc_2: 0.8611  Mult_acc_3: 0.7778  Mult_acc_5: 0.5329  F1_score: 0.8581  MAE: 0.2742  Corr: 0.8525 
+2021-01-28 22:22:23:INFO:VAL-(misa) >>  Mult_acc_2: 0.7412  Mult_acc_3: 0.6162  Mult_acc_5: 0.3838  F1_score: 0.7354  MAE: 0.4447  Corr: 0.5694  Loss: 0.3636 
+2021-01-28 22:22:34:INFO:TRAIN-(misa) (3/5/1)>> loss: 0.4100  Mult_acc_2: 0.8699  Mult_acc_3: 0.8085  Mult_acc_5: 0.5958  F1_score: 0.8661  MAE: 0.2165  Corr: 0.9131 
+2021-01-28 22:22:36:INFO:VAL-(misa) >>  Mult_acc_2: 0.7215  Mult_acc_3: 0.6031  Mult_acc_5: 0.3750  F1_score: 0.7165  MAE: 0.4502  Corr: 0.5614  Loss: 0.3262 
+2021-01-28 22:22:48:INFO:TRAIN-(misa) (1/6/1)>> loss: 0.3003  Mult_acc_2: 0.8889  Mult_acc_3: 0.8443  Mult_acc_5: 0.6893  F1_score: 0.8865  MAE: 0.1760  Corr: 0.9424 
+2021-01-28 22:22:50:INFO:VAL-(misa) >>  Mult_acc_2: 0.6820  Mult_acc_3: 0.5855  Mult_acc_5: 0.3421  F1_score: 0.6702  MAE: 0.4646  Corr: 0.5708  Loss: 0.3510 
+2021-01-28 22:23:01:INFO:TRAIN-(misa) (2/7/1)>> loss: 0.2533  Mult_acc_2: 0.8896  Mult_acc_3: 0.8370  Mult_acc_5: 0.6725  F1_score: 0.8866  MAE: 0.1765  Corr: 0.9422 
+2021-01-28 22:23:02:INFO:VAL-(misa) >>  Mult_acc_2: 0.7763  Mult_acc_3: 0.6404  Mult_acc_5: 0.3969  F1_score: 0.7834  MAE: 0.4519  Corr: 0.5732  Loss: 0.3874 
+2021-01-28 22:23:13:INFO:TRAIN-(misa) (3/8/1)>> loss: 0.2142  Mult_acc_2: 0.9086  Mult_acc_3: 0.8450  Mult_acc_5: 0.6879  F1_score: 0.9063  MAE: 0.1594  Corr: 0.9528 
+2021-01-28 22:23:14:INFO:VAL-(misa) >>  Mult_acc_2: 0.7303  Mult_acc_3: 0.6382  Mult_acc_5: 0.4123  F1_score: 0.7250  MAE: 0.4381  Corr: 0.5753  Loss: 0.3438 
+2021-01-28 22:23:25:INFO:TRAIN-(misa) (4/9/1)>> loss: 0.1861  Mult_acc_2: 0.8882  Mult_acc_3: 0.8363  Mult_acc_5: 0.7303  F1_score: 0.8854  MAE: 0.1443  Corr: 0.9605 
+2021-01-28 22:23:27:INFO:VAL-(misa) >>  Mult_acc_2: 0.6447  Mult_acc_3: 0.5658  Mult_acc_5: 0.3180  F1_score: 0.6307  MAE: 0.4793  Corr: 0.5896  Loss: 0.3696 
+2021-01-28 22:23:38:INFO:TRAIN-(misa) (5/10/1)>> loss: 0.1724  Mult_acc_2: 0.9028  Mult_acc_3: 0.8399  Mult_acc_5: 0.7054  F1_score: 0.9001  MAE: 0.1508  Corr: 0.9566 
+2021-01-28 22:23:39:INFO:VAL-(misa) >>  Mult_acc_2: 0.7851  Mult_acc_3: 0.6404  Mult_acc_5: 0.4035  F1_score: 0.7968  MAE: 0.4507  Corr: 0.5833  Loss: 0.3804 
+2021-01-28 22:23:50:INFO:TRAIN-(misa) (6/11/1)>> loss: 0.1619  Mult_acc_2: 0.8947  Mult_acc_3: 0.8304  Mult_acc_5: 0.6952  F1_score: 0.8924  MAE: 0.1536  Corr: 0.9561 
+2021-01-28 22:23:51:INFO:VAL-(misa) >>  Mult_acc_2: 0.6579  Mult_acc_3: 0.5768  Mult_acc_5: 0.3575  F1_score: 0.6445  MAE: 0.4653  Corr: 0.5929  Loss: 0.3827 
+2021-01-28 22:24:02:INFO:TRAIN-(misa) (7/12/1)>> loss: 0.1455  Mult_acc_2: 0.8947  Mult_acc_3: 0.8538  Mult_acc_5: 0.7427  F1_score: 0.8918  MAE: 0.1412  Corr: 0.9645 
+2021-01-28 22:24:04:INFO:VAL-(misa) >>  Mult_acc_2: 0.7719  Mult_acc_3: 0.6316  Mult_acc_5: 0.3925  F1_score: 0.7724  MAE: 0.4308  Corr: 0.5872  Loss: 0.3952 
+2021-01-28 22:24:15:INFO:TRAIN-(misa) (8/13/1)>> loss: 0.1313  Mult_acc_2: 0.9137  Mult_acc_3: 0.8596  Mult_acc_5: 0.7668  F1_score: 0.9119  MAE: 0.1277  Corr: 0.9690 
+2021-01-28 22:24:16:INFO:VAL-(misa) >>  Mult_acc_2: 0.6754  Mult_acc_3: 0.5833  Mult_acc_5: 0.3772  F1_score: 0.6626  MAE: 0.4617  Corr: 0.5887  Loss: 0.3957 
+2021-01-28 22:24:18:INFO:TEST-(misa) >>  Mult_acc_2: 0.7724  Mult_acc_3: 0.6368  Mult_acc_5: 0.4201  F1_score: 0.7699  MAE: 0.4396  Corr: 0.5749  Loss: 0.3417 
+2021-01-28 22:24:18:INFO:Start saving results...
+2021-01-28 22:24:19:INFO:Results are saved to results/results/sims-misa-regression-tune.csv...
+2021-01-28 22:24:19:INFO:########################################misa-(2/50)########################################
+2021-01-28 22:24:19:INFO:batch_size:16
+2021-01-28 22:24:19:INFO:learning_rate:0.001
+2021-01-28 22:24:19:INFO:hidden_size:128
+2021-01-28 22:24:19:INFO:dropout:0.0
+2021-01-28 22:24:19:INFO:reverse_grad_weight:1.0
+2021-01-28 22:24:19:INFO:diff_weight:0.5
+2021-01-28 22:24:19:INFO:sim_weight:1.0
+2021-01-28 22:24:19:INFO:sp_weight:0.0
+2021-01-28 22:24:19:INFO:recon_weight:0.5
+2021-01-28 22:24:19:INFO:grad_clip:0.8
+2021-01-28 22:24:19:INFO:weight_decay:0.0
+2021-01-28 22:24:19:INFO:##########################################################################################
+2021-01-28 22:24:19:INFO:Start running misa...
+2021-01-28 22:24:19:INFO:Find gpu: 3, with memory: 2514288640 left!
+2021-01-28 22:24:19:INFO:Let's use 1 GPUs!
+2021-01-28 22:24:21:INFO:train samples: (1368,)
+2021-01-28 22:24:22:INFO:valid samples: (456,)
+2021-01-28 22:24:23:INFO:test samples: (457,)
+2021-01-28 22:24:23:INFO:Model name 'pretrained_model/bert_cn' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased, bert-base-finnish-cased-v1, bert-base-finnish-uncased-v1, bert-base-dutch-cased). Assuming 'pretrained_model/bert_cn' is a path, a model identifier, or url to a directory containing tokenizer files.
+2021-01-28 22:24:23:INFO:Didn't find file pretrained_model/bert_cn/added_tokens.json. We won't load it.
+2021-01-28 22:24:23:INFO:Didn't find file pretrained_model/bert_cn/special_tokens_map.json. We won't load it.
+2021-01-28 22:24:23:INFO:Didn't find file pretrained_model/bert_cn/tokenizer_config.json. We won't load it.
+2021-01-28 22:24:23:INFO:loading file pretrained_model/bert_cn/vocab.txt
+2021-01-28 22:24:23:INFO:loading file None
+2021-01-28 22:24:23:INFO:loading file None
+2021-01-28 22:24:23:INFO:loading file None
+2021-01-28 22:24:24:INFO:loading configuration file pretrained_model/bert_cn/config.json
+2021-01-28 22:24:24:INFO:Model config BertConfig {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2021-01-28 22:24:24:INFO:loading weights file pretrained_model/bert_cn/pytorch_model.bin
+2021-01-28 22:24:27:INFO:The model has 123932397 trainable parameters
+2021-01-28 22:24:47:INFO:TRAIN-(misa) (1/1/1)>> loss: 1.3323  Mult_acc_2: 0.6053  Mult_acc_3: 0.4057  Mult_acc_5: 0.2025  F1_score: 0.6159  MAE: 0.6324  Corr: 0.0436 
+2021-01-28 22:24:49:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5905  Corr: -0.0017  Loss: 0.4810 
+2021-01-28 22:25:11:INFO:TRAIN-(misa) (1/2/1)>> loss: 0.5602  Mult_acc_2: 0.6842  Mult_acc_3: 0.4949  Mult_acc_5: 0.2091  F1_score: 0.8009  MAE: 0.5953  Corr: 0.0107 
+2021-01-28 22:25:14:INFO:VAL-(misa) >>  Mult_acc_2: 0.3048  Mult_acc_3: 0.1513  Mult_acc_5: 0.1513  F1_score: 0.4672  MAE: 0.6185  Corr: -0.0758  Loss: 0.5291 
+2021-01-28 22:25:35:INFO:TRAIN-(misa) (2/3/1)>> loss: 0.5312  Mult_acc_2: 0.6725  Mult_acc_3: 0.4335  Mult_acc_5: 0.1959  F1_score: 0.7645  MAE: 0.5963  Corr: 0.0170 
+2021-01-28 22:25:37:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5931  Corr: -0.0953  Loss: 0.4746 
+2021-01-28 22:25:59:INFO:TRAIN-(misa) (1/4/1)>> loss: 0.5185  Mult_acc_2: 0.6754  Mult_acc_3: 0.4876  Mult_acc_5: 0.2127  F1_score: 0.7818  MAE: 0.5931  Corr: 0.0214 
+2021-01-28 22:26:01:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5910  Corr: -0.1412  Loss: 0.4830 
+2021-01-28 22:26:21:INFO:TRAIN-(misa) (2/5/1)>> loss: 0.5155  Mult_acc_2: 0.6937  Mult_acc_3: 0.5380  Mult_acc_5: 0.2105  F1_score: 0.8192  MAE: 0.5957  Corr: -0.0343 
+2021-01-28 22:26:23:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5907  Corr: -0.1502  Loss: 0.4753 
+2021-01-28 22:26:42:INFO:TRAIN-(misa) (3/6/1)>> loss: 0.5060  Mult_acc_2: 0.6937  Mult_acc_3: 0.5424  Mult_acc_5: 0.2120  F1_score: 0.8192  MAE: 0.5924  Corr: -0.0128 
+2021-01-28 22:26:45:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5886  Corr: -0.1391  Loss: 0.4739 
+2021-01-28 22:27:07:INFO:TRAIN-(misa) (1/7/1)>> loss: 0.5033  Mult_acc_2: 0.6937  Mult_acc_3: 0.5417  Mult_acc_5: 0.2113  F1_score: 0.8192  MAE: 0.5911  Corr: -0.0032 
+2021-01-28 22:27:09:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5932  Corr: -0.1484  Loss: 0.4804 
+2021-01-28 22:27:29:INFO:TRAIN-(misa) (2/8/1)>> loss: 0.5059  Mult_acc_2: 0.6937  Mult_acc_3: 0.4817  Mult_acc_5: 0.1981  F1_score: 0.8192  MAE: 0.5944  Corr: -0.0360 
+2021-01-28 22:27:31:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5941  Corr: -0.1509  Loss: 0.4775 
+2021-01-28 22:27:51:INFO:TRAIN-(misa) (3/9/1)>> loss: 0.5045  Mult_acc_2: 0.6937  Mult_acc_3: 0.5417  Mult_acc_5: 0.2113  F1_score: 0.8192  MAE: 0.5946  Corr: -0.0526 
+2021-01-28 22:27:53:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.1513  Mult_acc_5: 0.1513  F1_score: 0.8202  MAE: 0.5971  Corr: -0.0231  Loss: 0.4824 
+2021-01-28 22:28:13:INFO:TRAIN-(misa) (4/10/1)>> loss: 0.5016  Mult_acc_2: 0.6937  Mult_acc_3: 0.4817  Mult_acc_5: 0.2018  F1_score: 0.8192  MAE: 0.5934  Corr: -0.0136 
+2021-01-28 22:28:15:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5929  Corr: -0.0816  Loss: 0.4811 
+2021-01-28 22:28:35:INFO:TRAIN-(misa) (5/11/1)>> loss: 0.5020  Mult_acc_2: 0.6937  Mult_acc_3: 0.5417  Mult_acc_5: 0.2120  F1_score: 0.8192  MAE: 0.5945  Corr: 0.0122 
+2021-01-28 22:28:37:ERROR:Input contains NaN, infinity or a value too large for dtype('float32').
+2021-01-29 14:09:38:INFO:########################################misa-(1/50)########################################
+2021-01-29 14:09:38:INFO:batch_size:32
+2021-01-29 14:09:38:INFO:learning_rate:0.0005
+2021-01-29 14:09:38:INFO:hidden_size:64
+2021-01-29 14:09:38:INFO:dropout:0.2
+2021-01-29 14:09:38:INFO:reverse_grad_weight:1.0
+2021-01-29 14:09:38:INFO:diff_weight:0.5
+2021-01-29 14:09:38:INFO:sim_weight:0.8
+2021-01-29 14:09:38:INFO:sp_weight:1.0
+2021-01-29 14:09:38:INFO:recon_weight:1.0
+2021-01-29 14:09:38:INFO:grad_clip:0.8
+2021-01-29 14:09:38:INFO:weight_decay:5e-05
+2021-01-29 14:09:38:INFO:##########################################################################################
+2021-01-29 14:09:38:INFO:Start running misa...
+2021-01-29 14:09:38:INFO:Find gpu: 2, with memory: 3459055616 left!
+2021-01-29 14:09:38:INFO:Let's use 1 GPUs!
+2021-01-29 14:09:50:INFO:train samples: (1368,)
+2021-01-29 14:09:52:INFO:valid samples: (456,)
+2021-01-29 14:09:53:INFO:test samples: (457,)
+2021-01-29 14:09:53:INFO:Model name 'pretrained_model/bert_cn' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased, bert-base-finnish-cased-v1, bert-base-finnish-uncased-v1, bert-base-dutch-cased). Assuming 'pretrained_model/bert_cn' is a path, a model identifier, or url to a directory containing tokenizer files.
+2021-01-29 14:09:53:INFO:Didn't find file pretrained_model/bert_cn/added_tokens.json. We won't load it.
+2021-01-29 14:09:53:INFO:Didn't find file pretrained_model/bert_cn/special_tokens_map.json. We won't load it.
+2021-01-29 14:09:53:INFO:Didn't find file pretrained_model/bert_cn/tokenizer_config.json. We won't load it.
+2021-01-29 14:09:53:INFO:loading file pretrained_model/bert_cn/vocab.txt
+2021-01-29 14:09:53:INFO:loading file None
+2021-01-29 14:09:53:INFO:loading file None
+2021-01-29 14:09:53:INFO:loading file None
+2021-01-29 14:09:53:INFO:loading configuration file pretrained_model/bert_cn/config.json
+2021-01-29 14:09:53:INFO:Model config BertConfig {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2021-01-29 14:09:53:INFO:loading weights file pretrained_model/bert_cn/pytorch_model.bin
+2021-01-29 14:09:56:INFO:The model has 123072943 trainable parameters
+2021-01-29 14:10:07:INFO:TRAIN-(misa) (1/1/1)>> loss: 2.1169  Has0_acc_2: 0.6791  Has0_F1_score: 0.7717  Non0_acc_2: 0.6098  Non0_F1_score: 0.7297  Acc_3: 0.5336  F1_score_3: 0.6639 
+2021-01-29 14:10:09:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9751 
+2021-01-29 14:10:20:INFO:TRAIN-(misa) (1/2/1)>> loss: 1.3944  Has0_acc_2: 0.6871  Has0_F1_score: 0.8015  Non0_acc_2: 0.6305  Non0_F1_score: 0.7651  Acc_3: 0.5395  F1_score_3: 0.6905 
+2021-01-29 14:10:22:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9819 
+2021-01-29 14:10:33:INFO:TRAIN-(misa) (2/3/1)>> loss: 1.1750  Has0_acc_2: 0.6923  Has0_F1_score: 0.8117  Non0_acc_2: 0.6348  Non0_F1_score: 0.7722  Acc_3: 0.5417  F1_score_3: 0.6969 
+2021-01-29 14:10:34:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9847 
+2021-01-29 14:10:45:INFO:TRAIN-(misa) (3/4/1)>> loss: 1.1424  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-01-29 14:10:46:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9665 
+2021-01-29 14:10:59:INFO:TRAIN-(misa) (1/5/1)>> loss: 1.1431  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-01-29 14:11:00:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9685 
+2021-01-29 14:11:11:INFO:TRAIN-(misa) (2/6/1)>> loss: 1.1445  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-01-29 14:11:12:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9845 
+2021-01-29 14:11:24:INFO:TRAIN-(misa) (3/7/1)>> loss: 1.1497  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-01-29 14:11:25:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9840 
+2021-01-29 14:11:36:INFO:TRAIN-(misa) (4/8/1)>> loss: 1.1538  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-01-29 14:11:37:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9810 
+2021-01-29 14:11:49:INFO:TRAIN-(misa) (5/9/1)>> loss: 1.1583  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-01-29 14:11:50:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9803 
+2021-01-29 14:12:01:INFO:TRAIN-(misa) (6/10/1)>> loss: 1.1521  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-01-29 14:12:02:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9817 
+2021-01-29 14:12:14:INFO:TRAIN-(misa) (7/11/1)>> loss: 1.1683  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-01-29 14:12:15:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9820 
+2021-01-29 14:12:26:INFO:TRAIN-(misa) (8/12/1)>> loss: 1.1566  Has0_acc_2: 0.6944  Has0_F1_score: 0.8189  Non0_acc_2: 0.6391  Non0_F1_score: 0.7796  Acc_3: 0.5431  F1_score_3: 0.7031 
+2021-01-29 14:12:27:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9920 
+2021-01-29 14:12:29:INFO:TEST-(misa) >>  Has0_acc_2: 0.6937  Has0_F1_score: 0.8191  Non0_acc_2: 0.6392  Non0_F1_score: 0.7799  Acc_3: 0.5427  F1_score_3: 0.7035  Loss: 0.9826 
+2021-01-29 14:12:29:INFO:Start saving results...
+2021-01-29 14:12:29:INFO:Results are saved to results/results/sims-misa-classification-tune.csv...
+2021-01-29 14:12:29:INFO:########################################misa-(2/50)########################################
+2021-01-29 14:12:29:INFO:batch_size:64
+2021-01-29 14:12:29:INFO:learning_rate:0.0001
+2021-01-29 14:12:29:INFO:hidden_size:64
+2021-01-29 14:12:29:INFO:dropout:0.0
+2021-01-29 14:12:29:INFO:reverse_grad_weight:0.8
+2021-01-29 14:12:29:INFO:diff_weight:0.5
+2021-01-29 14:12:29:INFO:sim_weight:1.0
+2021-01-29 14:12:29:INFO:sp_weight:0.0
+2021-01-29 14:12:29:INFO:recon_weight:1.0
+2021-01-29 14:12:29:INFO:grad_clip:0.8
+2021-01-29 14:12:29:INFO:weight_decay:0.0
+2021-01-29 14:12:29:INFO:##########################################################################################
+2021-01-29 14:12:29:INFO:Start running misa...
+2021-01-29 14:12:29:INFO:Find gpu: 2, with memory: 3459055616 left!
+2021-01-29 14:12:29:INFO:Let's use 1 GPUs!
+2021-01-29 14:12:30:INFO:train samples: (1368,)
+2021-01-29 14:12:31:INFO:valid samples: (456,)
+2021-01-29 14:12:33:INFO:test samples: (457,)
+2021-01-29 14:12:33:INFO:Model name 'pretrained_model/bert_cn' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased, bert-base-finnish-cased-v1, bert-base-finnish-uncased-v1, bert-base-dutch-cased). Assuming 'pretrained_model/bert_cn' is a path, a model identifier, or url to a directory containing tokenizer files.
+2021-01-29 14:12:33:INFO:Didn't find file pretrained_model/bert_cn/added_tokens.json. We won't load it.
+2021-01-29 14:12:33:INFO:Didn't find file pretrained_model/bert_cn/special_tokens_map.json. We won't load it.
+2021-01-29 14:12:33:INFO:Didn't find file pretrained_model/bert_cn/tokenizer_config.json. We won't load it.
+2021-01-29 14:12:33:INFO:loading file pretrained_model/bert_cn/vocab.txt
+2021-01-29 14:12:33:INFO:loading file None
+2021-01-29 14:12:33:INFO:loading file None
+2021-01-29 14:12:33:INFO:loading file None
+2021-01-29 14:12:33:INFO:loading configuration file pretrained_model/bert_cn/config.json
+2021-01-29 14:12:33:INFO:Model config BertConfig {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2021-01-29 14:12:33:INFO:loading weights file pretrained_model/bert_cn/pytorch_model.bin
+2021-01-29 14:12:35:INFO:The model has 123072943 trainable parameters
+2021-01-29 14:12:36:ERROR:CUDA out of memory. Tried to allocate 64.00 MiB (GPU 2; 7.77 GiB total capacity; 4.40 GiB already allocated; 39.50 MiB free; 114.41 MiB cached)
+2021-02-02 00:45:57:INFO:########################################misa-(1/49)########################################
+2021-02-02 00:45:57:INFO:batch_size:16
+2021-02-02 00:45:57:INFO:learning_rate:0.0005
+2021-02-02 00:45:57:INFO:hidden_size:64
+2021-02-02 00:45:57:INFO:dropout:0.0
+2021-02-02 00:45:57:INFO:reverse_grad_weight:0.8
+2021-02-02 00:45:57:INFO:diff_weight:0.3
+2021-02-02 00:45:57:INFO:sim_weight:0.5
+2021-02-02 00:45:57:INFO:sp_weight:1.0
+2021-02-02 00:45:57:INFO:recon_weight:0.5
+2021-02-02 00:45:57:INFO:grad_clip:0.8
+2021-02-02 00:45:57:INFO:weight_decay:5e-05
+2021-02-02 00:45:57:INFO:##########################################################################################
+2021-02-02 00:45:57:INFO:Start running misa...
+2021-02-02 00:45:57:INFO:Find gpu: 2, with memory: 11337728 left!
+2021-02-02 00:45:57:INFO:Let's use 1 GPUs!
+2021-02-02 00:45:58:INFO:train samples: (1368,)
+2021-02-02 00:45:59:INFO:valid samples: (456,)
+2021-02-02 00:46:01:INFO:test samples: (457,)
+2021-02-02 00:46:01:INFO:Model name 'pretrained_model/bert_cn' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased, bert-base-finnish-cased-v1, bert-base-finnish-uncased-v1, bert-base-dutch-cased). Assuming 'pretrained_model/bert_cn' is a path, a model identifier, or url to a directory containing tokenizer files.
+2021-02-02 00:46:01:INFO:Didn't find file pretrained_model/bert_cn/added_tokens.json. We won't load it.
+2021-02-02 00:46:01:INFO:Didn't find file pretrained_model/bert_cn/special_tokens_map.json. We won't load it.
+2021-02-02 00:46:01:INFO:Didn't find file pretrained_model/bert_cn/tokenizer_config.json. We won't load it.
+2021-02-02 00:46:01:INFO:loading file pretrained_model/bert_cn/vocab.txt
+2021-02-02 00:46:01:INFO:loading file None
+2021-02-02 00:46:01:INFO:loading file None
+2021-02-02 00:46:01:INFO:loading file None
+2021-02-02 00:46:01:INFO:loading configuration file pretrained_model/bert_cn/config.json
+2021-02-02 00:46:01:INFO:Model config BertConfig {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2021-02-02 00:46:01:INFO:loading weights file pretrained_model/bert_cn/pytorch_model.bin
+2021-02-02 00:46:07:INFO:The model has 123072557 trainable parameters
+2021-02-02 00:46:22:INFO:TRAIN-(misa) (1/1/1)>> loss: 0.9415  Mult_acc_2: 0.6528  Mult_acc_3: 0.4547  Mult_acc_5: 0.1988  F1_score: 0.7060  MAE: 0.6035  Corr: 0.0172 
+2021-02-02 00:46:24:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5914  Corr: 0.0052  Loss: 0.4793 
+2021-02-02 00:46:40:INFO:TRAIN-(misa) (1/2/1)>> loss: 0.5559  Mult_acc_2: 0.6820  Mult_acc_3: 0.4854  Mult_acc_5: 0.2010  F1_score: 0.7976  MAE: 0.5992  Corr: -0.0274 
+2021-02-02 00:46:41:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.1513  Mult_acc_5: 0.1513  F1_score: 0.8202  MAE: 0.6006  Corr: -0.0036  Loss: 0.4965 
+2021-02-02 00:46:56:INFO:TRAIN-(misa) (2/3/1)>> loss: 0.5196  Mult_acc_2: 0.6944  Mult_acc_3: 0.4876  Mult_acc_5: 0.2054  F1_score: 0.8163  MAE: 0.5940  Corr: -0.0048 
+2021-02-02 00:46:57:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5949  Corr: 0.0751  Loss: 0.4883 
+2021-02-02 00:47:12:INFO:TRAIN-(misa) (3/4/1)>> loss: 0.5223  Mult_acc_2: 0.6674  Mult_acc_3: 0.4159  Mult_acc_5: 0.1813  F1_score: 0.7542  MAE: 0.5984  Corr: 0.0177 
+2021-02-02 00:47:14:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5926  Corr: 0.0864  Loss: 0.4783 
+2021-02-02 00:47:30:INFO:TRAIN-(misa) (1/5/1)>> loss: 0.5192  Mult_acc_2: 0.6937  Mult_acc_3: 0.5168  Mult_acc_5: 0.2047  F1_score: 0.8192  MAE: 0.5978  Corr: -0.0542 
+2021-02-02 00:47:32:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5882  Corr: 0.0899  Loss: 0.4804 
+2021-02-02 00:47:46:INFO:TRAIN-(misa) (2/6/1)>> loss: 0.5159  Mult_acc_2: 0.6937  Mult_acc_3: 0.5205  Mult_acc_5: 0.2127  F1_score: 0.8192  MAE: 0.5930  Corr: -0.0011 
+2021-02-02 00:47:48:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5939  Corr: 0.0966  Loss: 0.4808 
+2021-02-02 00:48:03:INFO:TRAIN-(misa) (3/7/1)>> loss: 0.5259  Mult_acc_2: 0.6915  Mult_acc_3: 0.4474  Mult_acc_5: 0.1937  F1_score: 0.8145  MAE: 0.6020  Corr: -0.0504 
+2021-02-02 00:48:04:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5900  Corr: 0.0517  Loss: 0.4796 
+2021-02-02 00:48:19:INFO:TRAIN-(misa) (4/8/1)>> loss: 0.5165  Mult_acc_2: 0.6930  Mult_acc_3: 0.4890  Mult_acc_5: 0.2061  F1_score: 0.8181  MAE: 0.5929  Corr: 0.0133 
+2021-02-02 00:48:21:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.1513  Mult_acc_5: 0.1513  F1_score: 0.8202  MAE: 0.5977  Corr: 0.0022  Loss: 0.4930 
+2021-02-02 00:48:36:INFO:TRAIN-(misa) (5/9/1)>> loss: 0.5230  Mult_acc_2: 0.6944  Mult_acc_3: 0.4942  Mult_acc_5: 0.2032  F1_score: 0.8189  MAE: 0.5962  Corr: -0.0381 
+2021-02-02 00:48:37:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5892  Corr: -0.0309  Loss: 0.4745 
+2021-02-02 00:48:54:INFO:TRAIN-(misa) (1/10/1)>> loss: 0.5158  Mult_acc_2: 0.6937  Mult_acc_3: 0.5278  Mult_acc_5: 0.2113  F1_score: 0.8192  MAE: 0.5917  Corr: 0.0109 
+2021-02-02 00:48:56:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.1513  Mult_acc_5: 0.1513  F1_score: 0.8202  MAE: 0.5977  Corr: -0.0454  Loss: 0.4872 
+2021-02-02 00:49:10:ERROR:Input contains NaN, infinity or a value too large for dtype('float32').
+2021-02-02 09:13:26:INFO:########################################misa-(1/50)########################################
+2021-02-02 09:13:26:INFO:batch_size:32
+2021-02-02 09:13:26:INFO:learning_rate:0.0005
+2021-02-02 09:13:26:INFO:hidden_size:128
+2021-02-02 09:13:26:INFO:dropout:0.2
+2021-02-02 09:13:26:INFO:reverse_grad_weight:0.8
+2021-02-02 09:13:26:INFO:diff_weight:0.1
+2021-02-02 09:13:26:INFO:sim_weight:1.0
+2021-02-02 09:13:26:INFO:sp_weight:1.0
+2021-02-02 09:13:26:INFO:recon_weight:0.8
+2021-02-02 09:13:26:INFO:grad_clip:-1.0
+2021-02-02 09:13:26:INFO:weight_decay:5e-05
+2021-02-02 09:13:26:INFO:##########################################################################################
+2021-02-02 09:13:26:INFO:Start running misa...
+2021-02-02 09:13:26:INFO:Find gpu: 2, with memory: 3267166208 left!
+2021-02-02 09:13:26:INFO:Let's use 1 GPUs!
+2021-02-02 09:13:27:INFO:train samples: (1368,)
+2021-02-02 09:13:28:INFO:valid samples: (456,)
+2021-02-02 09:13:29:INFO:test samples: (457,)
+2021-02-02 09:13:29:INFO:Model name 'pretrained_model/bert_cn' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased, bert-base-finnish-cased-v1, bert-base-finnish-uncased-v1, bert-base-dutch-cased). Assuming 'pretrained_model/bert_cn' is a path, a model identifier, or url to a directory containing tokenizer files.
+2021-02-02 09:13:29:INFO:Didn't find file pretrained_model/bert_cn/added_tokens.json. We won't load it.
+2021-02-02 09:13:29:INFO:Didn't find file pretrained_model/bert_cn/special_tokens_map.json. We won't load it.
+2021-02-02 09:13:29:INFO:Didn't find file pretrained_model/bert_cn/tokenizer_config.json. We won't load it.
+2021-02-02 09:13:29:INFO:loading file pretrained_model/bert_cn/vocab.txt
+2021-02-02 09:13:29:INFO:loading file None
+2021-02-02 09:13:29:INFO:loading file None
+2021-02-02 09:13:29:INFO:loading file None
+2021-02-02 09:13:29:INFO:loading configuration file pretrained_model/bert_cn/config.json
+2021-02-02 09:13:29:INFO:Model config BertConfig {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2021-02-02 09:13:29:INFO:loading weights file pretrained_model/bert_cn/pytorch_model.bin
+2021-02-02 09:13:32:INFO:The model has 123933167 trainable parameters
+2021-02-02 09:13:44:INFO:TRAIN-(misa) (1/1/1)>> loss: 2.1866  Has0_acc_2: 0.6455  Has0_F1_score: 0.6816  Non0_acc_2: 0.5435  Non0_F1_score: 0.6156  Acc_3: 0.5183  F1_score_3: 0.5946 
+2021-02-02 09:13:45:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 1.0260 
+2021-02-02 09:13:59:INFO:TRAIN-(misa) (1/2/1)>> loss: 1.2309  Has0_acc_2: 0.6404  Has0_F1_score: 0.6944  Non0_acc_2: 0.5590  Non0_F1_score: 0.6467  Acc_3: 0.5110  F1_score_3: 0.6067 
+2021-02-02 09:14:00:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 1.0000 
+2021-02-02 09:14:14:INFO:TRAIN-(misa) (1/3/1)>> loss: 1.0976  Has0_acc_2: 0.6864  Has0_F1_score: 0.7921  Non0_acc_2: 0.6253  Non0_F1_score: 0.7555  Acc_3: 0.5402  F1_score_3: 0.6832 
+2021-02-02 09:14:16:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9683 
+2021-02-02 09:14:30:INFO:TRAIN-(misa) (1/4/1)>> loss: 1.0660  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-02-02 09:14:31:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9762 
+2021-02-02 09:14:44:INFO:TRAIN-(misa) (2/5/1)>> loss: 1.0529  Has0_acc_2: 0.6923  Has0_F1_score: 0.8130  Non0_acc_2: 0.6374  Non0_F1_score: 0.7764  Acc_3: 0.5431  F1_score_3: 0.7001 
+2021-02-02 09:14:45:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9813 
+2021-02-02 09:14:58:INFO:TRAIN-(misa) (3/6/1)>> loss: 1.0399  Has0_acc_2: 0.6915  Has0_F1_score: 0.8145  Non0_acc_2: 0.6365  Non0_F1_score: 0.7756  Acc_3: 0.5409  F1_score_3: 0.6996 
+2021-02-02 09:15:00:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9761 
+2021-02-02 09:15:13:INFO:TRAIN-(misa) (4/7/1)>> loss: 1.0317  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-02-02 09:15:14:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9602 
+2021-02-02 09:15:29:INFO:TRAIN-(misa) (1/8/1)>> loss: 1.0330  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-02-02 09:15:30:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9746 
+2021-02-02 09:15:43:INFO:TRAIN-(misa) (2/9/1)>> loss: 1.0274  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-02-02 09:15:45:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9867 
+2021-02-02 09:15:58:INFO:TRAIN-(misa) (3/10/1)>> loss: 1.0207  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-02-02 09:16:00:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9800 
+2021-02-02 09:16:13:INFO:TRAIN-(misa) (4/11/1)>> loss: 1.0251  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-02-02 09:16:14:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9887 
+2021-02-02 09:16:27:INFO:TRAIN-(misa) (5/12/1)>> loss: 1.0197  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-02-02 09:16:29:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9896 
+2021-02-02 09:16:42:INFO:TRAIN-(misa) (6/13/1)>> loss: 1.0122  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-02-02 09:16:43:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9808 
+2021-02-02 09:16:56:INFO:TRAIN-(misa) (7/14/1)>> loss: 1.0122  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-02-02 09:16:58:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9716 
+2021-02-02 09:17:11:INFO:TRAIN-(misa) (8/15/1)>> loss: 1.0084  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-02-02 09:17:12:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9847 
+2021-02-02 09:17:14:INFO:TEST-(misa) >>  Has0_acc_2: 0.6937  Has0_F1_score: 0.8191  Non0_acc_2: 0.6392  Non0_F1_score: 0.7799  Acc_3: 0.5427  F1_score_3: 0.7035  Loss: 0.9811 
+2021-02-02 09:17:14:INFO:Start saving results...
+2021-02-02 09:17:14:INFO:Results are saved to results/results/sims-misa-classification-tune.csv...
+2021-02-02 09:17:14:INFO:########################################misa-(2/50)########################################
+2021-02-02 09:17:14:INFO:batch_size:16
+2021-02-02 09:17:14:INFO:learning_rate:0.0001
+2021-02-02 09:17:14:INFO:hidden_size:64
+2021-02-02 09:17:14:INFO:dropout:0.5
+2021-02-02 09:17:14:INFO:reverse_grad_weight:0.5
+2021-02-02 09:17:14:INFO:diff_weight:0.1
+2021-02-02 09:17:14:INFO:sim_weight:0.5
+2021-02-02 09:17:14:INFO:sp_weight:0.0
+2021-02-02 09:17:14:INFO:recon_weight:0.5
+2021-02-02 09:17:14:INFO:grad_clip:-1.0
+2021-02-02 09:17:14:INFO:weight_decay:0.0
+2021-02-02 09:17:14:INFO:##########################################################################################
+2021-02-02 09:17:14:INFO:Start running misa...
+2021-02-02 09:17:14:INFO:Find gpu: 2, with memory: 3267166208 left!
+2021-02-02 09:17:14:INFO:Let's use 1 GPUs!
+2021-02-02 09:17:15:INFO:train samples: (1368,)
+2021-02-02 09:17:16:INFO:valid samples: (456,)
+2021-02-02 09:17:17:INFO:test samples: (457,)
+2021-02-02 09:17:17:INFO:Model name 'pretrained_model/bert_cn' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased, bert-base-finnish-cased-v1, bert-base-finnish-uncased-v1, bert-base-dutch-cased). Assuming 'pretrained_model/bert_cn' is a path, a model identifier, or url to a directory containing tokenizer files.
+2021-02-02 09:17:17:INFO:Didn't find file pretrained_model/bert_cn/added_tokens.json. We won't load it.
+2021-02-02 09:17:17:INFO:Didn't find file pretrained_model/bert_cn/special_tokens_map.json. We won't load it.
+2021-02-02 09:17:17:INFO:Didn't find file pretrained_model/bert_cn/tokenizer_config.json. We won't load it.
+2021-02-02 09:17:17:INFO:loading file pretrained_model/bert_cn/vocab.txt
+2021-02-02 09:17:17:INFO:loading file None
+2021-02-02 09:17:17:INFO:loading file None
+2021-02-02 09:17:17:INFO:loading file None
+2021-02-02 09:17:17:INFO:loading configuration file pretrained_model/bert_cn/config.json
+2021-02-02 09:17:17:INFO:Model config BertConfig {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2021-02-02 09:17:17:INFO:loading weights file pretrained_model/bert_cn/pytorch_model.bin
+2021-02-02 09:17:19:INFO:The model has 123072943 trainable parameters
+2021-02-02 09:17:35:INFO:TRAIN-(misa) (1/1/1)>> loss: 1.6448  Has0_acc_2: 0.6667  Has0_F1_score: 0.7336  Non0_acc_2: 0.5857  Non0_F1_score: 0.6874  Acc_3: 0.5285  F1_score_3: 0.6357 
+2021-02-02 09:17:37:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9727 
+2021-02-02 09:17:55:INFO:TRAIN-(misa) (1/2/1)>> loss: 1.3422  Has0_acc_2: 0.6857  Has0_F1_score: 0.7832  Non0_acc_2: 0.6176  Non0_F1_score: 0.7419  Acc_3: 0.5387  F1_score_3: 0.6737 
+2021-02-02 09:17:57:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9776 
+2021-02-02 09:18:13:INFO:TRAIN-(misa) (2/3/1)>> loss: 1.2183  Has0_acc_2: 0.6857  Has0_F1_score: 0.7865  Non0_acc_2: 0.6219  Non0_F1_score: 0.7492  Acc_3: 0.5402  F1_score_3: 0.6787 
+2021-02-02 09:18:15:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9801 
+2021-02-02 09:18:32:INFO:TRAIN-(misa) (3/4/1)>> loss: 1.1368  Has0_acc_2: 0.6944  Has0_F1_score: 0.8086  Non0_acc_2: 0.6339  Non0_F1_score: 0.7696  Acc_3: 0.5446  F1_score_3: 0.6951 
+2021-02-02 09:18:34:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9740 
+2021-02-02 09:18:50:INFO:TRAIN-(misa) (4/5/1)>> loss: 1.0821  Has0_acc_2: 0.6901  Has0_F1_score: 0.8097  Non0_acc_2: 0.6348  Non0_F1_score: 0.7725  Acc_3: 0.5409  F1_score_3: 0.6967 
+2021-02-02 09:18:52:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9752 
+2021-02-02 09:19:09:INFO:TRAIN-(misa) (5/6/1)>> loss: 1.0511  Has0_acc_2: 0.6915  Has0_F1_score: 0.8158  Non0_acc_2: 0.6374  Non0_F1_score: 0.7772  Acc_3: 0.5409  F1_score_3: 0.7009 
+2021-02-02 09:19:11:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9828 
+2021-02-02 09:19:27:INFO:TRAIN-(misa) (6/7/1)>> loss: 1.0386  Has0_acc_2: 0.6893  Has0_F1_score: 0.8099  Non0_acc_2: 0.6348  Non0_F1_score: 0.7727  Acc_3: 0.5402  F1_score_3: 0.6968 
+2021-02-02 09:19:29:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9809 
+2021-02-02 09:19:46:INFO:TRAIN-(misa) (7/8/1)>> loss: 1.0257  Has0_acc_2: 0.6923  Has0_F1_score: 0.8169  Non0_acc_2: 0.6374  Non0_F1_score: 0.7772  Acc_3: 0.5409  F1_score_3: 0.7011 
+2021-02-02 09:19:48:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9826 
+2021-02-02 09:20:05:INFO:TRAIN-(misa) (8/9/1)>> loss: 1.0245  Has0_acc_2: 0.6908  Has0_F1_score: 0.8147  Non0_acc_2: 0.6365  Non0_F1_score: 0.7759  Acc_3: 0.5402  F1_score_3: 0.6998 
+2021-02-02 09:20:06:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9795 
+2021-02-02 09:20:09:INFO:TEST-(misa) >>  Has0_acc_2: 0.6937  Has0_F1_score: 0.8191  Non0_acc_2: 0.6392  Non0_F1_score: 0.7799  Acc_3: 0.5427  F1_score_3: 0.7035  Loss: 0.9737 
+2021-02-02 09:20:09:INFO:Start saving results...
+2021-02-02 09:20:09:INFO:Results are saved to results/results/sims-misa-classification-tune.csv...
+2021-02-02 09:20:09:INFO:########################################misa-(3/50)########################################
+2021-02-02 09:20:09:INFO:batch_size:32
+2021-02-02 09:20:09:INFO:learning_rate:0.0001
+2021-02-02 09:20:09:INFO:hidden_size:256
+2021-02-02 09:20:09:INFO:dropout:0.5
+2021-02-02 09:20:09:INFO:reverse_grad_weight:1.0
+2021-02-02 09:20:09:INFO:diff_weight:0.1
+2021-02-02 09:20:09:INFO:sim_weight:0.8
+2021-02-02 09:20:09:INFO:sp_weight:1.0
+2021-02-02 09:20:09:INFO:recon_weight:0.8
+2021-02-02 09:20:09:INFO:grad_clip:-1.0
+2021-02-02 09:20:09:INFO:weight_decay:0.0
+2021-02-02 09:20:09:INFO:##########################################################################################
+2021-02-02 09:20:09:INFO:Start running misa...
+2021-02-02 09:20:09:INFO:Find gpu: 2, with memory: 3267166208 left!
+2021-02-02 09:20:09:INFO:Let's use 1 GPUs!
+2021-02-02 09:20:10:INFO:train samples: (1368,)
+2021-02-02 09:20:11:INFO:valid samples: (456,)
+2021-02-02 09:20:12:INFO:test samples: (457,)
+2021-02-02 09:20:12:INFO:Model name 'pretrained_model/bert_cn' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased, bert-base-finnish-cased-v1, bert-base-finnish-uncased-v1, bert-base-dutch-cased). Assuming 'pretrained_model/bert_cn' is a path, a model identifier, or url to a directory containing tokenizer files.
+2021-02-02 09:20:12:INFO:Didn't find file pretrained_model/bert_cn/added_tokens.json. We won't load it.
+2021-02-02 09:20:12:INFO:Didn't find file pretrained_model/bert_cn/special_tokens_map.json. We won't load it.
+2021-02-02 09:20:12:INFO:Didn't find file pretrained_model/bert_cn/tokenizer_config.json. We won't load it.
+2021-02-02 09:20:12:INFO:loading file pretrained_model/bert_cn/vocab.txt
+2021-02-02 09:20:12:INFO:loading file None
+2021-02-02 09:20:12:INFO:loading file None
+2021-02-02 09:20:12:INFO:loading file None
+2021-02-02 09:20:12:INFO:loading configuration file pretrained_model/bert_cn/config.json
+2021-02-02 09:20:12:INFO:Model config BertConfig {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2021-02-02 09:20:12:INFO:loading weights file pretrained_model/bert_cn/pytorch_model.bin
+2021-02-02 09:20:14:INFO:The model has 126366319 trainable parameters
+2021-02-02 09:20:26:INFO:TRAIN-(misa) (1/1/1)>> loss: 2.5051  Has0_acc_2: 0.6696  Has0_F1_score: 0.7351  Non0_acc_2: 0.5909  Non0_F1_score: 0.6943  Acc_3: 0.5256  F1_score_3: 0.6225 
+2021-02-02 09:20:28:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9300 
+2021-02-02 09:20:42:INFO:TRAIN-(misa) (1/2/1)>> loss: 1.6320  Has0_acc_2: 0.7339  Has0_F1_score: 0.7444  Non0_acc_2: 0.5754  Non0_F1_score: 0.6298  Acc_3: 0.6250  F1_score_3: 0.6869 
+2021-02-02 09:20:43:INFO:VAL-(misa) >>  Has0_acc_2: 0.7303  Has0_F1_score: 0.7271  Non0_acc_2: 0.5504  Non0_F1_score: 0.5717  Acc_3: 0.6513  F1_score_3: 0.7069  Loss: 0.8563 
+2021-02-02 09:20:58:INFO:TRAIN-(misa) (1/3/1)>> loss: 1.1686  Has0_acc_2: 0.8077  Has0_F1_score: 0.8033  Non0_acc_2: 0.5891  Non0_F1_score: 0.6008  Acc_3: 0.7376  F1_score_3: 0.7908 
+2021-02-02 09:20:59:INFO:VAL-(misa) >>  Has0_acc_2: 0.7193  Has0_F1_score: 0.7157  Non0_acc_2: 0.5426  Non0_F1_score: 0.5627  Acc_3: 0.6404  F1_score_3: 0.6949  Loss: 0.9799 
+2021-02-02 09:21:12:INFO:TRAIN-(misa) (2/4/1)>> loss: 0.8614  Has0_acc_2: 0.8450  Has0_F1_score: 0.8400  Non0_acc_2: 0.6072  Non0_F1_score: 0.6060  Acc_3: 0.8004  F1_score_3: 0.8404 
+2021-02-02 09:21:14:INFO:VAL-(misa) >>  Has0_acc_2: 0.6689  Has0_F1_score: 0.6582  Non0_acc_2: 0.4884  Non0_F1_score: 0.4814  Acc_3: 0.6075  F1_score_3: 0.6424  Loss: 1.1339 
+2021-02-02 09:21:26:INFO:TRAIN-(misa) (3/5/1)>> loss: 0.6671  Has0_acc_2: 0.8633  Has0_F1_score: 0.8587  Non0_acc_2: 0.6210  Non0_F1_score: 0.6189  Acc_3: 0.8458  F1_score_3: 0.8593 
+2021-02-02 09:21:28:INFO:VAL-(misa) >>  Has0_acc_2: 0.7390  Has0_F1_score: 0.7416  Non0_acc_2: 0.5711  Non0_F1_score: 0.6107  Acc_3: 0.6535  F1_score_3: 0.6841  Loss: 1.2706 
+2021-02-02 09:21:41:INFO:TRAIN-(misa) (4/6/1)>> loss: 0.5317  Has0_acc_2: 0.8721  Has0_F1_score: 0.8680  Non0_acc_2: 0.6270  Non0_F1_score: 0.6287  Acc_3: 0.8889  F1_score_3: 0.8925 
+2021-02-02 09:21:42:INFO:VAL-(misa) >>  Has0_acc_2: 0.7434  Has0_F1_score: 0.7375  Non0_acc_2: 0.5323  Non0_F1_score: 0.5344  Acc_3: 0.6294  F1_score_3: 0.6335  Loss: 1.2422 
+2021-02-02 09:21:55:INFO:TRAIN-(misa) (5/7/1)>> loss: 0.4438  Has0_acc_2: 0.8874  Has0_F1_score: 0.8839  Non0_acc_2: 0.6305  Non0_F1_score: 0.6305  Acc_3: 0.9211  F1_score_3: 0.9216 
+2021-02-02 09:21:57:INFO:VAL-(misa) >>  Has0_acc_2: 0.6754  Has0_F1_score: 0.6626  Non0_acc_2: 0.4393  Non0_F1_score: 0.3911  Acc_3: 0.5965  F1_score_3: 0.5921  Loss: 1.5338 
+2021-02-02 09:22:10:INFO:TRAIN-(misa) (6/8/1)>> loss: 0.3243  Has0_acc_2: 0.8999  Has0_F1_score: 0.8968  Non0_acc_2: 0.6331  Non0_F1_score: 0.6318  Acc_3: 0.9591  F1_score_3: 0.9595 
+2021-02-02 09:22:11:INFO:VAL-(misa) >>  Has0_acc_2: 0.7325  Has0_F1_score: 0.7261  Non0_acc_2: 0.5194  Non0_F1_score: 0.5183  Acc_3: 0.5987  F1_score_3: 0.5958  Loss: 1.5741 
+2021-02-02 09:22:24:INFO:TRAIN-(misa) (7/9/1)>> loss: 0.2784  Has0_acc_2: 0.9130  Has0_F1_score: 0.9107  Non0_acc_2: 0.6357  Non0_F1_score: 0.6361  Acc_3: 0.9715  F1_score_3: 0.9716 
+2021-02-02 09:22:26:INFO:VAL-(misa) >>  Has0_acc_2: 0.7259  Has0_F1_score: 0.7218  Non0_acc_2: 0.5375  Non0_F1_score: 0.5522  Acc_3: 0.6294  F1_score_3: 0.6326  Loss: 1.8006 
+2021-02-02 09:22:38:INFO:TRAIN-(misa) (8/10/1)>> loss: 0.3624  Has0_acc_2: 0.8692  Has0_F1_score: 0.8648  Non0_acc_2: 0.6331  Non0_F1_score: 0.6356  Acc_3: 0.9430  F1_score_3: 0.9434 
+2021-02-02 09:22:40:INFO:VAL-(misa) >>  Has0_acc_2: 0.7061  Has0_F1_score: 0.6976  Non0_acc_2: 0.5013  Non0_F1_score: 0.4941  Acc_3: 0.6250  F1_score_3: 0.6426  Loss: 1.6300 
+2021-02-02 09:22:42:INFO:TEST-(misa) >>  Has0_acc_2: 0.7659  Has0_F1_score: 0.7652  Non0_acc_2: 0.5567  Non0_F1_score: 0.5783  Acc_3: 0.6652  F1_score_3: 0.7228  Loss: 0.8323 
+2021-02-02 09:22:42:INFO:Start saving results...
+2021-02-02 09:22:42:INFO:Results are saved to results/results/sims-misa-classification-tune.csv...
+2021-02-02 09:22:42:INFO:########################################misa-(4/50)########################################
+2021-02-02 09:22:42:INFO:batch_size:16
+2021-02-02 09:22:42:INFO:learning_rate:0.0005
+2021-02-02 09:22:42:INFO:hidden_size:128
+2021-02-02 09:22:42:INFO:dropout:0.0
+2021-02-02 09:22:42:INFO:reverse_grad_weight:0.8
+2021-02-02 09:22:42:INFO:diff_weight:0.5
+2021-02-02 09:22:42:INFO:sim_weight:1.0
+2021-02-02 09:22:42:INFO:sp_weight:0.0
+2021-02-02 09:22:42:INFO:recon_weight:0.5
+2021-02-02 09:22:42:INFO:grad_clip:0.8
+2021-02-02 09:22:42:INFO:weight_decay:0.0
+2021-02-02 09:22:42:INFO:##########################################################################################
+2021-02-02 09:22:42:INFO:Start running misa...
+2021-02-02 09:22:42:INFO:Find gpu: 2, with memory: 3267166208 left!
+2021-02-02 09:22:42:INFO:Let's use 1 GPUs!
+2021-02-02 09:22:43:INFO:train samples: (1368,)
+2021-02-02 09:22:44:INFO:valid samples: (456,)
+2021-02-02 09:22:45:INFO:test samples: (457,)
+2021-02-02 09:22:45:INFO:Model name 'pretrained_model/bert_cn' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased, bert-base-finnish-cased-v1, bert-base-finnish-uncased-v1, bert-base-dutch-cased). Assuming 'pretrained_model/bert_cn' is a path, a model identifier, or url to a directory containing tokenizer files.
+2021-02-02 09:22:45:INFO:Didn't find file pretrained_model/bert_cn/added_tokens.json. We won't load it.
+2021-02-02 09:22:45:INFO:Didn't find file pretrained_model/bert_cn/special_tokens_map.json. We won't load it.
+2021-02-02 09:22:45:INFO:Didn't find file pretrained_model/bert_cn/tokenizer_config.json. We won't load it.
+2021-02-02 09:22:45:INFO:loading file pretrained_model/bert_cn/vocab.txt
+2021-02-02 09:22:45:INFO:loading file None
+2021-02-02 09:22:45:INFO:loading file None
+2021-02-02 09:22:45:INFO:loading file None
+2021-02-02 09:22:45:INFO:loading configuration file pretrained_model/bert_cn/config.json
+2021-02-02 09:22:45:INFO:Model config BertConfig {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2021-02-02 09:22:45:INFO:loading weights file pretrained_model/bert_cn/pytorch_model.bin
+2021-02-02 09:22:47:INFO:The model has 123933167 trainable parameters
+2021-02-02 09:23:04:INFO:TRAIN-(misa) (1/1/1)>> loss: 1.6152  Has0_acc_2: 0.6630  Has0_F1_score: 0.7319  Non0_acc_2: 0.5840  Non0_F1_score: 0.6860  Acc_3: 0.5249  F1_score_3: 0.6329 
+2021-02-02 09:23:06:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 1.0048 
+2021-02-02 09:23:24:INFO:TRAIN-(misa) (1/2/1)>> loss: 1.1020  Has0_acc_2: 0.6681  Has0_F1_score: 0.7458  Non0_acc_2: 0.5935  Non0_F1_score: 0.7022  Acc_3: 0.5278  F1_score_3: 0.6446 
+2021-02-02 09:23:26:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9857 
+2021-02-02 09:23:44:INFO:TRAIN-(misa) (1/3/1)>> loss: 1.0654  Has0_acc_2: 0.6923  Has0_F1_score: 0.8169  Non0_acc_2: 0.6382  Non0_F1_score: 0.7785  Acc_3: 0.5417  F1_score_3: 0.7020 
+2021-02-02 09:23:46:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9908 
+2021-02-02 09:24:03:INFO:TRAIN-(misa) (2/4/1)>> loss: 1.0366  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-02-02 09:24:05:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9882 
+2021-02-02 09:24:21:INFO:TRAIN-(misa) (3/5/1)>> loss: 1.0271  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-02-02 09:24:23:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9782 
+2021-02-02 09:24:40:INFO:TRAIN-(misa) (1/6/1)>> loss: 1.0350  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-02-02 09:24:42:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9800 
+2021-02-02 09:24:59:INFO:TRAIN-(misa) (2/7/1)>> loss: 1.0190  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-02-02 09:25:01:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9779 
+2021-02-02 09:25:20:INFO:TRAIN-(misa) (1/8/1)>> loss: 1.0175  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-02-02 09:25:21:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9852 
+2021-02-02 09:25:38:INFO:TRAIN-(misa) (2/9/1)>> loss: 1.0166  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-02-02 09:25:40:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9884 
+2021-02-02 09:25:57:INFO:TRAIN-(misa) (3/10/1)>> loss: 1.0101  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-02-02 09:25:59:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9809 
+2021-02-02 09:26:16:INFO:TRAIN-(misa) (4/11/1)>> loss: 1.0088  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-02-02 09:26:18:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9824 
+2021-02-02 09:26:35:INFO:TRAIN-(misa) (5/12/1)>> loss: 1.0096  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-02-02 09:26:37:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9890 
+2021-02-02 09:26:54:INFO:TRAIN-(misa) (6/13/1)>> loss: 1.0027  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-02-02 09:26:56:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9805 
+2021-02-02 09:27:13:INFO:TRAIN-(misa) (7/14/1)>> loss: 1.0032  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-02-02 09:27:15:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9846 
+2021-02-02 09:27:32:INFO:TRAIN-(misa) (8/15/1)>> loss: 1.0062  Has0_acc_2: 0.6937  Has0_F1_score: 0.8192  Non0_acc_2: 0.6391  Non0_F1_score: 0.7798  Acc_3: 0.5424  F1_score_3: 0.7033 
+2021-02-02 09:27:33:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9823 
+2021-02-02 09:27:36:INFO:TEST-(misa) >>  Has0_acc_2: 0.6937  Has0_F1_score: 0.8191  Non0_acc_2: 0.6392  Non0_F1_score: 0.7799  Acc_3: 0.5427  F1_score_3: 0.7035  Loss: 0.9833 
+2021-02-02 09:27:36:INFO:Start saving results...
+2021-02-02 09:27:36:INFO:Results are saved to results/results/sims-misa-classification-tune.csv...
+2021-02-02 09:27:36:INFO:########################################misa-(5/50)########################################
+2021-02-02 09:27:36:INFO:batch_size:64
+2021-02-02 09:27:36:INFO:learning_rate:0.0005
+2021-02-02 09:27:36:INFO:hidden_size:64
+2021-02-02 09:27:36:INFO:dropout:0.0
+2021-02-02 09:27:36:INFO:reverse_grad_weight:0.8
+2021-02-02 09:27:36:INFO:diff_weight:0.3
+2021-02-02 09:27:36:INFO:sim_weight:1.0
+2021-02-02 09:27:36:INFO:sp_weight:1.0
+2021-02-02 09:27:36:INFO:recon_weight:0.8
+2021-02-02 09:27:36:INFO:grad_clip:1.0
+2021-02-02 09:27:36:INFO:weight_decay:5e-05
+2021-02-02 09:27:36:INFO:##########################################################################################
+2021-02-02 09:27:36:INFO:Start running misa...
+2021-02-02 09:27:36:INFO:Find gpu: 2, with memory: 3267166208 left!
+2021-02-02 09:27:36:INFO:Let's use 1 GPUs!
+2021-02-02 09:27:37:INFO:train samples: (1368,)
+2021-02-02 09:27:38:INFO:valid samples: (456,)
+2021-02-02 09:27:39:INFO:test samples: (457,)
+2021-02-02 09:27:39:INFO:Model name 'pretrained_model/bert_cn' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased, bert-base-finnish-cased-v1, bert-base-finnish-uncased-v1, bert-base-dutch-cased). Assuming 'pretrained_model/bert_cn' is a path, a model identifier, or url to a directory containing tokenizer files.
+2021-02-02 09:27:39:INFO:Didn't find file pretrained_model/bert_cn/added_tokens.json. We won't load it.
+2021-02-02 09:27:39:INFO:Didn't find file pretrained_model/bert_cn/special_tokens_map.json. We won't load it.
+2021-02-02 09:27:39:INFO:Didn't find file pretrained_model/bert_cn/tokenizer_config.json. We won't load it.
+2021-02-02 09:27:39:INFO:loading file pretrained_model/bert_cn/vocab.txt
+2021-02-02 09:27:39:INFO:loading file None
+2021-02-02 09:27:39:INFO:loading file None
+2021-02-02 09:27:39:INFO:loading file None
+2021-02-02 09:27:39:INFO:loading configuration file pretrained_model/bert_cn/config.json
+2021-02-02 09:27:39:INFO:Model config BertConfig {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2021-02-02 09:27:39:INFO:loading weights file pretrained_model/bert_cn/pytorch_model.bin
+2021-02-02 09:27:41:INFO:The model has 123072943 trainable parameters
+2021-02-02 09:27:42:ERROR:CUDA out of memory. Tried to allocate 80.00 MiB (GPU 2; 7.77 GiB total capacity; 4.54 GiB already allocated; 16.50 MiB free; 172.72 MiB cached)
+2021-02-02 20:19:34:INFO:Start running misa...
+2021-02-02 20:19:34:INFO:<Storage{'is_tune': False, 'train_mode': 'regression', 'modelName': 'misa', 'datasetName': 'sims', 'num_workers': 0, 'model_save_dir': 'results/models', 'res_save_dir': 'results/results/normals', 'gpu_ids': [], 'seeds': [1111, 1112, 1113, 1114, 1115], 'dataPath': '/home/sharing/disk3/dataset/multimodal-sentiment-dataset/StandardDatasets/SIMS/Processed/features/unaligned_39.pkl', 'seq_lens': (39, 400, 55), 'feature_dims': (768, 33, 709), 'train_samples': 1368, 'num_classes': 3, 'language': 'cn', 'KeyEval': 'Loss', 'need_data_aligned': False, 'need_model_aligned': False, 'use_finetune': True, 'use_bert': True, 'early_stop': 8, 'update_epochs': 2, 'rnncell': 'lstm', 'use_cmd_sim': True, 'batch_size': 64, 'learning_rate': 0.0001, 'hidden_size': 128, 'dropout': 0.2, 'reverse_grad_weight': 0.5, 'diff_weight': 0.5, 'sim_weight': 0.5, 'sp_weight': 0.0, 'recon_weight': 0.8, 'grad_clip': 0.8, 'weight_decay': 0.0, 'seed': 1111}>
+2021-02-02 20:19:34:INFO:Find gpu: 1, with memory: 2704080896 left!
+2021-02-02 20:19:34:INFO:Let's use 1 GPUs!
+2021-02-02 20:19:46:INFO:train samples: (1368,)
+2021-02-02 20:19:48:INFO:valid samples: (456,)
+2021-02-02 20:19:49:INFO:test samples: (457,)
+2021-02-02 20:19:49:INFO:Model name 'pretrained_model/bert_cn' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased, bert-base-finnish-cased-v1, bert-base-finnish-uncased-v1, bert-base-dutch-cased). Assuming 'pretrained_model/bert_cn' is a path, a model identifier, or url to a directory containing tokenizer files.
+2021-02-02 20:19:49:INFO:Didn't find file pretrained_model/bert_cn/added_tokens.json. We won't load it.
+2021-02-02 20:19:49:INFO:Didn't find file pretrained_model/bert_cn/special_tokens_map.json. We won't load it.
+2021-02-02 20:19:49:INFO:Didn't find file pretrained_model/bert_cn/tokenizer_config.json. We won't load it.
+2021-02-02 20:19:49:INFO:loading file pretrained_model/bert_cn/vocab.txt
+2021-02-02 20:19:49:INFO:loading file None
+2021-02-02 20:19:49:INFO:loading file None
+2021-02-02 20:19:49:INFO:loading file None
+2021-02-02 20:19:49:INFO:loading configuration file pretrained_model/bert_cn/config.json
+2021-02-02 20:19:49:INFO:Model config BertConfig {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2021-02-02 20:19:49:INFO:loading weights file pretrained_model/bert_cn/pytorch_model.bin
+2021-02-02 20:19:56:INFO:The model has 123932397 trainable parameters
+2021-02-02 20:20:07:INFO:TRAIN-(misa) (1/1/1)>> loss: 1.8970  Mult_acc_2: 0.6440  Mult_acc_3: 0.4481  Mult_acc_5: 0.1952  F1_score: 0.6867  MAE: 0.5927  Corr: 0.0767 
+2021-02-02 20:20:08:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5307  Mult_acc_5: 0.2061  F1_score: 0.8202  MAE: 0.5801  Corr: 0.3496  Loss: 0.4810 
+2021-02-02 20:20:21:INFO:TRAIN-(misa) (1/2/1)>> loss: 1.4607  Mult_acc_2: 0.6674  Mult_acc_3: 0.4576  Mult_acc_5: 0.2083  F1_score: 0.7291  MAE: 0.5923  Corr: 0.0801 
+2021-02-02 20:20:22:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5884  Corr: 0.1990  Loss: 0.5207 
+2021-02-02 20:20:32:INFO:TRAIN-(misa) (2/3/1)>> loss: 1.2564  Mult_acc_2: 0.6352  Mult_acc_3: 0.4547  Mult_acc_5: 0.2054  F1_score: 0.6784  MAE: 0.6035  Corr: 0.0360 
+2021-02-02 20:20:33:INFO:VAL-(misa) >>  Mult_acc_2: 0.6974  Mult_acc_3: 0.4759  Mult_acc_5: 0.2171  F1_score: 0.8195  MAE: 0.5900  Corr: 0.1296  Loss: 0.4494 
+2021-02-02 20:20:45:INFO:TRAIN-(misa) (1/4/1)>> loss: 1.0941  Mult_acc_2: 0.6316  Mult_acc_3: 0.4218  Mult_acc_5: 0.1879  F1_score: 0.6578  MAE: 0.6101  Corr: 0.0185 
+2021-02-02 20:20:47:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5044  Mult_acc_5: 0.2105  F1_score: 0.8202  MAE: 0.5889  Corr: 0.0884  Loss: 0.5138 
+2021-02-02 20:20:57:INFO:TRAIN-(misa) (2/5/1)>> loss: 0.9322  Mult_acc_2: 0.6645  Mult_acc_3: 0.4547  Mult_acc_5: 0.1981  F1_score: 0.7372  MAE: 0.5955  Corr: 0.0345 
+2021-02-02 20:20:58:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5066  Mult_acc_5: 0.2105  F1_score: 0.8202  MAE: 0.5897  Corr: 0.0835  Loss: 0.4633 
+2021-02-02 20:21:09:INFO:TRAIN-(misa) (3/6/1)>> loss: 0.8404  Mult_acc_2: 0.6667  Mult_acc_3: 0.4444  Mult_acc_5: 0.1886  F1_score: 0.7465  MAE: 0.5969  Corr: 0.0294 
+2021-02-02 20:21:10:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5417  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5866  Corr: 0.0781  Loss: 0.4611 
+2021-02-02 20:21:21:INFO:TRAIN-(misa) (4/7/1)>> loss: 0.7559  Mult_acc_2: 0.6601  Mult_acc_3: 0.4335  Mult_acc_5: 0.2010  F1_score: 0.7439  MAE: 0.5926  Corr: 0.0490 
+2021-02-02 20:21:22:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5951  Corr: 0.0819  Loss: 0.4926 
+2021-02-02 20:21:32:INFO:TRAIN-(misa) (5/8/1)>> loss: 0.7155  Mult_acc_2: 0.6893  Mult_acc_3: 0.4839  Mult_acc_5: 0.1981  F1_score: 0.8060  MAE: 0.5953  Corr: 0.0231 
+2021-02-02 20:21:34:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.4583  Mult_acc_5: 0.2193  F1_score: 0.8202  MAE: 0.5922  Corr: 0.0827  Loss: 0.4642 
+2021-02-02 20:21:44:INFO:TRAIN-(misa) (6/9/1)>> loss: 0.6859  Mult_acc_2: 0.6937  Mult_acc_3: 0.4861  Mult_acc_5: 0.2010  F1_score: 0.8039  MAE: 0.5925  Corr: 0.0569 
+2021-02-02 20:21:46:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.4518  Mult_acc_5: 0.2171  F1_score: 0.8202  MAE: 0.5923  Corr: 0.0913  Loss: 0.4596 
+2021-02-02 20:21:56:INFO:TRAIN-(misa) (7/10/1)>> loss: 0.6552  Mult_acc_2: 0.6849  Mult_acc_3: 0.4664  Mult_acc_5: 0.2061  F1_score: 0.7854  MAE: 0.5904  Corr: 0.0687 
+2021-02-02 20:21:58:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5876  Corr: 0.0930  Loss: 0.4822 
+2021-02-02 20:22:08:INFO:TRAIN-(misa) (8/11/1)>> loss: 0.6462  Mult_acc_2: 0.6871  Mult_acc_3: 0.4759  Mult_acc_5: 0.1923  F1_score: 0.8003  MAE: 0.5902  Corr: 0.0730 
+2021-02-02 20:22:09:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5351  Mult_acc_5: 0.2083  F1_score: 0.8202  MAE: 0.5887  Corr: 0.0851  Loss: 0.4670 
+2021-02-02 20:22:11:INFO:TEST-(misa) >>  Mult_acc_2: 0.6958  Mult_acc_3: 0.4880  Mult_acc_5: 0.2144  F1_score: 0.8184  MAE: 0.5874  Corr: 0.2263  Loss: 0.4666 
+2021-02-02 20:22:16:INFO:Start running misa...
+2021-02-02 20:22:16:INFO:<Storage{'is_tune': False, 'train_mode': 'regression', 'modelName': 'misa', 'datasetName': 'sims', 'num_workers': 0, 'model_save_dir': 'results/models', 'res_save_dir': 'results/results/normals', 'gpu_ids': [1], 'seeds': [1111, 1112, 1113, 1114, 1115], 'dataPath': '/home/sharing/disk3/dataset/multimodal-sentiment-dataset/StandardDatasets/SIMS/Processed/features/unaligned_39.pkl', 'seq_lens': (39, 400, 55), 'feature_dims': (768, 33, 709), 'train_samples': 1368, 'num_classes': 3, 'language': 'cn', 'KeyEval': 'Loss', 'need_data_aligned': False, 'need_model_aligned': False, 'use_finetune': True, 'use_bert': True, 'early_stop': 8, 'update_epochs': 2, 'rnncell': 'lstm', 'use_cmd_sim': True, 'batch_size': 64, 'learning_rate': 0.0001, 'hidden_size': 128, 'dropout': 0.2, 'reverse_grad_weight': 0.5, 'diff_weight': 0.5, 'sim_weight': 0.5, 'sp_weight': 0.0, 'recon_weight': 0.8, 'grad_clip': 0.8, 'weight_decay': 0.0, 'seed': 1112}>
+2021-02-02 20:22:16:INFO:Let's use 1 GPUs!
+2021-02-02 20:22:17:INFO:train samples: (1368,)
+2021-02-02 20:22:18:INFO:valid samples: (456,)
+2021-02-02 20:22:20:INFO:test samples: (457,)
+2021-02-02 20:22:20:INFO:Model name 'pretrained_model/bert_cn' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased, bert-base-finnish-cased-v1, bert-base-finnish-uncased-v1, bert-base-dutch-cased). Assuming 'pretrained_model/bert_cn' is a path, a model identifier, or url to a directory containing tokenizer files.
+2021-02-02 20:22:20:INFO:Didn't find file pretrained_model/bert_cn/added_tokens.json. We won't load it.
+2021-02-02 20:22:20:INFO:Didn't find file pretrained_model/bert_cn/special_tokens_map.json. We won't load it.
+2021-02-02 20:22:20:INFO:Didn't find file pretrained_model/bert_cn/tokenizer_config.json. We won't load it.
+2021-02-02 20:22:20:INFO:loading file pretrained_model/bert_cn/vocab.txt
+2021-02-02 20:22:20:INFO:loading file None
+2021-02-02 20:22:20:INFO:loading file None
+2021-02-02 20:22:20:INFO:loading file None
+2021-02-02 20:22:20:INFO:loading configuration file pretrained_model/bert_cn/config.json
+2021-02-02 20:22:20:INFO:Model config BertConfig {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2021-02-02 20:22:20:INFO:loading weights file pretrained_model/bert_cn/pytorch_model.bin
+2021-02-02 20:22:23:INFO:The model has 123932397 trainable parameters
+2021-02-02 20:22:33:INFO:TRAIN-(misa) (1/1/2)>> loss: 1.9573  Mult_acc_2: 0.6287  Mult_acc_3: 0.4393  Mult_acc_5: 0.1893  F1_score: 0.6617  MAE: 0.6194  Corr: 0.0300 
+2021-02-02 20:22:34:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5329  Mult_acc_5: 0.2061  F1_score: 0.8202  MAE: 0.5873  Corr: 0.1030  Loss: 0.4625 
+2021-02-02 20:22:47:INFO:TRAIN-(misa) (1/2/2)>> loss: 1.5148  Mult_acc_2: 0.6696  Mult_acc_3: 0.4627  Mult_acc_5: 0.2032  F1_score: 0.7336  MAE: 0.5878  Corr: 0.1079 
+2021-02-02 20:22:48:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5351  Mult_acc_5: 0.2105  F1_score: 0.8202  MAE: 0.5899  Corr: 0.0233  Loss: 0.5076 
+2021-02-02 20:22:58:INFO:TRAIN-(misa) (2/3/2)>> loss: 1.3170  Mult_acc_2: 0.6718  Mult_acc_3: 0.4532  Mult_acc_5: 0.1981  F1_score: 0.7389  MAE: 0.5937  Corr: 0.0727 
+2021-02-02 20:22:59:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.4759  Mult_acc_5: 0.1952  F1_score: 0.8202  MAE: 0.5922  Corr: -0.0099  Loss: 0.4792 
+2021-02-02 20:23:08:INFO:TRAIN-(misa) (3/4/2)>> loss: 1.1428  Mult_acc_2: 0.6637  Mult_acc_3: 0.4306  Mult_acc_5: 0.1996  F1_score: 0.7304  MAE: 0.5917  Corr: 0.0663 
+2021-02-02 20:23:09:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5263  Mult_acc_5: 0.2105  F1_score: 0.8202  MAE: 0.5921  Corr: -0.0233  Loss: 0.4747 
+2021-02-02 20:23:18:INFO:TRAIN-(misa) (4/5/2)>> loss: 1.0098  Mult_acc_2: 0.6791  Mult_acc_3: 0.4620  Mult_acc_5: 0.1944  F1_score: 0.7609  MAE: 0.5928  Corr: 0.0827 
+2021-02-02 20:23:19:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.4627  Mult_acc_5: 0.1930  F1_score: 0.8202  MAE: 0.5939  Corr: -0.0312  Loss: 0.5079 
+2021-02-02 20:23:29:INFO:TRAIN-(misa) (5/6/2)>> loss: 0.9058  Mult_acc_2: 0.6725  Mult_acc_3: 0.4642  Mult_acc_5: 0.1944  F1_score: 0.7604  MAE: 0.5930  Corr: 0.0675 
+2021-02-02 20:23:31:INFO:VAL-(misa) >>  Mult_acc_2: 0.7018  Mult_acc_3: 0.3618  Mult_acc_5: 0.1974  F1_score: 0.8182  MAE: 0.5977  Corr: -0.0389  Loss: 0.4708 
+2021-02-02 20:23:41:INFO:TRAIN-(misa) (6/7/2)>> loss: 0.8206  Mult_acc_2: 0.6637  Mult_acc_3: 0.4444  Mult_acc_5: 0.1974  F1_score: 0.7362  MAE: 0.5943  Corr: 0.0613 
+2021-02-02 20:23:42:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5373  Mult_acc_5: 0.2105  F1_score: 0.8202  MAE: 0.5927  Corr: -0.0525  Loss: 0.5143 
+2021-02-02 20:23:53:INFO:TRAIN-(misa) (7/8/2)>> loss: 0.7597  Mult_acc_2: 0.6915  Mult_acc_3: 0.4803  Mult_acc_5: 0.1996  F1_score: 0.7972  MAE: 0.5897  Corr: 0.0698 
+2021-02-02 20:23:54:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5966  Corr: -0.0576  Loss: 0.4963 
+2021-02-02 20:24:05:INFO:TRAIN-(misa) (8/9/2)>> loss: 0.7337  Mult_acc_2: 0.6703  Mult_acc_3: 0.4430  Mult_acc_5: 0.1944  F1_score: 0.7427  MAE: 0.5977  Corr: 0.0244 
+2021-02-02 20:24:06:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5972  Corr: -0.0587  Loss: 0.4835 
+2021-02-02 20:24:08:INFO:TEST-(misa) >>  Mult_acc_2: 0.6937  Mult_acc_3: 0.5383  Mult_acc_5: 0.2144  F1_score: 0.8191  MAE: 0.5849  Corr: 0.1576  Loss: 0.4628 
+2021-02-02 20:24:13:INFO:Start running misa...
+2021-02-02 20:24:13:INFO:<Storage{'is_tune': False, 'train_mode': 'regression', 'modelName': 'misa', 'datasetName': 'sims', 'num_workers': 0, 'model_save_dir': 'results/models', 'res_save_dir': 'results/results/normals', 'gpu_ids': [1], 'seeds': [1111, 1112, 1113, 1114, 1115], 'dataPath': '/home/sharing/disk3/dataset/multimodal-sentiment-dataset/StandardDatasets/SIMS/Processed/features/unaligned_39.pkl', 'seq_lens': (39, 400, 55), 'feature_dims': (768, 33, 709), 'train_samples': 1368, 'num_classes': 3, 'language': 'cn', 'KeyEval': 'Loss', 'need_data_aligned': False, 'need_model_aligned': False, 'use_finetune': True, 'use_bert': True, 'early_stop': 8, 'update_epochs': 2, 'rnncell': 'lstm', 'use_cmd_sim': True, 'batch_size': 64, 'learning_rate': 0.0001, 'hidden_size': 128, 'dropout': 0.2, 'reverse_grad_weight': 0.5, 'diff_weight': 0.5, 'sim_weight': 0.5, 'sp_weight': 0.0, 'recon_weight': 0.8, 'grad_clip': 0.8, 'weight_decay': 0.0, 'seed': 1113}>
+2021-02-02 20:24:13:INFO:Let's use 1 GPUs!
+2021-02-02 20:24:14:INFO:train samples: (1368,)
+2021-02-02 20:24:15:INFO:valid samples: (456,)
+2021-02-02 20:24:17:INFO:test samples: (457,)
+2021-02-02 20:24:17:INFO:Model name 'pretrained_model/bert_cn' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased, bert-base-finnish-cased-v1, bert-base-finnish-uncased-v1, bert-base-dutch-cased). Assuming 'pretrained_model/bert_cn' is a path, a model identifier, or url to a directory containing tokenizer files.
+2021-02-02 20:24:17:INFO:Didn't find file pretrained_model/bert_cn/added_tokens.json. We won't load it.
+2021-02-02 20:24:17:INFO:Didn't find file pretrained_model/bert_cn/special_tokens_map.json. We won't load it.
+2021-02-02 20:24:17:INFO:Didn't find file pretrained_model/bert_cn/tokenizer_config.json. We won't load it.
+2021-02-02 20:24:17:INFO:loading file pretrained_model/bert_cn/vocab.txt
+2021-02-02 20:24:17:INFO:loading file None
+2021-02-02 20:24:17:INFO:loading file None
+2021-02-02 20:24:17:INFO:loading file None
+2021-02-02 20:24:17:INFO:loading configuration file pretrained_model/bert_cn/config.json
+2021-02-02 20:24:17:INFO:Model config BertConfig {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2021-02-02 20:24:17:INFO:loading weights file pretrained_model/bert_cn/pytorch_model.bin
+2021-02-02 20:24:20:INFO:The model has 123932397 trainable parameters
+2021-02-02 20:24:30:INFO:TRAIN-(misa) (1/1/3)>> loss: 1.8901  Mult_acc_2: 0.6170  Mult_acc_3: 0.4357  Mult_acc_5: 0.2208  F1_score: 0.6473  MAE: 0.6119  Corr: 0.0129 
+2021-02-02 20:24:32:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5417  Mult_acc_5: 0.2149  F1_score: 0.8202  MAE: 0.5812  Corr: 0.1497  Loss: 0.4772 
+2021-02-02 20:24:44:INFO:TRAIN-(misa) (1/2/3)>> loss: 1.4395  Mult_acc_2: 0.6659  Mult_acc_3: 0.4291  Mult_acc_5: 0.1842  F1_score: 0.7302  MAE: 0.5910  Corr: 0.0946 
+2021-02-02 20:24:45:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5351  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5837  Corr: 0.1035  Loss: 0.4632 
+2021-02-02 20:24:57:INFO:TRAIN-(misa) (1/3/3)>> loss: 1.2582  Mult_acc_2: 0.6462  Mult_acc_3: 0.4444  Mult_acc_5: 0.2003  F1_score: 0.7075  MAE: 0.5920  Corr: 0.0543 
+2021-02-02 20:24:58:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5241  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5865  Corr: 0.0863  Loss: 0.4896 
+2021-02-02 20:25:09:INFO:TRAIN-(misa) (2/4/3)>> loss: 1.0894  Mult_acc_2: 0.6871  Mult_acc_3: 0.4722  Mult_acc_5: 0.2032  F1_score: 0.7683  MAE: 0.5897  Corr: 0.0611 
+2021-02-02 20:25:11:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5417  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5859  Corr: 0.0793  Loss: 0.4676 
+2021-02-02 20:25:21:INFO:TRAIN-(misa) (3/5/3)>> loss: 0.9737  Mult_acc_2: 0.6689  Mult_acc_3: 0.4518  Mult_acc_5: 0.1937  F1_score: 0.7477  MAE: 0.5964  Corr: 0.0316 
+2021-02-02 20:25:23:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5329  Mult_acc_5: 0.2105  F1_score: 0.8202  MAE: 0.5864  Corr: 0.0803  Loss: 0.4626 
+2021-02-02 20:25:35:INFO:TRAIN-(misa) (1/6/3)>> loss: 0.8636  Mult_acc_2: 0.6499  Mult_acc_3: 0.4408  Mult_acc_5: 0.2076  F1_score: 0.7132  MAE: 0.5915  Corr: 0.0587 
+2021-02-02 20:25:36:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5931  Corr: 0.0910  Loss: 0.4645 
+2021-02-02 20:25:47:INFO:TRAIN-(misa) (2/7/3)>> loss: 0.7916  Mult_acc_2: 0.6601  Mult_acc_3: 0.4598  Mult_acc_5: 0.1974  F1_score: 0.7171  MAE: 0.5913  Corr: 0.0868 
+2021-02-02 20:25:48:INFO:VAL-(misa) >>  Mult_acc_2: 0.6864  Mult_acc_3: 0.3772  Mult_acc_5: 0.1974  F1_score: 0.7956  MAE: 0.5916  Corr: 0.0922  Loss: 0.4581 
+2021-02-02 20:26:01:INFO:TRAIN-(misa) (1/8/3)>> loss: 0.7437  Mult_acc_2: 0.6747  Mult_acc_3: 0.4547  Mult_acc_5: 0.2003  F1_score: 0.7404  MAE: 0.5935  Corr: 0.0338 
+2021-02-02 20:26:02:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.4430  Mult_acc_5: 0.2105  F1_score: 0.8202  MAE: 0.5916  Corr: 0.0722  Loss: 0.4945 
+2021-02-02 20:26:13:INFO:TRAIN-(misa) (2/9/3)>> loss: 0.6944  Mult_acc_2: 0.6732  Mult_acc_3: 0.4722  Mult_acc_5: 0.1930  F1_score: 0.7730  MAE: 0.5916  Corr: 0.0518 
+2021-02-02 20:26:14:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.4496  Mult_acc_5: 0.2105  F1_score: 0.8202  MAE: 0.5924  Corr: 0.0635  Loss: 0.4652 
+2021-02-02 20:26:25:INFO:TRAIN-(misa) (3/10/3)>> loss: 0.6607  Mult_acc_2: 0.6732  Mult_acc_3: 0.4664  Mult_acc_5: 0.2061  F1_score: 0.7686  MAE: 0.5933  Corr: 0.0390 
+2021-02-02 20:26:27:INFO:VAL-(misa) >>  Mult_acc_2: 0.6930  Mult_acc_3: 0.4035  Mult_acc_5: 0.2039  F1_score: 0.8169  MAE: 0.5933  Corr: 0.0604  Loss: 0.4581 
+2021-02-02 20:26:38:INFO:TRAIN-(misa) (4/11/3)>> loss: 0.6269  Mult_acc_2: 0.6791  Mult_acc_3: 0.4883  Mult_acc_5: 0.2039  F1_score: 0.7770  MAE: 0.5866  Corr: 0.0947 
+2021-02-02 20:26:39:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5417  Mult_acc_5: 0.2105  F1_score: 0.8202  MAE: 0.5876  Corr: 0.0496  Loss: 0.4750 
+2021-02-02 20:26:50:INFO:TRAIN-(misa) (5/12/3)>> loss: 0.6159  Mult_acc_2: 0.6871  Mult_acc_3: 0.4810  Mult_acc_5: 0.2083  F1_score: 0.7831  MAE: 0.5867  Corr: 0.0819 
+2021-02-02 20:26:52:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5883  Corr: 0.0482  Loss: 0.4652 
+2021-02-02 20:27:03:INFO:TRAIN-(misa) (6/13/3)>> loss: 0.5998  Mult_acc_2: 0.6762  Mult_acc_3: 0.4130  Mult_acc_5: 0.1849  F1_score: 0.7448  MAE: 0.5892  Corr: 0.0936 
+2021-02-02 20:27:04:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5979  Corr: 0.0428  Loss: 0.5193 
+2021-02-02 20:27:15:INFO:TRAIN-(misa) (7/14/3)>> loss: 0.5888  Mult_acc_2: 0.6835  Mult_acc_3: 0.4539  Mult_acc_5: 0.1944  F1_score: 0.7759  MAE: 0.5909  Corr: 0.0698 
+2021-02-02 20:27:16:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5877  Corr: 0.0433  Loss: 0.4525 
+2021-02-02 20:27:29:INFO:TRAIN-(misa) (1/15/3)>> loss: 0.5688  Mult_acc_2: 0.6901  Mult_acc_3: 0.5175  Mult_acc_5: 0.2091  F1_score: 0.8034  MAE: 0.5797  Corr: 0.1613 
+2021-02-02 20:27:30:INFO:VAL-(misa) >>  Mult_acc_2: 0.6228  Mult_acc_3: 0.2039  Mult_acc_5: 0.1557  F1_score: 0.6695  MAE: 0.6012  Corr: 0.0299  Loss: 0.4815 
+2021-02-02 20:27:41:INFO:TRAIN-(misa) (2/16/3)>> loss: 0.5679  Mult_acc_2: 0.6813  Mult_acc_3: 0.4635  Mult_acc_5: 0.2003  F1_score: 0.7708  MAE: 0.5889  Corr: 0.0779 
+2021-02-02 20:27:42:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5395  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5879  Corr: 0.0326  Loss: 0.4810 
+2021-02-02 20:27:53:INFO:TRAIN-(misa) (3/17/3)>> loss: 0.5495  Mult_acc_2: 0.6886  Mult_acc_3: 0.5154  Mult_acc_5: 0.2142  F1_score: 0.8075  MAE: 0.5824  Corr: 0.1345 
+2021-02-02 20:27:55:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.4956  Mult_acc_5: 0.1952  F1_score: 0.8162  MAE: 0.5912  Corr: 0.0164  Loss: 0.4693 
+2021-02-02 20:28:05:INFO:TRAIN-(misa) (4/18/3)>> loss: 0.5471  Mult_acc_2: 0.6930  Mult_acc_3: 0.4949  Mult_acc_5: 0.2032  F1_score: 0.8077  MAE: 0.5869  Corr: 0.1224 
+2021-02-02 20:28:07:INFO:VAL-(misa) >>  Mult_acc_2: 0.6930  Mult_acc_3: 0.5066  Mult_acc_5: 0.1996  F1_score: 0.8169  MAE: 0.5906  Corr: 0.0118  Loss: 0.4798 
+2021-02-02 20:28:18:INFO:TRAIN-(misa) (5/19/3)>> loss: 0.5446  Mult_acc_2: 0.6871  Mult_acc_3: 0.4686  Mult_acc_5: 0.2003  F1_score: 0.7920  MAE: 0.5862  Corr: 0.1173 
+2021-02-02 20:28:19:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5395  Mult_acc_5: 0.2105  F1_score: 0.8202  MAE: 0.5908  Corr: 0.0010  Loss: 0.4763 
+2021-02-02 20:28:30:INFO:TRAIN-(misa) (6/20/3)>> loss: 0.5477  Mult_acc_2: 0.6886  Mult_acc_3: 0.4825  Mult_acc_5: 0.2083  F1_score: 0.7863  MAE: 0.5820  Corr: 0.1217 
+2021-02-02 20:28:31:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5395  Mult_acc_5: 0.2105  F1_score: 0.8202  MAE: 0.5918  Corr: 0.0053  Loss: 0.4919 
+2021-02-02 20:28:42:INFO:TRAIN-(misa) (7/21/3)>> loss: 0.5379  Mult_acc_2: 0.6864  Mult_acc_3: 0.4781  Mult_acc_5: 0.2047  F1_score: 0.7909  MAE: 0.5786  Corr: 0.1853 
+2021-02-02 20:28:43:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5395  Mult_acc_5: 0.2105  F1_score: 0.8202  MAE: 0.5911  Corr: 0.0091  Loss: 0.4814 
+2021-02-02 20:28:54:INFO:TRAIN-(misa) (8/22/3)>> loss: 0.5367  Mult_acc_2: 0.6864  Mult_acc_3: 0.4956  Mult_acc_5: 0.2061  F1_score: 0.7875  MAE: 0.5810  Corr: 0.1737 
+2021-02-02 20:28:55:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5154  Mult_acc_5: 0.2039  F1_score: 0.8162  MAE: 0.5905  Corr: 0.0067  Loss: 0.5015 
+2021-02-02 20:28:57:INFO:TEST-(misa) >>  Mult_acc_2: 0.6937  Mult_acc_3: 0.5427  Mult_acc_5: 0.2123  F1_score: 0.8191  MAE: 0.5837  Corr: 0.1574  Loss: 0.4806 
+2021-02-02 20:29:02:INFO:Start running misa...
+2021-02-02 20:29:02:INFO:<Storage{'is_tune': False, 'train_mode': 'regression', 'modelName': 'misa', 'datasetName': 'sims', 'num_workers': 0, 'model_save_dir': 'results/models', 'res_save_dir': 'results/results/normals', 'gpu_ids': [1], 'seeds': [1111, 1112, 1113, 1114, 1115], 'dataPath': '/home/sharing/disk3/dataset/multimodal-sentiment-dataset/StandardDatasets/SIMS/Processed/features/unaligned_39.pkl', 'seq_lens': (39, 400, 55), 'feature_dims': (768, 33, 709), 'train_samples': 1368, 'num_classes': 3, 'language': 'cn', 'KeyEval': 'Loss', 'need_data_aligned': False, 'need_model_aligned': False, 'use_finetune': True, 'use_bert': True, 'early_stop': 8, 'update_epochs': 2, 'rnncell': 'lstm', 'use_cmd_sim': True, 'batch_size': 64, 'learning_rate': 0.0001, 'hidden_size': 128, 'dropout': 0.2, 'reverse_grad_weight': 0.5, 'diff_weight': 0.5, 'sim_weight': 0.5, 'sp_weight': 0.0, 'recon_weight': 0.8, 'grad_clip': 0.8, 'weight_decay': 0.0, 'seed': 1114}>
+2021-02-02 20:29:02:INFO:Let's use 1 GPUs!
+2021-02-02 20:29:03:INFO:train samples: (1368,)
+2021-02-02 20:29:04:INFO:valid samples: (456,)
+2021-02-02 20:29:06:INFO:test samples: (457,)
+2021-02-02 20:29:06:INFO:Model name 'pretrained_model/bert_cn' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased, bert-base-finnish-cased-v1, bert-base-finnish-uncased-v1, bert-base-dutch-cased). Assuming 'pretrained_model/bert_cn' is a path, a model identifier, or url to a directory containing tokenizer files.
+2021-02-02 20:29:06:INFO:Didn't find file pretrained_model/bert_cn/added_tokens.json. We won't load it.
+2021-02-02 20:29:06:INFO:Didn't find file pretrained_model/bert_cn/special_tokens_map.json. We won't load it.
+2021-02-02 20:29:06:INFO:Didn't find file pretrained_model/bert_cn/tokenizer_config.json. We won't load it.
+2021-02-02 20:29:06:INFO:loading file pretrained_model/bert_cn/vocab.txt
+2021-02-02 20:29:06:INFO:loading file None
+2021-02-02 20:29:06:INFO:loading file None
+2021-02-02 20:29:06:INFO:loading file None
+2021-02-02 20:29:06:INFO:loading configuration file pretrained_model/bert_cn/config.json
+2021-02-02 20:29:06:INFO:Model config BertConfig {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2021-02-02 20:29:06:INFO:loading weights file pretrained_model/bert_cn/pytorch_model.bin
+2021-02-02 20:29:09:INFO:The model has 123932397 trainable parameters
+2021-02-02 20:29:20:INFO:TRAIN-(misa) (1/1/4)>> loss: 1.8729  Mult_acc_2: 0.6433  Mult_acc_3: 0.4773  Mult_acc_5: 0.2076  F1_score: 0.6858  MAE: 0.6012  Corr: 0.0550 
+2021-02-02 20:29:21:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5329  Mult_acc_5: 0.2083  F1_score: 0.8202  MAE: 0.5833  Corr: 0.1794  Loss: 0.4553 
+2021-02-02 20:29:34:INFO:TRAIN-(misa) (1/2/4)>> loss: 1.4213  Mult_acc_2: 0.6557  Mult_acc_3: 0.4423  Mult_acc_5: 0.1842  F1_score: 0.7172  MAE: 0.5911  Corr: 0.0997 
+2021-02-02 20:29:35:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5417  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5883  Corr: 0.0776  Loss: 0.4527 
+2021-02-02 20:29:47:INFO:TRAIN-(misa) (1/3/4)>> loss: 1.1911  Mult_acc_2: 0.6879  Mult_acc_3: 0.4722  Mult_acc_5: 0.2032  F1_score: 0.7780  MAE: 0.5925  Corr: 0.0679 
+2021-02-02 20:29:49:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5417  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5869  Corr: 0.0763  Loss: 0.4592 
+2021-02-02 20:29:59:INFO:TRAIN-(misa) (2/4/4)>> loss: 1.0148  Mult_acc_2: 0.6798  Mult_acc_3: 0.4788  Mult_acc_5: 0.1996  F1_score: 0.7717  MAE: 0.5892  Corr: 0.0906 
+2021-02-02 20:30:01:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5329  Mult_acc_5: 0.2171  F1_score: 0.8202  MAE: 0.5871  Corr: 0.0832  Loss: 0.4552 
+2021-02-02 20:30:11:INFO:TRAIN-(misa) (3/5/4)>> loss: 0.8849  Mult_acc_2: 0.6806  Mult_acc_3: 0.4817  Mult_acc_5: 0.2003  F1_score: 0.7770  MAE: 0.5879  Corr: 0.0962 
+2021-02-02 20:30:13:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5241  Mult_acc_5: 0.2149  F1_score: 0.8202  MAE: 0.5875  Corr: 0.0878  Loss: 0.4836 
+2021-02-02 20:30:23:INFO:TRAIN-(misa) (4/6/4)>> loss: 0.7927  Mult_acc_2: 0.6798  Mult_acc_3: 0.4708  Mult_acc_5: 0.2003  F1_score: 0.7749  MAE: 0.5883  Corr: 0.0895 
+2021-02-02 20:30:25:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5417  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5845  Corr: 0.1127  Loss: 0.4614 
+2021-02-02 20:30:36:INFO:TRAIN-(misa) (5/7/4)>> loss: 0.7465  Mult_acc_2: 0.6842  Mult_acc_3: 0.4459  Mult_acc_5: 0.1871  F1_score: 0.7719  MAE: 0.5900  Corr: 0.0854 
+2021-02-02 20:30:37:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5871  Corr: 0.1045  Loss: 0.4876 
+2021-02-02 20:30:48:INFO:TRAIN-(misa) (6/8/4)>> loss: 0.7071  Mult_acc_2: 0.6798  Mult_acc_3: 0.4678  Mult_acc_5: 0.1923  F1_score: 0.7601  MAE: 0.5924  Corr: 0.0832 
+2021-02-02 20:30:49:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5395  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5848  Corr: 0.1070  Loss: 0.4532 
+2021-02-02 20:31:00:INFO:TRAIN-(misa) (7/9/4)>> loss: 0.6747  Mult_acc_2: 0.6842  Mult_acc_3: 0.4518  Mult_acc_5: 0.1864  F1_score: 0.7699  MAE: 0.5903  Corr: 0.0874 
+2021-02-02 20:31:02:INFO:VAL-(misa) >>  Mult_acc_2: 0.6996  Mult_acc_3: 0.5088  Mult_acc_5: 0.2083  F1_score: 0.8188  MAE: 0.5871  Corr: 0.0935  Loss: 0.4844 
+2021-02-02 20:31:13:INFO:TRAIN-(misa) (8/10/4)>> loss: 0.6535  Mult_acc_2: 0.6893  Mult_acc_3: 0.4730  Mult_acc_5: 0.1988  F1_score: 0.7810  MAE: 0.5889  Corr: 0.0957 
+2021-02-02 20:31:14:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5263  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5867  Corr: 0.0784  Loss: 0.4804 
+2021-02-02 20:31:15:INFO:TEST-(misa) >>  Mult_acc_2: 0.6937  Mult_acc_3: 0.5405  Mult_acc_5: 0.2101  F1_score: 0.8191  MAE: 0.5873  Corr: 0.1617  Loss: 0.4816 
+2021-02-02 20:31:21:INFO:Start running misa...
+2021-02-02 20:31:21:INFO:<Storage{'is_tune': False, 'train_mode': 'regression', 'modelName': 'misa', 'datasetName': 'sims', 'num_workers': 0, 'model_save_dir': 'results/models', 'res_save_dir': 'results/results/normals', 'gpu_ids': [1], 'seeds': [1111, 1112, 1113, 1114, 1115], 'dataPath': '/home/sharing/disk3/dataset/multimodal-sentiment-dataset/StandardDatasets/SIMS/Processed/features/unaligned_39.pkl', 'seq_lens': (39, 400, 55), 'feature_dims': (768, 33, 709), 'train_samples': 1368, 'num_classes': 3, 'language': 'cn', 'KeyEval': 'Loss', 'need_data_aligned': False, 'need_model_aligned': False, 'use_finetune': True, 'use_bert': True, 'early_stop': 8, 'update_epochs': 2, 'rnncell': 'lstm', 'use_cmd_sim': True, 'batch_size': 64, 'learning_rate': 0.0001, 'hidden_size': 128, 'dropout': 0.2, 'reverse_grad_weight': 0.5, 'diff_weight': 0.5, 'sim_weight': 0.5, 'sp_weight': 0.0, 'recon_weight': 0.8, 'grad_clip': 0.8, 'weight_decay': 0.0, 'seed': 1115}>
+2021-02-02 20:31:21:INFO:Let's use 1 GPUs!
+2021-02-02 20:31:22:INFO:train samples: (1368,)
+2021-02-02 20:31:23:INFO:valid samples: (456,)
+2021-02-02 20:31:24:INFO:test samples: (457,)
+2021-02-02 20:31:24:INFO:Model name 'pretrained_model/bert_cn' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased, bert-base-finnish-cased-v1, bert-base-finnish-uncased-v1, bert-base-dutch-cased). Assuming 'pretrained_model/bert_cn' is a path, a model identifier, or url to a directory containing tokenizer files.
+2021-02-02 20:31:24:INFO:Didn't find file pretrained_model/bert_cn/added_tokens.json. We won't load it.
+2021-02-02 20:31:24:INFO:Didn't find file pretrained_model/bert_cn/special_tokens_map.json. We won't load it.
+2021-02-02 20:31:24:INFO:Didn't find file pretrained_model/bert_cn/tokenizer_config.json. We won't load it.
+2021-02-02 20:31:24:INFO:loading file pretrained_model/bert_cn/vocab.txt
+2021-02-02 20:31:24:INFO:loading file None
+2021-02-02 20:31:24:INFO:loading file None
+2021-02-02 20:31:24:INFO:loading file None
+2021-02-02 20:31:24:INFO:loading configuration file pretrained_model/bert_cn/config.json
+2021-02-02 20:31:24:INFO:Model config BertConfig {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2021-02-02 20:31:24:INFO:loading weights file pretrained_model/bert_cn/pytorch_model.bin
+2021-02-02 20:31:27:INFO:The model has 123932397 trainable parameters
+2021-02-02 20:31:38:INFO:TRAIN-(misa) (1/1/5)>> loss: 1.9907  Mult_acc_2: 0.6367  Mult_acc_3: 0.4430  Mult_acc_5: 0.1974  F1_score: 0.6797  MAE: 0.6266  Corr: -0.0152 
+2021-02-02 20:31:39:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5887  Corr: 0.0952  Loss: 0.4777 
+2021-02-02 20:31:51:INFO:TRAIN-(misa) (1/2/5)>> loss: 1.5097  Mult_acc_2: 0.6747  Mult_acc_3: 0.4430  Mult_acc_5: 0.1952  F1_score: 0.7513  MAE: 0.5968  Corr: 0.0278 
+2021-02-02 20:31:52:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5373  Mult_acc_5: 0.2149  F1_score: 0.8202  MAE: 0.5864  Corr: 0.0745  Loss: 0.4397 
+2021-02-02 20:32:05:INFO:TRAIN-(misa) (1/3/5)>> loss: 1.3052  Mult_acc_2: 0.6301  Mult_acc_3: 0.4232  Mult_acc_5: 0.1966  F1_score: 0.6794  MAE: 0.5989  Corr: 0.0487 
+2021-02-02 20:32:06:INFO:VAL-(misa) >>  Mult_acc_2: 0.6974  Mult_acc_3: 0.4254  Mult_acc_5: 0.1908  F1_score: 0.8195  MAE: 0.5917  Corr: 0.0745  Loss: 0.4838 
+2021-02-02 20:32:17:INFO:TRAIN-(misa) (2/4/5)>> loss: 1.1336  Mult_acc_2: 0.6689  Mult_acc_3: 0.4817  Mult_acc_5: 0.2003  F1_score: 0.7524  MAE: 0.5958  Corr: 0.0363 
+2021-02-02 20:32:18:INFO:VAL-(misa) >>  Mult_acc_2: 0.6338  Mult_acc_3: 0.1513  Mult_acc_5: 0.1513  F1_score: 0.6471  MAE: 0.6022  Corr: 0.0692  Loss: 0.4993 
+2021-02-02 20:32:29:INFO:TRAIN-(misa) (3/5/5)>> loss: 0.9862  Mult_acc_2: 0.6586  Mult_acc_3: 0.4357  Mult_acc_5: 0.1944  F1_score: 0.7219  MAE: 0.5980  Corr: 0.0305 
+2021-02-02 20:32:30:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5417  Mult_acc_5: 0.2105  F1_score: 0.8202  MAE: 0.5876  Corr: 0.0577  Loss: 0.4872 
+2021-02-02 20:32:41:INFO:TRAIN-(misa) (4/6/5)>> loss: 0.8714  Mult_acc_2: 0.6740  Mult_acc_3: 0.4444  Mult_acc_5: 0.1937  F1_score: 0.7625  MAE: 0.5916  Corr: 0.0516 
+2021-02-02 20:32:42:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5894  Corr: 0.0584  Loss: 0.5134 
+2021-02-02 20:32:53:INFO:TRAIN-(misa) (5/7/5)>> loss: 0.7914  Mult_acc_2: 0.6835  Mult_acc_3: 0.4627  Mult_acc_5: 0.2054  F1_score: 0.7878  MAE: 0.5942  Corr: 0.0171 
+2021-02-02 20:32:55:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5395  Mult_acc_5: 0.2083  F1_score: 0.8202  MAE: 0.5880  Corr: 0.0519  Loss: 0.4298 
+2021-02-02 20:33:07:INFO:TRAIN-(misa) (1/8/5)>> loss: 0.7269  Mult_acc_2: 0.6879  Mult_acc_3: 0.4898  Mult_acc_5: 0.2069  F1_score: 0.8039  MAE: 0.5918  Corr: 0.0311 
+2021-02-02 20:33:08:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5889  Corr: 0.0461  Loss: 0.4899 
+2021-02-02 20:33:18:INFO:TRAIN-(misa) (2/9/5)>> loss: 0.6934  Mult_acc_2: 0.6747  Mult_acc_3: 0.4671  Mult_acc_5: 0.2054  F1_score: 0.7740  MAE: 0.5929  Corr: 0.0385 
+2021-02-02 20:33:19:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5947  Corr: 0.0622  Loss: 0.4824 
+2021-02-02 20:33:29:INFO:TRAIN-(misa) (3/10/5)>> loss: 0.6753  Mult_acc_2: 0.6871  Mult_acc_3: 0.4561  Mult_acc_5: 0.2025  F1_score: 0.7967  MAE: 0.5948  Corr: 0.0086 
+2021-02-02 20:33:31:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5911  Corr: 0.0657  Loss: 0.4715 
+2021-02-02 20:33:42:INFO:TRAIN-(misa) (4/11/5)>> loss: 0.6399  Mult_acc_2: 0.6871  Mult_acc_3: 0.4846  Mult_acc_5: 0.1996  F1_score: 0.8040  MAE: 0.5926  Corr: 0.0428 
+2021-02-02 20:33:43:INFO:VAL-(misa) >>  Mult_acc_2: 0.6974  Mult_acc_3: 0.3860  Mult_acc_5: 0.2061  F1_score: 0.8195  MAE: 0.5962  Corr: 0.0568  Loss: 0.4901 
+2021-02-02 20:33:54:INFO:TRAIN-(misa) (5/12/5)>> loss: 0.6335  Mult_acc_2: 0.6966  Mult_acc_3: 0.4766  Mult_acc_5: 0.2025  F1_score: 0.8094  MAE: 0.5929  Corr: -0.0014 
+2021-02-02 20:33:55:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5883  Corr: 0.0497  Loss: 0.4932 
+2021-02-02 20:34:06:INFO:TRAIN-(misa) (6/13/5)>> loss: 0.6196  Mult_acc_2: 0.6879  Mult_acc_3: 0.5095  Mult_acc_5: 0.2091  F1_score: 0.8103  MAE: 0.5919  Corr: 0.0060 
+2021-02-02 20:34:07:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5887  Corr: 0.0435  Loss: 0.5060 
+2021-02-02 20:34:14:ERROR:CUDA out of memory. Tried to allocate 86.00 MiB (GPU 1; 7.77 GiB total capacity; 4.60 GiB already allocated; 75.50 MiB free; 230.60 MiB cached)
+2021-02-05 01:06:17:INFO:Start running misa...
+2021-02-05 01:06:17:INFO:<Storage{'is_tune': False, 'train_mode': 'regression', 'modelName': 'misa', 'datasetName': 'sims', 'num_workers': 0, 'model_save_dir': 'results/models', 'res_save_dir': 'results/results/normals', 'gpu_ids': [], 'seeds': [1111, 1112, 1113, 1114, 1115], 'dataPath': '/home/sharing/disk3/dataset/multimodal-sentiment-dataset/StandardDatasets/SIMS/Processed/features/unaligned_39.pkl', 'seq_lens': (39, 400, 55), 'feature_dims': (768, 33, 709), 'train_samples': 1368, 'num_classes': 3, 'language': 'cn', 'KeyEval': 'Loss', 'need_data_aligned': False, 'need_model_aligned': False, 'use_finetune': True, 'use_bert': True, 'early_stop': 8, 'update_epochs': 2, 'rnncell': 'lstm', 'use_cmd_sim': True, 'batch_size': 64, 'learning_rate': 0.0001, 'hidden_size': 128, 'dropout': 0.2, 'reverse_grad_weight': 0.5, 'diff_weight': 0.5, 'sim_weight': 0.5, 'sp_weight': 0.0, 'recon_weight': 0.8, 'grad_clip': 0.8, 'weight_decay': 0.0, 'seed': 1111}>
+2021-02-05 01:06:17:INFO:Find gpu: 3, with memory: 12320768 left!
+2021-02-05 01:06:17:INFO:Let's use 1 GPUs!
+2021-02-05 01:06:43:INFO:train samples: (1368,)
+2021-02-05 01:06:44:INFO:valid samples: (456,)
+2021-02-05 01:06:45:INFO:test samples: (457,)
+2021-02-05 01:06:45:INFO:Model name 'pretrained_model/bert_cn' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased, bert-base-finnish-cased-v1, bert-base-finnish-uncased-v1, bert-base-dutch-cased). Assuming 'pretrained_model/bert_cn' is a path, a model identifier, or url to a directory containing tokenizer files.
+2021-02-05 01:06:45:INFO:Didn't find file pretrained_model/bert_cn/added_tokens.json. We won't load it.
+2021-02-05 01:06:45:INFO:Didn't find file pretrained_model/bert_cn/special_tokens_map.json. We won't load it.
+2021-02-05 01:06:45:INFO:Didn't find file pretrained_model/bert_cn/tokenizer_config.json. We won't load it.
+2021-02-05 01:06:45:INFO:loading file pretrained_model/bert_cn/vocab.txt
+2021-02-05 01:06:45:INFO:loading file None
+2021-02-05 01:06:45:INFO:loading file None
+2021-02-05 01:06:45:INFO:loading file None
+2021-02-05 01:06:45:INFO:loading configuration file pretrained_model/bert_cn/config.json
+2021-02-05 01:06:45:INFO:Model config BertConfig {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2021-02-05 01:06:45:INFO:loading weights file pretrained_model/bert_cn/pytorch_model.bin
+2021-02-05 01:06:49:INFO:The model has 123932397 trainable parameters
+2021-02-05 01:06:58:INFO:TRAIN-(misa) (1/1/1)>> loss: 1.8970  Mult_acc_2: 0.6440  Mult_acc_3: 0.4481  Mult_acc_5: 0.1952  F1_score: 0.6867  MAE: 0.5927  Corr: 0.0767 
+2021-02-05 01:06:59:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5307  Mult_acc_5: 0.2061  F1_score: 0.8202  MAE: 0.5801  Corr: 0.3496  Loss: 0.4810 
+2021-02-05 01:07:10:INFO:TRAIN-(misa) (1/2/1)>> loss: 1.4607  Mult_acc_2: 0.6674  Mult_acc_3: 0.4576  Mult_acc_5: 0.2083  F1_score: 0.7291  MAE: 0.5923  Corr: 0.0801 
+2021-02-05 01:07:11:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5884  Corr: 0.1990  Loss: 0.5207 
+2021-02-05 01:07:19:INFO:TRAIN-(misa) (2/3/1)>> loss: 1.2564  Mult_acc_2: 0.6352  Mult_acc_3: 0.4547  Mult_acc_5: 0.2054  F1_score: 0.6784  MAE: 0.6035  Corr: 0.0360 
+2021-02-05 01:07:20:INFO:VAL-(misa) >>  Mult_acc_2: 0.6974  Mult_acc_3: 0.4759  Mult_acc_5: 0.2171  F1_score: 0.8195  MAE: 0.5900  Corr: 0.1296  Loss: 0.4494 
+2021-02-05 01:07:30:INFO:TRAIN-(misa) (1/4/1)>> loss: 1.0941  Mult_acc_2: 0.6316  Mult_acc_3: 0.4218  Mult_acc_5: 0.1879  F1_score: 0.6578  MAE: 0.6101  Corr: 0.0185 
+2021-02-05 01:07:31:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5044  Mult_acc_5: 0.2105  F1_score: 0.8202  MAE: 0.5889  Corr: 0.0884  Loss: 0.5138 
+2021-02-05 01:07:40:INFO:TRAIN-(misa) (2/5/1)>> loss: 0.9322  Mult_acc_2: 0.6645  Mult_acc_3: 0.4547  Mult_acc_5: 0.1981  F1_score: 0.7372  MAE: 0.5955  Corr: 0.0345 
+2021-02-05 01:07:41:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5066  Mult_acc_5: 0.2105  F1_score: 0.8202  MAE: 0.5897  Corr: 0.0835  Loss: 0.4633 
+2021-02-05 01:07:49:INFO:TRAIN-(misa) (3/6/1)>> loss: 0.8404  Mult_acc_2: 0.6667  Mult_acc_3: 0.4444  Mult_acc_5: 0.1886  F1_score: 0.7465  MAE: 0.5969  Corr: 0.0294 
+2021-02-05 01:07:50:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5417  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5866  Corr: 0.0781  Loss: 0.4611 
+2021-02-05 01:07:59:INFO:TRAIN-(misa) (4/7/1)>> loss: 0.7559  Mult_acc_2: 0.6601  Mult_acc_3: 0.4335  Mult_acc_5: 0.2010  F1_score: 0.7439  MAE: 0.5926  Corr: 0.0490 
+2021-02-05 01:08:00:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5951  Corr: 0.0819  Loss: 0.4926 
+2021-02-05 01:08:08:INFO:TRAIN-(misa) (5/8/1)>> loss: 0.7155  Mult_acc_2: 0.6893  Mult_acc_3: 0.4839  Mult_acc_5: 0.1981  F1_score: 0.8060  MAE: 0.5953  Corr: 0.0231 
+2021-02-05 01:08:09:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.4583  Mult_acc_5: 0.2193  F1_score: 0.8202  MAE: 0.5922  Corr: 0.0827  Loss: 0.4642 
+2021-02-05 01:08:18:INFO:TRAIN-(misa) (6/9/1)>> loss: 0.6859  Mult_acc_2: 0.6937  Mult_acc_3: 0.4861  Mult_acc_5: 0.2010  F1_score: 0.8039  MAE: 0.5925  Corr: 0.0569 
+2021-02-05 01:08:19:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.4518  Mult_acc_5: 0.2171  F1_score: 0.8202  MAE: 0.5923  Corr: 0.0913  Loss: 0.4596 
+2021-02-05 01:08:27:INFO:TRAIN-(misa) (7/10/1)>> loss: 0.6552  Mult_acc_2: 0.6849  Mult_acc_3: 0.4664  Mult_acc_5: 0.2061  F1_score: 0.7854  MAE: 0.5904  Corr: 0.0687 
+2021-02-05 01:08:28:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5876  Corr: 0.0930  Loss: 0.4822 
+2021-02-05 01:08:37:INFO:TRAIN-(misa) (8/11/1)>> loss: 0.6462  Mult_acc_2: 0.6871  Mult_acc_3: 0.4759  Mult_acc_5: 0.1923  F1_score: 0.8003  MAE: 0.5902  Corr: 0.0730 
+2021-02-05 01:08:38:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5351  Mult_acc_5: 0.2083  F1_score: 0.8202  MAE: 0.5887  Corr: 0.0851  Loss: 0.4670 
+2021-02-05 01:08:39:INFO:TEST-(misa) >>  Mult_acc_2: 0.6958  Mult_acc_3: 0.4880  Mult_acc_5: 0.2144  F1_score: 0.8184  MAE: 0.5874  Corr: 0.2263  Loss: 0.4666 
+2021-02-05 01:08:46:INFO:Start running misa...
+2021-02-05 01:08:46:INFO:<Storage{'is_tune': False, 'train_mode': 'regression', 'modelName': 'misa', 'datasetName': 'sims', 'num_workers': 0, 'model_save_dir': 'results/models', 'res_save_dir': 'results/results/normals', 'gpu_ids': [3], 'seeds': [1111, 1112, 1113, 1114, 1115], 'dataPath': '/home/sharing/disk3/dataset/multimodal-sentiment-dataset/StandardDatasets/SIMS/Processed/features/unaligned_39.pkl', 'seq_lens': (39, 400, 55), 'feature_dims': (768, 33, 709), 'train_samples': 1368, 'num_classes': 3, 'language': 'cn', 'KeyEval': 'Loss', 'need_data_aligned': False, 'need_model_aligned': False, 'use_finetune': True, 'use_bert': True, 'early_stop': 8, 'update_epochs': 2, 'rnncell': 'lstm', 'use_cmd_sim': True, 'batch_size': 64, 'learning_rate': 0.0001, 'hidden_size': 128, 'dropout': 0.2, 'reverse_grad_weight': 0.5, 'diff_weight': 0.5, 'sim_weight': 0.5, 'sp_weight': 0.0, 'recon_weight': 0.8, 'grad_clip': 0.8, 'weight_decay': 0.0, 'seed': 1112}>
+2021-02-05 01:08:46:INFO:Let's use 1 GPUs!
+2021-02-05 01:08:47:INFO:train samples: (1368,)
+2021-02-05 01:08:48:INFO:valid samples: (456,)
+2021-02-05 01:08:50:INFO:test samples: (457,)
+2021-02-05 01:08:50:INFO:Model name 'pretrained_model/bert_cn' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased, bert-base-finnish-cased-v1, bert-base-finnish-uncased-v1, bert-base-dutch-cased). Assuming 'pretrained_model/bert_cn' is a path, a model identifier, or url to a directory containing tokenizer files.
+2021-02-05 01:08:50:INFO:Didn't find file pretrained_model/bert_cn/added_tokens.json. We won't load it.
+2021-02-05 01:08:50:INFO:Didn't find file pretrained_model/bert_cn/special_tokens_map.json. We won't load it.
+2021-02-05 01:08:50:INFO:Didn't find file pretrained_model/bert_cn/tokenizer_config.json. We won't load it.
+2021-02-05 01:08:50:INFO:loading file pretrained_model/bert_cn/vocab.txt
+2021-02-05 01:08:50:INFO:loading file None
+2021-02-05 01:08:50:INFO:loading file None
+2021-02-05 01:08:50:INFO:loading file None
+2021-02-05 01:08:50:INFO:loading configuration file pretrained_model/bert_cn/config.json
+2021-02-05 01:08:50:INFO:Model config BertConfig {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2021-02-05 01:08:50:INFO:loading weights file pretrained_model/bert_cn/pytorch_model.bin
+2021-02-05 01:08:52:INFO:The model has 123932397 trainable parameters
+2021-02-05 01:09:00:INFO:TRAIN-(misa) (1/1/2)>> loss: 1.9573  Mult_acc_2: 0.6287  Mult_acc_3: 0.4393  Mult_acc_5: 0.1893  F1_score: 0.6617  MAE: 0.6194  Corr: 0.0300 
+2021-02-05 01:09:01:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5329  Mult_acc_5: 0.2061  F1_score: 0.8202  MAE: 0.5873  Corr: 0.1030  Loss: 0.4625 
+2021-02-05 01:09:11:INFO:TRAIN-(misa) (1/2/2)>> loss: 1.5148  Mult_acc_2: 0.6696  Mult_acc_3: 0.4627  Mult_acc_5: 0.2032  F1_score: 0.7336  MAE: 0.5878  Corr: 0.1079 
+2021-02-05 01:09:12:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5351  Mult_acc_5: 0.2105  F1_score: 0.8202  MAE: 0.5899  Corr: 0.0233  Loss: 0.5076 
+2021-02-05 01:09:21:INFO:TRAIN-(misa) (2/3/2)>> loss: 1.3170  Mult_acc_2: 0.6718  Mult_acc_3: 0.4532  Mult_acc_5: 0.1981  F1_score: 0.7389  MAE: 0.5937  Corr: 0.0727 
+2021-02-05 01:09:22:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.4759  Mult_acc_5: 0.1952  F1_score: 0.8202  MAE: 0.5922  Corr: -0.0099  Loss: 0.4792 
+2021-02-05 01:09:30:INFO:TRAIN-(misa) (3/4/2)>> loss: 1.1428  Mult_acc_2: 0.6637  Mult_acc_3: 0.4306  Mult_acc_5: 0.1996  F1_score: 0.7304  MAE: 0.5917  Corr: 0.0663 
+2021-02-05 01:09:31:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5263  Mult_acc_5: 0.2105  F1_score: 0.8202  MAE: 0.5921  Corr: -0.0233  Loss: 0.4747 
+2021-02-05 01:09:40:INFO:TRAIN-(misa) (4/5/2)>> loss: 1.0098  Mult_acc_2: 0.6791  Mult_acc_3: 0.4620  Mult_acc_5: 0.1944  F1_score: 0.7609  MAE: 0.5928  Corr: 0.0827 
+2021-02-05 01:09:41:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.4627  Mult_acc_5: 0.1930  F1_score: 0.8202  MAE: 0.5939  Corr: -0.0312  Loss: 0.5079 
+2021-02-05 01:09:50:INFO:TRAIN-(misa) (5/6/2)>> loss: 0.9058  Mult_acc_2: 0.6725  Mult_acc_3: 0.4642  Mult_acc_5: 0.1944  F1_score: 0.7604  MAE: 0.5930  Corr: 0.0675 
+2021-02-05 01:09:51:INFO:VAL-(misa) >>  Mult_acc_2: 0.7018  Mult_acc_3: 0.3618  Mult_acc_5: 0.1974  F1_score: 0.8182  MAE: 0.5977  Corr: -0.0389  Loss: 0.4708 
+2021-02-05 01:09:59:INFO:TRAIN-(misa) (6/7/2)>> loss: 0.8206  Mult_acc_2: 0.6637  Mult_acc_3: 0.4444  Mult_acc_5: 0.1974  F1_score: 0.7362  MAE: 0.5943  Corr: 0.0613 
+2021-02-05 01:10:00:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5373  Mult_acc_5: 0.2105  F1_score: 0.8202  MAE: 0.5927  Corr: -0.0525  Loss: 0.5143 
+2021-02-05 01:10:09:INFO:TRAIN-(misa) (7/8/2)>> loss: 0.7597  Mult_acc_2: 0.6915  Mult_acc_3: 0.4803  Mult_acc_5: 0.1996  F1_score: 0.7972  MAE: 0.5897  Corr: 0.0698 
+2021-02-05 01:10:10:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5966  Corr: -0.0576  Loss: 0.4963 
+2021-02-05 01:10:19:INFO:TRAIN-(misa) (8/9/2)>> loss: 0.7337  Mult_acc_2: 0.6703  Mult_acc_3: 0.4430  Mult_acc_5: 0.1944  F1_score: 0.7427  MAE: 0.5977  Corr: 0.0244 
+2021-02-05 01:10:20:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5972  Corr: -0.0587  Loss: 0.4835 
+2021-02-05 01:10:21:INFO:TEST-(misa) >>  Mult_acc_2: 0.6937  Mult_acc_3: 0.5383  Mult_acc_5: 0.2144  F1_score: 0.8191  MAE: 0.5849  Corr: 0.1576  Loss: 0.4628 
+2021-02-05 01:10:26:INFO:Start running misa...
+2021-02-05 01:10:26:INFO:<Storage{'is_tune': False, 'train_mode': 'regression', 'modelName': 'misa', 'datasetName': 'sims', 'num_workers': 0, 'model_save_dir': 'results/models', 'res_save_dir': 'results/results/normals', 'gpu_ids': [3], 'seeds': [1111, 1112, 1113, 1114, 1115], 'dataPath': '/home/sharing/disk3/dataset/multimodal-sentiment-dataset/StandardDatasets/SIMS/Processed/features/unaligned_39.pkl', 'seq_lens': (39, 400, 55), 'feature_dims': (768, 33, 709), 'train_samples': 1368, 'num_classes': 3, 'language': 'cn', 'KeyEval': 'Loss', 'need_data_aligned': False, 'need_model_aligned': False, 'use_finetune': True, 'use_bert': True, 'early_stop': 8, 'update_epochs': 2, 'rnncell': 'lstm', 'use_cmd_sim': True, 'batch_size': 64, 'learning_rate': 0.0001, 'hidden_size': 128, 'dropout': 0.2, 'reverse_grad_weight': 0.5, 'diff_weight': 0.5, 'sim_weight': 0.5, 'sp_weight': 0.0, 'recon_weight': 0.8, 'grad_clip': 0.8, 'weight_decay': 0.0, 'seed': 1113}>
+2021-02-05 01:10:26:INFO:Let's use 1 GPUs!
+2021-02-05 01:10:27:INFO:train samples: (1368,)
+2021-02-05 01:10:27:INFO:valid samples: (456,)
+2021-02-05 01:10:28:INFO:test samples: (457,)
+2021-02-05 01:10:28:INFO:Model name 'pretrained_model/bert_cn' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased, bert-base-finnish-cased-v1, bert-base-finnish-uncased-v1, bert-base-dutch-cased). Assuming 'pretrained_model/bert_cn' is a path, a model identifier, or url to a directory containing tokenizer files.
+2021-02-05 01:10:28:INFO:Didn't find file pretrained_model/bert_cn/added_tokens.json. We won't load it.
+2021-02-05 01:10:28:INFO:Didn't find file pretrained_model/bert_cn/special_tokens_map.json. We won't load it.
+2021-02-05 01:10:28:INFO:Didn't find file pretrained_model/bert_cn/tokenizer_config.json. We won't load it.
+2021-02-05 01:10:28:INFO:loading file pretrained_model/bert_cn/vocab.txt
+2021-02-05 01:10:28:INFO:loading file None
+2021-02-05 01:10:28:INFO:loading file None
+2021-02-05 01:10:28:INFO:loading file None
+2021-02-05 01:10:28:INFO:loading configuration file pretrained_model/bert_cn/config.json
+2021-02-05 01:10:28:INFO:Model config BertConfig {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2021-02-05 01:10:28:INFO:loading weights file pretrained_model/bert_cn/pytorch_model.bin
+2021-02-05 01:10:30:INFO:The model has 123932397 trainable parameters
+2021-02-05 01:10:39:INFO:TRAIN-(misa) (1/1/3)>> loss: 1.8901  Mult_acc_2: 0.6170  Mult_acc_3: 0.4357  Mult_acc_5: 0.2208  F1_score: 0.6473  MAE: 0.6119  Corr: 0.0129 
+2021-02-05 01:10:40:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5417  Mult_acc_5: 0.2149  F1_score: 0.8202  MAE: 0.5812  Corr: 0.1497  Loss: 0.4772 
+2021-02-05 01:10:50:INFO:TRAIN-(misa) (1/2/3)>> loss: 1.4395  Mult_acc_2: 0.6659  Mult_acc_3: 0.4291  Mult_acc_5: 0.1842  F1_score: 0.7302  MAE: 0.5910  Corr: 0.0946 
+2021-02-05 01:10:51:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5351  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5837  Corr: 0.1035  Loss: 0.4632 
+2021-02-05 01:11:01:INFO:TRAIN-(misa) (1/3/3)>> loss: 1.2582  Mult_acc_2: 0.6462  Mult_acc_3: 0.4444  Mult_acc_5: 0.2003  F1_score: 0.7075  MAE: 0.5920  Corr: 0.0543 
+2021-02-05 01:11:02:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5241  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5865  Corr: 0.0863  Loss: 0.4896 
+2021-02-05 01:11:11:INFO:TRAIN-(misa) (2/4/3)>> loss: 1.0894  Mult_acc_2: 0.6871  Mult_acc_3: 0.4722  Mult_acc_5: 0.2032  F1_score: 0.7683  MAE: 0.5897  Corr: 0.0611 
+2021-02-05 01:11:12:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5417  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5859  Corr: 0.0793  Loss: 0.4676 
+2021-02-05 01:11:20:INFO:TRAIN-(misa) (3/5/3)>> loss: 0.9737  Mult_acc_2: 0.6689  Mult_acc_3: 0.4518  Mult_acc_5: 0.1937  F1_score: 0.7477  MAE: 0.5964  Corr: 0.0316 
+2021-02-05 01:11:21:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5329  Mult_acc_5: 0.2105  F1_score: 0.8202  MAE: 0.5864  Corr: 0.0803  Loss: 0.4626 
+2021-02-05 01:11:32:INFO:TRAIN-(misa) (1/6/3)>> loss: 0.8636  Mult_acc_2: 0.6499  Mult_acc_3: 0.4408  Mult_acc_5: 0.2076  F1_score: 0.7132  MAE: 0.5915  Corr: 0.0587 
+2021-02-05 01:11:33:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5931  Corr: 0.0910  Loss: 0.4645 
+2021-02-05 01:11:41:INFO:TRAIN-(misa) (2/7/3)>> loss: 0.7916  Mult_acc_2: 0.6601  Mult_acc_3: 0.4598  Mult_acc_5: 0.1974  F1_score: 0.7171  MAE: 0.5913  Corr: 0.0868 
+2021-02-05 01:11:42:INFO:VAL-(misa) >>  Mult_acc_2: 0.6864  Mult_acc_3: 0.3772  Mult_acc_5: 0.1974  F1_score: 0.7956  MAE: 0.5916  Corr: 0.0922  Loss: 0.4581 
+2021-02-05 01:11:52:INFO:TRAIN-(misa) (1/8/3)>> loss: 0.7437  Mult_acc_2: 0.6747  Mult_acc_3: 0.4547  Mult_acc_5: 0.2003  F1_score: 0.7404  MAE: 0.5935  Corr: 0.0338 
+2021-02-05 01:11:53:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.4430  Mult_acc_5: 0.2105  F1_score: 0.8202  MAE: 0.5916  Corr: 0.0722  Loss: 0.4945 
+2021-02-05 01:12:02:INFO:TRAIN-(misa) (2/9/3)>> loss: 0.6944  Mult_acc_2: 0.6732  Mult_acc_3: 0.4722  Mult_acc_5: 0.1930  F1_score: 0.7730  MAE: 0.5916  Corr: 0.0518 
+2021-02-05 01:12:03:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.4496  Mult_acc_5: 0.2105  F1_score: 0.8202  MAE: 0.5924  Corr: 0.0635  Loss: 0.4652 
+2021-02-05 01:12:12:INFO:TRAIN-(misa) (3/10/3)>> loss: 0.6607  Mult_acc_2: 0.6732  Mult_acc_3: 0.4664  Mult_acc_5: 0.2061  F1_score: 0.7686  MAE: 0.5933  Corr: 0.0390 
+2021-02-05 01:12:13:INFO:VAL-(misa) >>  Mult_acc_2: 0.6930  Mult_acc_3: 0.4035  Mult_acc_5: 0.2039  F1_score: 0.8169  MAE: 0.5933  Corr: 0.0604  Loss: 0.4581 
+2021-02-05 01:12:21:INFO:TRAIN-(misa) (4/11/3)>> loss: 0.6269  Mult_acc_2: 0.6791  Mult_acc_3: 0.4883  Mult_acc_5: 0.2039  F1_score: 0.7770  MAE: 0.5866  Corr: 0.0947 
+2021-02-05 01:12:23:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5417  Mult_acc_5: 0.2105  F1_score: 0.8202  MAE: 0.5876  Corr: 0.0496  Loss: 0.4750 
+2021-02-05 01:12:31:INFO:TRAIN-(misa) (5/12/3)>> loss: 0.6159  Mult_acc_2: 0.6871  Mult_acc_3: 0.4810  Mult_acc_5: 0.2083  F1_score: 0.7831  MAE: 0.5867  Corr: 0.0819 
+2021-02-05 01:12:32:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5883  Corr: 0.0482  Loss: 0.4652 
+2021-02-05 01:12:41:INFO:TRAIN-(misa) (6/13/3)>> loss: 0.5998  Mult_acc_2: 0.6762  Mult_acc_3: 0.4130  Mult_acc_5: 0.1849  F1_score: 0.7448  MAE: 0.5892  Corr: 0.0936 
+2021-02-05 01:12:42:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5979  Corr: 0.0428  Loss: 0.5193 
+2021-02-05 01:12:51:INFO:TRAIN-(misa) (7/14/3)>> loss: 0.5888  Mult_acc_2: 0.6835  Mult_acc_3: 0.4539  Mult_acc_5: 0.1944  F1_score: 0.7759  MAE: 0.5909  Corr: 0.0698 
+2021-02-05 01:12:52:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5877  Corr: 0.0433  Loss: 0.4525 
+2021-02-05 01:13:02:INFO:TRAIN-(misa) (1/15/3)>> loss: 0.5688  Mult_acc_2: 0.6901  Mult_acc_3: 0.5175  Mult_acc_5: 0.2091  F1_score: 0.8034  MAE: 0.5797  Corr: 0.1613 
+2021-02-05 01:13:03:INFO:VAL-(misa) >>  Mult_acc_2: 0.6228  Mult_acc_3: 0.2039  Mult_acc_5: 0.1557  F1_score: 0.6695  MAE: 0.6012  Corr: 0.0299  Loss: 0.4815 
+2021-02-05 01:13:12:INFO:TRAIN-(misa) (2/16/3)>> loss: 0.5679  Mult_acc_2: 0.6813  Mult_acc_3: 0.4635  Mult_acc_5: 0.2003  F1_score: 0.7708  MAE: 0.5889  Corr: 0.0779 
+2021-02-05 01:13:13:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5395  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5879  Corr: 0.0326  Loss: 0.4810 
+2021-02-05 01:13:21:INFO:TRAIN-(misa) (3/17/3)>> loss: 0.5495  Mult_acc_2: 0.6886  Mult_acc_3: 0.5154  Mult_acc_5: 0.2142  F1_score: 0.8075  MAE: 0.5824  Corr: 0.1345 
+2021-02-05 01:13:22:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.4956  Mult_acc_5: 0.1952  F1_score: 0.8162  MAE: 0.5912  Corr: 0.0164  Loss: 0.4693 
+2021-02-05 01:13:31:INFO:TRAIN-(misa) (4/18/3)>> loss: 0.5471  Mult_acc_2: 0.6930  Mult_acc_3: 0.4949  Mult_acc_5: 0.2032  F1_score: 0.8077  MAE: 0.5869  Corr: 0.1224 
+2021-02-05 01:13:32:INFO:VAL-(misa) >>  Mult_acc_2: 0.6930  Mult_acc_3: 0.5066  Mult_acc_5: 0.1996  F1_score: 0.8169  MAE: 0.5906  Corr: 0.0118  Loss: 0.4798 
+2021-02-05 01:13:41:INFO:TRAIN-(misa) (5/19/3)>> loss: 0.5446  Mult_acc_2: 0.6871  Mult_acc_3: 0.4686  Mult_acc_5: 0.2003  F1_score: 0.7920  MAE: 0.5862  Corr: 0.1173 
+2021-02-05 01:13:42:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5395  Mult_acc_5: 0.2105  F1_score: 0.8202  MAE: 0.5908  Corr: 0.0010  Loss: 0.4763 
+2021-02-05 01:13:51:INFO:TRAIN-(misa) (6/20/3)>> loss: 0.5477  Mult_acc_2: 0.6886  Mult_acc_3: 0.4825  Mult_acc_5: 0.2083  F1_score: 0.7863  MAE: 0.5820  Corr: 0.1217 
+2021-02-05 01:13:52:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5395  Mult_acc_5: 0.2105  F1_score: 0.8202  MAE: 0.5918  Corr: 0.0053  Loss: 0.4919 
+2021-02-05 01:14:01:INFO:TRAIN-(misa) (7/21/3)>> loss: 0.5379  Mult_acc_2: 0.6864  Mult_acc_3: 0.4781  Mult_acc_5: 0.2047  F1_score: 0.7909  MAE: 0.5786  Corr: 0.1853 
+2021-02-05 01:14:02:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5395  Mult_acc_5: 0.2105  F1_score: 0.8202  MAE: 0.5911  Corr: 0.0091  Loss: 0.4814 
+2021-02-05 01:14:10:INFO:TRAIN-(misa) (8/22/3)>> loss: 0.5367  Mult_acc_2: 0.6864  Mult_acc_3: 0.4956  Mult_acc_5: 0.2061  F1_score: 0.7875  MAE: 0.5810  Corr: 0.1737 
+2021-02-05 01:14:11:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5154  Mult_acc_5: 0.2039  F1_score: 0.8162  MAE: 0.5905  Corr: 0.0067  Loss: 0.5015 
+2021-02-05 01:14:13:INFO:TEST-(misa) >>  Mult_acc_2: 0.6937  Mult_acc_3: 0.5427  Mult_acc_5: 0.2123  F1_score: 0.8191  MAE: 0.5837  Corr: 0.1574  Loss: 0.4806 
+2021-02-05 01:14:18:INFO:Start running misa...
+2021-02-05 01:14:18:INFO:<Storage{'is_tune': False, 'train_mode': 'regression', 'modelName': 'misa', 'datasetName': 'sims', 'num_workers': 0, 'model_save_dir': 'results/models', 'res_save_dir': 'results/results/normals', 'gpu_ids': [3], 'seeds': [1111, 1112, 1113, 1114, 1115], 'dataPath': '/home/sharing/disk3/dataset/multimodal-sentiment-dataset/StandardDatasets/SIMS/Processed/features/unaligned_39.pkl', 'seq_lens': (39, 400, 55), 'feature_dims': (768, 33, 709), 'train_samples': 1368, 'num_classes': 3, 'language': 'cn', 'KeyEval': 'Loss', 'need_data_aligned': False, 'need_model_aligned': False, 'use_finetune': True, 'use_bert': True, 'early_stop': 8, 'update_epochs': 2, 'rnncell': 'lstm', 'use_cmd_sim': True, 'batch_size': 64, 'learning_rate': 0.0001, 'hidden_size': 128, 'dropout': 0.2, 'reverse_grad_weight': 0.5, 'diff_weight': 0.5, 'sim_weight': 0.5, 'sp_weight': 0.0, 'recon_weight': 0.8, 'grad_clip': 0.8, 'weight_decay': 0.0, 'seed': 1114}>
+2021-02-05 01:14:18:INFO:Let's use 1 GPUs!
+2021-02-05 01:14:19:INFO:train samples: (1368,)
+2021-02-05 01:14:19:INFO:valid samples: (456,)
+2021-02-05 01:14:20:INFO:test samples: (457,)
+2021-02-05 01:14:20:INFO:Model name 'pretrained_model/bert_cn' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased, bert-base-finnish-cased-v1, bert-base-finnish-uncased-v1, bert-base-dutch-cased). Assuming 'pretrained_model/bert_cn' is a path, a model identifier, or url to a directory containing tokenizer files.
+2021-02-05 01:14:20:INFO:Didn't find file pretrained_model/bert_cn/added_tokens.json. We won't load it.
+2021-02-05 01:14:20:INFO:Didn't find file pretrained_model/bert_cn/special_tokens_map.json. We won't load it.
+2021-02-05 01:14:20:INFO:Didn't find file pretrained_model/bert_cn/tokenizer_config.json. We won't load it.
+2021-02-05 01:14:20:INFO:loading file pretrained_model/bert_cn/vocab.txt
+2021-02-05 01:14:20:INFO:loading file None
+2021-02-05 01:14:20:INFO:loading file None
+2021-02-05 01:14:20:INFO:loading file None
+2021-02-05 01:14:20:INFO:loading configuration file pretrained_model/bert_cn/config.json
+2021-02-05 01:14:20:INFO:Model config BertConfig {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2021-02-05 01:14:20:INFO:loading weights file pretrained_model/bert_cn/pytorch_model.bin
+2021-02-05 01:14:22:INFO:The model has 123932397 trainable parameters
+2021-02-05 01:14:31:INFO:TRAIN-(misa) (1/1/4)>> loss: 1.8729  Mult_acc_2: 0.6433  Mult_acc_3: 0.4773  Mult_acc_5: 0.2076  F1_score: 0.6858  MAE: 0.6012  Corr: 0.0550 
+2021-02-05 01:14:32:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5329  Mult_acc_5: 0.2083  F1_score: 0.8202  MAE: 0.5833  Corr: 0.1794  Loss: 0.4553 
+2021-02-05 01:14:42:INFO:TRAIN-(misa) (1/2/4)>> loss: 1.4213  Mult_acc_2: 0.6557  Mult_acc_3: 0.4423  Mult_acc_5: 0.1842  F1_score: 0.7172  MAE: 0.5911  Corr: 0.0997 
+2021-02-05 01:14:43:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5417  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5883  Corr: 0.0776  Loss: 0.4527 
+2021-02-05 01:14:53:INFO:TRAIN-(misa) (1/3/4)>> loss: 1.1911  Mult_acc_2: 0.6879  Mult_acc_3: 0.4722  Mult_acc_5: 0.2032  F1_score: 0.7780  MAE: 0.5925  Corr: 0.0679 
+2021-02-05 01:14:54:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5417  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5869  Corr: 0.0763  Loss: 0.4592 
+2021-02-05 01:15:03:INFO:TRAIN-(misa) (2/4/4)>> loss: 1.0148  Mult_acc_2: 0.6798  Mult_acc_3: 0.4788  Mult_acc_5: 0.1996  F1_score: 0.7717  MAE: 0.5892  Corr: 0.0906 
+2021-02-05 01:15:04:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5329  Mult_acc_5: 0.2171  F1_score: 0.8202  MAE: 0.5871  Corr: 0.0832  Loss: 0.4552 
+2021-02-05 01:15:13:INFO:TRAIN-(misa) (3/5/4)>> loss: 0.8849  Mult_acc_2: 0.6806  Mult_acc_3: 0.4817  Mult_acc_5: 0.2003  F1_score: 0.7770  MAE: 0.5879  Corr: 0.0962 
+2021-02-05 01:15:14:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5241  Mult_acc_5: 0.2149  F1_score: 0.8202  MAE: 0.5875  Corr: 0.0878  Loss: 0.4836 
+2021-02-05 01:15:22:INFO:TRAIN-(misa) (4/6/4)>> loss: 0.7927  Mult_acc_2: 0.6798  Mult_acc_3: 0.4708  Mult_acc_5: 0.2003  F1_score: 0.7749  MAE: 0.5883  Corr: 0.0895 
+2021-02-05 01:15:23:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5417  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5845  Corr: 0.1127  Loss: 0.4614 
+2021-02-05 01:15:32:INFO:TRAIN-(misa) (5/7/4)>> loss: 0.7465  Mult_acc_2: 0.6842  Mult_acc_3: 0.4459  Mult_acc_5: 0.1871  F1_score: 0.7719  MAE: 0.5900  Corr: 0.0854 
+2021-02-05 01:15:33:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5871  Corr: 0.1045  Loss: 0.4876 
+2021-02-05 01:15:42:INFO:TRAIN-(misa) (6/8/4)>> loss: 0.7071  Mult_acc_2: 0.6798  Mult_acc_3: 0.4678  Mult_acc_5: 0.1923  F1_score: 0.7601  MAE: 0.5924  Corr: 0.0832 
+2021-02-05 01:15:43:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5395  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5848  Corr: 0.1070  Loss: 0.4532 
+2021-02-05 01:15:52:INFO:TRAIN-(misa) (7/9/4)>> loss: 0.6747  Mult_acc_2: 0.6842  Mult_acc_3: 0.4518  Mult_acc_5: 0.1864  F1_score: 0.7699  MAE: 0.5903  Corr: 0.0874 
+2021-02-05 01:15:53:INFO:VAL-(misa) >>  Mult_acc_2: 0.6996  Mult_acc_3: 0.5088  Mult_acc_5: 0.2083  F1_score: 0.8188  MAE: 0.5871  Corr: 0.0935  Loss: 0.4844 
+2021-02-05 01:16:01:INFO:TRAIN-(misa) (8/10/4)>> loss: 0.6535  Mult_acc_2: 0.6893  Mult_acc_3: 0.4730  Mult_acc_5: 0.1988  F1_score: 0.7810  MAE: 0.5889  Corr: 0.0957 
+2021-02-05 01:16:03:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5263  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5867  Corr: 0.0784  Loss: 0.4804 
+2021-02-05 01:16:04:INFO:TEST-(misa) >>  Mult_acc_2: 0.6937  Mult_acc_3: 0.5405  Mult_acc_5: 0.2101  F1_score: 0.8191  MAE: 0.5873  Corr: 0.1617  Loss: 0.4816 
+2021-02-05 01:16:09:INFO:Start running misa...
+2021-02-05 01:16:09:INFO:<Storage{'is_tune': False, 'train_mode': 'regression', 'modelName': 'misa', 'datasetName': 'sims', 'num_workers': 0, 'model_save_dir': 'results/models', 'res_save_dir': 'results/results/normals', 'gpu_ids': [3], 'seeds': [1111, 1112, 1113, 1114, 1115], 'dataPath': '/home/sharing/disk3/dataset/multimodal-sentiment-dataset/StandardDatasets/SIMS/Processed/features/unaligned_39.pkl', 'seq_lens': (39, 400, 55), 'feature_dims': (768, 33, 709), 'train_samples': 1368, 'num_classes': 3, 'language': 'cn', 'KeyEval': 'Loss', 'need_data_aligned': False, 'need_model_aligned': False, 'use_finetune': True, 'use_bert': True, 'early_stop': 8, 'update_epochs': 2, 'rnncell': 'lstm', 'use_cmd_sim': True, 'batch_size': 64, 'learning_rate': 0.0001, 'hidden_size': 128, 'dropout': 0.2, 'reverse_grad_weight': 0.5, 'diff_weight': 0.5, 'sim_weight': 0.5, 'sp_weight': 0.0, 'recon_weight': 0.8, 'grad_clip': 0.8, 'weight_decay': 0.0, 'seed': 1115}>
+2021-02-05 01:16:09:INFO:Let's use 1 GPUs!
+2021-02-05 01:16:10:INFO:train samples: (1368,)
+2021-02-05 01:16:10:INFO:valid samples: (456,)
+2021-02-05 01:16:11:INFO:test samples: (457,)
+2021-02-05 01:16:11:INFO:Model name 'pretrained_model/bert_cn' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased, bert-base-finnish-cased-v1, bert-base-finnish-uncased-v1, bert-base-dutch-cased). Assuming 'pretrained_model/bert_cn' is a path, a model identifier, or url to a directory containing tokenizer files.
+2021-02-05 01:16:11:INFO:Didn't find file pretrained_model/bert_cn/added_tokens.json. We won't load it.
+2021-02-05 01:16:11:INFO:Didn't find file pretrained_model/bert_cn/special_tokens_map.json. We won't load it.
+2021-02-05 01:16:11:INFO:Didn't find file pretrained_model/bert_cn/tokenizer_config.json. We won't load it.
+2021-02-05 01:16:11:INFO:loading file pretrained_model/bert_cn/vocab.txt
+2021-02-05 01:16:11:INFO:loading file None
+2021-02-05 01:16:11:INFO:loading file None
+2021-02-05 01:16:11:INFO:loading file None
+2021-02-05 01:16:11:INFO:loading configuration file pretrained_model/bert_cn/config.json
+2021-02-05 01:16:11:INFO:Model config BertConfig {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2021-02-05 01:16:11:INFO:loading weights file pretrained_model/bert_cn/pytorch_model.bin
+2021-02-05 01:16:13:INFO:The model has 123932397 trainable parameters
+2021-02-05 01:16:22:INFO:TRAIN-(misa) (1/1/5)>> loss: 1.9907  Mult_acc_2: 0.6367  Mult_acc_3: 0.4430  Mult_acc_5: 0.1974  F1_score: 0.6797  MAE: 0.6266  Corr: -0.0152 
+2021-02-05 01:16:23:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5887  Corr: 0.0952  Loss: 0.4777 
+2021-02-05 01:16:33:INFO:TRAIN-(misa) (1/2/5)>> loss: 1.5097  Mult_acc_2: 0.6747  Mult_acc_3: 0.4430  Mult_acc_5: 0.1952  F1_score: 0.7513  MAE: 0.5968  Corr: 0.0278 
+2021-02-05 01:16:34:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5373  Mult_acc_5: 0.2149  F1_score: 0.8202  MAE: 0.5864  Corr: 0.0745  Loss: 0.4397 
+2021-02-05 01:16:44:INFO:TRAIN-(misa) (1/3/5)>> loss: 1.3052  Mult_acc_2: 0.6301  Mult_acc_3: 0.4232  Mult_acc_5: 0.1966  F1_score: 0.6794  MAE: 0.5989  Corr: 0.0487 
+2021-02-05 01:16:45:INFO:VAL-(misa) >>  Mult_acc_2: 0.6974  Mult_acc_3: 0.4254  Mult_acc_5: 0.1908  F1_score: 0.8195  MAE: 0.5917  Corr: 0.0745  Loss: 0.4838 
+2021-02-05 01:16:54:INFO:TRAIN-(misa) (2/4/5)>> loss: 1.1336  Mult_acc_2: 0.6689  Mult_acc_3: 0.4817  Mult_acc_5: 0.2003  F1_score: 0.7524  MAE: 0.5958  Corr: 0.0363 
+2021-02-05 01:16:55:INFO:VAL-(misa) >>  Mult_acc_2: 0.6338  Mult_acc_3: 0.1513  Mult_acc_5: 0.1513  F1_score: 0.6471  MAE: 0.6022  Corr: 0.0692  Loss: 0.4993 
+2021-02-05 01:17:04:INFO:TRAIN-(misa) (3/5/5)>> loss: 0.9862  Mult_acc_2: 0.6586  Mult_acc_3: 0.4357  Mult_acc_5: 0.1944  F1_score: 0.7219  MAE: 0.5980  Corr: 0.0305 
+2021-02-05 01:17:05:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5417  Mult_acc_5: 0.2105  F1_score: 0.8202  MAE: 0.5876  Corr: 0.0577  Loss: 0.4872 
+2021-02-05 01:17:13:INFO:TRAIN-(misa) (4/6/5)>> loss: 0.8714  Mult_acc_2: 0.6740  Mult_acc_3: 0.4444  Mult_acc_5: 0.1937  F1_score: 0.7625  MAE: 0.5916  Corr: 0.0516 
+2021-02-05 01:17:14:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5894  Corr: 0.0584  Loss: 0.5134 
+2021-02-05 01:17:23:INFO:TRAIN-(misa) (5/7/5)>> loss: 0.7914  Mult_acc_2: 0.6835  Mult_acc_3: 0.4627  Mult_acc_5: 0.2054  F1_score: 0.7878  MAE: 0.5942  Corr: 0.0171 
+2021-02-05 01:17:24:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5395  Mult_acc_5: 0.2083  F1_score: 0.8202  MAE: 0.5880  Corr: 0.0519  Loss: 0.4298 
+2021-02-05 01:17:34:INFO:TRAIN-(misa) (1/8/5)>> loss: 0.7269  Mult_acc_2: 0.6879  Mult_acc_3: 0.4898  Mult_acc_5: 0.2069  F1_score: 0.8039  MAE: 0.5918  Corr: 0.0311 
+2021-02-05 01:17:35:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5889  Corr: 0.0461  Loss: 0.4899 
+2021-02-05 01:17:44:INFO:TRAIN-(misa) (2/9/5)>> loss: 0.6934  Mult_acc_2: 0.6747  Mult_acc_3: 0.4671  Mult_acc_5: 0.2054  F1_score: 0.7740  MAE: 0.5929  Corr: 0.0385 
+2021-02-05 01:17:45:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5947  Corr: 0.0622  Loss: 0.4824 
+2021-02-05 01:17:54:INFO:TRAIN-(misa) (3/10/5)>> loss: 0.6753  Mult_acc_2: 0.6871  Mult_acc_3: 0.4561  Mult_acc_5: 0.2025  F1_score: 0.7967  MAE: 0.5948  Corr: 0.0086 
+2021-02-05 01:17:55:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5911  Corr: 0.0657  Loss: 0.4715 
+2021-02-05 01:18:04:INFO:TRAIN-(misa) (4/11/5)>> loss: 0.6399  Mult_acc_2: 0.6871  Mult_acc_3: 0.4846  Mult_acc_5: 0.1996  F1_score: 0.8040  MAE: 0.5926  Corr: 0.0428 
+2021-02-05 01:18:05:INFO:VAL-(misa) >>  Mult_acc_2: 0.6974  Mult_acc_3: 0.3860  Mult_acc_5: 0.2061  F1_score: 0.8195  MAE: 0.5962  Corr: 0.0568  Loss: 0.4901 
+2021-02-05 01:18:13:INFO:TRAIN-(misa) (5/12/5)>> loss: 0.6335  Mult_acc_2: 0.6966  Mult_acc_3: 0.4766  Mult_acc_5: 0.2025  F1_score: 0.8094  MAE: 0.5929  Corr: -0.0014 
+2021-02-05 01:18:14:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5883  Corr: 0.0497  Loss: 0.4932 
+2021-02-05 01:18:23:INFO:TRAIN-(misa) (6/13/5)>> loss: 0.6196  Mult_acc_2: 0.6879  Mult_acc_3: 0.5095  Mult_acc_5: 0.2091  F1_score: 0.8103  MAE: 0.5919  Corr: 0.0060 
+2021-02-05 01:18:24:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5887  Corr: 0.0435  Loss: 0.5060 
+2021-02-05 01:18:33:INFO:TRAIN-(misa) (7/14/5)>> loss: 0.6113  Mult_acc_2: 0.6893  Mult_acc_3: 0.4905  Mult_acc_5: 0.2047  F1_score: 0.8099  MAE: 0.5927  Corr: 0.0278 
+2021-02-05 01:18:34:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.5439  Mult_acc_5: 0.2127  F1_score: 0.8202  MAE: 0.5898  Corr: 0.0373  Loss: 0.4905 
+2021-02-05 01:18:43:INFO:TRAIN-(misa) (8/15/5)>> loss: 0.6177  Mult_acc_2: 0.6937  Mult_acc_3: 0.5066  Mult_acc_5: 0.2069  F1_score: 0.8113  MAE: 0.5968  Corr: -0.0130 
+2021-02-05 01:18:44:INFO:VAL-(misa) >>  Mult_acc_2: 0.6952  Mult_acc_3: 0.2829  Mult_acc_5: 0.1798  F1_score: 0.8202  MAE: 0.5976  Corr: 0.0280  Loss: 0.4815 
+2021-02-05 01:18:45:INFO:TEST-(misa) >>  Mult_acc_2: 0.6937  Mult_acc_3: 0.5383  Mult_acc_5: 0.2123  F1_score: 0.8191  MAE: 0.5870  Corr: 0.0804  Loss: 0.4646 
+2021-02-05 01:18:50:INFO:Results are added to results/results/normals/sims-regression.csv...
+2021-02-05 13:15:40:INFO:Start running misa...
+2021-02-05 13:15:40:INFO:<Storage{'is_tune': False, 'train_mode': 'classification', 'modelName': 'misa', 'datasetName': 'sims', 'num_workers': 0, 'model_save_dir': 'results/models', 'res_save_dir': 'results/results/normals', 'gpu_ids': [], 'seeds': [1111, 1112, 1113, 1114, 1115], 'dataPath': '/home/sharing/disk3/dataset/multimodal-sentiment-dataset/StandardDatasets/SIMS/Processed/features/unaligned_39.pkl', 'seq_lens': (39, 400, 55), 'feature_dims': (768, 33, 709), 'train_samples': 1368, 'num_classes': 3, 'language': 'cn', 'KeyEval': 'Loss', 'need_data_aligned': False, 'need_model_aligned': False, 'use_finetune': True, 'use_bert': True, 'early_stop': 8, 'update_epochs': 2, 'rnncell': 'lstm', 'use_cmd_sim': True, 'batch_size': 32, 'learning_rate': 0.0001, 'hidden_size': 256, 'dropout': 0.5, 'reverse_grad_weight': 1.0, 'diff_weight': 0.1, 'sim_weight': 0.8, 'sp_weight': 1.0, 'recon_weight': 0.8, 'grad_clip': -1.0, 'weight_decay': 0.0, 'seed': 1111}>
+2021-02-05 13:15:40:INFO:Find gpu: 2, with memory: 2553020416 left!
+2021-02-05 13:15:40:INFO:Let's use 1 GPUs!
+2021-02-05 13:15:41:INFO:train samples: (1368,)
+2021-02-05 13:15:41:INFO:valid samples: (456,)
+2021-02-05 13:15:42:INFO:test samples: (457,)
+2021-02-05 13:15:42:INFO:Model name 'pretrained_model/bert_cn' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased, bert-base-finnish-cased-v1, bert-base-finnish-uncased-v1, bert-base-dutch-cased). Assuming 'pretrained_model/bert_cn' is a path, a model identifier, or url to a directory containing tokenizer files.
+2021-02-05 13:15:42:INFO:Didn't find file pretrained_model/bert_cn/added_tokens.json. We won't load it.
+2021-02-05 13:15:42:INFO:Didn't find file pretrained_model/bert_cn/special_tokens_map.json. We won't load it.
+2021-02-05 13:15:42:INFO:Didn't find file pretrained_model/bert_cn/tokenizer_config.json. We won't load it.
+2021-02-05 13:15:42:INFO:loading file pretrained_model/bert_cn/vocab.txt
+2021-02-05 13:15:42:INFO:loading file None
+2021-02-05 13:15:42:INFO:loading file None
+2021-02-05 13:15:42:INFO:loading file None
+2021-02-05 13:15:42:INFO:loading configuration file pretrained_model/bert_cn/config.json
+2021-02-05 13:15:42:INFO:Model config BertConfig {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2021-02-05 13:15:42:INFO:loading weights file pretrained_model/bert_cn/pytorch_model.bin
+2021-02-05 13:15:45:INFO:The model has 126366319 trainable parameters
+2021-02-05 13:15:56:INFO:TRAIN-(misa) (1/1/1)>> loss: 2.5051  Has0_acc_2: 0.6696  Has0_F1_score: 0.7351  Non0_acc_2: 0.5909  Non0_F1_score: 0.6943  Acc_3: 0.5256  F1_score_3: 0.6225 
+2021-02-05 13:15:57:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9300 
+2021-02-05 13:16:10:INFO:TRAIN-(misa) (1/2/1)>> loss: 1.6320  Has0_acc_2: 0.7339  Has0_F1_score: 0.7444  Non0_acc_2: 0.5754  Non0_F1_score: 0.6298  Acc_3: 0.6250  F1_score_3: 0.6869 
+2021-02-05 13:16:11:INFO:VAL-(misa) >>  Has0_acc_2: 0.7303  Has0_F1_score: 0.7271  Non0_acc_2: 0.5504  Non0_F1_score: 0.5717  Acc_3: 0.6513  F1_score_3: 0.7069  Loss: 0.8563 
+2021-02-05 13:16:24:INFO:TRAIN-(misa) (1/3/1)>> loss: 1.1686  Has0_acc_2: 0.8077  Has0_F1_score: 0.8033  Non0_acc_2: 0.5891  Non0_F1_score: 0.6008  Acc_3: 0.7376  F1_score_3: 0.7908 
+2021-02-05 13:16:25:INFO:VAL-(misa) >>  Has0_acc_2: 0.7193  Has0_F1_score: 0.7157  Non0_acc_2: 0.5426  Non0_F1_score: 0.5627  Acc_3: 0.6404  F1_score_3: 0.6949  Loss: 0.9799 
+2021-02-05 13:16:36:INFO:TRAIN-(misa) (2/4/1)>> loss: 0.8614  Has0_acc_2: 0.8450  Has0_F1_score: 0.8400  Non0_acc_2: 0.6072  Non0_F1_score: 0.6060  Acc_3: 0.8004  F1_score_3: 0.8404 
+2021-02-05 13:16:38:INFO:VAL-(misa) >>  Has0_acc_2: 0.6689  Has0_F1_score: 0.6582  Non0_acc_2: 0.4884  Non0_F1_score: 0.4814  Acc_3: 0.6075  F1_score_3: 0.6424  Loss: 1.1339 
+2021-02-05 13:16:49:INFO:TRAIN-(misa) (3/5/1)>> loss: 0.6671  Has0_acc_2: 0.8633  Has0_F1_score: 0.8587  Non0_acc_2: 0.6210  Non0_F1_score: 0.6189  Acc_3: 0.8458  F1_score_3: 0.8593 
+2021-02-05 13:16:50:INFO:VAL-(misa) >>  Has0_acc_2: 0.7390  Has0_F1_score: 0.7416  Non0_acc_2: 0.5711  Non0_F1_score: 0.6107  Acc_3: 0.6535  F1_score_3: 0.6841  Loss: 1.2706 
+2021-02-05 13:17:02:INFO:TRAIN-(misa) (4/6/1)>> loss: 0.5317  Has0_acc_2: 0.8721  Has0_F1_score: 0.8680  Non0_acc_2: 0.6270  Non0_F1_score: 0.6287  Acc_3: 0.8889  F1_score_3: 0.8925 
+2021-02-05 13:17:03:INFO:VAL-(misa) >>  Has0_acc_2: 0.7434  Has0_F1_score: 0.7375  Non0_acc_2: 0.5323  Non0_F1_score: 0.5344  Acc_3: 0.6294  F1_score_3: 0.6335  Loss: 1.2422 
+2021-02-05 13:17:15:INFO:TRAIN-(misa) (5/7/1)>> loss: 0.4438  Has0_acc_2: 0.8874  Has0_F1_score: 0.8839  Non0_acc_2: 0.6305  Non0_F1_score: 0.6305  Acc_3: 0.9211  F1_score_3: 0.9216 
+2021-02-05 13:17:16:INFO:VAL-(misa) >>  Has0_acc_2: 0.6754  Has0_F1_score: 0.6626  Non0_acc_2: 0.4393  Non0_F1_score: 0.3911  Acc_3: 0.5965  F1_score_3: 0.5921  Loss: 1.5338 
+2021-02-05 13:17:28:INFO:TRAIN-(misa) (6/8/1)>> loss: 0.3243  Has0_acc_2: 0.8999  Has0_F1_score: 0.8968  Non0_acc_2: 0.6331  Non0_F1_score: 0.6318  Acc_3: 0.9591  F1_score_3: 0.9595 
+2021-02-05 13:17:29:INFO:VAL-(misa) >>  Has0_acc_2: 0.7325  Has0_F1_score: 0.7261  Non0_acc_2: 0.5194  Non0_F1_score: 0.5183  Acc_3: 0.5987  F1_score_3: 0.5958  Loss: 1.5741 
+2021-02-05 13:17:41:INFO:TRAIN-(misa) (7/9/1)>> loss: 0.2784  Has0_acc_2: 0.9130  Has0_F1_score: 0.9107  Non0_acc_2: 0.6357  Non0_F1_score: 0.6361  Acc_3: 0.9715  F1_score_3: 0.9716 
+2021-02-05 13:17:42:INFO:VAL-(misa) >>  Has0_acc_2: 0.7259  Has0_F1_score: 0.7218  Non0_acc_2: 0.5375  Non0_F1_score: 0.5522  Acc_3: 0.6294  F1_score_3: 0.6326  Loss: 1.8006 
+2021-02-05 13:17:54:INFO:TRAIN-(misa) (8/10/1)>> loss: 0.3624  Has0_acc_2: 0.8692  Has0_F1_score: 0.8648  Non0_acc_2: 0.6331  Non0_F1_score: 0.6356  Acc_3: 0.9430  F1_score_3: 0.9434 
+2021-02-05 13:17:55:INFO:VAL-(misa) >>  Has0_acc_2: 0.7061  Has0_F1_score: 0.6976  Non0_acc_2: 0.5013  Non0_F1_score: 0.4941  Acc_3: 0.6250  F1_score_3: 0.6426  Loss: 1.6300 
+2021-02-05 13:17:57:INFO:TEST-(misa) >>  Has0_acc_2: 0.7659  Has0_F1_score: 0.7652  Non0_acc_2: 0.5567  Non0_F1_score: 0.5783  Acc_3: 0.6652  F1_score_3: 0.7228  Loss: 0.8323 
+2021-02-05 13:18:02:INFO:Start running misa...
+2021-02-05 13:18:02:INFO:<Storage{'is_tune': False, 'train_mode': 'classification', 'modelName': 'misa', 'datasetName': 'sims', 'num_workers': 0, 'model_save_dir': 'results/models', 'res_save_dir': 'results/results/normals', 'gpu_ids': [2], 'seeds': [1111, 1112, 1113, 1114, 1115], 'dataPath': '/home/sharing/disk3/dataset/multimodal-sentiment-dataset/StandardDatasets/SIMS/Processed/features/unaligned_39.pkl', 'seq_lens': (39, 400, 55), 'feature_dims': (768, 33, 709), 'train_samples': 1368, 'num_classes': 3, 'language': 'cn', 'KeyEval': 'Loss', 'need_data_aligned': False, 'need_model_aligned': False, 'use_finetune': True, 'use_bert': True, 'early_stop': 8, 'update_epochs': 2, 'rnncell': 'lstm', 'use_cmd_sim': True, 'batch_size': 32, 'learning_rate': 0.0001, 'hidden_size': 256, 'dropout': 0.5, 'reverse_grad_weight': 1.0, 'diff_weight': 0.1, 'sim_weight': 0.8, 'sp_weight': 1.0, 'recon_weight': 0.8, 'grad_clip': -1.0, 'weight_decay': 0.0, 'seed': 1112}>
+2021-02-05 13:18:02:INFO:Let's use 1 GPUs!
+2021-02-05 13:18:03:INFO:train samples: (1368,)
+2021-02-05 13:18:04:INFO:valid samples: (456,)
+2021-02-05 13:18:05:INFO:test samples: (457,)
+2021-02-05 13:18:05:INFO:Model name 'pretrained_model/bert_cn' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased, bert-base-finnish-cased-v1, bert-base-finnish-uncased-v1, bert-base-dutch-cased). Assuming 'pretrained_model/bert_cn' is a path, a model identifier, or url to a directory containing tokenizer files.
+2021-02-05 13:18:05:INFO:Didn't find file pretrained_model/bert_cn/added_tokens.json. We won't load it.
+2021-02-05 13:18:05:INFO:Didn't find file pretrained_model/bert_cn/special_tokens_map.json. We won't load it.
+2021-02-05 13:18:05:INFO:Didn't find file pretrained_model/bert_cn/tokenizer_config.json. We won't load it.
+2021-02-05 13:18:05:INFO:loading file pretrained_model/bert_cn/vocab.txt
+2021-02-05 13:18:05:INFO:loading file None
+2021-02-05 13:18:05:INFO:loading file None
+2021-02-05 13:18:05:INFO:loading file None
+2021-02-05 13:18:05:INFO:loading configuration file pretrained_model/bert_cn/config.json
+2021-02-05 13:18:05:INFO:Model config BertConfig {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2021-02-05 13:18:05:INFO:loading weights file pretrained_model/bert_cn/pytorch_model.bin
+2021-02-05 13:18:07:INFO:The model has 126366319 trainable parameters
+2021-02-05 13:18:18:INFO:TRAIN-(misa) (1/1/2)>> loss: 2.4668  Has0_acc_2: 0.6542  Has0_F1_score: 0.6900  Non0_acc_2: 0.5504  Non0_F1_score: 0.6242  Acc_3: 0.5307  F1_score_3: 0.6015 
+2021-02-05 13:18:20:INFO:VAL-(misa) >>  Has0_acc_2: 0.7039  Has0_F1_score: 0.8177  Non0_acc_2: 0.6408  Non0_F1_score: 0.7779  Acc_3: 0.5526  F1_score_3: 0.7028  Loss: 0.9176 
+2021-02-05 13:18:32:INFO:TRAIN-(misa) (1/2/2)>> loss: 1.5268  Has0_acc_2: 0.7580  Has0_F1_score: 0.7677  Non0_acc_2: 0.5866  Non0_F1_score: 0.6411  Acc_3: 0.6491  F1_score_3: 0.7116 
+2021-02-05 13:18:34:INFO:VAL-(misa) >>  Has0_acc_2: 0.7412  Has0_F1_score: 0.7434  Non0_acc_2: 0.5607  Non0_F1_score: 0.5947  Acc_3: 0.6425  F1_score_3: 0.7016  Loss: 0.8686 
+2021-02-05 13:18:47:INFO:TRAIN-(misa) (1/3/2)>> loss: 1.0905  Has0_acc_2: 0.8092  Has0_F1_score: 0.8054  Non0_acc_2: 0.5891  Non0_F1_score: 0.6031  Acc_3: 0.7427  F1_score_3: 0.7831 
+2021-02-05 13:18:48:INFO:VAL-(misa) >>  Has0_acc_2: 0.6974  Has0_F1_score: 0.6875  Non0_acc_2: 0.4935  Non0_F1_score: 0.4813  Acc_3: 0.6272  F1_score_3: 0.6682  Loss: 0.9440 
+2021-02-05 13:18:59:INFO:TRAIN-(misa) (2/4/2)>> loss: 0.7481  Has0_acc_2: 0.8633  Has0_F1_score: 0.8594  Non0_acc_2: 0.6133  Non0_F1_score: 0.6153  Acc_3: 0.8326  F1_score_3: 0.8467 
+2021-02-05 13:19:01:INFO:VAL-(misa) >>  Has0_acc_2: 0.6447  Has0_F1_score: 0.6306  Non0_acc_2: 0.4212  Non0_F1_score: 0.3771  Acc_3: 0.5877  F1_score_3: 0.5857  Loss: 1.1575 
+2021-02-05 13:19:12:INFO:TRAIN-(misa) (3/5/2)>> loss: 0.5562  Has0_acc_2: 0.8896  Has0_F1_score: 0.8864  Non0_acc_2: 0.6253  Non0_F1_score: 0.6249  Acc_3: 0.8911  F1_score_3: 0.8961 
+2021-02-05 13:19:14:INFO:VAL-(misa) >>  Has0_acc_2: 0.7018  Has0_F1_score: 0.6950  Non0_acc_2: 0.5142  Non0_F1_score: 0.5193  Acc_3: 0.6053  F1_score_3: 0.6014  Loss: 1.3244 
+2021-02-05 13:19:25:INFO:TRAIN-(misa) (4/6/2)>> loss: 0.3898  Has0_acc_2: 0.9028  Has0_F1_score: 0.9002  Non0_acc_2: 0.6262  Non0_F1_score: 0.6253  Acc_3: 0.9430  F1_score_3: 0.9432 
+2021-02-05 13:19:27:INFO:VAL-(misa) >>  Has0_acc_2: 0.7390  Has0_F1_score: 0.7477  Non0_acc_2: 0.5762  Non0_F1_score: 0.6271  Acc_3: 0.6338  F1_score_3: 0.6627  Loss: 1.7053 
+2021-02-05 13:19:38:INFO:TRAIN-(misa) (5/7/2)>> loss: 0.4137  Has0_acc_2: 0.9130  Has0_F1_score: 0.9114  Non0_acc_2: 0.6253  Non0_F1_score: 0.6299  Acc_3: 0.9335  F1_score_3: 0.9339 
+2021-02-05 13:19:40:INFO:VAL-(misa) >>  Has0_acc_2: 0.6491  Has0_F1_score: 0.6353  Non0_acc_2: 0.4393  Non0_F1_score: 0.4028  Acc_3: 0.5724  F1_score_3: 0.5691  Loss: 1.5758 
+2021-02-05 13:19:51:INFO:TRAIN-(misa) (6/8/2)>> loss: 0.2879  Has0_acc_2: 0.9115  Has0_F1_score: 0.9092  Non0_acc_2: 0.6331  Non0_F1_score: 0.6326  Acc_3: 0.9656  F1_score_3: 0.9658 
+2021-02-05 13:19:52:INFO:VAL-(misa) >>  Has0_acc_2: 0.6886  Has0_F1_score: 0.6767  Non0_acc_2: 0.4703  Non0_F1_score: 0.4411  Acc_3: 0.6118  F1_score_3: 0.6178  Loss: 1.7405 
+2021-02-05 13:20:04:INFO:TRAIN-(misa) (7/9/2)>> loss: 0.2083  Has0_acc_2: 0.9481  Has0_F1_score: 0.9472  Non0_acc_2: 0.6314  Non0_F1_score: 0.6296  Acc_3: 0.9810  F1_score_3: 0.9810 
+2021-02-05 13:20:05:INFO:VAL-(misa) >>  Has0_acc_2: 0.7588  Has0_F1_score: 0.7561  Non0_acc_2: 0.5530  Non0_F1_score: 0.5692  Acc_3: 0.6535  F1_score_3: 0.6633  Loss: 1.7857 
+2021-02-05 13:20:17:INFO:TRAIN-(misa) (8/10/2)>> loss: 0.1862  Has0_acc_2: 0.9298  Has0_F1_score: 0.9282  Non0_acc_2: 0.6357  Non0_F1_score: 0.6357  Acc_3: 0.9854  F1_score_3: 0.9854 
+2021-02-05 13:20:18:INFO:VAL-(misa) >>  Has0_acc_2: 0.6316  Has0_F1_score: 0.6172  Non0_acc_2: 0.4057  Non0_F1_score: 0.3551  Acc_3: 0.5811  F1_score_3: 0.5972  Loss: 2.2411 
+2021-02-05 13:20:20:INFO:TEST-(misa) >>  Has0_acc_2: 0.7615  Has0_F1_score: 0.7667  Non0_acc_2: 0.5722  Non0_F1_score: 0.6129  Acc_3: 0.6521  F1_score_3: 0.7132  Loss: 0.8236 
+2021-02-05 13:20:25:INFO:Start running misa...
+2021-02-05 13:20:25:INFO:<Storage{'is_tune': False, 'train_mode': 'classification', 'modelName': 'misa', 'datasetName': 'sims', 'num_workers': 0, 'model_save_dir': 'results/models', 'res_save_dir': 'results/results/normals', 'gpu_ids': [2], 'seeds': [1111, 1112, 1113, 1114, 1115], 'dataPath': '/home/sharing/disk3/dataset/multimodal-sentiment-dataset/StandardDatasets/SIMS/Processed/features/unaligned_39.pkl', 'seq_lens': (39, 400, 55), 'feature_dims': (768, 33, 709), 'train_samples': 1368, 'num_classes': 3, 'language': 'cn', 'KeyEval': 'Loss', 'need_data_aligned': False, 'need_model_aligned': False, 'use_finetune': True, 'use_bert': True, 'early_stop': 8, 'update_epochs': 2, 'rnncell': 'lstm', 'use_cmd_sim': True, 'batch_size': 32, 'learning_rate': 0.0001, 'hidden_size': 256, 'dropout': 0.5, 'reverse_grad_weight': 1.0, 'diff_weight': 0.1, 'sim_weight': 0.8, 'sp_weight': 1.0, 'recon_weight': 0.8, 'grad_clip': -1.0, 'weight_decay': 0.0, 'seed': 1113}>
+2021-02-05 13:20:25:INFO:Let's use 1 GPUs!
+2021-02-05 13:20:26:INFO:train samples: (1368,)
+2021-02-05 13:20:27:INFO:valid samples: (456,)
+2021-02-05 13:20:28:INFO:test samples: (457,)
+2021-02-05 13:20:28:INFO:Model name 'pretrained_model/bert_cn' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased, bert-base-finnish-cased-v1, bert-base-finnish-uncased-v1, bert-base-dutch-cased). Assuming 'pretrained_model/bert_cn' is a path, a model identifier, or url to a directory containing tokenizer files.
+2021-02-05 13:20:28:INFO:Didn't find file pretrained_model/bert_cn/added_tokens.json. We won't load it.
+2021-02-05 13:20:28:INFO:Didn't find file pretrained_model/bert_cn/special_tokens_map.json. We won't load it.
+2021-02-05 13:20:28:INFO:Didn't find file pretrained_model/bert_cn/tokenizer_config.json. We won't load it.
+2021-02-05 13:20:28:INFO:loading file pretrained_model/bert_cn/vocab.txt
+2021-02-05 13:20:28:INFO:loading file None
+2021-02-05 13:20:28:INFO:loading file None
+2021-02-05 13:20:28:INFO:loading file None
+2021-02-05 13:20:28:INFO:loading configuration file pretrained_model/bert_cn/config.json
+2021-02-05 13:20:28:INFO:Model config BertConfig {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2021-02-05 13:20:28:INFO:loading weights file pretrained_model/bert_cn/pytorch_model.bin
+2021-02-05 13:20:30:INFO:The model has 126366319 trainable parameters
+2021-02-05 13:20:41:INFO:TRAIN-(misa) (1/1/3)>> loss: 2.4998  Has0_acc_2: 0.6667  Has0_F1_score: 0.6978  Non0_acc_2: 0.5685  Non0_F1_score: 0.6465  Acc_3: 0.5526  F1_score_3: 0.6234 
+2021-02-05 13:20:43:INFO:VAL-(misa) >>  Has0_acc_2: 0.7434  Has0_F1_score: 0.7880  Non0_acc_2: 0.6176  Non0_F1_score: 0.7160  Acc_3: 0.6031  F1_score_3: 0.6925  Loss: 0.8777 
+2021-02-05 13:20:56:INFO:TRAIN-(misa) (1/2/3)>> loss: 1.5229  Has0_acc_2: 0.7902  Has0_F1_score: 0.7916  Non0_acc_2: 0.5900  Non0_F1_score: 0.6259  Acc_3: 0.6959  F1_score_3: 0.7524 
+2021-02-05 13:20:57:INFO:VAL-(misa) >>  Has0_acc_2: 0.6491  Has0_F1_score: 0.6355  Non0_acc_2: 0.4367  Non0_F1_score: 0.3899  Acc_3: 0.6075  F1_score_3: 0.6462  Loss: 0.9258 
+2021-02-05 13:21:08:INFO:TRAIN-(misa) (2/3/3)>> loss: 1.1292  Has0_acc_2: 0.8370  Has0_F1_score: 0.8332  Non0_acc_2: 0.5926  Non0_F1_score: 0.5977  Acc_3: 0.7580  F1_score_3: 0.8067 
+2021-02-05 13:21:10:INFO:VAL-(misa) >>  Has0_acc_2: 0.7456  Has0_F1_score: 0.7428  Non0_acc_2: 0.5530  Non0_F1_score: 0.5723  Acc_3: 0.6557  F1_score_3: 0.7084  Loss: 0.9445 
+2021-02-05 13:21:21:INFO:TRAIN-(misa) (3/4/3)>> loss: 0.7379  Has0_acc_2: 0.8867  Has0_F1_score: 0.8834  Non0_acc_2: 0.6262  Non0_F1_score: 0.6266  Acc_3: 0.8596  F1_score_3: 0.8716 
+2021-02-05 13:21:22:INFO:VAL-(misa) >>  Has0_acc_2: 0.6645  Has0_F1_score: 0.6512  Non0_acc_2: 0.4496  Non0_F1_score: 0.4134  Acc_3: 0.5943  F1_score_3: 0.5991  Loss: 1.2476 
+2021-02-05 13:21:34:INFO:TRAIN-(misa) (4/5/3)>> loss: 0.5280  Has0_acc_2: 0.9050  Has0_F1_score: 0.9023  Non0_acc_2: 0.6331  Non0_F1_score: 0.6339  Acc_3: 0.9174  F1_score_3: 0.9200 
+2021-02-05 13:21:35:INFO:VAL-(misa) >>  Has0_acc_2: 0.6820  Has0_F1_score: 0.6695  Non0_acc_2: 0.4548  Non0_F1_score: 0.4160  Acc_3: 0.6075  F1_score_3: 0.6141  Loss: 1.5144 
+2021-02-05 13:21:46:INFO:TRAIN-(misa) (5/6/3)>> loss: 0.4143  Has0_acc_2: 0.9086  Has0_F1_score: 0.9061  Non0_acc_2: 0.6322  Non0_F1_score: 0.6309  Acc_3: 0.9496  F1_score_3: 0.9501 
+2021-02-05 13:21:48:INFO:VAL-(misa) >>  Has0_acc_2: 0.7193  Has0_F1_score: 0.7193  Non0_acc_2: 0.5504  Non0_F1_score: 0.5808  Acc_3: 0.6075  F1_score_3: 0.6242  Loss: 1.5081 
+2021-02-05 13:21:59:INFO:TRAIN-(misa) (6/7/3)>> loss: 0.3119  Has0_acc_2: 0.9079  Has0_F1_score: 0.9053  Non0_acc_2: 0.6357  Non0_F1_score: 0.6361  Acc_3: 0.9730  F1_score_3: 0.9730 
+2021-02-05 13:22:00:INFO:VAL-(misa) >>  Has0_acc_2: 0.6601  Has0_F1_score: 0.6468  Non0_acc_2: 0.4289  Non0_F1_score: 0.3787  Acc_3: 0.5855  F1_score_3: 0.5830  Loss: 1.8620 
+2021-02-05 13:22:12:INFO:TRAIN-(misa) (7/8/3)>> loss: 0.3403  Has0_acc_2: 0.9028  Has0_F1_score: 0.8999  Non0_acc_2: 0.6357  Non0_F1_score: 0.6361  Acc_3: 0.9554  F1_score_3: 0.9556 
+2021-02-05 13:22:13:INFO:VAL-(misa) >>  Has0_acc_2: 0.7478  Has0_F1_score: 0.7476  Non0_acc_2: 0.5530  Non0_F1_score: 0.5775  Acc_3: 0.6404  F1_score_3: 0.6672  Loss: 2.0023 
+2021-02-05 13:22:24:INFO:TRAIN-(misa) (8/9/3)>> loss: 0.3163  Has0_acc_2: 0.8999  Has0_F1_score: 0.8969  Non0_acc_2: 0.6322  Non0_F1_score: 0.6314  Acc_3: 0.9635  F1_score_3: 0.9636 
+2021-02-05 13:22:26:INFO:VAL-(misa) >>  Has0_acc_2: 0.7478  Has0_F1_score: 0.7452  Non0_acc_2: 0.5426  Non0_F1_score: 0.5575  Acc_3: 0.5987  F1_score_3: 0.6082  Loss: 1.6493 
+2021-02-05 13:22:27:INFO:TEST-(misa) >>  Has0_acc_2: 0.7615  Has0_F1_score: 0.7994  Non0_acc_2: 0.6186  Non0_F1_score: 0.7127  Acc_3: 0.6193  F1_score_3: 0.7027  Loss: 0.8686 
+2021-02-05 13:22:33:INFO:Start running misa...
+2021-02-05 13:22:33:INFO:<Storage{'is_tune': False, 'train_mode': 'classification', 'modelName': 'misa', 'datasetName': 'sims', 'num_workers': 0, 'model_save_dir': 'results/models', 'res_save_dir': 'results/results/normals', 'gpu_ids': [2], 'seeds': [1111, 1112, 1113, 1114, 1115], 'dataPath': '/home/sharing/disk3/dataset/multimodal-sentiment-dataset/StandardDatasets/SIMS/Processed/features/unaligned_39.pkl', 'seq_lens': (39, 400, 55), 'feature_dims': (768, 33, 709), 'train_samples': 1368, 'num_classes': 3, 'language': 'cn', 'KeyEval': 'Loss', 'need_data_aligned': False, 'need_model_aligned': False, 'use_finetune': True, 'use_bert': True, 'early_stop': 8, 'update_epochs': 2, 'rnncell': 'lstm', 'use_cmd_sim': True, 'batch_size': 32, 'learning_rate': 0.0001, 'hidden_size': 256, 'dropout': 0.5, 'reverse_grad_weight': 1.0, 'diff_weight': 0.1, 'sim_weight': 0.8, 'sp_weight': 1.0, 'recon_weight': 0.8, 'grad_clip': -1.0, 'weight_decay': 0.0, 'seed': 1114}>
+2021-02-05 13:22:33:INFO:Let's use 1 GPUs!
+2021-02-05 13:22:33:INFO:train samples: (1368,)
+2021-02-05 13:22:34:INFO:valid samples: (456,)
+2021-02-05 13:22:35:INFO:test samples: (457,)
+2021-02-05 13:22:35:INFO:Model name 'pretrained_model/bert_cn' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased, bert-base-finnish-cased-v1, bert-base-finnish-uncased-v1, bert-base-dutch-cased). Assuming 'pretrained_model/bert_cn' is a path, a model identifier, or url to a directory containing tokenizer files.
+2021-02-05 13:22:35:INFO:Didn't find file pretrained_model/bert_cn/added_tokens.json. We won't load it.
+2021-02-05 13:22:35:INFO:Didn't find file pretrained_model/bert_cn/special_tokens_map.json. We won't load it.
+2021-02-05 13:22:35:INFO:Didn't find file pretrained_model/bert_cn/tokenizer_config.json. We won't load it.
+2021-02-05 13:22:35:INFO:loading file pretrained_model/bert_cn/vocab.txt
+2021-02-05 13:22:35:INFO:loading file None
+2021-02-05 13:22:35:INFO:loading file None
+2021-02-05 13:22:35:INFO:loading file None
+2021-02-05 13:22:35:INFO:loading configuration file pretrained_model/bert_cn/config.json
+2021-02-05 13:22:35:INFO:Model config BertConfig {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2021-02-05 13:22:35:INFO:loading weights file pretrained_model/bert_cn/pytorch_model.bin
+2021-02-05 13:22:38:INFO:The model has 126366319 trainable parameters
+2021-02-05 13:22:49:INFO:TRAIN-(misa) (1/1/4)>> loss: 2.4821  Has0_acc_2: 0.6681  Has0_F1_score: 0.7088  Non0_acc_2: 0.5702  Non0_F1_score: 0.6538  Acc_3: 0.5402  F1_score_3: 0.6174 
+2021-02-05 13:22:50:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.8202  Non0_acc_2: 0.6408  Non0_F1_score: 0.7811  Acc_3: 0.5439  F1_score_3: 0.7045  Loss: 0.9074 
+2021-02-05 13:23:03:INFO:TRAIN-(misa) (1/2/4)>> loss: 1.5473  Has0_acc_2: 0.7668  Has0_F1_score: 0.7674  Non0_acc_2: 0.5702  Non0_F1_score: 0.6004  Acc_3: 0.6711  F1_score_3: 0.7254 
+2021-02-05 13:23:04:INFO:VAL-(misa) >>  Has0_acc_2: 0.7675  Has0_F1_score: 0.7718  Non0_acc_2: 0.5814  Non0_F1_score: 0.6228  Acc_3: 0.6645  F1_score_3: 0.7262  Loss: 0.8597 
+2021-02-05 13:23:17:INFO:TRAIN-(misa) (1/3/4)>> loss: 1.0427  Has0_acc_2: 0.8450  Has0_F1_score: 0.8406  Non0_acc_2: 0.6021  Non0_F1_score: 0.6037  Acc_3: 0.7873  F1_score_3: 0.8337 
+2021-02-05 13:23:18:INFO:VAL-(misa) >>  Has0_acc_2: 0.7237  Has0_F1_score: 0.7145  Non0_acc_2: 0.5168  Non0_F1_score: 0.5062  Acc_3: 0.6513  F1_score_3: 0.6928  Loss: 0.8881 
+2021-02-05 13:23:30:INFO:TRAIN-(misa) (2/4/4)>> loss: 0.7044  Has0_acc_2: 0.8867  Has0_F1_score: 0.8832  Non0_acc_2: 0.6253  Non0_F1_score: 0.6236  Acc_3: 0.8692  F1_score_3: 0.8801 
+2021-02-05 13:23:31:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.6853  Non0_acc_2: 0.4935  Non0_F1_score: 0.4823  Acc_3: 0.5921  F1_score_3: 0.5924  Loss: 1.3244 
+2021-02-05 13:23:42:INFO:TRAIN-(misa) (3/5/4)>> loss: 0.6264  Has0_acc_2: 0.8772  Has0_F1_score: 0.8732  Non0_acc_2: 0.6210  Non0_F1_score: 0.6168  Acc_3: 0.8838  F1_score_3: 0.8871 
+2021-02-05 13:23:44:INFO:VAL-(misa) >>  Has0_acc_2: 0.6908  Has0_F1_score: 0.6840  Non0_acc_2: 0.5116  Non0_F1_score: 0.5187  Acc_3: 0.5789  F1_score_3: 0.5686  Loss: 1.4732 
+2021-02-05 13:23:55:INFO:TRAIN-(misa) (4/6/4)>> loss: 0.4009  Has0_acc_2: 0.9028  Has0_F1_score: 0.9000  Non0_acc_2: 0.6357  Non0_F1_score: 0.6369  Acc_3: 0.9539  F1_score_3: 0.9543 
+2021-02-05 13:23:57:INFO:VAL-(misa) >>  Has0_acc_2: 0.7083  Has0_F1_score: 0.6983  Non0_acc_2: 0.5013  Non0_F1_score: 0.4867  Acc_3: 0.6140  F1_score_3: 0.6231  Loss: 1.5869 
+2021-02-05 13:24:08:INFO:TRAIN-(misa) (5/7/4)>> loss: 0.3316  Has0_acc_2: 0.8904  Has0_F1_score: 0.8870  Non0_acc_2: 0.6322  Non0_F1_score: 0.6322  Acc_3: 0.9656  F1_score_3: 0.9660 
+2021-02-05 13:24:09:INFO:VAL-(misa) >>  Has0_acc_2: 0.7259  Has0_F1_score: 0.7279  Non0_acc_2: 0.5581  Non0_F1_score: 0.5939  Acc_3: 0.5746  F1_score_3: 0.5667  Loss: 2.0059 
+2021-02-05 13:24:21:INFO:TRAIN-(misa) (6/8/4)>> loss: 0.2895  Has0_acc_2: 0.8830  Has0_F1_score: 0.8792  Non0_acc_2: 0.6331  Non0_F1_score: 0.6322  Acc_3: 0.9693  F1_score_3: 0.9693 
+2021-02-05 13:24:22:INFO:VAL-(misa) >>  Has0_acc_2: 0.6053  Has0_F1_score: 0.5906  Non0_acc_2: 0.3850  Non0_F1_score: 0.3290  Acc_3: 0.5132  F1_score_3: 0.4942  Loss: 2.0772 
+2021-02-05 13:24:33:INFO:TRAIN-(misa) (7/9/4)>> loss: 0.2378  Has0_acc_2: 0.9393  Has0_F1_score: 0.9380  Non0_acc_2: 0.6357  Non0_F1_score: 0.6348  Acc_3: 0.9854  F1_score_3: 0.9854 
+2021-02-05 13:24:35:INFO:VAL-(misa) >>  Has0_acc_2: 0.6952  Has0_F1_score: 0.6851  Non0_acc_2: 0.4910  Non0_F1_score: 0.4777  Acc_3: 0.5658  F1_score_3: 0.5538  Loss: 2.1242 
+2021-02-05 13:24:46:INFO:TRAIN-(misa) (8/10/4)>> loss: 0.2483  Has0_acc_2: 0.9276  Has0_F1_score: 0.9260  Non0_acc_2: 0.6314  Non0_F1_score: 0.6309  Acc_3: 0.9722  F1_score_3: 0.9722 
+2021-02-05 13:24:48:INFO:VAL-(misa) >>  Has0_acc_2: 0.6864  Has0_F1_score: 0.6765  Non0_acc_2: 0.4910  Non0_F1_score: 0.4819  Acc_3: 0.5746  F1_score_3: 0.5697  Loss: 1.9326 
+2021-02-05 13:24:49:INFO:TEST-(misa) >>  Has0_acc_2: 0.7877  Has0_F1_score: 0.7941  Non0_acc_2: 0.5799  Non0_F1_score: 0.6212  Acc_3: 0.6652  F1_score_3: 0.7267  Loss: 0.8365 
+2021-02-05 13:24:54:INFO:Start running misa...
+2021-02-05 13:24:54:INFO:<Storage{'is_tune': False, 'train_mode': 'classification', 'modelName': 'misa', 'datasetName': 'sims', 'num_workers': 0, 'model_save_dir': 'results/models', 'res_save_dir': 'results/results/normals', 'gpu_ids': [2], 'seeds': [1111, 1112, 1113, 1114, 1115], 'dataPath': '/home/sharing/disk3/dataset/multimodal-sentiment-dataset/StandardDatasets/SIMS/Processed/features/unaligned_39.pkl', 'seq_lens': (39, 400, 55), 'feature_dims': (768, 33, 709), 'train_samples': 1368, 'num_classes': 3, 'language': 'cn', 'KeyEval': 'Loss', 'need_data_aligned': False, 'need_model_aligned': False, 'use_finetune': True, 'use_bert': True, 'early_stop': 8, 'update_epochs': 2, 'rnncell': 'lstm', 'use_cmd_sim': True, 'batch_size': 32, 'learning_rate': 0.0001, 'hidden_size': 256, 'dropout': 0.5, 'reverse_grad_weight': 1.0, 'diff_weight': 0.1, 'sim_weight': 0.8, 'sp_weight': 1.0, 'recon_weight': 0.8, 'grad_clip': -1.0, 'weight_decay': 0.0, 'seed': 1115}>
+2021-02-05 13:24:54:INFO:Let's use 1 GPUs!
+2021-02-05 13:24:55:INFO:train samples: (1368,)
+2021-02-05 13:24:56:INFO:valid samples: (456,)
+2021-02-05 13:24:57:INFO:test samples: (457,)
+2021-02-05 13:24:57:INFO:Model name 'pretrained_model/bert_cn' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased, bert-base-finnish-cased-v1, bert-base-finnish-uncased-v1, bert-base-dutch-cased). Assuming 'pretrained_model/bert_cn' is a path, a model identifier, or url to a directory containing tokenizer files.
+2021-02-05 13:24:57:INFO:Didn't find file pretrained_model/bert_cn/added_tokens.json. We won't load it.
+2021-02-05 13:24:57:INFO:Didn't find file pretrained_model/bert_cn/special_tokens_map.json. We won't load it.
+2021-02-05 13:24:57:INFO:Didn't find file pretrained_model/bert_cn/tokenizer_config.json. We won't load it.
+2021-02-05 13:24:57:INFO:loading file pretrained_model/bert_cn/vocab.txt
+2021-02-05 13:24:57:INFO:loading file None
+2021-02-05 13:24:57:INFO:loading file None
+2021-02-05 13:24:57:INFO:loading file None
+2021-02-05 13:24:57:INFO:loading configuration file pretrained_model/bert_cn/config.json
+2021-02-05 13:24:57:INFO:Model config BertConfig {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2021-02-05 13:24:57:INFO:loading weights file pretrained_model/bert_cn/pytorch_model.bin
+2021-02-05 13:25:00:INFO:The model has 126366319 trainable parameters
+2021-02-05 13:25:11:INFO:TRAIN-(misa) (1/1/5)>> loss: 2.4744  Has0_acc_2: 0.6352  Has0_F1_score: 0.6577  Non0_acc_2: 0.5211  Non0_F1_score: 0.5772  Acc_3: 0.5110  F1_score_3: 0.5737 
+2021-02-05 13:25:12:INFO:VAL-(misa) >>  Has0_acc_2: 0.7061  Has0_F1_score: 0.7806  Non0_acc_2: 0.6253  Non0_F1_score: 0.7438  Acc_3: 0.5680  F1_score_3: 0.6843  Loss: 0.9103 
+2021-02-05 13:25:25:INFO:TRAIN-(misa) (1/2/5)>> loss: 1.5373  Has0_acc_2: 0.7537  Has0_F1_score: 0.7604  Non0_acc_2: 0.5891  Non0_F1_score: 0.6416  Acc_3: 0.6579  F1_score_3: 0.7206 
+2021-02-05 13:25:26:INFO:VAL-(misa) >>  Has0_acc_2: 0.7127  Has0_F1_score: 0.7030  Non0_acc_2: 0.5039  Non0_F1_score: 0.4903  Acc_3: 0.6447  F1_score_3: 0.6934  Loss: 0.8567 
+2021-02-05 13:25:39:INFO:TRAIN-(misa) (1/3/5)>> loss: 1.0178  Has0_acc_2: 0.8173  Has0_F1_score: 0.8113  Non0_acc_2: 0.5900  Non0_F1_score: 0.5876  Acc_3: 0.7778  F1_score_3: 0.8106 
+2021-02-05 13:25:40:INFO:VAL-(misa) >>  Has0_acc_2: 0.6140  Has0_F1_score: 0.6017  Non0_acc_2: 0.3824  Non0_F1_score: 0.3143  Acc_3: 0.5746  F1_score_3: 0.5971  Loss: 1.0521 
+2021-02-05 13:25:52:INFO:TRAIN-(misa) (2/4/5)>> loss: 0.7182  Has0_acc_2: 0.8531  Has0_F1_score: 0.8481  Non0_acc_2: 0.6184  Non0_F1_score: 0.6172  Acc_3: 0.8611  F1_score_3: 0.8664 
+2021-02-05 13:25:53:INFO:VAL-(misa) >>  Has0_acc_2: 0.6996  Has0_F1_score: 0.6885  Non0_acc_2: 0.4703  Non0_F1_score: 0.4421  Acc_3: 0.6338  F1_score_3: 0.6505  Loss: 1.1228 
+2021-02-05 13:26:04:INFO:TRAIN-(misa) (3/5/5)>> loss: 0.5321  Has0_acc_2: 0.8765  Has0_F1_score: 0.8726  Non0_acc_2: 0.6253  Non0_F1_score: 0.6253  Acc_3: 0.9145  F1_score_3: 0.9157 
+2021-02-05 13:26:06:INFO:VAL-(misa) >>  Has0_acc_2: 0.7500  Has0_F1_score: 0.7573  Non0_acc_2: 0.5788  Non0_F1_score: 0.6270  Acc_3: 0.6338  F1_score_3: 0.6578  Loss: 1.4318 
+2021-02-05 13:26:17:INFO:TRAIN-(misa) (4/6/5)>> loss: 0.3923  Has0_acc_2: 0.9291  Has0_F1_score: 0.9275  Non0_acc_2: 0.6331  Non0_F1_score: 0.6335  Acc_3: 0.9539  F1_score_3: 0.9542 
+2021-02-05 13:26:19:INFO:VAL-(misa) >>  Has0_acc_2: 0.6974  Has0_F1_score: 0.6885  Non0_acc_2: 0.5013  Non0_F1_score: 0.4962  Acc_3: 0.6053  F1_score_3: 0.6139  Loss: 1.4279 
+2021-02-05 13:26:30:INFO:TRAIN-(misa) (5/7/5)>> loss: 0.2926  Has0_acc_2: 0.9123  Has0_F1_score: 0.9099  Non0_acc_2: 0.6322  Non0_F1_score: 0.6305  Acc_3: 0.9737  F1_score_3: 0.9737 
+2021-02-05 13:26:31:INFO:VAL-(misa) >>  Has0_acc_2: 0.6732  Has0_F1_score: 0.6605  Non0_acc_2: 0.4496  Non0_F1_score: 0.4134  Acc_3: 0.5899  F1_score_3: 0.5971  Loss: 1.8436 
+2021-02-05 13:26:43:INFO:TRAIN-(misa) (6/8/5)>> loss: 0.2693  Has0_acc_2: 0.9291  Has0_F1_score: 0.9274  Non0_acc_2: 0.6348  Non0_F1_score: 0.6344  Acc_3: 0.9766  F1_score_3: 0.9767 
+2021-02-05 13:26:44:INFO:VAL-(misa) >>  Has0_acc_2: 0.6864  Has0_F1_score: 0.6743  Non0_acc_2: 0.4677  Non0_F1_score: 0.4365  Acc_3: 0.6053  F1_score_3: 0.6197  Loss: 1.8537 
+2021-02-05 13:26:56:INFO:TRAIN-(misa) (7/9/5)>> loss: 0.3148  Has0_acc_2: 0.8977  Has0_F1_score: 0.8947  Non0_acc_2: 0.6357  Non0_F1_score: 0.6382  Acc_3: 0.9576  F1_score_3: 0.9578 
+2021-02-05 13:26:57:INFO:VAL-(misa) >>  Has0_acc_2: 0.6469  Has0_F1_score: 0.6330  Non0_acc_2: 0.4160  Non0_F1_score: 0.3662  Acc_3: 0.5614  F1_score_3: 0.5606  Loss: 2.0011 
+2021-02-05 13:27:08:INFO:TRAIN-(misa) (8/10/5)>> loss: 0.2845  Has0_acc_2: 0.8823  Has0_F1_score: 0.8787  Non0_acc_2: 0.6288  Non0_F1_score: 0.6292  Acc_3: 0.9635  F1_score_3: 0.9635 
+2021-02-05 13:27:10:INFO:VAL-(misa) >>  Has0_acc_2: 0.6732  Has0_F1_score: 0.6611  Non0_acc_2: 0.4651  Non0_F1_score: 0.4404  Acc_3: 0.5833  F1_score_3: 0.5768  Loss: 1.9099 
+2021-02-05 13:27:11:INFO:TEST-(misa) >>  Has0_acc_2: 0.7396  Has0_F1_score: 0.7317  Non0_acc_2: 0.5077  Non0_F1_score: 0.4941  Acc_3: 0.6543  F1_score_3: 0.7055  Loss: 0.8608 
+2021-02-05 13:27:16:INFO:Results are added to results/results/normals/sims-classification.csv...

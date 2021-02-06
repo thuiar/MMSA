@@ -84,7 +84,7 @@ class MLMF():
             val_results = self.do_test(model, dataloader['valid'], mode="VAL")
             cur_valid = val_results[self.args.KeyEval]
             # save best model
-            isBetter = cur_valid <= best_valid if min_or_max == 'min' else cur_valid >= best_valid
+            isBetter = cur_valid <= (best_valid - 1e-6) if min_or_max == 'min' else cur_valid >= (best_valid + 1e-6)
             # save best model
             if isBetter:
                 best_valid, best_epoch = cur_valid, epochs
