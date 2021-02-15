@@ -17,7 +17,7 @@ class dataPre():
         """
         print("Start Fetch Frames...")
         video_pathes = sorted(glob(os.path.join(self.working_dir, input_dir, '*/*.mp4')))
-        output_dir = os.path.join(working_dir,  output_dir)
+        output_dir = os.path.join(self.working_dir,  output_dir)
         for video_path in tqdm(video_pathes):
             video_id, clip_id = video_path.split('/')[-2:]
             clip_id = clip_id.split('.')[0]
@@ -52,7 +52,7 @@ class dataPre():
         fetch audios from videos using ffmpeg toolkits
         """
         print("Start Fetch Audios...")
-        video_pathes = sorted(glob(os.path.join(working_dir, input_dir, '*/*.mp4')))
+        video_pathes = sorted(glob(os.path.join(self.working_dir, input_dir, '*/*.mp4')))
         for video_path in tqdm(video_pathes):
             output_path = video_path.replace(input_dir, output_dir).replace('.mp4', '.wav')
             if not os.path.exists(os.path.dirname(output_path)):
