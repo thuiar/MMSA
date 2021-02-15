@@ -32,6 +32,7 @@ def run(args):
         os.makedirs(args.model_save_dir)
     args.model_save_path = os.path.join(args.model_save_dir,\
                                         f'{args.modelName}-{args.datasetName}-{args.train_mode}.pth')
+    # indicate used gpu
     if len(args.gpu_ids) == 0 and torch.cuda.is_available():
         # load free-most gpu
         pynvml.nvmlInit()
@@ -51,10 +52,13 @@ def run(args):
     logger.info("Let's use %d GPUs!" % len(args.gpu_ids))
     device = torch.device('cuda:%d' % int(args.gpu_ids[0]) if using_cuda else 'cpu')
     args.device = device
+    # add tmp tensor to increase the temporary consumption of GPU
     tmp_tensor = torch.zeros((100, 100)).to(args.device)
     # load data and models
     dataloader = MMDataLoader(args)
     model = AMIO(args).to(device)
+
+    del tmp_tensor
 
     def count_parameters(model):
         answer = 0
@@ -79,13 +83,12 @@ def run(args):
     model.to(device)
     # do test
     if args.is_tune:
-        # using valid dataset to debug hyper parameters
+        # using valid dataset to tune hyper parameters
         results = atio.do_test(model, dataloader['valid'], mode="VALID")
     else:
         results = atio.do_test(model, dataloader['test'], mode="TEST")
 
     del model
-    del tmp_tensor
     torch.cuda.empty_cache()
     gc.collect()
     time.sleep(5)
@@ -245,19 +248,22 @@ def worker(cur_task=None):
         logger = set_log(args)
         args.seeds = [1111,1112, 1113, 1114, 1115]
         if args.is_tune:
-            run_tune(args, tune_times=cur_task['tune_times'])
+            # run_tune(args, tune_times=cur_task['tune_times'])
+            run_tune(args, tune_times=50)
         else:
             run_normal(args)
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--is_tune', type=bool, default=False,
+    parser.add_argument('--need_task_scheduling', type=bool, default=False,
+                        help='use the task scheduling module.')
+    parser.add_argument('--is_tune', type=bool, default=True,
                         help='tune parameters ?')
-    parser.add_argument('--train_mode', type=str, default="classification",
+    parser.add_argument('--train_mode', type=str, default="regression",
                         help='regression / classification')
-    parser.add_argument('--modelName', type=str, default='lf_dnn',
+    parser.add_argument('--modelName', type=str, default='self_mm',
                         help='support lf_dnn/ef_lstm/tfn/lmf/mfn/graph_mfn/mult/misa/mlf_dnn/mtfn/mlmf/self_mm')
-    parser.add_argument('--datasetName', type=str, default='mosi',
+    parser.add_argument('--datasetName', type=str, default='sims',
                         help='support mosi/mosei/sims')
     parser.add_argument('--num_workers', type=int, default=0,
                         help='num workers of loading data')
@@ -270,8 +276,8 @@ def parse_args():
     return parser.parse_args()
 
 if __name__ == '__main__':
-    # if False:
-    if True:
+    args = parse_args()
+    if args.need_task_scheduling:
         mp.set_start_method('spawn')
         # load uncompleted tasks
         df = pd.read_csv('tasks.csv')

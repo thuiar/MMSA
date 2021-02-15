@@ -9,11 +9,7 @@ from tqdm import tqdm
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-# from pytorch_transformers.modeling_bert import BertForSequenceClassification, BertConfig, MultimodalBertForSequenceClassification
-# from pytorch_transformers.amir_tokenization import BertTokenizer
-# from pytorch_transformers.optimization import AdamW, WarmupLinearSchedule
 
-# from transformers.tokenization import BertTokenizer
 from models.subNets.BertTextEncoder import BertTextEncoder
 
 class TextPre(object):

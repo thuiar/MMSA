@@ -1,24 +1,14 @@
 ![Python 3.6](https://img.shields.io/badge/python-3.6-green.svg)
 # MMSA 
-> Pytorch implementation for codes in CH-SIMS: A Chinese Multimodal Sentiment Analysis Dataset with Fine-grained Annotations of Modality (ACL2020)
+> Pytorch implementation for codes in multimodal sentiment analysis models.
 
-### Paper
----
-[CH-SIMS: A Chinese Multimodal Sentiment Analysis Dataset with Fine-grained Annotations of Modality](https://www.aclweb.org/anthology/2020.acl-main.343/)
+### Update
+1. Fix some bugs.
+2. Add more models.
+3. Add task scheduling mechanism.
+4. Update regression and classification results on MOSI, MOSEI, and SIMS datasets.
 
-Please cite our paper if you find our work useful for your research:
-```
-@inproceedings{yu2020ch,
-  title={CH-SIMS: A Chinese Multimodal Sentiment Analysis Dataset with Fine-grained Annotation of Modality},
-  author={Yu, Wenmeng and Xu, Hua and Meng, Fanyang and Zhu, Yilin and Ma, Yixiao and Wu, Jiele and Zou, Jiyun and Yang, Kaicheng},
-  booktitle={Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics},
-  pages={3718--3727},
-  year={2020}
-}
-```
-
-#### Dataset
-![Annotations](assets/Annotations.png)
+### SIMS Dataset
 
 - You can download CH-SIMS from the following links.
 > md5: `6a92dccd83373b48ac83257bddab2538`
@@ -26,28 +16,62 @@ Please cite our paper if you find our work useful for your research:
 1. [Baidu Yun Disk](https://pan.baidu.com/s/1CmLdhYSVnNFAyA0DkR6tdA)[code: `ozo2`] 
 2. [Google Drive](https://drive.google.com/file/d/1z6snOkOoy100F33lzmHHB_DUGJ47DaQo/view?usp=sharing)
 
-### Support Models
+## Support Models
 In this framework, we support the following methods:
 
 |     Type    |   Model Name      |     From                |
 |:-----------:|:----------------:|:------------------------:|
 | Single-Task |[EF_LSTM](models/singleTask/EF_LSTM.py)|[MultimodalDNN](https://github.com/rhoposit/MultimodalDNN)|
 | Single-Task |[LF_DNN](models/singleTask/LF_DNN.py)|      -       |
-| Single-Task |[TFN](models/singleTask/TFN.py)|[TensorFusionNetwork](https://github.com/A2Zadeh/TensorFusionNetwork)|
+| Single-Task |[TFN](models/singleTask/TFN.py)|[Tensor-Fusion-Network](https://github.com/A2Zadeh/TensorFusionNetwork)|
 | Single-Task |[LMF](models/singleTask/LMF.py)| [Low-rank-Multimodal-Fusion](https://github.com/Justin1904/Low-rank-Multimodal-Fusion)|
 | Single-Task |[MFN](models/singleTask/MFN.py)|[Memory-Fusion-Network](https://github.com/pliang279/MFN)|
+| Single-Task |[Graph-MFN](models/singleTask/Graph_MFN.py)|[Graph-Memory-Fusion-Network](https://github.com/pliang279/MFN)|
 | Single-Task |[MulT](models/singleTask/MulT.py)(without CTC) |[Multimodal-Transformer](https://github.com/yaohungt/Multimodal-Transformer)|
-| Multi-Task  |[MLF_DNN](models/multiTask/MLF_DNN.py)|      -  |
-| Multi-Task  |[MTFN](models/multiTask/MTFN.py)      |      -  |
-| Multi-Task  |[MLMF](models/multiTask/MLMF.py)      |      -  |
+| Single-Task |[MISA](models/singleTask/MISA.py) |[MISA](https://github.com/declare-lab/MISA)|
+| Multi-Task  |[MLF_DNN](models/multiTask/MLF_DNN.py)|      [MMSA](https://github.com/thuiar/MMSA)  |
+| Multi-Task  |[MTFN](models/multiTask/MTFN.py)      |      [MMSA](https://github.com/thuiar/MMSA)  |
+| Multi-Task  |[MLMF](models/multiTask/MLMF.py)      |      [MMSA](https://github.com/thuiar/MMSA)  |
+| Multi-Task  |[SELF_MM](models/multiTask/SELF_MM.py)      |  [Self-MM](https://github.com/thuiar/Self-MM)  |
 
 ### Results
-#### Regression
-
-
+> Detailed results are shown in [results/result-stat.md](results/result-stat.md)
 
 ### Usage
 ---
+
+#### Download datasets
+
+1. Download datasets from the following links.
+
+- MOSI and MOSEI
+> download from [CMU-MultimodalSDK](http://immortal.multicomp.cs.cmu.edu/raw_datasets/processed_data/)
+
+- SIMS
+> download from [Baidu Yun Disk](https://pan.baidu.com/s/1CmLdhYSVnNFAyA0DkR6tdA)[code: `ozo2`] or [Google Drive](https://drive.google.com/file/d/1z6snOkOoy100F33lzmHHB_DUGJ47DaQo/view?usp=sharing)
+
+2. Preprocess features and save as a pickle file with the following structure.
+
+```python
+{
+    "train": {
+        "raw_text": [],
+        "audio": [],
+        "vision": [],
+        "id": [], # [video_id$_$clip_id, ..., ...]
+        "text": [],
+        "text_bert": [],
+        "audio_lengths": [],
+        "vision_lengths": [],
+        "annotations": [],
+        "classification_labels": [], # Negative(< 0), Neutral(0), Positive(> 0)
+        "regression_labels": []
+    },
+    "valid": {***}, # same as the "train" 
+    "test": {***}, # same as the "train"
+}
+```
+3. Modify `config/config_*.py` to update dataset pathes.
 
 #### Run the Code
 - Clone this repo and install requirements.
@@ -85,5 +109,29 @@ python data/getFeature.py --data_dir [path_to_CH-SIMS] --openface2Path [path_to_
 #### Run
 
 ```
-python run.py --modelName *** --datasetName sims
+python run.py
+```
+
+#### Paper
+---
+[CH-SIMS: A Chinese Multimodal Sentiment Analysis Dataset with Fine-grained Annotations of Modality](https://www.aclweb.org/anthology/2020.acl-main.343/)
+[Learning Modality-Specific Representations with Self-Supervised Multi-Task Learning for Multimodal Sentiment Analysis]()
+
+Please cite our paper if you find our work useful for your research:
+```
+@inproceedings{yu2020ch,
+  title={CH-SIMS: A Chinese Multimodal Sentiment Analysis Dataset with Fine-grained Annotation of Modality},
+  author={Yu, Wenmeng and Xu, Hua and Meng, Fanyang and Zhu, Yilin and Ma, Yixiao and Wu, Jiele and Zou, Jiyun and Yang, Kaicheng},
+  booktitle={Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics},
+  pages={3718--3727},
+  year={2020}
+}
+```
+```
+@inproceedings{yu2021le,
+  title={Learning Modality-Specific Representations with Self-Supervised Multi-Task Learning for Multimodal Sentiment Analysis},
+  author={Yu, Wenmeng and Xu, Hua and Ziqi, Yuan and Jiele, Wu},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  year={2021}
+}
 ```

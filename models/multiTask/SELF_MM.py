@@ -1,3 +1,7 @@
+"""
+From: https://github.com/thuiar/Self-MM
+Paper: Learning Modality-Specific Representations with Self-Supervised Multi-Task Learning for Multimodal Sentiment Analysis
+"""
 # self supervised multimodal multi-task learning network
 import os
 import sys

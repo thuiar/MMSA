@@ -113,6 +113,3 @@ is_tune,train_mode,modelName,datasetName,state,tune_times,error_info
 0,classification,mlf_dnn,sims,1,50,
 0,classification,mtfn,sims,1,50,
 0,classification,mlmf,sims,1,50,
-0,classification,self_mm,mosi,-1,50,'self_mm'
-0,classification,self_mm,mosei,-1,48,'self_mm'
-0,classification,self_mm,sims,-1,50,'self_mm'

@@ -344,18 +344,18 @@ class ConfigClassification():
                 },
                 'sims':{
                     # the batch_size of each epoch is updata_epochs * batch_size
-                    'batch_size': 32,
+                    'batch_size': 64,
                     'learning_rate': 1e-4,
                     'hidden_size': 256,
-                    'dropout': 0.5,
+                    'dropout': 0.0,
                     'reverse_grad_weight': 1.0,
-                    'diff_weight': 0.1,
-                    'sim_weight': 0.8,
+                    'diff_weight': 0.3,
+                    'sim_weight': 1.0,
                     'sp_weight': 1.0,
-                    'recon_weight': 0.8,
+                    'recon_weight': 1.0,
                     # when grad_clip == -1.0, means not use that
                     'grad_clip': -1.0,
-                    'weight_decay': 0.0,
+                    'weight_decay': 5e-5,
                 }
             },
         }
@@ -663,25 +663,25 @@ class ConfigClassification():
             # dataset
             'datasetParas':{
                 'sims':{
-                    'hidden_dims': (64, 32, 64),
-                    'post_text_dim': 64,
-                    'post_audio_dim': 4,
-                    'post_video_dim': 64,
+                    'hidden_dims': (128, 16, 128),
+                    'post_text_dim': 32,
+                    'post_audio_dim': 5,
+                    'post_video_dim': 8,
                     # dropout
                     'post_dropouts': (0.2,0.2,0.2,0.2),
                     'dropouts': (0.2, 0.2, 0.2),
-                    'rank': 3,
+                    'rank': 5,
                     'batch_size': 64,
                     'learning_rate': 0.005,
-                    'factor_lr': 0.0005, # factor_learning_rate
+                    'factor_lr': 0.001, # factor_learning_rate
                     'M': 0.6,
-                    'T': 0.4,
-                    'A': 0.6,
-                    'V': 1.0,
+                    'T': 1.0,
+                    'A': 0.8,
+                    'V': 0.6,
                     'text_weight_decay': 1e-3,
-                    'audio_weight_decay': 0.0,
-                    'video_weight_decay': 1e-4, 
-                    'weight_decay': 0.0,
+                    'audio_weight_decay': 1e-3,
+                    'video_weight_decay': 0.0, 
+                    'weight_decay': 0.005,
                 },
             },
         }
@@ -698,24 +698,24 @@ class ConfigClassification():
             # dataset
             'datasetParas':{
                 'sims':{
-                    'hidden_dims': (64, 32, 64),
+                    'hidden_dims': (256, 32, 256),
                     'text_out': 128,
                     'post_fusion_dim': 16,
-                    'post_text_dim': 32,
+                    'post_text_dim': 64,
                     'post_audio_dim': 4,
-                    'post_video_dim': 8,
-                    'dropouts': (0.2, 0.2, 0.2),
-                    'post_dropouts': (0.5,0.5,0.5,0.5),
-                    'batch_size': 64,
-                    'learning_rate': 0.005,
-                    'M': 1.0,
-                    'T': 1.0,
-                    'A': 0.4,
-                    'V': 0.2,
-                    'text_weight_decay': 0.001,
-                    'audio_weight_decay': 0.001,
-                    'video_weight_decay': 0.0001,
-                    'weight_decay': 0.0,
+                    'post_video_dim': 16,
+                    'dropouts': (0.3, 0.3, 0.3),
+                    'post_dropouts': (0.3,0.3,0.3,0.3),
+                    'batch_size': 128,
+                    'learning_rate': 0.001,
+                    'M': 0.8,
+                    'T': 0.8,
+                    'A': 0.8,
+                    'V': 0.8,
+                    'text_weight_decay': 0.0,
+                    'audio_weight_decay': 1e-5,
+                    'video_weight_decay': 0.001,
+                    'weight_decay': 0.005,
                 }
             },
         }

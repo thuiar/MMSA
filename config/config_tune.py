@@ -55,7 +55,8 @@ class ConfigTune():
                     'train_samples': 1284,
                     'num_classes': 3,
                     'language': 'en',
-                    'KeyEval': 'Loss' 
+                    'KeyEval': 'Loss',
+                    'H': 3.0
                 },
                 'unaligned': {
                     'dataPath': os.path.join(root_dataset_dir, 'MOSI/Processed/unaligned_50.pkl'),
@@ -65,7 +66,8 @@ class ConfigTune():
                     'train_samples': 1284,
                     'num_classes': 3,
                     'language': 'en',
-                    'KeyEval': 'Loss' 
+                    'KeyEval': 'Loss',
+                    'H': 3.0
                 }
             },
             'mosei':{
@@ -77,7 +79,8 @@ class ConfigTune():
                     'train_samples': 16326,
                     'num_classes': 3,
                     'language': 'en',
-                    'KeyEval': 'Loss'
+                    'KeyEval': 'Loss',
+                    'H': 3.0
                 },
                 'unaligned': {
                     'dataPath': os.path.join(root_dataset_dir, 'MOSEI/Processed/unaligned_50.pkl'),
@@ -87,7 +90,8 @@ class ConfigTune():
                     'train_samples': 16326,
                     'num_classes': 3,
                     'language': 'en',
-                    'KeyEval': 'Loss'
+                    'KeyEval': 'Loss',
+                    'H': 3.0
                 }
             },
             'sims':{
@@ -100,6 +104,7 @@ class ConfigTune():
                     'num_classes': 3,
                     'language': 'cn',
                     'KeyEval': 'Loss',
+                    'H': 1.0
                 }
             }
         }

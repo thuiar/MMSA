@@ -6,5 +6,6 @@
 .ipynb_checkpoints
 **.npz
 **jupyter
-results
+results/models
+results/results
 pretrained_model
