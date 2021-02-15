@@ -1,6 +1,6 @@
 ![Python 3.6](https://img.shields.io/badge/python-3.6-green.svg)
-# MMSA 
-> Pytorch implementation for codes in multimodal sentiment analysis models.
+## MMSA 
+> Pytorch implementation for codes in multimodal sentiment analysis.
 
 ### Update
 1. Fix some bugs.
@@ -8,15 +8,7 @@
 3. Add task scheduling mechanism.
 4. Update regression and classification results on MOSI, MOSEI, and SIMS datasets.
 
-### SIMS Dataset
-
-- You can download CH-SIMS from the following links.
-> md5: `6a92dccd83373b48ac83257bddab2538`
-
-1. [Baidu Yun Disk](https://pan.baidu.com/s/1CmLdhYSVnNFAyA0DkR6tdA)[code: `ozo2`] 
-2. [Google Drive](https://drive.google.com/file/d/1z6snOkOoy100F33lzmHHB_DUGJ47DaQo/view?usp=sharing)
-
-## Support Models
+### Support Models
 In this framework, we support the following methods:
 
 |     Type    |   Model Name      |     From                |
@@ -81,7 +73,7 @@ cd MMSA
 pip install -r requirements.txt
 ```
 
-#### Data Preprocessing
+##### Data Preprocessing
 > If you want to extract features from raw videos, you can use the following steps. Or you can directly use the feature data provided by us.
 
 - **fetch audios and aligned faces (see `data/DataPre.py`)**
@@ -106,16 +98,16 @@ python data/getFeature.py --data_dir [path_to_CH-SIMS] --openface2Path [path_to_
 ```
 5. Then, you can see the preprocessed features in the `path/to/CH-SIMS/Processed/features/data.npz`
 
-#### Run
+##### Run
 
 ```
 python run.py
 ```
 
-#### Paper
+### Paper
 ---
 [CH-SIMS: A Chinese Multimodal Sentiment Analysis Dataset with Fine-grained Annotations of Modality](https://www.aclweb.org/anthology/2020.acl-main.343/)
-[Learning Modality-Specific Representations with Self-Supervised Multi-Task Learning for Multimodal Sentiment Analysis]()
+[Learning Modality-Specific Representations with Self-Supervised Multi-Task Learning for Multimodal Sentiment Analysis](https://arxiv.org/abs/2102.04830)
 
 Please cite our paper if you find our work useful for your research:
 ```
@@ -128,10 +120,10 @@ Please cite our paper if you find our work useful for your research:
 }
 ```
 ```
-@inproceedings{yu2021le,
+@article{yu2021learning,
   title={Learning Modality-Specific Representations with Self-Supervised Multi-Task Learning for Multimodal Sentiment Analysis},
-  author={Yu, Wenmeng and Xu, Hua and Ziqi, Yuan and Jiele, Wu},
-  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  author={Yu, Wenmeng and Xu, Hua and Yuan, Ziqi and Wu, Jiele},
+  journal={arXiv preprint arXiv:2102.04830},
   year={2021}
 }
 ```
