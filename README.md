@@ -57,7 +57,13 @@ pip install -r requirements.txt
 - SIMS
 > download from [Baidu Yun Disk](https://pan.baidu.com/s/1CmLdhYSVnNFAyA0DkR6tdA) [code: `ozo2`] or [Google Drive](https://drive.google.com/file/d/1z6snOkOoy100F33lzmHHB_DUGJ47DaQo/view?usp=sharing)
 
-2. Preprocess features and save as a pickle file with the following structure.
+2. Download [Bert-Base, Chinese](https://storage.googleapis.com/bert_models/2018_11_03/chinese_L-12_H-768_A-12.zip) from [Google-Bert](https://github.com/google-research/bert).  
+
+3. Convert Tensorflow into pytorch using [transformers-cli](https://huggingface.co/transformers/converting_tensorflow_models.html)  
+
+4. Install [Openface Toolkits](https://github.com/TadasBaltrusaitis/OpenFace/wiki) 
+
+5. Organize features and save them as pickle files with the following structure.
 
 ```python
 {
@@ -79,20 +85,13 @@ pip install -r requirements.txt
 }
 ```
 
-3. Download [Bert-Base, Chinese](https://storage.googleapis.com/bert_models/2018_11_03/chinese_L-12_H-768_A-12.zip) from [Google-Bert](https://github.com/google-research/bert).  
-
-4. Convert Tensorflow into pytorch using [transformers-cli](https://huggingface.co/transformers/converting_tensorflow_models.html)  
-
-5. Install [Openface Toolkits](https://github.com/TadasBaltrusaitis/OpenFace/wiki) 
-
-6. Run `data/DataPre.py`
+**Specifically**, if you want to extract features from raw videos, you can refer our codes in the `data/DataPre.py`.
 ```
 python data/DataPre.py --data_dir [path_to_Dataset] --language ** --openface2Path  [path_to_FeatureExtraction]
 ```
 
 7. Modify `config/config_*.py` to update dataset pathes.
 
-**Note:** Please see our codes in `data/DataPre.py` for more details.
 
 ### Run
 
