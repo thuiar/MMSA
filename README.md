@@ -1,14 +1,24 @@
 ![Python 3.6](https://img.shields.io/badge/python-3.6-green.svg)
-## MMSA 
+# MMSA 
 > Pytorch implementation for codes in multimodal sentiment analysis.
 
-### Update
+- Update
 1. Fix some bugs.
 2. Add more models.
 3. Add task scheduling mechanism.
 4. Update regression and classification results on MOSI, MOSEI, and SIMS datasets.
 
-### Support Models
+- [MMSA](#mmsa)
+  - [Support Models](#support-models)
+  - [Results](#results)
+  - [Usage](#usage)
+    - [Download datasets](#download-datasets)
+    - [Run the Code](#run-the-code)
+    - [Data Preprocessing](#data-preprocessing)
+    - [Run](#run)
+  - [Paper](#paper)
+
+## Support Models
 In this framework, we support the following methods:
 
 |     Type    |   Model Name      |     From                |
@@ -26,13 +36,12 @@ In this framework, we support the following methods:
 | Multi-Task  |[MLMF](models/multiTask/MLMF.py)      |      [MMSA](https://github.com/thuiar/MMSA)  |
 | Multi-Task  |[SELF_MM](models/multiTask/SELF_MM.py)      |  [Self-MM](https://github.com/thuiar/Self-MM)  |
 
-### Results
+## Results
 > Detailed results are shown in [results/result-stat.md](results/result-stat.md)
 
-### Usage
----
+## Usage
 
-#### Download datasets
+### Download datasets
 
 1. Download datasets from the following links.
 
@@ -42,7 +51,7 @@ In this framework, we support the following methods:
 - SIMS
 > download from [Baidu Yun Disk](https://pan.baidu.com/s/1CmLdhYSVnNFAyA0DkR6tdA)[code: `ozo2`] or [Google Drive](https://drive.google.com/file/d/1z6snOkOoy100F33lzmHHB_DUGJ47DaQo/view?usp=sharing)
 
-2. Preprocess features and save as a pickle file with the following structure.
+2. Preprocess features and save as a pickle file with the following structure and using `data/DataPre.py`.
 
 ```python
 {
@@ -65,7 +74,7 @@ In this framework, we support the following methods:
 ```
 3. Modify `config/config_*.py` to update dataset pathes.
 
-#### Run the Code
+### Run the Code
 - Clone this repo and install requirements.
 ```
 git clone https://github.com/thuiar/MMSA  
@@ -73,7 +82,7 @@ cd MMSA
 pip install -r requirements.txt
 ```
 
-#### Data Preprocessing
+### Data Preprocessing
 > If you want to extract features from raw videos, you can use the following steps. Or you can directly use the feature data provided by us.
 
 - **fetch audios and aligned faces (see `data/DataPre.py`)**
@@ -98,14 +107,14 @@ python data/getFeature.py --data_dir [path_to_CH-SIMS] --openface2Path [path_to_
 ```
 5. Then, you can see the preprocessed features in the `path/to/CH-SIMS/Processed/features/data.npz`
 
-#### Run
+### Run
 
 ```
 python run.py
 ```
 
-#### Paper
----
+## Paper
+
 - [CH-SIMS: A Chinese Multimodal Sentiment Analysis Dataset with Fine-grained Annotations of Modality](https://www.aclweb.org/anthology/2020.acl-main.343/)
 - [Learning Modality-Specific Representations with Self-Supervised Multi-Task Learning for Multimodal Sentiment Analysis](https://arxiv.org/abs/2102.04830)
 

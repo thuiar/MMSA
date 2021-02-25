@@ -13,14 +13,17 @@ from facenet_pytorch import MTCNN, InceptionResnetV1
 
 import torch
 from transformers import BertTokenizer, BertModel
+from torch.utils.data import Dataset, DataLoader
 
-class dataPre():
+class MDataPreLoader(Dataset):
     def __init__(self, args):
         self.working_dir = args.working_dir
-        self.mtcnn = MTCNN(image_size=224, margin=0)
-        # padding
-        self.padding_mode = 'zeros'
-        self.padding_location = 'back'
+        self.df = args.df
+        self.annotation_dict = {
+            "Negative": 0,
+            "Neutral": 1,
+            "Positive": 2
+        }
         # toolkits path
         self.openface2Path = args.openface2Path
         # bert
@@ -31,23 +34,28 @@ class dataPre():
         else:
             self.pretrainedBertPath = 'pretrained_model/bert_en' 
             self.tokenizer = tokenizer_class.from_pretrained('pretrained_model/bert_en', do_lower_case=True)
+    
+    def __len__(self):
+        return len(self.df)
 
-    def __getVideoEmbedding(self, video_path, tmp_dir, pool_size=5):
+    def __getVideoEmbedding(self, video_path, tmp_dir, pool_size=3):
         faces_feature_dir = os.path.join(tmp_dir, 'Faces')
         os.mkdir(faces_feature_dir)
         cmd = self.openface2Path + ' -f ' + video_path + ' -out_dir ' + faces_feature_dir
         os.system(cmd)
         # read features
-        df_path = glob(os.path.join(faces_feature_dir, '*.csv'))[0]
-        df = pd.read_csv(df_path)
         features, local_features = [], []
-        for i in range(len(df)):
-            local_features.append(np.array(df.loc[i][df.columns[5:]]))
-            if (i + 1) % pool_size == 0:
+        df_path = glob(os.path.join(faces_feature_dir, '*.csv'))
+        if len(df_path) > 0:
+            df_path = df_path[0]
+            df = pd.read_csv(df_path)
+            for i in range(len(df)):
+                local_features.append(np.array(df.loc[i][df.columns[5:]]))
+                if (i + 1) % pool_size == 0:
+                    features.append(np.array(local_features).mean(axis=0))
+                    local_features = []
+            if len(local_features) != 0:
                 features.append(np.array(local_features).mean(axis=0))
-                local_features = []
-        if len(local_features) != 0:
-            features.append(np.array(local_features).mean(axis=0))
         return np.array(features)
 
     def __getAudioEmbedding(self, video_path, audio_path):
@@ -93,6 +101,50 @@ class dataPre():
 
         return text_bert
 
+    def __getitem__(self, index):
+        tmp_dir = os.path.join(self.working_dir, f'Processed/tmp-{index}')
+        if not os.path.exists(tmp_dir):
+            os.makedirs(tmp_dir)
+        video_id, clip_id, text, label, annotation, mode, _ = self.df.loc[index]
+        cur_id = video_id + '$_$' + clip_id
+        # video
+        video_path = os.path.join(self.working_dir, 'Raw', video_id, clip_id + '.mp4')
+        embedding_V = self.__getVideoEmbedding(video_path, tmp_dir)
+        seq_V = embedding_V.shape[0]
+        # audio
+        audio_path = os.path.join(tmp_dir, 'tmp.wav')
+        embedding_A = self.__getAudioEmbedding(video_path, audio_path)
+        seq_A = embedding_A.shape[0]
+        # text
+        embedding_T = self.__getTextEmbedding(text)
+        text_bert = self.__preTextforBert(text)
+        seq_T = embedding_T.shape[0]
+
+        ret = {
+            'id': cur_id,
+            'audio': embedding_A,
+            'vision': embedding_V,
+            'raw_text': text,
+            'text': embedding_T,
+            'text_bert': text_bert,
+            'audio_lengths': seq_A,
+            'vision_lengths': seq_V,
+            'annotations': annotation,
+            'classification_labels': self.annotation_dict[annotation],
+            'regression_labels': label,
+            'mode': mode
+        }
+        # clear tmp dir to save space
+        shutil.rmtree(tmp_dir)
+        return ret
+
+class MDataPre():
+    def __init__(self, args):
+        self.working_dir = args.working_dir
+        # padding
+        self.padding_mode = 'zeros'
+        self.padding_location = 'back'
+    
     def __padding(self, feature, MAX_LEN):
         """
         mode: 
@@ -130,11 +182,15 @@ class dataPre():
             final_sequence[i] = self.__padding(s, final_length)
 
         return final_sequence
+
+    def __collate_fn(self, batch):
+        ret = {k: [] for k in batch[0].keys()}
+        for b in batch:
+            for k,v in b.items():
+                ret[k].append(v)
+        return ret
     
     def run(self):
-        df_label = pd.read_csv(os.path.join(self.working_dir, 'label.csv'), dtype={'clip_id': str, 'video_id': str, 'text': str})
-        # df_label = df_label[:10]
-
         output_path = os.path.join(self.working_dir, 'Processed/features.pkl')
         # load last point
         if os.path.exists(output_path):
@@ -142,75 +198,64 @@ class dataPre():
                 data = pickle.load(f)
             last_row_idx = np.sum([len(data[mode]['id']) for mode in ['train', 'valid', 'test']])
         else:
-            data = {mode: {"id": [], 
-                           "raw_text": [],
-                           "audio": [],
-                           "vision": [],
-                           "text": [],
-                           "text_bert": [],
-                           "audio_lengths": [],
-                           "vision_lengths": [],
-                           "annotations": [],
-                           "classification_labels": [], 
-                           "regression_labels": []} for mode in ['train', 'valid', 'test']}
+            data = {"id": [], 
+                    "raw_text": [],
+                    "audio": [],
+                    "vision": [],
+                    "text": [],
+                    "text_bert": [],
+                    "audio_lengths": [],
+                    "vision_lengths": [],
+                    "annotations": [],
+                    "classification_labels": [], 
+                    "regression_labels": [],
+                    "mode": []}
             last_row_idx = 0
-        
-        annotation_dict = {
-            "Negative": 0,
-            "Neutral": 1,
-            "Positive": 2
-        }
 
+        args.df = pd.read_csv(os.path.join(self.working_dir, 'label.csv'), dtype={'clip_id': str, 'video_id': str, 'text': str})
+        args.df = args.df[last_row_idx:]
+
+        dataloader = DataLoader(MDataPreLoader(args),
+                                batch_size=64,
+                                num_workers=8,
+                                shuffle=False,
+                                collate_fn=self.__collate_fn)
         isEnd = False
-
         try:
-            tmp_dir = os.path.join(self.working_dir, 'Processed/tmp')
-            for i in tqdm(range(last_row_idx, len(df_label))):
-                if not os.path.exists(tmp_dir):
-                    os.makedirs(tmp_dir)
-                video_id, clip_id, text, label, annotation, mode, _ = df_label.loc[i]
-                cur_id = video_id + '$_$' + clip_id
-                # video
-                video_path = os.path.join(self.working_dir, 'Raw', video_id, clip_id + '.mp4')
-                embedding_V = self.__getVideoEmbedding(video_path, tmp_dir)
-                seq_V = embedding_V.shape[0]
-                # audio
-                audio_path = os.path.join(tmp_dir, 'tmp.wav')
-                embedding_A = self.__getAudioEmbedding(video_path, audio_path)
-                seq_A = embedding_A.shape[0]
-                # text
-                embedding_T = self.__getTextEmbedding(text)
-                text_bert = self.__preTextforBert(text)
-                seq_T = embedding_T.shape[0]
-                # save
-                data[mode]['id'].append(cur_id)
-                data[mode]['audio'].append(embedding_A)
-                data[mode]['vision'].append(embedding_V)
-                data[mode]['raw_text'].append(text)
-                data[mode]['text'].append(embedding_T)
-                data[mode]['text_bert'].append(text_bert)
-                data[mode]['audio_lengths'].append(seq_A)
-                data[mode]['vision_lengths'].append(seq_V)
-                data[mode]['annotations'].append(annotation)
-                data[mode]['classification_labels'].append(annotation_dict[annotation])
-                data[mode]['regression_labels'].append(label)
-                # clear tmp dir to save space
-                shutil.rmtree(tmp_dir)
+            with tqdm(dataloader) as td:
+                for batch_data in td:
+                    for k, v in batch_data.items():
+                        data[k].extend(v)
             isEnd = True
+        except Exception as e:
+            print(e)
         finally:
-            if os.path.exists(tmp_dir):
-                shutil.rmtree(tmp_dir)
-
-            if isEnd:
-                # padding
-                for mode in ['train', 'valid', 'test']:
+            try:
+                if isEnd:
+                    # padding
                     for item in ['audio', 'vision', 'text', 'text_bert']:
-                        data[mode][item] = self.__paddingSequence(data[mode][item])
-            with open(output_path, 'wb') as wf:
-                pickle.dump(data, wf, protocol = 4)
+                        data[item] = self.__paddingSequence(data[item])
+                    # split train, valid, test
+                    inx_dict = {
+                        mode + '_index': [i for i, v in enumerate(data['mode']) if v == mode]
+                        for mode in ['train', 'valid', 'test']
+                    }
+                    data.pop('mode')
+                    final_data = {k: {} for k in ['train', 'valid', 'test']}
+                    for mode in ['train', 'valid', 'test']:
+                        indexes = inx_dict[mode + '_index']
+                        for item in data.keys():
+                            if isinstance(data[item], list):
+                                final_data[mode][item] = [data[item][v] for v in indexes]
+                            else:
+                                final_data[mode][item] = data[item][indexes]
+                    data = final_data
+            except Exception as e:
+                print(e)
+            finally:
+                with open(output_path, 'wb') as wf:
+                    pickle.dump(data, wf, protocol = 4)
 
-            if isEnd:
-                print("Completed!")
             print('Features are saved in %s!' %output_path)
     
 def parse_args():
@@ -226,5 +271,5 @@ def parse_args():
 if __name__ == "__main__":
     args = parse_args()
 
-    dp = dataPre(args)
+    dp = MDataPre(args)
     dp.run()
