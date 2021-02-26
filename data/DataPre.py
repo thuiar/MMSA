@@ -179,7 +179,8 @@ class MDataPre():
         # padding sequences to final_length
         final_sequence = np.zeros([len(sequences), final_length, feature_dim])
         for i, s in enumerate(sequences):
-            final_sequence[i] = self.__padding(s, final_length)
+            if len(s) != 0:
+                final_sequence[i] = self.__padding(s, final_length)
 
         return final_sequence
 
@@ -196,7 +197,7 @@ class MDataPre():
         if os.path.exists(output_path):
             with open(output_path, 'rb') as f:
                 data = pickle.load(f)
-            last_row_idx = np.sum([len(data[mode]['id']) for mode in ['train', 'valid', 'test']])
+            last_row_idx = len(data['id'])
         else:
             data = {"id": [], 
                     "raw_text": [],
@@ -235,6 +236,7 @@ class MDataPre():
                     # padding
                     for item in ['audio', 'vision', 'text', 'text_bert']:
                         data[item] = self.__paddingSequence(data[item])
+                    # data['mode'] = list(args.df['mode'])
                     # split train, valid, test
                     inx_dict = {
                         mode + '_index': [i for i, v in enumerate(data['mode']) if v == mode]
@@ -260,7 +262,7 @@ class MDataPre():
     
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--working_dir', type=str, default='/home/sharing/disk3/dataset/multimodal-sentiment-dataset/StandardDatasets/MOSI',
+    parser.add_argument('--working_dir', type=str, default='/home/sharing/disk3/dataset/multimodal-sentiment-dataset/StandardDatasets/MOSEI',
                         help='path to datasets')
     parser.add_argument('--language', type=str, default="en",
                         help='en / cn')
