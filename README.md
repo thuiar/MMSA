@@ -55,15 +55,20 @@ pip install -r requirements.txt
 > download from [CMU-MultimodalSDK](http://immortal.multicomp.cs.cmu.edu/raw_datasets/processed_data/)
 
 - SIMS
-> download from [Baidu Yun Disk](https://pan.baidu.com/s/1CmLdhYSVnNFAyA0DkR6tdA) [code: `ozo2`] or [Google Drive](https://drive.google.com/file/d/1z6snOkOoy100F33lzmHHB_DUGJ47DaQo/view?usp=sharing)
+> download from [Baidu Yun Disk](https://pan.baidu.com/s/1CmLdhYSVnNFAyA0DkR6tdA) [code: `ozo2`] or [Google Drive](https://drive.google.com/file/d/1z6snOkOoy100F33lzmHHB_DUGJ47DaQo/view?usp=sharing)  
+> **Notes:** Please download new features `CH_SIMS_unaligned_39.pkl` from [Baidu Yun Disk](https://pan.baidu.com/s/177hnei8ySH6IpGGeF9W8fw) [code: `g63s`] or [Google Drive](https://drive.google.com/file/d/1Zux66GJCuzsVnHgRC-DKIz4ua9YwZC3e/view?usp=sharing), which is compatible with our new code structure. The `md5 code` is `a5b2ed3844200c7fb3b8ddc750b77feb`.
 
-2. Download [Bert-Base, Chinese](https://storage.googleapis.com/bert_models/2018_11_03/chinese_L-12_H-768_A-12.zip) from [Google-Bert](https://github.com/google-research/bert).  
+1. Download [Bert-Base, Chinese](https://storage.googleapis.com/bert_models/2018_11_03/chinese_L-12_H-768_A-12.zip) from [Google-Bert](https://github.com/google-research/bert).  
 
-3. Convert Tensorflow into pytorch using [transformers-cli](https://huggingface.co/transformers/converting_tensorflow_models.html)  
+2. Convert Tensorflow into pytorch using [transformers-cli](https://huggingface.co/transformers/converting_tensorflow_models.html)  
 
-4. Install [Openface Toolkits](https://github.com/TadasBaltrusaitis/OpenFace/wiki) 
+3. Install [Openface Toolkits](https://github.com/TadasBaltrusaitis/OpenFace/wiki) 
 
-5. Organize features and save them as pickle files with the following structure.
+4. Organize features and save them as pickle files with the following structure.
+
+> **Notes:** `CH_SIMS_unaligned_39.pkl` is compatible with the following structure
+
+###### Dataset Feature Structure
 
 ```python
 {
@@ -90,7 +95,7 @@ pip install -r requirements.txt
 python data/DataPre.py --data_dir [path_to_Dataset] --language ** --openface2Path  [path_to_FeatureExtraction]
 ```
 
-7. Modify `config/config_*.py` to update dataset pathes.
+5. Modify `config/config_*.py` to update dataset pathes.
 
 
 ### Run
