@@ -6,14 +6,6 @@
 
 **Note:** We strongly recommend that you browse the overall structure of our code at first. If you have any question, feel free to contact us.
 
-- Update
-
-1. Fix some bugs.
-2. Add more models.
-3. Add task scheduling mechanism.
-4. Update data preprocessing.
-5. Update regression and classification results on MOSI, MOSEI, and SIMS datasets.
-
 ## Support Models
 
 In this framework, we support the following methods:
@@ -39,36 +31,23 @@ In this framework, we support the following methods:
 
 ## Usage
 
+### Clone codes
 
 - Clone this repo and install requirements.
 ```
-git clone https://github.com/thuiar/MMSA  
+git clone https://github.com/thuiar/MMSA
 cd MMSA
 pip install -r requirements.txt
 ```
 
-### Data Preprocessing
+### Datasets and pre-trained berts
 
-1. Download datasets from the following links.
+Download dataset features and pre-trained berts from the following links.
 
-- MOSI and MOSEI
-> download from [CMU-MultimodalSDK](http://immortal.multicomp.cs.cmu.edu/raw_datasets/processed_data/)
+- [Baidu Cloud Drive](https://pan.baidu.com/s/1oksuDEkkd3vGg2oBMBxiVw) with code: `ctgs`
+- [Google Cloud Drive](https://drive.google.com/drive/folders/1E5kojBirtd5VbfHsFp6FYWkQunk73Nsv?usp=sharing)
 
-- SIMS
-> download from [Baidu Yun Disk](https://pan.baidu.com/s/1CmLdhYSVnNFAyA0DkR6tdA) [code: `ozo2`] or [Google Drive](https://drive.google.com/file/d/1z6snOkOoy100F33lzmHHB_DUGJ47DaQo/view?usp=sharing)  
-> **Notes:** Please download new features `CH_SIMS_unaligned_39.pkl` from [Baidu Yun Disk](https://pan.baidu.com/s/177hnei8ySH6IpGGeF9W8fw) [code: `g63s`] or [Google Drive](https://drive.google.com/file/d/1Zux66GJCuzsVnHgRC-DKIz4ua9YwZC3e/view?usp=sharing), which is compatible with our new code structure. The `md5 code` is `a5b2ed3844200c7fb3b8ddc750b77feb`.
-
-1. Download [Bert-Base, Chinese](https://storage.googleapis.com/bert_models/2018_11_03/chinese_L-12_H-768_A-12.zip) from [Google-Bert](https://github.com/google-research/bert).  
-
-2. Convert Tensorflow into pytorch using [transformers-cli](https://huggingface.co/transformers/converting_tensorflow_models.html)  
-
-3. Install [Openface Toolkits](https://github.com/TadasBaltrusaitis/OpenFace/wiki) 
-
-4. Organize features and save them as pickle files with the following structure.
-
-> **Notes:** `CH_SIMS_unaligned_39.pkl` is compatible with the following structure
-
-###### Dataset Feature Structure
+Due to the size limitations, the MOSEI features and SIMS raw videos are available in `Baidu Cloud Drive` only. All dataset features are organized as:
 
 ```python
 {
@@ -90,18 +69,22 @@ pip install -r requirements.txt
 }
 ```
 
-**Specifically**, if you want to extract features from raw videos, you can refer our codes in the `data/DataPre.py`.
+For MOSI and MOSEI, the pre-extracted text features are from BERT, different from the original glove features in the [CMU-Multimodal-SDK](http://immortal.multicomp.cs.cmu.edu/raw_datasets/processed_data/).
+
+For SIMS, if you want to extract features from raw videos, you need to install [Openface Toolkits](https://github.com/TadasBaltrusaitis/OpenFace/wiki) first, and then refer our codes in the `data/DataPre.py`.
+
 ```
 python data/DataPre.py --data_dir [path_to_Dataset] --language ** --openface2Path  [path_to_FeatureExtraction]
 ```
 
-5. Modify `config/config_*.py` to update dataset pathes.
+For bert models, you also can download [Bert-Base, Chinese](https://storage.googleapis.com/bert_models/2018_11_03/chinese_L-12_H-768_A-12.zip) from [Google-Bert](https://github.com/google-research/bert). And then, convert tensorflow into pytorch using [transformers-cli](https://huggingface.co/transformers/converting_tensorflow_models.html)  
 
+Then, modify `config/config_*.py` to update dataset pathes.
 
 ### Run
 
 ```
-python run.py
+python run.py --modelName *** --datasetName ***
 ```
 
 ## Paper
