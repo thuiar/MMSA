@@ -8,4 +8,4 @@ from models.singleTask.Graph_MFN import Graph_MFN
 from models.singleTask.MULT import MULT
 from models.singleTask.MISA import MISA
 
-__all__ = ['EF_LSTM', 'LF_DNN', 'LMF', 'TFN', 'MFN', 'MULT', 'Graph_MFN', 'MISA', 'BERT_MAG']
+__all__ = ['EF_LSTM', 'LF_DNN', 'LMF', 'TFN', 'MFN', 'MULT', 'Graph_MFN', 'MISA']

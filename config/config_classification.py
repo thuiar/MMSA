@@ -14,7 +14,7 @@ class ConfigClassification():
             'ef_lstm': self.__EF_LSTM,
             'lf_dnn': self.__LF_DNN,
             'graph_mfn': self.__Graph_MFN,
-            'bert_mag': self.__BERT_MAG,
+            # 'bert_mag': self.__BERT_MAG,
             'mult': self.__MULT,
             'misa': self.__MISA,
             # multi-task
@@ -205,98 +205,98 @@ class ConfigClassification():
         }
         return tmp
     
-    def __BERT_MAG(self):
-        tmp = {
-            'commonParas':{
-                'need_align': False,
-                'use_finetune': True,
-                'use_bert': True,
-                'early_stop': 12,
-                'multi_label': False,
-                'need_normalize': False,
-                # Tuning
-                'weight_decay': 0.0,
-            },
-            # dataset
-            'datasetParas':{
-                'mosi':{
-                    # 'num_layers': 2,
-                    # 'dropout': 0.1,
-                    # ref Original Paper
-                    # the batch_size of each epoch is updata_epochs * batch_size
-                    'update_epochs': 1,
-                    'batch_size': 32,
-                    'learning_rate': 5e-5,
-                    'loss_function':'ll1',
-                    'd_acoustic_in':5,
-                    'd_visual_in':20,
-                    # 'h_audio_lstm':16,
-                    # 'h_video_lstm':16,
-                    'h_merge_sent':768,
-                    # 'fc1_out':32,
-                    # 'fc1_dropout':0.1,
-                    'hidden_dropout_prob':0.2,
-                    'beta_shift':1,
-                    # add MAG after "AV_index" layer
-                    # -1 means adding after all layers
-                    # -2 means not use MAG
-                    'AV_index':1,
-                    'output_mode':'regression',
-                    'num_labels':1, # is valid when output_mode == "classification"
-                },
-                'mosei':{
-                    # 'num_layers': 2,
-                    # 'dropout': 0.1,
-                    # ref Original Paper
-                    # the batch_size of each epoch is updata_epochs * batch_size
-                    'update_epochs': 1,
-                    'batch_size': 32,
-                    'learning_rate': 5e-5,
-                    'loss_function':'ll1',
-                    'd_acoustic_in':74,
-                    'd_visual_in':35,
-                    # 'h_audio_lstm':16,
-                    # 'h_video_lstm':16,
-                    'h_merge_sent':768,
-                    # 'fc1_out':32,
-                    # 'fc1_dropout':0.1,
-                    'hidden_dropout_prob':0.2,
-                    'beta_shift':1,
-                    # add MAG after "AV_index" layer
-                    # -1 means adding after all layers
-                    # -2 means not use MAG
-                    'AV_index':1,
-                    'output_mode':'regression',
-                    'num_labels':1, # is valid when output_mode == "classification"
-                },
-                'sims':{
-                    # 'num_layers': 2,
-                    # 'dropout': 0.1,
-                    # ref Original Paper
-                    # the batch_size of each epoch is updata_epochs * batch_size
-                    'update_epochs': 1,
-                    'batch_size': 32,
-                    'learning_rate': 5e-5,
-                    'loss_function':'ll1',
-                    'd_acoustic_in':33,
-                    'd_visual_in':709,
-                    # 'h_audio_lstm':16,
-                    # 'h_video_lstm':16,
-                    'h_merge_sent':768,
-                    # 'fc1_out':32,
-                    # 'fc1_dropout':0.1,
-                    'hidden_dropout_prob':0.2,
-                    'beta_shift':1,
-                    # add MAG after "AV_index" layer
-                    # -1 means adding after all layers
-                    # -2 means not use MAG
-                    'AV_index':7,
-                    'output_mode':'regression',
-                    'num_labels':2, # is valid when output_mode == "classification"
-                },
-            },
-        }
-        return tmp
+    # def __BERT_MAG(self):
+    #     tmp = {
+    #         'commonParas':{
+    #             'need_align': False,
+    #             'use_finetune': True,
+    #             'use_bert': True,
+    #             'early_stop': 12,
+    #             'multi_label': False,
+    #             'need_normalize': False,
+    #             # Tuning
+    #             'weight_decay': 0.0,
+    #         },
+    #         # dataset
+    #         'datasetParas':{
+    #             'mosi':{
+    #                 # 'num_layers': 2,
+    #                 # 'dropout': 0.1,
+    #                 # ref Original Paper
+    #                 # the batch_size of each epoch is updata_epochs * batch_size
+    #                 'update_epochs': 1,
+    #                 'batch_size': 32,
+    #                 'learning_rate': 5e-5,
+    #                 'loss_function':'ll1',
+    #                 'd_acoustic_in':5,
+    #                 'd_visual_in':20,
+    #                 # 'h_audio_lstm':16,
+    #                 # 'h_video_lstm':16,
+    #                 'h_merge_sent':768,
+    #                 # 'fc1_out':32,
+    #                 # 'fc1_dropout':0.1,
+    #                 'hidden_dropout_prob':0.2,
+    #                 'beta_shift':1,
+    #                 # add MAG after "AV_index" layer
+    #                 # -1 means adding after all layers
+    #                 # -2 means not use MAG
+    #                 'AV_index':1,
+    #                 'output_mode':'regression',
+    #                 'num_labels':1, # is valid when output_mode == "classification"
+    #             },
+    #             'mosei':{
+    #                 # 'num_layers': 2,
+    #                 # 'dropout': 0.1,
+    #                 # ref Original Paper
+    #                 # the batch_size of each epoch is updata_epochs * batch_size
+    #                 'update_epochs': 1,
+    #                 'batch_size': 32,
+    #                 'learning_rate': 5e-5,
+    #                 'loss_function':'ll1',
+    #                 'd_acoustic_in':74,
+    #                 'd_visual_in':35,
+    #                 # 'h_audio_lstm':16,
+    #                 # 'h_video_lstm':16,
+    #                 'h_merge_sent':768,
+    #                 # 'fc1_out':32,
+    #                 # 'fc1_dropout':0.1,
+    #                 'hidden_dropout_prob':0.2,
+    #                 'beta_shift':1,
+    #                 # add MAG after "AV_index" layer
+    #                 # -1 means adding after all layers
+    #                 # -2 means not use MAG
+    #                 'AV_index':1,
+    #                 'output_mode':'regression',
+    #                 'num_labels':1, # is valid when output_mode == "classification"
+    #             },
+    #             'sims':{
+    #                 # 'num_layers': 2,
+    #                 # 'dropout': 0.1,
+    #                 # ref Original Paper
+    #                 # the batch_size of each epoch is updata_epochs * batch_size
+    #                 'update_epochs': 1,
+    #                 'batch_size': 32,
+    #                 'learning_rate': 5e-5,
+    #                 'loss_function':'ll1',
+    #                 'd_acoustic_in':33,
+    #                 'd_visual_in':709,
+    #                 # 'h_audio_lstm':16,
+    #                 # 'h_video_lstm':16,
+    #                 'h_merge_sent':768,
+    #                 # 'fc1_out':32,
+    #                 # 'fc1_dropout':0.1,
+    #                 'hidden_dropout_prob':0.2,
+    #                 'beta_shift':1,
+    #                 # add MAG after "AV_index" layer
+    #                 # -1 means adding after all layers
+    #                 # -2 means not use MAG
+    #                 'AV_index':7,
+    #                 'output_mode':'regression',
+    #                 'num_labels':2, # is valid when output_mode == "classification"
+    #             },
+    #         },
+    #     }
+    #     return tmp
     
     def __MISA(self):
         tmp = {
