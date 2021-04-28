@@ -4,6 +4,8 @@
 
 > Pytorch implementation for codes in multimodal sentiment analysis.
 
+## Note: Sorry, we made a mistake in the computation of f1 score. Please see [Issue #17](https://github.com/thuiar/MMSA/issues/17) for details. We will re-run all results again and update them in [results/result-stat.md](https://github.com/thuiar/MMSA/blob/master/results/result-stat.md) very soon.
+
 **Note:** We strongly recommend that you browse the overall structure of our code at first. If you have any question, feel free to contact us.
 
 ## Support Models

@@ -35,7 +35,7 @@ class MetricsTop():
         # three classes
         y_pred_3 = np.argmax(y_pred, axis=1)
         Mult_acc_3 = accuracy_score(y_pred_3, y_true)
-        F1_score_3 = f1_score(y_pred_3, y_true, average='weighted')
+        F1_score_3 = f1_score(y_true, y_pred_3, average='weighted')
         # two classes 
         y_pred = np.array([[v[0], v[2]] for v in y_pred])
         # with 0 (<= 0 or > 0)
@@ -45,14 +45,14 @@ class MetricsTop():
             y_true_2.append(0 if v <= 1 else 1)
         y_true_2 = np.array(y_true_2)
         Has0_acc_2 = accuracy_score(y_pred_2, y_true_2)
-        Has0_F1_score = f1_score(y_pred_2, y_true_2, average='weighted')
+        Has0_F1_score = f1_score(y_true_2, y_pred_2, average='weighted')
         # without 0 (< 0 or > 0)
         non_zeros = np.array([i for i, e in enumerate(y_true) if e != 1])
         y_pred_2 = y_pred[non_zeros]
         y_pred_2 = np.argmax(y_pred_2, axis=1)
         y_true_2 = y_true[non_zeros]
         Non0_acc_2 = accuracy_score(y_pred_2, y_true_2)
-        Non0_F1_score = f1_score(y_pred_2, y_true_2, average='weighted')
+        Non0_F1_score = f1_score(y_true_2, y_pred_2, average='weighted')
 
         eval_results = {
             "Has0_acc_2":  round(Has0_acc_2, 4),
@@ -103,12 +103,12 @@ class MetricsTop():
         non_zeros_binary_preds = (test_preds[non_zeros] > 0)
 
         non_zeros_acc2 = accuracy_score(non_zeros_binary_preds, non_zeros_binary_truth)
-        non_zeros_f1_score = f1_score(non_zeros_binary_preds, non_zeros_binary_truth, average='weighted')
+        non_zeros_f1_score = f1_score(non_zeros_binary_truth, non_zeros_binary_preds, average='weighted')
 
         binary_truth = (test_truth >= 0)
         binary_preds = (test_preds >= 0)
         acc2 = accuracy_score(binary_preds, binary_truth)
-        f_score = f1_score(binary_preds, binary_truth, average='weighted')
+        f_score = f1_score(binary_truth, binary_preds, average='weighted')
         
         eval_results = {
             "Has0_acc_2":  round(acc2, 4),
@@ -164,7 +164,7 @@ class MetricsTop():
         mult_a2 = self.__multiclass_acc(test_preds_a2, test_truth_a2)
         mult_a3 = self.__multiclass_acc(test_preds_a3, test_truth_a3)
         mult_a5 = self.__multiclass_acc(test_preds_a5, test_truth_a5)
-        f_score = f1_score(test_preds_a2, test_truth_a2, average='weighted')
+        f_score = f1_score(test_truth_a2, test_preds_a2, average='weighted')
 
         eval_results = {
             "Mult_acc_2": mult_a2,

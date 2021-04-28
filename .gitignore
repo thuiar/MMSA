@@ -8,4 +8,7 @@
 **jupyter
 results/models
 results/results
+results/reproduced
+results/20200428
+logs
 pretrained_model
