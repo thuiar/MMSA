@@ -271,7 +271,7 @@ def parse_args():
                         help='path to save results.')
     parser.add_argument('--res_save_dir', type=str, default='results/20200428',
                         help='path to save results.')
-    parser.add_argument('--gpu_ids', type=list, default=[2],
+    parser.add_argument('--gpu_ids', type=list, default=[],
                         help='indicates the gpus will be used. If none, the most-free gpu will be used!')
     return parser.parse_args()
 
@@ -288,7 +288,7 @@ if __name__ == '__main__':
                 cur_task['index'] = index
                 left_tasks.append(cur_task)
         # create process pools
-        po = Pool(3)
+        po = Pool(2)
         for cur_task in left_tasks:
             po.apply_async(worker, (cur_task,))
         # close and wait
