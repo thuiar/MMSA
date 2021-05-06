@@ -737,18 +737,18 @@ class ConfigRegression():
             'datasetParas':{
                 'mosi':{
                     # the batch_size of each epoch is update_epochs * batch_size
-                    'batch_size': 32,
+                    'batch_size': 16,
                     'learning_rate_bert': 5e-5,
-                    'learning_rate_audio': 1e-3,
-                    'learning_rate_video': 1e-4,
-                    'learning_rate_other': 1e-3,
+                    'learning_rate_audio': 0.005,
+                    'learning_rate_video': 0.005,
+                    'learning_rate_other': 0.001,
                     'weight_decay_bert': 0.001,
-                    'weight_decay_audio': 0.01,
+                    'weight_decay_audio': 0.001,
                     'weight_decay_video': 0.001,
                     'weight_decay_other': 0.001,
                     # feature subNets
-                    'a_lstm_hidden_size': 32,
-                    'v_lstm_hidden_size': 64,
+                    'a_lstm_hidden_size': 16,
+                    'v_lstm_hidden_size': 32,
                     'a_lstm_layers': 1,
                     'v_lstm_layers': 1,
                     'text_out': 768, 
@@ -759,13 +759,13 @@ class ConfigRegression():
                     't_bert_dropout':0.1,
                     # post feature
                     'post_fusion_dim': 128,
-                    'post_text_dim':64,
+                    'post_text_dim':32,
                     'post_audio_dim': 16,
                     'post_video_dim': 32,
-                    'post_fusion_dropout': 0.1,
-                    'post_text_dropout': 0.0,
+                    'post_fusion_dropout': 0.0,
+                    'post_text_dropout': 0.1,
                     'post_audio_dropout': 0.1,
-                    'post_video_dropout': 0.1,
+                    'post_video_dropout': 0.0,
                     # res
                     'H': 3.0
                 },
@@ -781,7 +781,7 @@ class ConfigRegression():
                     'weight_decay_video': 0.0,
                     'weight_decay_other': 0.01,
                     # feature subNets
-                    'a_lstm_hidden_size': 32,
+                    'a_lstm_hidden_size': 16,
                     'v_lstm_hidden_size': 32,
                     'a_lstm_layers': 1,
                     'v_lstm_layers': 1,
@@ -795,11 +795,11 @@ class ConfigRegression():
                     'post_fusion_dim': 128,
                     'post_text_dim':32,
                     'post_audio_dim': 16,
-                    'post_video_dim': 16,
-                    'post_fusion_dropout': 0.0,
-                    'post_text_dropout': 0.1,
+                    'post_video_dim': 32,
+                    'post_fusion_dropout': 0.1,
+                    'post_text_dropout': 0.0,
                     'post_audio_dropout': 0.0,
-                    'post_video_dropout': 0.1,
+                    'post_video_dropout': 0.0,
                     # res
                     'H': 3.0
                 },

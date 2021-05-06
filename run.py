@@ -255,7 +255,7 @@ def worker(cur_task=None):
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--need_task_scheduling', type=bool, default=True,
+    parser.add_argument('--need_task_scheduling', type=bool, default=False,
                         help='use the task scheduling module.')
     parser.add_argument('--is_tune', type=bool, default=False,
                         help='tune parameters ?')
@@ -263,15 +263,15 @@ def parse_args():
                         help='regression / classification')
     parser.add_argument('--modelName', type=str, default='self_mm',
                         help='support lf_dnn/ef_lstm/tfn/lmf/mfn/graph_mfn/mult/misa/mlf_dnn/mtfn/mlmf/self_mm')
-    parser.add_argument('--datasetName', type=str, default='mosei',
+    parser.add_argument('--datasetName', type=str, default='mosi',
                         help='support mosi/mosei/sims')
-    parser.add_argument('--num_workers', type=int, default=0,
+    parser.add_argument('--num_workers', type=int, default=8,
                         help='num workers of loading data')
     parser.add_argument('--model_save_dir', type=str, default='results/models',
                         help='path to save results.')
-    parser.add_argument('--res_save_dir', type=str, default='results/20200428',
+    parser.add_argument('--res_save_dir', type=str, default='results/20200506',
                         help='path to save results.')
-    parser.add_argument('--gpu_ids', type=list, default=[],
+    parser.add_argument('--gpu_ids', type=list, default=[1],
                         help='indicates the gpus will be used. If none, the most-free gpu will be used!')
     return parser.parse_args()
 
@@ -288,7 +288,7 @@ if __name__ == '__main__':
                 cur_task['index'] = index
                 left_tasks.append(cur_task)
         # create process pools
-        po = Pool(2)
+        po = Pool(4)
         for cur_task in left_tasks:
             po.apply_async(worker, (cur_task,))
         # close and wait
