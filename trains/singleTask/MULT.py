@@ -57,8 +57,6 @@ class MULT():
                     loss.backward()
                     if self.args.grad_clip != -1.0:
                         nn.utils.clip_grad_value_([param for param in model.parameters() if param.requires_grad], self.args.grad_clip)
-                    # update
-                    optimizer.step()
                     # store results
                     train_loss += loss.item()
                     y_pred.append(outputs.cpu())
