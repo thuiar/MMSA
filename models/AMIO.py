@@ -25,6 +25,7 @@ MODEL_MAP = {
     # 'bert_mag': BERT_MAG,
     'mult': MULT,
     'misa': MISA,
+    'mfm': MFM,
     # multi-task
     'mtfn': MTFN,
     'mlmf': MLMF,
