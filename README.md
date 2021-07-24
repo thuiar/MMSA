@@ -1,6 +1,6 @@
 ![Python 3.6](https://img.shields.io/badge/python-3.6-green.svg)
 
-# MMSA 
+# MMSA Repository
 
 > Pytorch implementation for codes in multimodal sentiment analysis.
 
