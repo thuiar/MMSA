@@ -209,8 +209,9 @@ class ConfigRegression():
     def __BERT_MAG(self):
         tmp = {
             'commonParas':{
-                'need_align': False,
                 'use_finetune': True,
+                'need_data_aligned': True,
+                'need_model_aligned': False,
                 'use_bert': True,
                 'early_stop': 12,
                 'multi_label': False,

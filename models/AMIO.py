@@ -22,7 +22,7 @@ MODEL_MAP = {
     'ef_lstm': EF_LSTM,
     'lf_dnn': LF_DNN,
     'graph_mfn': Graph_MFN,
-    # 'bert_mag': BERT_MAG,
+    'bert_mag': BERT_MAG,
     'mult': MULT,
     'misa': MISA,
     # multi-task

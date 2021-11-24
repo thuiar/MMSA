@@ -49,7 +49,7 @@ class MAG(nn.Module):
         self.LayerNorm = nn.LayerNorm(config.hidden_size)
         self.dropout = nn.Dropout(args.dropout_prob)
 
-    def forward(self, text_embedding, acoustic, visual):
+    def forward(self, text_embedding, visual, acoustic):
         eps = 1e-6
         weight_v = F.relu(self.W_hv(torch.cat((visual, text_embedding), dim=-1)))
         weight_a = F.relu(self.W_ha(torch.cat((acoustic, text_embedding), dim=-1)))

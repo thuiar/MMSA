@@ -289,7 +289,7 @@ class ConfigClassification():
                     'beta_shift':1,
                     # add MAG after "AV_index" layer
                     # -1 means adding after all layers
-                    -2 means not use MAG
+                    # -2 means not use MAG
                     'AV_index':7,
                     'output_mode':'regression',
                     'num_labels':2, # is valid when output_mode == "classification"

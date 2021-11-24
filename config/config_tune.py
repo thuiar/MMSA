@@ -156,10 +156,11 @@ class ConfigTune():
         }
         return tmp
     
-    def __MAG(self):
+    def __BERT_MAG(self):
         tmp = {
             'commonParas':{
-                'need_align': False,
+                'need_data_aligned': True,
+                'need_model_aligned': False,
                 'use_finetune': True,
                 'use_bert': True,
                 'early_stop': 8,
