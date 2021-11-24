@@ -261,7 +261,7 @@ def parse_args():
                         help='tune parameters ?')
     parser.add_argument('--train_mode', type=str, default="regression",
                         help='regression / classification')
-    parser.add_argument('--modelName', type=str, default='self_mm',
+    parser.add_argument('--modelName', type=str, default='bert_mag',
                         help='support lf_dnn/ef_lstm/tfn/lmf/mfn/graph_mfn/mult/misa/mlf_dnn/mtfn/mlmf/self_mm')
     parser.add_argument('--datasetName', type=str, default='mosi',
                         help='support mosi/mosei/sims')
