@@ -18,7 +18,7 @@ class ConfigTune():
             'ef_lstm': self.__EF_LSTM,
             'lf_dnn': self.__LF_DNN,
             'graph_mfn': self.__Graph_MFN,
-            # 'mag': self.__MAG,
+            'mag': self.__BERT_MAG,
             'mult': self.__MULT,
             'misa': self.__MISA,
             # multi-task
@@ -156,44 +156,44 @@ class ConfigTune():
         }
         return tmp
     
-    # def __MAG(self):
-    #     tmp = {
-    #         'commonParas':{
-    #             'need_align': False,
-    #             'use_finetune': True,
-    #             'use_bert': True,
-    #             'early_stop': 8,
-    #             'multi_label': True,
-    #             'need_normalize': False,
-    #             # Tuning
-    #             'weight_decay': 0.0,
-    #         },
-    #         # dataset
-    #         'datasetParas':{
-    #             'raw_mosi':{
-    #                 'loss_function':'ll1',
-    #                 'd_acoustic_in':5,
-    #                 'd_visual_in':20,
-    #                 'h_merge_sent':768,
-    #                 # add MAG after "AV_index" layer
-    #                 # -1 means adding after all layers
-    #                 # -2 means not use MAG
-    #                 # 'AV_index':1,
-    #                 'output_mode':'regression',
-    #                 'num_labels':2, # is valid when output_mode == "classification"
-    #             },
-    #         },
-    #         'debugParas':{
-    #             'd_paras': ['exclude_zero', 'AV_index', 'batch_size', 'learning_rate', 'hidden_dropout_prob', 'beta_shift'],
-    #             'exclude_zero': random.choice([True, False]),
-    #             'AV_index': random.choice([-2, 1]),
-    #             'batch_size': random.choice([32, 48, 64]),
-    #             'learning_rate': random.choice([2e-5, 5e-5, 1e-4, 1e-5]),
-    #             'hidden_dropout_prob': random.choice([0.2, 0.1, 0.5]),
-    #             'beta_shift': random.choice([1]),
-    #         }
-    #     }
-    #     return tmp
+    def __MAG(self):
+        tmp = {
+            'commonParas':{
+                'need_align': False,
+                'use_finetune': True,
+                'use_bert': True,
+                'early_stop': 8,
+                'multi_label': True,
+                'need_normalize': False,
+                # Tuning
+                'weight_decay': 0.0,
+            },
+            # dataset
+            'datasetParas':{
+                'raw_mosi':{
+                    'loss_function':'ll1',
+                    'd_acoustic_in':5,
+                    'd_visual_in':20,
+                    'h_merge_sent':768,
+                    # add MAG after "AV_index" layer
+                    # -1 means adding after all layers
+                    # -2 means not use MAG
+                    # 'AV_index':1,
+                    'output_mode':'regression',
+                    'num_labels':2, # is valid when output_mode == "classification"
+                },
+            },
+            'debugParas':{
+                'd_paras': ['exclude_zero', 'AV_index', 'batch_size', 'learning_rate', 'hidden_dropout_prob', 'beta_shift'],
+                'exclude_zero': random.choice([True, False]),
+                'AV_index': random.choice([-2, 1]),
+                'batch_size': random.choice([32, 48, 64]),
+                'learning_rate': random.choice([2e-5, 5e-5, 1e-4, 1e-5]),
+                'hidden_dropout_prob': random.choice([0.2, 0.1, 0.5]),
+                'beta_shift': random.choice([1]),
+            }
+        }
+        return tmp
 
     def __MISA(self):
         tmp = {
