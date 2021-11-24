@@ -17,6 +17,7 @@ class ConfigRegression():
             'bert_mag': self.__BERT_MAG,
             'mult': self.__MULT,
             'misa': self.__MISA,
+            'mfm': self.__MFM,
             # multi-task
             'mtfn': self.__MTFN,
             'mlmf': self.__MLMF,
@@ -492,6 +493,49 @@ class ConfigRegression():
         }
         return tmp
     
+    def __MFM(self):
+        tmp = {
+            'commonParas':{
+                'need_data_aligned': True,
+                'need_model_aligned': True,
+                'need_normalized': True,
+                'early_stop': 8,
+                'zy_size': 32,
+                'zl_size': 32,
+                'za_size': 8,
+                'zv_size': 80,
+                'fy_size': 16,
+                'fl_size': 88,
+                'fa_size': 8,
+                'fv_size': 8,
+                'zy_to_fy_dropout': 0.0,
+                'zl_to_fl_dropout': 0.2,
+                'za_to_fa_dropout': 0.2,
+                'zv_to_fv_dropout': 0.7,
+                'fy_to_y_dropout': 0.0,
+                'lda_mmd': 1.0,
+                'lda_xl': 1.0,
+                'lda_xa': 0.01,
+                'lda_xv': 0.5,
+            },
+            # dataset
+            'datasetParas':{
+                'mosi':{
+                    'hidden_dims': (128, 32, 128),
+                    'memsize': 400,
+                    'windowsize': 2,
+                    'NN1Config': {"drop": 0.2, "shapes": 128},
+                    'NN2Config': {"drop": 0.7, "shapes": 64},
+                    'gamma1Config': {"drop": 0.0, "shapes": 64},
+                    'gamma2Config': {"drop": 0.0, "shapes": 256},
+                    'outConfig': {"drop": 0.2, "shapes": 256},
+                    'batch_size': 64,
+                    'learning_rate': 1e-3,
+                },
+            },
+        }
+        return tmp
+
     def __EF_LSTM(self):
         tmp = {
             'commonParas':{
