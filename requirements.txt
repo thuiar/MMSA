@@ -1,6 +1,6 @@
 face-recognition==1.2.3
 facenet_pytorch==0.4.0
-numpy==1.17.2
+numpy==1.21.0
 pandas==0.25.1
 Pillow==9.0.0
 scikit-learn==0.21.3
