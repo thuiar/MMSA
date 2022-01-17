@@ -1,8 +1,9 @@
 import os
 import random
 import argparse
+from easydict import EasyDict as edict
 
-from utils.functions import Storage
+# from utils.functions import Storage
 
 
 class ConfigTune():
@@ -38,14 +39,15 @@ class ConfigTune():
         dataArgs = HYPER_DATASET_MAP[dataset_name]
         dataArgs = dataArgs['aligned'] if (commonArgs['need_data_aligned'] and 'aligned' in dataArgs) else dataArgs['unaligned']
         # integrate all parameters
-        self.args = Storage(dict(vars(args),
-                            **dataArgs,
-                            **commonArgs,
-                            **HYPER_MODEL_MAP[model_name]()['debugParas'],
-                            ))
+        self.args = edict(
+            vars(args),
+            **dataArgs,
+            **commonArgs,
+            **HYPER_MODEL_MAP[model_name]()['debugParas'],
+        )
     
     def __datasetCommonParams(self):
-        root_dataset_dir = '/home/sharing/disk3/dataset/multimodal-sentiment-dataset/StandardDatasets'
+        root_dataset_dir = '/home/sharing/disk3/Datasets/MMSA-Standard'
         tmp = {
             'mosi':{
                 'aligned': {

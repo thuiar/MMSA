@@ -1,57 +1,138 @@
 import os
 import gc
 import time
-import random
+
 import logging
 import torch
-import pynvml
-import argparse
+from pathlib import Path
 import numpy as np
 import pandas as pd
 import multiprocessing as mp
 from multiprocessing import Pool
 
+from .utils.functions import setup_seed, assign_gpu
 from models.AMIO import AMIO
 from trains.ATIO import ATIO
 from data.load_data import MMDataLoader
-from config.config_tune import ConfigTune
-from config.config_regression import ConfigRegression
-from config.config_classification import ConfigClassification
+from config import get_config_regression, get_config_tune
 
 os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
 
-def setup_seed(seed):
-    torch.manual_seed(seed)
-    torch.cuda.manual_seed_all(seed)
-    np.random.seed(seed)
-    random.seed(seed)
-    torch.backends.cudnn.deterministic = True
 
-def run(args):
-    if not os.path.exists(args.model_save_dir):
-        os.makedirs(args.model_save_dir)
+# SUPPORTED_MODELS = ['lf_dnn', 'ef_lstm', 'tfn', 'lmf', 'mfn', 'graph_mfn', 'mult', 'misa', 'mlf_dnn', 'mtfn', 'mlmf', 'self_mm']
+# SUPPORTED_DATASETS = ['mosi', 'mosei', 'sims']
+
+
+def _set_logger(log_dir, model_name, dataset_name, verbose_level):
+
+    # base logger
+    log_file_path = Path(log_dir) / f"{model_name}-{dataset_name}.log"
+    logger = logging.getLogger('MMSA') 
+    logger.setLevel(logging.DEBUG)
+
+    # file handler
+    fh = logging.FileHandler(log_file_path)
+    fh_formatter = logging.Formatter('%(asctime)s - %(name)s [%(levelname)s] - %(message)s')
+    fh.setLevel(logging.DEBUG)
+    fh.setFormatter(fh_formatter)
+    logger.addHandler(fh)
+
+    # stream handler
+    stream_level = verbose_level.map({0: logging.ERROR, 1: logging.INFO, 2: logging.DEBUG})
+    ch = logging.StreamHandler()
+    ch.setLevel(stream_level)
+    ch_formatter = logging.Formatter('%(name)s - %(message)s')
+    ch.setFormatter(ch_formatter)
+    logger.addHandler(ch)
+
+    return logger
+
+
+def MMSA_run(
+    model_name, dataset_name, config_file="", seeds=[], is_tune=False,
+    feature_T=None, feature_A=None, feature_V=None,
+    model_save_dir="~/MMSA/saved_models", res_save_dir="~/MMSA/results", log_dir="~/MMSA/logs",
+    gpu_ids=[0], num_workers=4, verbose_level=1, task_id=None, progress_q=None
+):
+    """
+    Main function for running the MMSA framework.
+
+    Parameters:
+        model_name (str): Name of model
+        dataset_name (str): Name of dataset
+        config_file (str): Path to config file. If not specified, default config file will be used.
+        seeds (list): List of seeds. Default: [1111, 1112, 1113, 1114, 1115]
+        is_tune (bool): Whether to tune hyper parameters. Default: False
+        feature_T (str): Path to text feature file. 
+        feature_A (str): Path to audio feature file. 
+        feature_V (str): Path to video feature file.
+        model_save_dir (str): Path to save trained models. Default: "~/MMSA/saved_models"
+        res_save_dir (str): Path to save csv results. Default: "~/MMSA/results"
+        log_dir (str): Path to save log files. Default: "~/MMSA/logs"
+        gpu_ids (list): Specify which gpus to use. If a empty list is supplied, will auto assign to the most memory-free gpu. Default: [0]
+                        Currently only support single gpu.
+        num_workers (int): Number of workers used to load data. Default: 4
+        verbose_level (int): Verbose level of stdout. 0 for error, 1 for info, 2 for debug. Default: 1
+
+        task_id (int): Task id for M-SENA. 
+        progress_q (multiprocessing.Queue): Multiprocessing queue for progress reporting with M-SENA. 
+    """
+    # Initialization
+    model_name = model_name.lower()
+    dataset_name = dataset_name.lower()
+    if config_file != "":
+        config_file = Path(config_file)
+    else: # use default config files
+        if is_tune:
+            config_file = Path(__file__).parent() / "config" / "config_tune.json"
+        else:
+            config_file = Path(__file__).parent() / "config" / "config_regression.json"
+    if not config_file.is_file():
+        raise ValueError(f"Config file {str(config_file)} not found.")
+    Path(model_save_dir).mkdir(parents=True, exist_ok=True)
+    Path(log_dir).mkdir(parents=True, exist_ok=True)
+    seeds = seeds if seeds != [] else [1111, 1112, 1113, 1114, 1115]
+    logger = _set_logger(log_dir, model_name, dataset_name, verbose_level)
+    logger.info("===================================== Program Start =====================================")
+    
+    if is_tune: # run tune
+        args = get_config_tune(config_file, model_name, dataset_name)
+        Path(res_save_dir).joinpath("tune").mkdir(parents=True, exist_ok=True)
+        # TODO
+    else: # run normal
+        args = get_config_regression(config_file, model_name, dataset_name)
+        logger.info("Initialized with args:")
+        logger.info(args)
+        Path(res_save_dir).joinpath("normal").mkdir(parents=True, exist_ok=True)
+        model_results = []
+        for i, seed in enumerate(seeds):
+            setup_seed(seed)
+            logger.info(f"Running with seed {seed} [{i + 1}/{len(seeds)}].")
+            # actual running
+            model_results.append(_run(args, gpu_ids, num_workers))
+        criterions = list(model_results[0].keys())
+        # save result to csv
+        csv_file = Path(res_save_dir) / f"{dataset_name}.csv"
+        if csv_file.is_file():
+            df = pd.read_csv(csv_file)
+        else:
+            df = pd.DataFrame(columns=["Model"] + criterions)
+        # save results
+        res = [model_name]
+        for c in criterions:
+            values = [r[c] for r in model_results]
+            mean = round(np.mean(values)*100, 2)
+            std = round(np.std(values)*100, 2)
+            res.append((mean, std))
+        df.loc[len(df)] = res
+        df.to_csv(csv_file, index=None)
+        logger.info(f"Results saved to {csv_file}.")
+
+
+def _run(args, gpu_ids, num_workers):
     args.model_save_path = os.path.join(args.model_save_dir,\
                                         f'{args.modelName}-{args.datasetName}-{args.train_mode}.pth')
-    # indicate used gpu
-    if len(args.gpu_ids) == 0 and torch.cuda.is_available():
-        # load free-most gpu
-        pynvml.nvmlInit()
-        dst_gpu_id, min_mem_used = 0, 1e16
-        for g_id in [0, 1, 2, 3]:
-            handle = pynvml.nvmlDeviceGetHandleByIndex(g_id)
-            meminfo = pynvml.nvmlDeviceGetMemoryInfo(handle)
-            mem_used = meminfo.used
-            if mem_used < min_mem_used:
-                min_mem_used = mem_used
-                dst_gpu_id = g_id
-        print(f'Find gpu: {dst_gpu_id}, use memory: {min_mem_used}!')
-        logger.info(f'Find gpu: {dst_gpu_id}, with memory: {min_mem_used} left!')
-        args.gpu_ids.append(dst_gpu_id)
-    # device
-    using_cuda = len(args.gpu_ids) > 0 and torch.cuda.is_available()
-    logger.info("Let's use %d GPUs!" % len(args.gpu_ids))
-    device = torch.device('cuda:%d' % int(args.gpu_ids[0]) if using_cuda else 'cpu')
-    args.device = device
+    device = assign_gpu(gpu_ids)
     # add tmp tensor to increase the temporary consumption of GPU
     tmp_tensor = torch.zeros((100, 100)).to(args.device)
     # load data and models
@@ -92,10 +173,10 @@ def run(args):
     torch.cuda.empty_cache()
     gc.collect()
     time.sleep(5)
- 
+
     return results
 
-def run_tune(args, tune_times=50):
+def run_tune(self, args, tune_times=50):
     args.res_save_dir = os.path.join(args.res_save_dir, 'tunes')
     init_args = args
     has_debuged = [] # save used paras
@@ -151,8 +232,7 @@ def run_tune(args, tune_times=50):
         df.to_csv(save_file_path, index=None)
         logger.info('Results are saved to %s...' %(save_file_path))
 
-def run_normal(args):
-    args.res_save_dir = os.path.join(args.res_save_dir, 'normals')
+def run_normal(self, args):
     init_args = args
     model_results = []
     seeds = args.seeds
@@ -171,7 +251,7 @@ def run_normal(args):
         logger.info(args)
         # runnning
         args.cur_time = i+1
-        test_results = run(args)
+        test_results = self._run(args)
         # restore results
         model_results.append(test_results)
     criterions = list(model_results[0].keys())
@@ -195,106 +275,3 @@ def run_normal(args):
     df.to_csv(save_path, index=None)
     logger.info('Results are added to %s...' %(save_path))
 
-def set_log(args):
-    log_file_path = f'logs/{args.modelName}-{args.datasetName}.log'
-    # set logging
-    logger = logging.getLogger() 
-    logger.setLevel(logging.DEBUG)
-
-    for ph in logger.handlers:
-        logger.removeHandler(ph)
-    # add FileHandler to log file
-    formatter_file = logging.Formatter('%(asctime)s:%(levelname)s:%(message)s', datefmt='%Y-%m-%d %H:%M:%S')
-    fh = logging.FileHandler(log_file_path)
-    fh.setLevel(logging.DEBUG)
-    fh.setFormatter(formatter_file)
-    logger.addHandler(fh)
-    # add StreamHandler to terminal outputs
-    # formatter_stream = logging.Formatter('%(message)s')
-    # ch = logging.StreamHandler()
-    # ch.setLevel(logging.DEBUG)
-    # ch.setFormatter(formatter_stream)
-    # logger.addHandler(ch)
-    return logger
-
-def worker(cur_task=None):
-    args = parse_args()
-    global logger
-    if cur_task:
-        stime = random.random()*60
-        print(f"{os.getpid()} process will wait: {stime} seconds...")
-        time.sleep(stime) # avoid use the same gpu at first
-        args.is_tune = True if cur_task['is_tune'] else False
-        args.train_mode = cur_task['train_mode']
-        args.modelName = cur_task['modelName']
-        args.datasetName = cur_task['datasetName']
-        try:
-            logger = set_log(args)
-            args.seeds = [1111,1112, 1113, 1114, 1115]
-            if args.is_tune:
-                run_tune(args, tune_times=cur_task['tune_times'])
-            else:
-                run_normal(args)
-            df = pd.read_csv('tasks.csv')
-            df.loc[cur_task['index'], 'state'] = 1  # 任务完成
-        except Exception as e:
-            logger.error(e)
-            df = pd.read_csv('tasks.csv')
-            df.loc[cur_task['index'], 'state'] = -1 # 任务出错
-            df.loc[cur_task['index'], 'error_info'] = str(e)
-        finally:
-            df.to_csv('tasks.csv', index=None)
-    else:
-        logger = set_log(args)
-        args.seeds = [1111,1112, 1113, 1114, 1115]
-        if args.is_tune:
-            # run_tune(args, tune_times=cur_task['tune_times'])
-            run_tune(args, tune_times=50)
-        else:
-            run_normal(args)
-
-def parse_args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--need_task_scheduling', type=bool, default=False,
-                        help='use the task scheduling module.')
-    parser.add_argument('--is_tune', type=bool, default=False,
-                        help='tune parameters ?')
-    parser.add_argument('--train_mode', type=str, default="regression",
-                        help='regression / classification')
-    parser.add_argument('--modelName', type=str, default='bert_mag',
-                        help='support lf_dnn/ef_lstm/tfn/lmf/mfn/graph_mfn/mult/misa/mlf_dnn/mtfn/mlmf/self_mm')
-    parser.add_argument('--datasetName', type=str, default='mosi',
-                        help='support mosi/mosei/sims')
-    parser.add_argument('--num_workers', type=int, default=8,
-                        help='num workers of loading data')
-    parser.add_argument('--model_save_dir', type=str, default='results/models',
-                        help='path to save results.')
-    parser.add_argument('--res_save_dir', type=str, default='results/20200506',
-                        help='path to save results.')
-    parser.add_argument('--gpu_ids', type=list, default=[1],
-                        help='indicates the gpus will be used. If none, the most-free gpu will be used!')
-    return parser.parse_args()
-
-if __name__ == '__main__':
-    args = parse_args()
-    if args.need_task_scheduling:
-        mp.set_start_method('spawn')
-        # load uncompleted tasks
-        df = pd.read_csv('tasks.csv')
-        left_tasks = []
-        for index in range(len(df)):
-            if df.loc[index, 'state'] == 0:
-                cur_task = {name:df.loc[index,name] for name in df.columns}
-                cur_task['index'] = index
-                left_tasks.append(cur_task)
-        # create process pools
-        po = Pool(4)
-        for cur_task in left_tasks:
-            po.apply_async(worker, (cur_task,))
-        # close and wait
-        print('-----start--------')
-        po.close()
-        po.join()
-        print('-----end--------')
-    else:
-        worker()

@@ -105,7 +105,7 @@ class MDataPreLoader(Dataset):
         tmp_dir = os.path.join(self.working_dir, f'Processed/tmp-{index}')
         if not os.path.exists(tmp_dir):
             os.makedirs(tmp_dir)
-        video_id, clip_id, text, label, annotation, mode, _ = self.df.loc[index]
+        video_id, clip_id, text, label, _, _, _, annotation, mode = self.df.loc[index]
         cur_id = video_id + '$_$' + clip_id
         # video
         video_path = os.path.join(self.working_dir, 'Raw', video_id, clip_id + '.mp4')
@@ -262,9 +262,9 @@ class MDataPre():
     
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--working_dir', type=str, default='/home/sharing/disk3/dataset/multimodal-sentiment-dataset/StandardDatasets/MOSEI',
+    parser.add_argument('--working_dir', type=str, default='/home/sharing/disk3/Datasets/MMSA-Standard/SIMS',
                         help='path to datasets')
-    parser.add_argument('--language', type=str, default="en",
+    parser.add_argument('--language', type=str, default="cn",
                         help='en / cn')
     parser.add_argument('--openface2Path', type=str, default="/home/iyuge2/ToolKits/OpenFace/build/bin/FeatureExtraction",
                         help='path to FeatureExtraction tool in openface2')

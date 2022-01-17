@@ -19,7 +19,7 @@ from sklearn.metrics import confusion_matrix
 from sklearn.metrics import precision_recall_fscore_support
 from sklearn.metrics import accuracy_score, f1_score
 # sys.path.insert(0,os.path.join(os.getcwd(), 'pytorch-transformers'))
-from pytorch_transformers.optimization import AdamW
+# from pytorch_transformers.optimization import AdamW
 
 logger = logging.getLogger('MSA')
 

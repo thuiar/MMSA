@@ -1,0 +1,802 @@
+{
+  "datasetCommonParams": {
+    "dataset_root_dir": "/home/sharing/disk3/Datasets/MMSA-Standard",
+    "mosi": {
+      "aligned": {
+        "dataPath": "MOSI/Processed/aligned_50.pkl",
+        "seq_lens": [50, 50, 50],
+        "feature_dims": [768, 5, 20],
+        "train_samples": 1284,
+        "num_classes": 3,
+        "language": "en",
+        "KeyEval": "Loss"
+      },
+      "unaligned": {
+        "dataPath": "MOSI/Processed/unaligned_50.pkl",
+        "seq_lens": [50, 50, 50],
+        "feature_dims": [768, 5, 20],
+        "train_samples": 1284,
+        "num_classes": 3,
+        "language": "en",
+        "KeyEval": "Loss"
+      }
+    },
+    "mosei": {
+      "aligned": {
+        "dataPath": "MOSEI/Processed/aligned_50.pkl",
+        "seq_lens": [50, 50, 50],
+        "feature_dims": [768, 74, 35],
+        "train_samples": 16326,
+        "num_classes": 3,
+        "language": "en",
+        "KeyEval": "Loss"
+      },
+      "unaligned": {
+        "dataPath": "MOSEI/Processed/unaligned_50.pkl",
+        "seq_lens": [50, 500, 375],
+        "feature_dims": [768, 74, 35],
+        "train_samples": 16326,
+        "num_classes": 3,
+        "language": "en",
+        "KeyEval": "Loss"
+      }
+    },
+    "sims": {
+      "unaligned": {
+        "dataPath": "SIMS/Processed/features/unaligned_39.pkl",
+        "seq_lens": [39, 400, 55],
+        "feature_dims": [768, 24, 1434],
+        "train_samples": 1368,
+        "num_classes": 3,
+        "language": "cn",
+        "KeyEval": "Loss"
+      }
+    }
+  },
+  "tfn": {
+    "commonParams": {
+      "need_data_aligned": false,
+      "need_model_aligned": false,
+      "need_normalized": true,
+      "early_stop": 8
+    },
+    "datasetParams": {
+      "mosi": {
+        "hidden_dims": [128, 16, 128],
+        "text_out": 128,
+        "post_fusion_dim": 32,
+        "dropouts": [0.2, 0.2, 0.2, 0.2],
+        "batch_size": 32,
+        "learning_rate": 0.0005
+      },
+      "mosei": {
+        "hidden_dims": [128, 16, 128],
+        "text_out": 64,
+        "post_fusion_dim": 32,
+        "dropouts": [0.3, 0.3, 0.3, 0.5],
+        "batch_size": 64,
+        "learning_rate": 0.001
+      },
+      "sims": {
+        "hidden_dims": [128, 32, 128],
+        "text_out": 256,
+        "post_fusion_dim": 32,
+        "dropouts": [0.4, 0.4, 0.4, 0.4],
+        "batch_size": 32,
+        "learning_rate": 0.0005
+      }
+    }
+  },
+  "lmf": {
+    "commonParams": {
+      "need_data_aligned": false,
+      "need_model_aligned": false,
+      "need_normalized": true,
+      "early_stop": 8
+    },
+    "datasetParams": {
+      "mosi": {
+        "hidden_dims": [256, 32, 256],
+        "dropouts": [0.3, 0.3, 0.3, 0.3],
+        "rank": 4,
+        "batch_size": 32,
+        "learning_rate": 0.001,
+        "factor_lr": 0.001,
+        "weight_decay": 0.0001
+      },
+      "mosei": {
+        "hidden_dims": [128, 16, 128],
+        "dropouts": [0.4, 0.4, 0.4, 0.4],
+        "rank": 5,
+        "batch_size": 64,
+        "learning_rate": 0.0005,
+        "factor_lr": 0.0001,
+        "weight_decay": 0.005
+      },
+      "sims": {
+        "hidden_dims": [256, 32, 256],
+        "dropouts": [0.2, 0.2, 0.2, 0.2],
+        "rank": 3,
+        "batch_size": 32,
+        "learning_rate": 0.002,
+        "factor_lr": 0.001,
+        "weight_decay": 0.005
+      }
+    }
+  },
+  "mfn": {
+    "commonParams": {
+      "need_data_aligned": true,
+      "need_model_aligned": true,
+      "need_normalized": true,
+      "early_stop": 8
+    },
+    "datasetParams": {
+      "mosi": {
+        "hidden_dims": [128, 32, 128],
+        "memsize": 400,
+        "windowsize": 2,
+        "NN1Config": {
+          "drop": 0.2,
+          "shapes": 128
+        },
+        "NN2Config": {
+          "drop": 0.7,
+          "shapes": 64
+        },
+        "gamma1Config": {
+          "drop": 0.0,
+          "shapes": 64
+        },
+        "gamma2Config": {
+          "drop": 0.0,
+          "shapes": 256
+        },
+        "outConfig": {
+          "drop": 0.2,
+          "shapes": 256
+        },
+        "batch_size": 64,
+        "learning_rate": 0.001
+      },
+      "mosei": {
+        "hidden_dims": [128, 16, 128],
+        "memsize": 256,
+        "windowsize": 2,
+        "NN1Config": {
+          "drop": 0.7,
+          "shapes": 32
+        },
+        "NN2Config": {
+          "drop": 0.2,
+          "shapes": 256
+        },
+        "gamma1Config": {
+          "drop": 0.2,
+          "shapes": 256
+        },
+        "gamma2Config": {
+          "drop": 0.0,
+          "shapes": 256
+        },
+        "outConfig": {
+          "drop": 0.0,
+          "shapes": 128
+        },
+        "batch_size": 32,
+        "learning_rate": 0.002
+      },
+      "sims": {
+        "hidden_dims": [64, 16, 64],
+        "memsize": 64,
+        "windowsize": 2,
+        "NN1Config": {
+          "drop": 0.2,
+          "shapes": 128
+        },
+        "NN2Config": {
+          "drop": 0.0,
+          "shapes": 128
+        },
+        "gamma1Config": {
+          "drop": 0.2,
+          "shapes": 64
+        },
+        "gamma2Config": {
+          "drop": 0.7,
+          "shapes": 64
+        },
+        "outConfig": {
+          "drop": 0.7,
+          "shapes": 64
+        },
+        "batch_size": 32,
+        "learning_rate": 0.001
+      }
+    }
+  },
+  "ef_lstm": {
+    "commonParams": {
+      "need_data_aligned": true,
+      "need_model_aligned": true,
+      "need_normalized": false,
+      "early_stop": 8
+    },
+    "datasetParams": {
+      "mosi": {
+        "hidden_dims": 256,
+        "num_layers": 2,
+        "dropout": 0.3,
+        "batch_size": 128,
+        "learning_rate": 0.001,
+        "weight_decay": 0.0001
+      },
+      "mosei": {
+        "hidden_dims": 256,
+        "num_layers": 3,
+        "dropout": 0.4,
+        "batch_size": 128,
+        "learning_rate": 0.005,
+        "weight_decay": 0.0001
+      },
+      "sims": {
+        "hidden_dims": 32,
+        "num_layers": 3,
+        "dropout": 0.5,
+        "batch_size": 128,
+        "learning_rate": 0.0005,
+        "weight_decay": 0.001
+      }
+    }
+  },
+  "lf_dnn": {
+    "commonParams": {
+      "need_data_aligned": false,
+      "need_model_aligned": false,
+      "need_normalized": true,
+      "early_stop": 8,
+      "use_bert": false
+    },
+    "datasetParams": {
+      "mosi": {
+        "hidden_dims": [64, 16, 64],
+        "text_out": 256,
+        "post_fusion_dim": 16,
+        "dropouts": [0.4, 0.4, 0.4, 0.4],
+        "batch_size": 128,
+        "learning_rate": 0.001,
+        "weight_decay": 0.01
+      },
+      "mosei": {
+        "hidden_dims": [64, 32, 64],
+        "text_out": 256,
+        "post_fusion_dim": 16,
+        "dropouts": [0.4, 0.4, 0.4, 0.4],
+        "batch_size": 32,
+        "learning_rate": 0.0005,
+        "weight_decay": 0.01
+      },
+      "sims": {
+        "hidden_dims": [128, 32, 128],
+        "text_out": 256,
+        "post_fusion_dim": 32,
+        "dropouts": [0.3, 0.3, 0.3, 0.5],
+        "batch_size": 128,
+        "learning_rate": 0.005,
+        "weight_decay": 0.005
+      }
+    }
+  },
+  "graph_mfn": {
+    "commonParams": {
+      "need_data_aligned": true,
+      "need_model_aligned": true,
+      "need_normalized": false,
+      "early_stop": 8
+    },
+    "datasetParams": {
+      "mosi": {
+        "hidden_dims": [64, 32, 64],
+        "memsize": 128,
+        "inner_node_dim": 32,
+        "NNConfig": {
+          "drop": 0.0,
+          "shapes": 128
+        },
+        "gamma1Config": {
+          "drop": 0.7,
+          "shapes": 32
+        },
+        "gamma2Config": {
+          "drop": 0.7,
+          "shapes": 64
+        },
+        "outConfig": {
+          "drop": 0.7,
+          "shapes": 32
+        },
+        "batch_size": 32,
+        "learning_rate": 0.001,
+        "weight_decay": 0.0
+      },
+      "mosei": {
+        "hidden_dims": [64, 32, 64],
+        "memsize": 400,
+        "inner_node_dim": 20,
+        "NNConfig": {
+          "drop": 0.7,
+          "shapes": 64
+        },
+        "gamma1Config": {
+          "drop": 0.2,
+          "shapes": 32
+        },
+        "gamma2Config": {
+          "drop": 0.5,
+          "shapes": 64
+        },
+        "outConfig": {
+          "drop": 0.5,
+          "shapes": 64
+        },
+        "batch_size": 64,
+        "learning_rate": 0.001,
+        "weight_decay": 0.0
+      },
+      "sims": {
+        "hidden_dims": [256, 32, 256],
+        "memsize": 64,
+        "inner_node_dim": 128,
+        "NNConfig": {
+          "drop": 0.5,
+          "shapes": 256
+        },
+        "gamma1Config": {
+          "drop": 0.2,
+          "shapes": 32
+        },
+        "gamma2Config": {
+          "drop": 0.7,
+          "shapes": 32
+        },
+        "outConfig": {
+          "drop": 0.2,
+          "shapes": 256
+        },
+        "batch_size": 64,
+        "learning_rate": 0.0005,
+        "weight_decay": 0.001
+      }
+    }
+  },
+  "bert_mag": {
+    "commonParams": {
+      "use_finetune": true,
+      "need_data_aligned": true,
+      "need_model_aligned": false,
+      "use_bert": true,
+      "early_stop": 12,
+      "multi_label": false,
+      "need_normalize": false,
+      "weight_decay": 0.0
+    },
+    "datasetParams": {
+      "mosi": {
+        "update_epochs": 1,
+        "batch_size": 32,
+        "learning_rate": 5e-5,
+        "loss_function": "ll1",
+        "d_acoustic_in": 5,
+        "d_visual_in": 20,
+        "h_merge_sent": 768,
+        "hidden_dropout_prob": 0.2,
+        "beta_shift": 1,
+        "AV_index": 1,
+        "output_mode": "regression",
+        "num_labels": 1
+      },
+      "mosei": {
+        "update_epochs": 1,
+        "batch_size": 32,
+        "learning_rate": 5e-5,
+        "loss_function": "ll1",
+        "d_acoustic_in": 74,
+        "d_visual_in": 35,
+        "h_merge_sent": 768,
+        "hidden_dropout_prob": 0.2,
+        "beta_shift": 1,
+        "AV_index": 1,
+        "output_mode": "regression",
+        "num_labels": 1
+      },
+      "sims": {
+        "update_epochs": 1,
+        "batch_size": 32,
+        "learning_rate": 5e-5,
+        "loss_function": "ll1",
+        "d_acoustic_in": 33,
+        "d_visual_in": 709,
+        "h_merge_sent": 768,
+        "hidden_dropout_prob": 0.2,
+        "beta_shift": 1,
+        "AV_index": 7,
+        "output_mode": "regression",
+        "num_labels": 2
+      }
+    }
+  },
+  "mult": {
+    "commonParams": {
+      "need_data_aligned": false,
+      "need_model_aligned": false,
+      "early_stop": 8,
+      "use_bert": false,
+      "use_bert_finetune": false,
+      "attn_mask": true,
+      "update_epochs": 8
+    },
+    "datasetParams": {
+      "mosi": {
+        "attn_dropout_a": 0.1,
+        "attn_dropout_v": 0.2,
+        "relu_dropout": 0.2,
+        "embed_dropout": 0.1,
+        "res_dropout": 0.2,
+        "dst_feature_dim_nheads": [40, 10],
+        "batch_size": 4,
+        "learning_rate": 0.001,
+        "nlevels": 4,
+        "conv1d_kernel_size_l": 1,
+        "conv1d_kernel_size_a": 5,
+        "conv1d_kernel_size_v": 1,
+        "text_dropout": 0.2,
+        "attn_dropout": 0.1,
+        "output_dropout": 0.1,
+        "grad_clip": 0.8,
+        "patience": 20,
+        "weight_decay": 0.0
+      },
+      "mosei": {
+        "attn_dropout_a": 0.0,
+        "attn_dropout_v": 0.0,
+        "relu_dropout": 0.0,
+        "embed_dropout": 0.0,
+        "res_dropout": 0.0,
+        "dst_feature_dim_nheads": [30, 6],
+        "batch_size": 4,
+        "learning_rate": 0.0005,
+        "nlevels": 4,
+        "conv1d_kernel_size_l": 5,
+        "conv1d_kernel_size_a": 1,
+        "conv1d_kernel_size_v": 3,
+        "text_dropout": 0.3,
+        "attn_dropout": 0.4,
+        "output_dropout": 0.5,
+        "grad_clip": 0.6,
+        "patience": 20,
+        "weight_decay": 0.001
+      },
+      "sims": {
+        "attn_dropout_a": 0.1,
+        "attn_dropout_v": 0.0,
+        "relu_dropout": 0.0,
+        "embed_dropout": 0.1,
+        "res_dropout": 0.2,
+        "dst_feature_dim_nheads": [50, 10],
+        "batch_size": 16,
+        "learning_rate": 0.002,
+        "nlevels": 2,
+        "conv1d_kernel_size_l": 5,
+        "conv1d_kernel_size_a": 1,
+        "conv1d_kernel_size_v": 1,
+        "text_dropout": 0.3,
+        "attn_dropout": 0.2,
+        "output_dropout": 0.1,
+        "grad_clip": 0.6,
+        "patience": 10,
+        "weight_decay": 0.001
+      }
+    }
+  },
+  "misa": {
+    "commonParams": {
+      "need_data_aligned": false,
+      "need_model_aligned": false,
+      "use_finetune": true,
+      "use_bert": true,
+      "early_stop": 8,
+      "update_epochs": 2,
+      "rnncell": "lstm",
+      "use_cmd_sim": true
+    },
+    "datasetParams": {
+      "mosi": {
+        "batch_size": 64,
+        "learning_rate": 0.0001,
+        "hidden_size": 128,
+        "dropout": 0.2,
+        "reverse_grad_weight": 0.8,
+        "diff_weight": 0.3,
+        "sim_weight": 0.8,
+        "sp_weight": 0.0,
+        "recon_weight": 0.8,
+        "grad_clip": 1.0,
+        "weight_decay": 0.002
+      },
+      "mosei": {
+        "batch_size": 32,
+        "learning_rate": 0.0001,
+        "hidden_size": 128,
+        "dropout": 0.2,
+        "reverse_grad_weight": 0.5,
+        "diff_weight": 0.1,
+        "sim_weight": 1.0,
+        "sp_weight": 1.0,
+        "recon_weight": 0.8,
+        "grad_clip": 0.8,
+        "weight_decay": 0.0
+      },
+      "sims": {
+        "batch_size": 64,
+        "learning_rate": 0.0001,
+        "hidden_size": 128,
+        "dropout": 0.2,
+        "reverse_grad_weight": 0.5,
+        "diff_weight": 0.5,
+        "sim_weight": 0.5,
+        "sp_weight": 0.0,
+        "recon_weight": 0.8,
+        "grad_clip": 0.8,
+        "weight_decay": 0.0
+      }
+    }
+  },
+  "mfm": {
+    "commonParams": {
+      "need_data_aligned": true,
+      "need_model_aligned": true,
+      "need_normalized": true,
+      "early_stop": 8,
+      "zy_size": 32,
+      "zl_size": 32,
+      "za_size": 8,
+      "zv_size": 80,
+      "fy_size": 16,
+      "fl_size": 88,
+      "fa_size": 8,
+      "fv_size": 8,
+      "zy_to_fy_dropout": 0.0,
+      "zl_to_fl_dropout": 0.2,
+      "za_to_fa_dropout": 0.2,
+      "zv_to_fv_dropout": 0.7,
+      "fy_to_y_dropout": 0.0,
+      "lda_mmd": 1.0,
+      "lda_xl": 1.0,
+      "lda_xa": 0.01,
+      "lda_xv": 0.5
+    },
+    "datasetParams": {
+      "mosi": {
+        "hidden_dims": [128, 32, 128],
+        "memsize": 400,
+        "windowsize": 2,
+        "NN1Config": {
+          "drop": 0.2,
+          "shapes": 128
+        },
+        "NN2Config": {
+          "drop": 0.7,
+          "shapes": 64
+        },
+        "gamma1Config": {
+          "drop": 0.0,
+          "shapes": 64
+        },
+        "gamma2Config": {
+          "drop": 0.0,
+          "shapes": 256
+        },
+        "outConfig": {
+          "drop": 0.2,
+          "shapes": 256
+        },
+        "batch_size": 64,
+        "learning_rate": 0.001
+      }
+    }
+  },
+  "mtfn": {
+    "commonParams": {
+      "need_data_aligned": false,
+      "need_model_aligned": false,
+      "need_normalized": true,
+      "early_stop": 8
+    },
+    "datasetParams": {
+      "sims": {
+        "hidden_dims": [256, 32, 256],
+        "text_out": 256,
+        "post_fusion_dim": 64,
+        "post_text_dim": 64,
+        "post_audio_dim": 4,
+        "post_video_dim": 8,
+        "dropouts": [0.2, 0.2, 0.2],
+        "post_dropouts": [0.2, 0.2, 0.2, 0.2],
+        "batch_size": 64,
+        "learning_rate": 0.005,
+        "M": 0.6,
+        "T": 0.4,
+        "A": 0.0,
+        "V": 1.0,
+        "text_weight_decay": 0.001,
+        "audio_weight_decay": 0.0001,
+        "video_weight_decay": 1e-5,
+        "weight_decay": 0.005
+      }
+    }
+  },
+  "mlmf": {
+    "commonParams": {
+      "need_data_aligned": false,
+      "need_model_aligned": false,
+      "need_normalized": true,
+      "early_stop": 8
+    },
+    "datasetParams": {
+      "sims": {
+        "hidden_dims": [256, 32, 256],
+        "post_text_dim": 8,
+        "post_audio_dim": 4,
+        "post_video_dim": 32,
+        "post_dropouts": [0.4, 0.4, 0.4, 0.4],
+        "dropouts": [0.3, 0.3, 0.3],
+        "rank": 3,
+        "batch_size": 128,
+        "learning_rate": 0.001,
+        "factor_lr": 0.001,
+        "M": 0.2,
+        "T": 1.0,
+        "A": 0.4,
+        "V": 0.8,
+        "text_weight_decay": 0.0001,
+        "audio_weight_decay": 0.0,
+        "video_weight_decay": 0.0001,
+        "weight_decay": 0.005
+      }
+    }
+  },
+  "mlf_dnn": {
+    "commonParams": {
+      "need_data_aligned": false,
+      "need_model_aligned": false,
+      "need_normalized": true,
+      "early_stop": 8
+    },
+    "datasetParams": {
+      "sims": {
+        "hidden_dims": [64, 32, 64],
+        "text_out": 32,
+        "post_fusion_dim": 32,
+        "post_text_dim": 16,
+        "post_audio_dim": 4,
+        "post_video_dim": 32,
+        "dropouts": [0.3, 0.3, 0.3],
+        "post_dropouts": [0.5, 0.5, 0.5, 0.5],
+        "batch_size": 32,
+        "learning_rate": 0.002,
+        "M": 0.6,
+        "T": 0.2,
+        "A": 0.8,
+        "V": 0.8,
+        "text_weight_decay": 0.0001,
+        "audio_weight_decay": 0.001,
+        "video_weight_decay": 0.0001,
+        "weight_decay": 0.0
+      }
+    }
+  },
+  "self_mm": {
+    "commonParams": {
+      "need_data_aligned": false,
+      "need_model_aligned": false,
+      "need_normalized": false,
+      "use_bert": true,
+      "use_finetune": true,
+      "save_labels": false,
+      "early_stop": 8,
+      "update_epochs": 4
+    },
+    "datasetParams": {
+      "mosi": {
+        "batch_size": 16,
+        "learning_rate_bert": 5e-5,
+        "learning_rate_audio": 0.005,
+        "learning_rate_video": 0.005,
+        "learning_rate_other": 0.001,
+        "weight_decay_bert": 0.001,
+        "weight_decay_audio": 0.001,
+        "weight_decay_video": 0.001,
+        "weight_decay_other": 0.001,
+        "a_lstm_hidden_size": 16,
+        "v_lstm_hidden_size": 32,
+        "a_lstm_layers": 1,
+        "v_lstm_layers": 1,
+        "text_out": 768,
+        "audio_out": 16,
+        "video_out": 32,
+        "a_lstm_dropout": 0.0,
+        "v_lstm_dropout": 0.0,
+        "t_bert_dropout": 0.1,
+        "post_fusion_dim": 128,
+        "post_text_dim": 32,
+        "post_audio_dim": 16,
+        "post_video_dim": 32,
+        "post_fusion_dropout": 0.0,
+        "post_text_dropout": 0.1,
+        "post_audio_dropout": 0.1,
+        "post_video_dropout": 0.0,
+        "H": 3.0
+      },
+      "mosei": {
+        "batch_size": 32,
+        "learning_rate_bert": 5e-5,
+        "learning_rate_audio": 0.005,
+        "learning_rate_video": 0.0001,
+        "learning_rate_other": 0.001,
+        "weight_decay_bert": 0.001,
+        "weight_decay_audio": 0.0,
+        "weight_decay_video": 0.0,
+        "weight_decay_other": 0.01,
+        "a_lstm_hidden_size": 16,
+        "v_lstm_hidden_size": 32,
+        "a_lstm_layers": 1,
+        "v_lstm_layers": 1,
+        "text_out": 768,
+        "audio_out": 16,
+        "video_out": 32,
+        "a_lstm_dropout": 0.0,
+        "v_lstm_dropout": 0.0,
+        "t_bert_dropout": 0.1,
+        "post_fusion_dim": 128,
+        "post_text_dim": 32,
+        "post_audio_dim": 16,
+        "post_video_dim": 32,
+        "post_fusion_dropout": 0.1,
+        "post_text_dropout": 0.0,
+        "post_audio_dropout": 0.0,
+        "post_video_dropout": 0.0,
+        "H": 3.0
+      },
+      "sims": {
+        "batch_size": 32,
+        "learning_rate_bert": 5e-5,
+        "learning_rate_audio": 0.005,
+        "learning_rate_video": 0.005,
+        "learning_rate_other": 0.001,
+        "weight_decay_bert": 0.001,
+        "weight_decay_audio": 0.01,
+        "weight_decay_video": 0.01,
+        "weight_decay_other": 0.001,
+        "a_lstm_hidden_size": 16,
+        "v_lstm_hidden_size": 64,
+        "a_lstm_layers": 1,
+        "v_lstm_layers": 1,
+        "text_out": 768,
+        "audio_out": 16,
+        "video_out": 32,
+        "a_lstm_dropout": 0.0,
+        "v_lstm_dropout": 0.0,
+        "t_bert_dropout": 0.1,
+        "post_fusion_dim": 128,
+        "post_text_dim": 64,
+        "post_audio_dim": 16,
+        "post_video_dim": 32,
+        "post_fusion_dropout": 0.0,
+        "post_text_dropout": 0.1,
+        "post_audio_dropout": 0.1,
+        "post_video_dropout": 0.0,
+        "H": 1.0
+      }
+    }
+  }
+}
