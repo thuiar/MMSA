@@ -1,27 +1,13 @@
-import os
-import time
 import logging
-import argparse
-import numpy as np
-from glob import glob
-from tqdm import tqdm
-import sys
 
 import torch
 import torch.nn as nn
 from torch import optim
-
+from tqdm import tqdm
 from utils.functions import dict_to_str
 from utils.metricsTop import MetricsTop
 
-from sklearn.metrics import classification_report
-from sklearn.metrics import confusion_matrix
-from sklearn.metrics import precision_recall_fscore_support
-from sklearn.metrics import accuracy_score, f1_score
-# sys.path.insert(0,os.path.join(os.getcwd(), 'pytorch-transformers'))
-# from pytorch_transformers.optimization import AdamW
-
-logger = logging.getLogger('MSA')
+logger = logging.getLogger('MMSA')
 
 class MISA():
     def __init__(self, args):
@@ -30,7 +16,7 @@ class MISA():
         self.loss_diff = DiffLoss()
         self.loss_recon = MSE()
         self.loss_cmd = CMD()
-        self.metrics = MetricsTop(args.train_mode).getMetics(args.datasetName)
+        self.metrics = MetricsTop(args.train_mode).getMetics(args.dataset_name)
 
     def do_train(self, model, dataloader):
         self.model = model
@@ -97,7 +83,7 @@ class MISA():
             
             pred, true = torch.cat(y_pred), torch.cat(y_true)
             train_results = self.metrics(pred, true)
-            logger.info("TRAIN-(%s) (%d/%d/%d)>> loss: %.4f %s" % (self.args.modelName, \
+            logger.info("TRAIN-(%s) (%d/%d/%d)>> loss: %.4f %s" % (self.args.model_name, \
                         epochs - best_epoch, epochs, self.args.cur_time, train_loss, dict_to_str(train_results)))
             # validation
             val_results = self.do_test(model, dataloader['valid'], mode="VAL")
@@ -139,7 +125,7 @@ class MISA():
         eval_results = self.metrics(pred, true)
         eval_results["Loss"] = round(eval_loss, 4)
 
-        logger.info("%s-(%s) >> %s" % (mode, self.args.modelName, dict_to_str(eval_results)))
+        logger.info("%s-(%s) >> %s" % (mode, self.args.model_name, dict_to_str(eval_results)))
         return eval_results
     
     def get_domain_loss(self,):

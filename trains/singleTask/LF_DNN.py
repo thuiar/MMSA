@@ -13,13 +13,13 @@ from torch import optim
 from utils.functions import dict_to_str
 from utils.metricsTop import MetricsTop
 
-logger = logging.getLogger('MSA')
+logger = logging.getLogger('MMSA')
 
 class LF_DNN():
     def __init__(self, args):
         self.args = args
         self.criterion = nn.L1Loss() if args.train_mode == 'regression' else nn.CrossEntropyLoss()
-        self.metrics = MetricsTop(args.train_mode).getMetics(args.datasetName)
+        self.metrics = MetricsTop(args.train_mode).getMetics(args.dataset_name)
 
     def do_train(self, model, dataloader):
         optimizer = optim.Adam(model.parameters(), lr=self.args.learning_rate, weight_decay=self.args.weight_decay)
@@ -63,7 +63,7 @@ class LF_DNN():
             
             pred, true = torch.cat(y_pred), torch.cat(y_true)
             train_results = self.metrics(pred, true)
-            logger.info("TRAIN-(%s) (%d/%d/%d)>> loss: %.4f %s" % (self.args.modelName, \
+            logger.info("TRAIN-(%s) (%d/%d/%d)>> loss: %.4f %s" % (self.args.model_name, \
                         epochs - best_epoch, epochs, self.args.cur_time, train_loss, dict_to_str(train_results)))
             # validation
             val_results = self.do_test(model, dataloader['valid'], mode="VAL")
@@ -105,5 +105,5 @@ class LF_DNN():
         eval_results = self.metrics(pred, true)
         eval_results["Loss"] = round(eval_loss, 4)
 
-        logger.info("%s-(%s) >> %s" % (mode, self.args.modelName, dict_to_str(eval_results)))
+        logger.info("%s-(%s) >> %s" % (mode, self.args.model_name, dict_to_str(eval_results)))
         return eval_results

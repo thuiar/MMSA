@@ -8,6 +8,3 @@ from trains.singleTask.BERT_MAG import BERT_MAG
 from trains.singleTask.MULT import MULT
 from trains.singleTask.MISA import MISA
 from trains.singleTask.MFM import MFM
-
-
-__all__ = ['EF_LSTM', 'LF_DNN', 'LMF', 'TFN', 'MFN', 'Graph_MFN', 'BERT_MAG', 'MULT', 'MISA', 'MFM']

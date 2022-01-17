@@ -41,3 +41,10 @@ def assign_gpu(gpu_ids, memory_limit=1e16, n_gpus=4):
     device = torch.device('cuda:%d' % int(gpu_ids[0]) if using_cuda else 'cpu')
     return device
 
+def count_parameters(model):
+    res = 0
+    for p in model.parameters():
+        if p.requires_grad:
+            res += p.numel()
+            # print(p)
+    return res

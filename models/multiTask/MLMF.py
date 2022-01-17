@@ -2,13 +2,11 @@
 paper: Efficient Low-rank Multimodal Fusion with Modality-Specific Factors
 ref: https://github.com/Justin1904/Low-rank-Multimodal-Fusion
 """
-from __future__ import print_function
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch.autograd import Variable
-from torch.nn.parameter import Parameter
 from torch.nn.init import xavier_normal_
+from torch.nn.parameter import Parameter
 
 __all__ = ['MLMF']
 

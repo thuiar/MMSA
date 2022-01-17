@@ -10,9 +10,9 @@ import pandas as pd
 import multiprocessing as mp
 from multiprocessing import Pool
 
-from .utils.functions import setup_seed, assign_gpu
-from models.AMIO import AMIO
-from trains.ATIO import ATIO
+from .utils.functions import setup_seed, assign_gpu, count_parameters
+from models import AMIO
+from trains import ATIO
 from data.load_data import MMDataLoader
 from config import get_config_regression, get_config_tune
 
@@ -21,6 +21,7 @@ os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
 
 # SUPPORTED_MODELS = ['lf_dnn', 'ef_lstm', 'tfn', 'lmf', 'mfn', 'graph_mfn', 'mult', 'misa', 'mlf_dnn', 'mtfn', 'mlmf', 'self_mm']
 # SUPPORTED_DATASETS = ['mosi', 'mosei', 'sims']
+logger = logging.getLogger('MMSA')
 
 
 def _set_logger(log_dir, model_name, dataset_name, verbose_level):
@@ -97,11 +98,21 @@ def MMSA_run(
     
     if is_tune: # run tune
         args = get_config_tune(config_file, model_name, dataset_name)
+        args['train_mode'] = 'regression' # backward compatibility. TODO: remove all train_mode in code
+        args['feature_T'] = feature_T
+        args['feature_A'] = feature_A
+        args['feature_V'] = feature_V
+        logger.info("Tuning parameters with args:")
+        logger.info(args)
         Path(res_save_dir).joinpath("tune").mkdir(parents=True, exist_ok=True)
-        # TODO
+        # TODO: run tune
     else: # run normal
         args = get_config_regression(config_file, model_name, dataset_name)
-        logger.info("Initialized with args:")
+        args['train_mode'] = 'regression' # backward compatibility. TODO: remove all train_mode in code
+        args['feature_T'] = feature_T
+        args['feature_A'] = feature_A
+        args['feature_V'] = feature_V
+        logger.info("Running with args:")
         logger.info(args)
         Path(res_save_dir).joinpath("normal").mkdir(parents=True, exist_ok=True)
         model_results = []
@@ -109,7 +120,7 @@ def MMSA_run(
             setup_seed(seed)
             logger.info(f"Running with seed {seed} [{i + 1}/{len(seeds)}].")
             # actual running
-            model_results.append(_run(args, gpu_ids, num_workers))
+            model_results.append(_run(args, gpu_ids, num_workers, is_tune))
         criterions = list(model_results[0].keys())
         # save result to csv
         csv_file = Path(res_save_dir) / f"{dataset_name}.csv"
@@ -129,45 +140,34 @@ def MMSA_run(
         logger.info(f"Results saved to {csv_file}.")
 
 
-def _run(args, gpu_ids, num_workers):
-    args.model_save_path = os.path.join(args.model_save_dir,\
-                                        f'{args.modelName}-{args.datasetName}-{args.train_mode}.pth')
-    device = assign_gpu(gpu_ids)
+def _run(args, gpu_ids, num_workers, is_tune):
+    args['model_save_path'] = os.path.join(args['model_save_dir'], f"{args['model_name']}-{args['dataset_name']}.pth")
+    args['device'] = assign_gpu(gpu_ids)
     # add tmp tensor to increase the temporary consumption of GPU
-    tmp_tensor = torch.zeros((100, 100)).to(args.device)
+    tmp_tensor = torch.zeros((100, 100)).to(args['device'])
     # load data and models
-    dataloader = MMDataLoader(args)
-    model = AMIO(args).to(device)
-
+    dataloader = MMDataLoader(args, num_workers)
+    model = AMIO(args).to(args['device'])
     del tmp_tensor
 
-    def count_parameters(model):
-        answer = 0
-        for p in model.parameters():
-            if p.requires_grad:
-                answer += p.numel()
-                # print(p)
-        return answer
     logger.info(f'The model has {count_parameters(model)} trainable parameters')
-    # exit()
     # using multiple gpus
     # if using_cuda and len(args.gpu_ids) > 1:
     #     model = torch.nn.DataParallel(model,
     #                                   device_ids=args.gpu_ids,
     #                                   output_device=args.gpu_ids[0])
-    atio = ATIO().getTrain(args)
+    trainer = ATIO().getTrain(args)
     # do train
-    atio.do_train(model, dataloader)
-    # load pretrained model
-    assert os.path.exists(args.model_save_path)
-    model.load_state_dict(torch.load(args.model_save_path))
-    model.to(device)
-    # do test
-    if args.is_tune:
-        # using valid dataset to tune hyper parameters
-        results = atio.do_test(model, dataloader['valid'], mode="VALID")
+    trainer.do_train(model, dataloader)
+    # load trained model & do test
+    assert Path(args['model_save_path']).exists()
+    model.load_state_dict(torch.load(args['model_save_path']))
+    model.to(args['device'])
+    if is_tune:
+        # use valid set to tune hyper parameters
+        results = trainer.do_test(model, dataloader['valid'], mode="VALID")
     else:
-        results = atio.do_test(model, dataloader['test'], mode="TEST")
+        results = trainer.do_test(model, dataloader['test'], mode="TEST")
 
     del model
     torch.cuda.empty_cache()
@@ -176,12 +176,14 @@ def _run(args, gpu_ids, num_workers):
 
     return results
 
+
+"""
 def run_tune(self, args, tune_times=50):
     args.res_save_dir = os.path.join(args.res_save_dir, 'tunes')
     init_args = args
     has_debuged = [] # save used paras
     save_file_path = os.path.join(args.res_save_dir, \
-                                f'{args.datasetName}-{args.modelName}-{args.train_mode}-tune.csv')
+                                f'{args.dataset_name}-{args.model_name}-{args.train_mode}-tune.csv')
     if not os.path.exists(os.path.dirname(save_file_path)):
         os.makedirs(os.path.dirname(save_file_path))
     
@@ -193,12 +195,12 @@ def run_tune(self, args, tune_times=50):
         args = config.get_config()
         print(args)
         # print debugging params
-        logger.info("#"*40 + '%s-(%d/%d)' %(args.modelName, i+1, tune_times) + '#'*40)
+        logger.info("#"*40 + '%s-(%d/%d)' %(args.model_name, i+1, tune_times) + '#'*40)
         for k,v in args.items():
             if k in args.d_paras:
                 logger.info(k + ':' + str(v))
         logger.info("#"*90)
-        logger.info('Start running %s...' %(args.modelName))
+        logger.info('Start running %s...' %(args.model_name))
         # restore existed paras
         if i == 0 and os.path.exists(save_file_path):
             df = pd.read_csv(save_file_path)
@@ -247,7 +249,7 @@ def run_normal(self, args):
         args = config.get_config()
         setup_seed(seed)
         args.seed = seed
-        logger.info('Start running %s...' %(args.modelName))
+        logger.info('Start running %s...' %(args.model_name))
         logger.info(args)
         # runnning
         args.cur_time = i+1
@@ -257,7 +259,7 @@ def run_normal(self, args):
     criterions = list(model_results[0].keys())
     # load other results
     save_path = os.path.join(args.res_save_dir, \
-                        f'{args.datasetName}-{args.train_mode}.csv')
+                        f'{args.dataset_name}-{args.train_mode}.csv')
     if not os.path.exists(args.res_save_dir):
         os.makedirs(args.res_save_dir)
     if os.path.exists(save_path):
@@ -265,7 +267,7 @@ def run_normal(self, args):
     else:
         df = pd.DataFrame(columns=["Model"] + criterions)
     # save results
-    res = [args.modelName]
+    res = [args.model_name]
     for c in criterions:
         values = [r[c] for r in model_results]
         mean = round(np.mean(values)*100, 2)
@@ -275,3 +277,4 @@ def run_normal(self, args):
     df.to_csv(save_path, index=None)
     logger.info('Results are added to %s...' %(save_path))
 
+"""

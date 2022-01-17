@@ -2,17 +2,12 @@
 From: https://github.com/declare-lab/MISA
 Paper: MISA: Modality-Invariant and -Specific Representations for Multimodal Sentiment Analysis
 """
-import numpy as np
-import random
-import math
 
 import torch
 import torch.nn as nn
-from torch.autograd import Function
-from torch.nn.utils.rnn import pad_sequence, pack_padded_sequence, pad_packed_sequence
-from transformers import BertModel, BertConfig
-
 from models.subNets.BertTextEncoder import BertTextEncoder
+from torch.autograd import Function
+from torch.nn.utils.rnn import pack_padded_sequence, pad_packed_sequence
 
 __all__ = ['MISA']
 

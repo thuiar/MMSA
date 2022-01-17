@@ -1,16 +1,12 @@
-import os
-import sys
-import h5py
-import pickle
 import argparse
+import os
+import pickle
+
 import numpy as np
+import torch
+from models.subNets.BertTextEncoder import BertTextEncoder
 from tqdm import tqdm
 
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-
-from models.subNets.BertTextEncoder import BertTextEncoder
 
 class TextPre(object):
     """A single set of features of data."""
@@ -176,7 +172,7 @@ class TextPre(object):
         return data
 
     def run(self):
-        data = self.loadTextMap[self.args.datasetName]()
+        data = self.loadTextMap[self.args.dataset_name]()
 
         train_list = data['train']
         valid_list = data['valid']

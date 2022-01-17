@@ -3,7 +3,7 @@
     "dataset_root_dir": "/home/sharing/disk3/Datasets/MMSA-Standard",
     "mosi": {
       "aligned": {
-        "dataPath": "MOSI/Processed/aligned_50.pkl",
+        "featurePath": "MOSI/Processed/aligned_50.pkl",
         "seq_lens": [50, 50, 50],
         "feature_dims": [768, 5, 20],
         "train_samples": 1284,
@@ -12,7 +12,7 @@
         "KeyEval": "Loss"
       },
       "unaligned": {
-        "dataPath": "MOSI/Processed/unaligned_50.pkl",
+        "featurePath": "MOSI/Processed/unaligned_50.pkl",
         "seq_lens": [50, 50, 50],
         "feature_dims": [768, 5, 20],
         "train_samples": 1284,
@@ -23,7 +23,7 @@
     },
     "mosei": {
       "aligned": {
-        "dataPath": "MOSEI/Processed/aligned_50.pkl",
+        "featurePath": "MOSEI/Processed/aligned_50.pkl",
         "seq_lens": [50, 50, 50],
         "feature_dims": [768, 74, 35],
         "train_samples": 16326,
@@ -32,7 +32,7 @@
         "KeyEval": "Loss"
       },
       "unaligned": {
-        "dataPath": "MOSEI/Processed/unaligned_50.pkl",
+        "featurePath": "MOSEI/Processed/unaligned_50.pkl",
         "seq_lens": [50, 500, 375],
         "feature_dims": [768, 74, 35],
         "train_samples": 16326,
@@ -43,7 +43,7 @@
     },
     "sims": {
       "unaligned": {
-        "dataPath": "SIMS/Processed/features/unaligned_39.pkl",
+        "featurePath": "SIMS/Processed/features/unaligned_39.pkl",
         "seq_lens": [39, 400, 55],
         "feature_dims": [768, 24, 1434],
         "train_samples": 1368,

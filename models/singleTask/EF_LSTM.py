@@ -7,8 +7,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from models.subNets.FeatureNets import SubNet, TextSubNet
-
 __all__ = ['EF_LSTM']
 
 class EF_LSTM(nn.Module):

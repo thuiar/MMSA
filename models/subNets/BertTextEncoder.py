@@ -1,12 +1,6 @@
-import os
-import sys
-import collections
-
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
-
-from transformers import BertTokenizer, BertModel
+from transformers import BertModel, BertTokenizer
 
 __all__ = ['BertTextEncoder']
 

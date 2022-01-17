@@ -32,8 +32,8 @@ class ConfigTune():
         # hyper parameters for datasets
         HYPER_DATASET_MAP = self.__datasetCommonParams()
         # normalize
-        model_name = str.lower(args.modelName)
-        dataset_name = str.lower(args.datasetName)
+        model_name = str.lower(args.model_name)
+        dataset_name = str.lower(args.dataset_name)
         # load params
         commonArgs = HYPER_MODEL_MAP[model_name]()['commonParas']
         dataArgs = HYPER_DATASET_MAP[dataset_name]

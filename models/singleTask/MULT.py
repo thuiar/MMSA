@@ -2,17 +2,12 @@
 From: https://github.com/yaohungt/Multimodal-Transformer
 Paper: Multimodal Transformer for Unaligned Multimodal Language Sequences
 """
-import os
-import sys
-import collections
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch.autograd.function import Function
-
-from models.subNets.transformers_encoder.transformer import TransformerEncoder
 from models.subNets.BertTextEncoder import BertTextEncoder
+from models.subNets.transformers_encoder.transformer import TransformerEncoder
 
 __all__ = ['MULT']
 

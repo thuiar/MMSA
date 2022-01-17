@@ -1,28 +1,22 @@
-import os
-import time
 import logging
-import argparse
-import numpy as np
-from glob import glob
-from tqdm import tqdm
 
 import torch
 import torch.nn as nn
 from torch import optim
-
+from tqdm import tqdm
 from utils.functions import dict_to_str
 from utils.metricsTop import MetricsTop
 
-logger = logging.getLogger('MSA')
+logger = logging.getLogger('MMSA')
 
 class MLMF():
     def __init__(self, args):
-        assert args.datasetName == 'sims'
+        assert args.dataset_name == 'sims'
 
         self.args = args
         self.args.tasks = "MTAV"
         self.criterion = nn.L1Loss() if args.train_mode == 'regression' else nn.CrossEntropyLoss()
-        self.metrics = MetricsTop(args.train_mode).getMetics(args.datasetName)
+        self.metrics = MetricsTop(args.train_mode).getMetics(args.dataset_name)
         
     def do_train(self, model, dataloader):
         optimizer = optim.Adam([{"params": list(model.Model.text_subnet.parameters()), "weight_decay": self.args.text_weight_decay},
@@ -74,7 +68,7 @@ class MLMF():
                         y_true[m].append(labels['M'].cpu())
             train_loss = train_loss / len(dataloader['train'])
 
-            logger.info("TRAIN-(%s) (%d/%d/%d)>> loss: %.4f " % (self.args.modelName, \
+            logger.info("TRAIN-(%s) (%d/%d/%d)>> loss: %.4f " % (self.args.model_name, \
                         epochs - best_epoch, epochs, self.args.cur_time, train_loss))
             for m in self.args.tasks:
                 pred, true = torch.cat(y_pred[m]), torch.cat(y_true[m])
@@ -121,7 +115,7 @@ class MLMF():
                         y_pred[m].append(outputs[m].cpu())
                         y_true[m].append(labels['M'].cpu())
         eval_loss = round(eval_loss / len(dataloader), 4)
-        logger.info(mode+"-(%s)" % self.args.modelName + " >> loss: %.4f " % eval_loss)
+        logger.info(mode+"-(%s)" % self.args.model_name + " >> loss: %.4f " % eval_loss)
         eval_results = {}
         for m in self.args.tasks:
             pred, true = torch.cat(y_pred[m]), torch.cat(y_true[m])

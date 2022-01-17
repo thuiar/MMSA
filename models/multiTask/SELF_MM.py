@@ -3,17 +3,12 @@ From: https://github.com/thuiar/Self-MM
 Paper: Learning Modality-Specific Representations with Self-Supervised Multi-Task Learning for Multimodal Sentiment Analysis
 """
 # self supervised multimodal multi-task learning network
-import os
-import sys
-import collections
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch.autograd.function import Function
-from torch.nn.utils.rnn import pad_sequence, pack_padded_sequence, pad_packed_sequence
-
 from models.subNets.BertTextEncoder import BertTextEncoder
+from torch.nn.utils.rnn import pack_padded_sequence
 
 __all__ = ['SELF_MM']
 

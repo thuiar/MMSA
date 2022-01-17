@@ -2,13 +2,10 @@
 paper: Tensor Fusion Network for Multimodal Sentiment Analysis
 ref: https://github.com/A2Zadeh/TensorFusionNetwork
 """
-from __future__ import print_function
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch.autograd import Variable
 from torch.nn.parameter import Parameter
-from torch.nn.init import xavier_uniform, xavier_normal, orthogonal
 
 __all__ = ['MTFN']
 

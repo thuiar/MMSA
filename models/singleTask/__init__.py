@@ -8,7 +8,3 @@ from models.singleTask.BERT_MAG import BERT_MAG
 from models.singleTask.MULT import MULT
 from models.singleTask.MISA import MISA
 from models.singleTask.MFM import MFM
-
-
-__all__ = ['EF_LSTM', 'LF_DNN', 'LMF', 'TFN', 'MFN', 'MULT', 'Graph_MFN', 'BERT_MAG', 'MISA', 'MFM']
-

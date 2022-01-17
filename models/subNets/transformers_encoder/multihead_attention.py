@@ -1,8 +1,7 @@
 import torch
+import torch.nn.functional as F
 from torch import nn
 from torch.nn import Parameter
-import torch.nn.functional as F
-import sys
 
 # Code adapted from the fairseq repo.
 

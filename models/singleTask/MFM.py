@@ -3,7 +3,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from models.singleTask.MFN import MFN
-from torch.autograd import Variable, grad
+from torch.autograd import Variable
 
 __all__ = ['MFM']
 

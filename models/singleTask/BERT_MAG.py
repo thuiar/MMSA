@@ -1,19 +1,16 @@
 import logging
 
 import torch
+import torch.nn.functional as F
 import torch.utils.checkpoint
 from torch import nn
-import torch.nn.functional as F
 from torch.nn import CrossEntropyLoss, MSELoss
-
 from transformers import BertPreTrainedModel
-from transformers.models.bert.modeling_bert import BertEmbeddings, BertEncoder, BertPooler
-from models.subNets.BertTextEncoder import BertTextEncoder
-from models.subNets.transformers_encoder.transformer import TransformerEncoder
-logger = logging.getLogger(__name__)
+from transformers.models.bert.modeling_bert import (BertEmbeddings,
+                                                    BertEncoder, BertPooler)
 
-# config
-DEVICE = torch.device("cuda:0")
+logger = logging.getLogger('MMSA')
+
 # MOSI SETTING
 # acoustic_dim = 74
 # visual_dim = 47
@@ -28,7 +25,7 @@ DEVICE = torch.device("cuda:0")
 class MAG(nn.Module):
     def __init__(self, config, args):
         super(MAG, self).__init__()
-        print(
+        logger.info(
             "Initializing MAG with beta_shift:{} hidden_prob:{}".format(
                 args.beta_shift, args.dropout_prob
             )
@@ -76,33 +73,6 @@ class MAG(nn.Module):
         )
 
         return embedding_output
-
-
-BERT_PRETRAINED_MODEL_ARCHIVE_LIST = [
-    "bert-base-uncased",
-    "bert-large-uncased",
-    "bert-base-cased",
-    "bert-large-cased",
-    "bert-base-multilingual-uncased",
-    "bert-base-multilingual-cased",
-    "bert-base-chinese",
-    "bert-base-german-cased",
-    "bert-large-uncased-whole-word-masking",
-    "bert-large-cased-whole-word-masking",
-    "bert-large-uncased-whole-word-masking-finetuned-squad",
-    "bert-large-cased-whole-word-masking-finetuned-squad",
-    "bert-base-cased-finetuned-mrpc",
-    "bert-base-german-dbmdz-cased",
-    "bert-base-german-dbmdz-uncased",
-    "cl-tohoku/bert-base-japanese",
-    "cl-tohoku/bert-base-japanese-whole-word-masking",
-    "cl-tohoku/bert-base-japanese-char",
-    "cl-tohoku/bert-base-japanese-char-whole-word-masking",
-    "TurkuNLP/bert-base-finnish-cased-v1",
-    "TurkuNLP/bert-base-finnish-uncased-v1",
-    "wietsedv/bert-base-dutch-cased",
-    # See all BERT models at https://huggingface.co/models?filter=bert
-]
 
 
 def mish(x):

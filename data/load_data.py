@@ -1,15 +1,13 @@
-import os
 import logging
 import pickle
-import numpy as np
 
+import numpy as np
 import torch
-import torch.nn.functional as F
-from torch.utils.data import Dataset, DataLoader
+from torch.utils.data import DataLoader, Dataset
 
 __all__ = ['MMDataLoader']
 
-logger = logging.getLogger('MSA')
+logger = logging.getLogger('MMSA')
 
 class MMDataset(Dataset):
     def __init__(self, args, mode='train'):

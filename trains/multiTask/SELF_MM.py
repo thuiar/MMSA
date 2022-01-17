@@ -1,22 +1,14 @@
-import os
-import time
 import logging
-import math
-import copy
-import argparse
-import numpy as np
+import os
 import pickle as plk
-from glob import glob
-from tqdm import tqdm
 
 import torch
-import torch.nn as nn
 from torch import optim
-
+from tqdm import tqdm
 from utils.functions import dict_to_str
 from utils.metricsTop import MetricsTop
 
-logger = logging.getLogger('MSA')
+logger = logging.getLogger('MMSA')
 
 class SELF_MM():
     def __init__(self, args):
@@ -24,7 +16,7 @@ class SELF_MM():
 
         self.args = args
         self.args.tasks = "MTAV"
-        self.metrics = MetricsTop(args.train_mode).getMetics(args.datasetName)
+        self.metrics = MetricsTop(args.train_mode).getMetics(args.dataset_name)
 
         self.feature_map = {
             'fusion': torch.zeros(args.train_samples, args.post_fusion_dim, requires_grad=False).to(args.device),
@@ -173,7 +165,7 @@ class SELF_MM():
                     # update
                     optimizer.step()
             train_loss = train_loss / len(dataloader['train'])
-            logger.info("TRAIN-(%s) (%d/%d/%d)>> loss: %.4f " % (self.args.modelName, \
+            logger.info("TRAIN-(%s) (%d/%d/%d)>> loss: %.4f " % (self.args.model_name, \
                         epochs-best_epoch, epochs, self.args.cur_time, train_loss))
             for m in self.args.tasks:
                 pred, true = torch.cat(y_pred[m]), torch.cat(y_true[m])
@@ -197,7 +189,7 @@ class SELF_MM():
             # early stop
             if epochs - best_epoch >= self.args.early_stop:
                 if self.args.save_labels:
-                    with open(os.path.join(self.args.res_save_dir, f'{self.args.modelName}-{self.args.datasetName}-labels.pkl'), 'wb') as df:
+                    with open(os.path.join(self.args.res_save_dir, f'{self.args.model_name}-{self.args.dataset_name}-labels.pkl'), 'wb') as df:
                         plk.dump(saved_labels, df, protocol=4)
                 return
 
@@ -226,7 +218,7 @@ class SELF_MM():
                     y_pred['M'].append(outputs['M'].cpu())
                     y_true['M'].append(labels_m.cpu())
         eval_loss = eval_loss / len(dataloader)
-        logger.info(mode+"-(%s)" % self.args.modelName + " >> loss: %.4f " % eval_loss)
+        logger.info(mode+"-(%s)" % self.args.model_name + " >> loss: %.4f " % eval_loss)
         pred, true = torch.cat(y_pred['M']), torch.cat(y_true['M'])
         eval_results = self.metrics(pred, true)
         logger.info('M: >> ' + dict_to_str(eval_results))
