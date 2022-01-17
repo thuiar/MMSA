@@ -1,0 +1,1 @@
+recursive-include src/MMSA/config/*.json

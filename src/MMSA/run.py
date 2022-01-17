@@ -51,7 +51,7 @@ def _set_logger(log_dir, model_name, dataset_name, verbose_level):
 
 def MMSA_run(
     model_name, dataset_name, config_file="", seeds=[], is_tune=False,
-    feature_T=None, feature_A=None, feature_V=None,
+    feature_T="", feature_A="", feature_V="",
     model_save_dir="", res_save_dir="", log_dir="",
     gpu_ids=[0], num_workers=4, verbose_level=1, task_id=None, progress_q=None
 ):
