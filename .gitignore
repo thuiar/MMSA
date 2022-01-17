@@ -11,3 +11,4 @@ results/*
 logs
 pretrained_model
 test.ipynb
+test.py
