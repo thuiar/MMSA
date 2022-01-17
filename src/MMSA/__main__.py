@@ -4,14 +4,17 @@ from .run import MMSA_run
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-t', '--tune', type=bool, default=False,
-                        help='Whether to tune hyper parameters. Default: False')
+    
     parser.add_argument('-m', '--model', type=str, default='lf_dnn', help='Name of model',
                         choices=['lf_dnn', 'ef_lstm', 'tfn', 'lmf', 'mfn', 'graph_mfn', 'mult', 'misa', 'mlf_dnn', 'mtfn', 'mlmf', 'self_mm'])
     parser.add_argument('-d', '--dataset', type=str, default='sims',
                         choices=['sims', 'mosi', 'mosei'], help='Name of dataset')
     parser.add_argument('-c', '--config', type=str, default='',
                         help='Path to config file. If not specified, default config file will be used.')
+    parser.add_argument('-t', '--tune', type=bool, default=False,
+                        help='Whether to tune hyper parameters. Default: False')
+    parser.add_argument('-tt', '--tune_times', type=int, default=50,
+                        help='Number of times to tune hyper parameters. Default: 50')
     parser.add_argument('-s', '--seeds', type=list, default=[],
                         help='List of seeds. Default: [1111, 1112, 1113, 1114, 1115]')
     parser.add_argument('-n', '--num_workers', type=int, default=8,
@@ -44,6 +47,7 @@ if __name__ == '__main__':
         config_file=cmd_args.config,
         seeds=cmd_args.seeds,
         is_tune=cmd_args.tune,
+        tune_times=cmd_args.tune_times,
         feature_T=cmd_args.feature_T,
         feature_A=cmd_args.feature_A,
         feature_V=cmd_args.feature_V,

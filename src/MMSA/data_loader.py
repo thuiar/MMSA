@@ -32,6 +32,27 @@ class MMDataset(Dataset):
         self.raw_text = data[self.mode]['raw_text']
         self.ids = data[self.mode]['id']
 
+        # use custom features
+        use_custom_features = (self.args['feature_T'] != "" or self.args['feature_A'] != "" or self.args['feature_V'] != "")
+        if self.args['feature_T'] != "":
+            with open(self.args['feature_T'], 'rb') as f:
+                data_T = pickle.load(f)
+            if 'use_bert' in self.args and self.args['use_bert']:
+                self.text = data_T[self.mode]['text_bert'].astype(np.float32) # NOT SUPPORTED YET. Need to update MMSA-FET
+            else:
+                self.text = data_T[self.mode]['text'].astype(np.float32)
+            self.args['feature_dims'][0] = self.text.shape[2]
+        if self.args['feature_A'] != "":
+            with open(self.args['feature_A'], 'rb') as f:
+                data_A = pickle.load(f)
+            self.audio = data_A[self.mode]['audio'].astype(np.float32)
+            self.args['feature_dims'][1] = self.audio.shape[2]
+        if self.args['feature_V'] != "":
+            with open(self.args['feature_V'], 'rb') as f:
+                data_V = pickle.load(f)
+            self.vision = data_V[self.mode]['vision'].astype(np.float32)
+            self.args['feature_dims'][2] = self.vision.shape[2]
+
         self.labels = {
             # 'M': data[self.mode][self.args['train_mode']+'_labels'].astype(np.float32)
             'M': np.array(data[self.mode]['regression_labels']).astype(np.float32)

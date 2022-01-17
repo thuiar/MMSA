@@ -1,5 +1,6 @@
 import json
 import os
+import random
 from easydict import EasyDict as edict
 
 
@@ -36,7 +37,34 @@ def get_config_regression(config_file, model_name, dataset_name):
 
 
 def get_config_tune(config_file, model_name, dataset_name):
-    pass
+    with open(config_file, 'r') as f:
+        config_all = json.load(f)
+    model_common_args = config_all[model_name]['commonParams']
+    model_debug_args = config_all[model_name]['debugParams']
+    dataset_args = config_all['datasetCommonParams'][dataset_name]
+    # use aligned feature if the model requires it, otherwise use unaligned feature
+    dataset_args = dataset_args['aligned'] if (model_common_args['need_data_aligned'] and 'aligned' in dataset_args) else dataset_args['unaligned']
+
+    # random choice of args
+    for item in model_debug_args['d_paras']:
+        if type(model_debug_args[item]) == list:
+            model_debug_args[item] = random.choice(model_debug_args[item])
+        elif type(model_debug_args[item]) == dict: # nested params, 2 levels max
+            for k, v in model_debug_args[item].items():
+                model_debug_args[item][k] = random.choice(v)
+
+    config = {}
+    config['model_name'] = model_name
+    config['dataset_name'] = dataset_name
+    config.update(dataset_args)
+    config.update(model_common_args)
+    config.update(model_debug_args)
+    config['featurePath'] = os.path.join(config_all['datasetCommonParams']['dataset_root_dir'], config['featurePath'])
+    
+
+    config = edict(config) # use edict for backward compatibility with MMSA v1.0
+
+    return config
 
 
 def get_config_all(config_file):
@@ -46,5 +74,5 @@ def get_config_all(config_file):
 
 
 if __name__ == "__main__":
-    config = get_config_regression("assets/config_regression.json", "tfn", "sims")
+    config = get_config_tune("src/MMSA/config/config_tune.json", "mfm", "sims")
     print(config)
