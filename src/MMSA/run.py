@@ -192,15 +192,18 @@ def MMSA_run(
 def _run(args, model_save_dir, gpu_ids, num_workers, is_tune):
     args['model_save_path'] = Path(model_save_dir) / f"{args['model_name']}-{args['dataset_name']}.pth"
     args['device'] = assign_gpu(gpu_ids)
-    # add tmp tensor to increase the temporary consumption of GPU
-    tmp_tensor = torch.zeros((100, 100)).to(args['device'])
+
+    # torch.cuda.set_device() encouraged by pytorch developer, although dicouraged in the doc.
+    # https://github.com/pytorch/pytorch/issues/70404#issuecomment-1001113109
+    # It solves the bug of RNN always running on gpu 0.
+    torch.cuda.set_device(args['device'])
+
     # load data and models
     dataloader = MMDataLoader(args, num_workers)
     model = AMIO(args).to(args['device'])
-    del tmp_tensor
 
     logger.info(f'The model has {count_parameters(model)} trainable parameters')
-    # using multiple gpus
+    # TODO: use multiple gpus
     # if using_cuda and len(args.gpu_ids) > 1:
     #     model = torch.nn.DataParallel(model,
     #                                   device_ids=args.gpu_ids,

@@ -11,6 +11,6 @@ results/*
 logs
 pretrained_model
 test.ipynb
-test.py
+test*.py
 dist
 MMSA.egg-info

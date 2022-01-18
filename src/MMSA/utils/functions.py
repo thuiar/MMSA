@@ -21,10 +21,11 @@ def setup_seed(seed):
     random.seed(seed)
     torch.backends.cudnn.deterministic = True
 
-def assign_gpu(gpu_ids, memory_limit=1e16, n_gpus=4):
+def assign_gpu(gpu_ids, memory_limit=1e16):
     if len(gpu_ids) == 0 and torch.cuda.is_available():
         # find most free gpu
         pynvml.nvmlInit()
+        n_gpus = pynvml.nvmlDeviceGetCount()
         dst_gpu_id, min_mem_used = 0, memory_limit
         for g_id in range(n_gpus):
             handle = pynvml.nvmlDeviceGetHandleByIndex(g_id)

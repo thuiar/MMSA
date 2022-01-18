@@ -88,7 +88,7 @@ class MetricsTop():
         test_truth_a3 = np.clip(test_truth, a_min=-1., a_max=1.)
 
 
-        mae = np.mean(np.absolute(test_preds - test_truth))   # Average L1 distance between preds and truths
+        mae = np.mean(np.absolute(test_preds - test_truth)).astype(np.float64)   # Average L1 distance between preds and truths
         corr = np.corrcoef(test_preds, test_truth)[0][1]
         mult_a7 = self.__multiclass_acc(test_preds_a7, test_truth_a7)
         mult_a5 = self.__multiclass_acc(test_preds_a5, test_truth_a5)
