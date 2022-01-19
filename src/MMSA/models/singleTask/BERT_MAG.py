@@ -340,20 +340,15 @@ class BERT_MAG(nn.Module):
     def __init__(self, args):
         super(BERT_MAG, self).__init__()
         if args.language == 'cn':
-            self.pretrainedBertPath = 'pretrained_model/bert_cn' 
+            self.pretrainedBertPath = 'bert-base-chinese' 
         else:
-            self.pretrainedBertPath = 'pretrained_model/bert_en' 
+            self.pretrainedBertPath = 'bert-base-uncased' 
 
         self.model = MAG_BertForSequenceClassification.from_pretrained(
             self.pretrainedBertPath, args=args, num_labels=1,
         )
 
-    def forward(
-        self,
-        text, 
-        audio, 
-        video
-        ):
+    def forward(self, text, audio, video):
         input_ids, input_mask, segment_ids = text[:,0,:].long(), text[:,1,:].float(), text[:,2,:].long()
 
         output = self.model(

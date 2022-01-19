@@ -45,7 +45,7 @@
       "unaligned": {
         "featurePath": "SIMS/Processed/features/unaligned_39.pkl",
         "seq_lens": [39, 400, 55],
-        "feature_dims": [768, 24, 1434],
+        "feature_dims": [768, 33, 709],
         "train_samples": 1368,
         "num_classes": 3,
         "language": "cn",
@@ -382,46 +382,22 @@
     },
     "datasetParams": {
       "mosi": {
-        "update_epochs": 1,
         "batch_size": 32,
         "learning_rate": 5e-5,
-        "loss_function": "ll1",
-        "d_acoustic_in": 5,
-        "d_visual_in": 20,
-        "h_merge_sent": 768,
-        "hidden_dropout_prob": 0.2,
         "beta_shift": 1,
-        "AV_index": 1,
-        "output_mode": "regression",
-        "num_labels": 1
+        "dropout_prob": 0.1
       },
       "mosei": {
-        "update_epochs": 1,
         "batch_size": 32,
         "learning_rate": 5e-5,
-        "loss_function": "ll1",
-        "d_acoustic_in": 74,
-        "d_visual_in": 35,
-        "h_merge_sent": 768,
-        "hidden_dropout_prob": 0.2,
         "beta_shift": 1,
-        "AV_index": 1,
-        "output_mode": "regression",
-        "num_labels": 1
+        "dropout_prob": 0.1
       },
       "sims": {
-        "update_epochs": 1,
         "batch_size": 32,
         "learning_rate": 5e-5,
-        "loss_function": "ll1",
-        "d_acoustic_in": 33,
-        "d_visual_in": 709,
-        "h_merge_sent": 768,
-        "hidden_dropout_prob": 0.2,
         "beta_shift": 1,
-        "AV_index": 7,
-        "output_mode": "regression",
-        "num_labels": 2
+        "dropout_prob": 0.1
       }
     }
   },

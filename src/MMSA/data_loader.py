@@ -38,10 +38,11 @@ class MMDataset(Dataset):
             with open(self.args['feature_T'], 'rb') as f:
                 data_T = pickle.load(f)
             if 'use_bert' in self.args and self.args['use_bert']:
-                self.text = data_T[self.mode]['text_bert'].astype(np.float32) # NOT SUPPORTED YET. Need to update MMSA-FET
+                self.text = data_T[self.mode]['text_bert'].astype(np.float32)
+                self.args['feature_dims'][0] = 768
             else:
                 self.text = data_T[self.mode]['text'].astype(np.float32)
-            self.args['feature_dims'][0] = self.text.shape[2]
+                self.args['feature_dims'][0] = self.text.shape[2]
         if self.args['feature_A'] != "":
             with open(self.args['feature_A'], 'rb') as f:
                 data_A = pickle.load(f)
@@ -59,7 +60,7 @@ class MMDataset(Dataset):
         }
         if self.args['dataset_name'] == 'sims':
             for m in "TAV":
-                self.labels[m] = data[self.mode]['regression_labels' + '_labels_' + m].astype(np.float32)
+                self.labels[m] = data[self.mode]['regression' + '_labels_' + m].astype(np.float32)
 
         logger.info(f"{self.mode} samples: {self.labels['M'].shape}")
 
@@ -68,7 +69,7 @@ class MMDataset(Dataset):
             self.vision_lengths = data[self.mode]['vision_lengths']
         self.audio[self.audio == -np.inf] = 0
 
-        if  self.args['need_normalized']:
+        if 'need_normalized' in self.args and self.args['need_normalized']:
             self.__normalize()
     
     def __init_mosei(self):

@@ -18,11 +18,11 @@ class BertTextEncoder(nn.Module):
         # directory is fine
         # pretrained_weights = '/home/sharing/disk3/pretrained_embedding/Chinese/bert/pytorch'
         if language == 'en':
-            self.tokenizer = tokenizer_class.from_pretrained('pretrained_model/bert_en', do_lower_case=True)
-            self.model = model_class.from_pretrained('pretrained_model/bert_en')
+            self.tokenizer = tokenizer_class.from_pretrained('bert-base-uncased', do_lower_case=True)
+            self.model = model_class.from_pretrained('bert-base-uncased')
         elif language == 'cn':
-            self.tokenizer = tokenizer_class.from_pretrained('pretrained_model/bert_cn')
-            self.model = model_class.from_pretrained('pretrained_model/bert_cn')
+            self.tokenizer = tokenizer_class.from_pretrained('bert-base-chinese')
+            self.model = model_class.from_pretrained('bert-base-chinese')
         
         self.use_finetune = use_finetune
     

@@ -293,7 +293,7 @@
       "weight_decay": [0.0, 0.001, 0.005, 0.01]
     }
   },
-  "mag": {
+  "bert_mag": {
     "commonParams": {
       "need_data_aligned": true,
       "need_model_aligned": false,
@@ -304,31 +304,12 @@
       "need_normalize": false,
       "weight_decay": 0.0
     },
-    "datasetParas": {
-      "raw_mosi": {
-        "loss_function": "ll1",
-        "d_acoustic_in": 5,
-        "d_visual_in": 20,
-        "h_merge_sent": 768,
-        "output_mode": "regression",
-        "num_labels": 2
-      }
-    },
     "debugParams": {
-      "d_paras": [
-        "exclude_zero",
-        "AV_index",
-        "batch_size",
-        "learning_rate",
-        "hidden_dropout_prob",
-        "beta_shift"
-      ],
-      "exclude_zero": [true, false],
-      "AV_index": [-2, 1],
+      "d_paras": ["batch_size", "learning_rate", "beta_shift", "dropout_prob"],
       "batch_size": [32, 48, 64],
       "learning_rate": [2e-5, 5e-5, 0.0001, 1e-5],
-      "hidden_dropout_prob": [0.2, 0.1, 0.5],
-      "beta_shift": [1]
+      "beta_shift": [1],
+      "dropout_prob": [0.1, 0.2, 0.3, 0.4]
     }
   },
   "mult": {

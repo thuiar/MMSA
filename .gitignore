@@ -14,3 +14,4 @@ test.ipynb
 test*.py
 dist
 MMSA.egg-info
+experiment.py

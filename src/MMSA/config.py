@@ -40,6 +40,7 @@ def get_config_tune(config_file, model_name, dataset_name):
     with open(config_file, 'r') as f:
         config_all = json.load(f)
     model_common_args = config_all[model_name]['commonParams']
+    # model_dataset_args = config_all[model_name]['datasetParams'][dataset_name] if 'datasetParams' in config_all[model_name] else {}
     model_debug_args = config_all[model_name]['debugParams']
     dataset_args = config_all['datasetCommonParams'][dataset_name]
     # use aligned feature if the model requires it, otherwise use unaligned feature
@@ -58,6 +59,7 @@ def get_config_tune(config_file, model_name, dataset_name):
     config['dataset_name'] = dataset_name
     config.update(dataset_args)
     config.update(model_common_args)
+    # config.update(model_dataset_args)
     config.update(model_debug_args)
     config['featurePath'] = os.path.join(config_all['datasetCommonParams']['dataset_root_dir'], config['featurePath'])
     
