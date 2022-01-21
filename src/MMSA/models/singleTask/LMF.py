@@ -7,7 +7,7 @@ import torch.nn as nn
 from torch.nn.init import xavier_normal_
 from torch.nn.parameter import Parameter
 
-from ..subNets.FeatureNets import SubNet, TextSubNet
+from ..subNets import SubNet, TextSubNet
 
 __all__ = ['LMF']
 

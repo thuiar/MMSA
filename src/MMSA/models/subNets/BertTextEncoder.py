@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from transformers import BertModel, BertTokenizer
+from transformers import BertModel, BertTokenizer, RobertaModel, RobertaTokenizer
 
 __all__ = ['BertTextEncoder']
 
@@ -15,8 +15,7 @@ class BertTextEncoder(nn.Module):
 
         tokenizer_class = BertTokenizer
         model_class = BertModel
-        # directory is fine
-        # pretrained_weights = '/home/sharing/disk3/pretrained_embedding/Chinese/bert/pytorch'
+        
         if language == 'en':
             self.tokenizer = tokenizer_class.from_pretrained('bert-base-uncased', do_lower_case=True)
             self.model = model_class.from_pretrained('bert-base-uncased')

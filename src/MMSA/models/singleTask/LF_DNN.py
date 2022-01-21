@@ -7,7 +7,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from ..subNets.FeatureNets import SubNet, TextSubNet
+from ..subNets import SubNet, TextSubNet
 
 __all__ = ['LF_DNN']
 

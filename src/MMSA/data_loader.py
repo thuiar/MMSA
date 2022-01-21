@@ -39,7 +39,7 @@ class MMDataset(Dataset):
                 data_T = pickle.load(f)
             if 'use_bert' in self.args and self.args['use_bert']:
                 self.text = data_T[self.mode]['text_bert'].astype(np.float32)
-                self.args['feature_dims'][0] = 768
+                self.args['feature_dims'][0] = 768 # TODO: fix this
             else:
                 self.text = data_T[self.mode]['text'].astype(np.float32)
                 self.args['feature_dims'][0] = self.text.shape[2]

@@ -1,21 +1,24 @@
 import json
 import os
+from pathlib import Path
 import random
 from easydict import EasyDict as edict
 
 
-def get_config_regression(config_file, model_name, dataset_name):
+def get_config_regression(model_name, dataset_name, config_file=""):
     """
     Get the regression config of given dataset and model from config file.
 
     Parameters:
-        config_file (str): path to config file
-        model_name (str): name of model
-        dataset_name (str): name of dataset
+        config_file (str): Path to config file, if given an empty string, will use default config file.
+        model_name (str): Name of model.
+        dataset_name (str): Name of dataset.
 
     Returns:
         config (dict): config of the given dataset and model
     """
+    if config_file == "":
+        config_file = Path(__file__).parent / "config" / "config_regression.json"
     with open(config_file, 'r') as f:
         config_all = json.load(f)
     model_common_args = config_all[model_name]['commonParams']
@@ -36,7 +39,20 @@ def get_config_regression(config_file, model_name, dataset_name):
     return config
 
 
-def get_config_tune(config_file, model_name, dataset_name):
+def get_config_tune(model_name, dataset_name, config_file=""):
+    """
+    Get the tuning config of given dataset and model from config file.
+
+    Parameters:
+        config_file (str): Path to config file, if given an empty string, will use default config file.
+        model_name (str): Name of model.
+        dataset_name (str): Name of dataset.
+
+    Returns:
+        config (dict): config of the given dataset and model
+    """
+    if config_file == "":
+        config_file = Path(__file__).parent / "config" / "config_tune.json"
     with open(config_file, 'r') as f:
         config_all = json.load(f)
     model_common_args = config_all[model_name]['commonParams']
@@ -70,11 +86,22 @@ def get_config_tune(config_file, model_name, dataset_name):
 
 
 def get_config_all(config_file):
+    """
+    Get all default configs. This function is used to export default config file. 
+    If you want to get config for a specific model, use "get_config_regression" or "get_config_tune" instead.
+
+    Parameters:
+        config_file (str): "regression" or "tune"
+    
+    Returns:
+        config (dict): all default configs
+    """
+    if config_file == "regression":
+        config_file = Path(__file__).parent / "config" / "config_regression.json"
+    elif config_file == "tune":
+        config_file = Path(__file__).parent / "config" / "config_tune.json"
+    else:
+        raise ValueError("config_file should be 'regression' or 'tune'")
     with open(config_file, 'r') as f:
         config_all = json.load(f)
     return edict(config_all)
-
-
-if __name__ == "__main__":
-    config = get_config_tune("src/MMSA/config/config_tune.json", "mfm", "sims")
-    print(config)

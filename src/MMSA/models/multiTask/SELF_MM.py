@@ -9,7 +9,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn.utils.rnn import pack_padded_sequence
 
-from ..subNets.BertTextEncoder import BertTextEncoder
+from ..subNets import BertTextEncoder
 
 __all__ = ['SELF_MM']
 

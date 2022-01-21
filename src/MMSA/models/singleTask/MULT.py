@@ -7,7 +7,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from ..subNets.BertTextEncoder import BertTextEncoder
+from ..subNets import BertTextEncoder
 from ..subNets.transformers_encoder.transformer import TransformerEncoder
 
 __all__ = ['MULT']
@@ -82,6 +82,7 @@ class MULT(nn.Module):
         else:
             raise ValueError("Unknown network type")
         
+        # TODO: Replace with nn.TransformerEncoder
         return TransformerEncoder(embed_dim=embed_dim,
                                   num_heads=self.num_heads,
                                   layers=max(self.layers, layers),

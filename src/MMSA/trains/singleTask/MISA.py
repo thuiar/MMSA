@@ -5,8 +5,7 @@ import torch.nn as nn
 from torch import optim
 from tqdm import tqdm
 
-from ...utils.functions import dict_to_str
-from ...utils.metricsTop import MetricsTop
+from ...utils import MetricsTop, dict_to_str
 
 logger = logging.getLogger('MMSA')
 

@@ -5,7 +5,7 @@ Paper: MISA: Modality-Invariant and -Specific Representations for Multimodal Sen
 
 import torch
 import torch.nn as nn
-from ..subNets.BertTextEncoder import BertTextEncoder
+from ..subNets import BertTextEncoder
 from torch.autograd import Function
 from torch.nn.utils.rnn import pack_padded_sequence, pad_packed_sequence
 

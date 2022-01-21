@@ -5,7 +5,7 @@ import torch.nn as nn
 
 from .multiTask import *
 from .singleTask import *
-from .subNets.AlignNets import AlignSubNet
+from .subNets import AlignSubNet
 
 
 class AMIO(nn.Module):

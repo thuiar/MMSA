@@ -1,10 +1,13 @@
 import gc
+import json
 import logging
 import multiprocessing as mp
 import os
+import random
 import time
 from multiprocessing import Pool
 from pathlib import Path
+from webbrowser import get
 
 import numpy as np
 import pandas as pd
@@ -15,7 +18,7 @@ from .config import get_config_regression, get_config_tune
 from .data_loader import MMDataLoader
 from .models import AMIO
 from .trains import ATIO
-from .utils.functions import assign_gpu, count_parameters, setup_seed
+from .utils import assign_gpu, count_parameters, setup_seed
 
 os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
 
@@ -51,10 +54,10 @@ def _set_logger(log_dir, model_name, dataset_name, verbose_level):
 
 
 def MMSA_run(
-    model_name, dataset_name, config_file="", seeds=[], is_tune=False,
+    model_name, dataset_name, config=None, config_file="", seeds=[], is_tune=False,
     tune_times=50, feature_T="", feature_A="", feature_V="",
     model_save_dir="", res_save_dir="", log_dir="",
-    gpu_ids=[0], num_workers=4, verbose_level=1, task_id=None, progress_q=None
+    gpu_ids=[0], num_workers=4, verbose_level=1
 ):
     """
     Main function for running the MMSA framework.
@@ -62,7 +65,8 @@ def MMSA_run(
     Parameters:
         model_name (str): Name of model
         dataset_name (str): Name of dataset
-        config_file (str): Path to config file. If not specified, default config file will be used.
+        config (dict): Config dict. Used to override arguments in config_file. Ignored in tune mode.
+        config_file: Path to config file. If not specified, default config file will be used.
         seeds (list): List of seeds. Default: [1111, 1112, 1113, 1114, 1115]
         is_tune (bool): Whether to tune hyper parameters. Default: False
         tune_times (int): Number of times to tune hyper parameters. Default: 50
@@ -76,13 +80,11 @@ def MMSA_run(
                         Currently only support single gpu.
         num_workers (int): Number of workers used to load data. Default: 4
         verbose_level (int): Verbose level of stdout. 0 for error, 1 for info, 2 for debug. Default: 1
-
-        task_id (int): Task id for M-SENA. 
-        progress_q (multiprocessing.Queue): Multiprocessing queue for progress reporting with M-SENA. 
     """
     # Initialization
     model_name = model_name.lower()
     dataset_name = dataset_name.lower()
+    
     if config_file != "":
         config_file = Path(config_file)
     else: # use default config files
@@ -103,16 +105,25 @@ def MMSA_run(
     Path(log_dir).mkdir(parents=True, exist_ok=True)
     seeds = seeds if seeds != [] else [1111, 1112, 1113, 1114, 1115]
     logger = _set_logger(log_dir, model_name, dataset_name, verbose_level)
+
     logger.info("======================================== Program Start ========================================")
     
     if is_tune: # run tune
         setup_seed(seeds[0])
         logger.info(f"Tuning with seed {seeds[0]}")
-        initial_args = get_config_tune(config_file, model_name, dataset_name)
+        initial_args = get_config_tune(model_name, dataset_name, config_file)
+        initial_args['model_save_path'] = Path(model_save_dir) / f"{initial_args['model_name']}-{initial_args['dataset_name']}.pth"
+        initial_args['device'] = assign_gpu(gpu_ids)
         initial_args['train_mode'] = 'regression' # backward compatibility. TODO: remove all train_mode in code
         initial_args['feature_T'] = feature_T
         initial_args['feature_A'] = feature_A
         initial_args['feature_V'] = feature_V
+
+        # torch.cuda.set_device() encouraged by pytorch developer, although dicouraged in the doc.
+        # https://github.com/pytorch/pytorch/issues/70404#issuecomment-1001113109
+        # It solves the bug of RNN always running on gpu 0.
+        torch.cuda.set_device(initial_args['device'])
+
         res_save_dir = Path(res_save_dir) / "tune"
         res_save_dir.mkdir(parents=True, exist_ok=True)
         has_debuged = [] # save used params
@@ -124,7 +135,9 @@ def MMSA_run(
 
         for i in range(tune_times):
             args = edict(**initial_args)
-            new_args = get_config_tune(config_file, model_name, dataset_name)
+            random.seed(time.time())
+            new_args = get_config_tune(model_name, dataset_name, config_file)
+            random.seed(seeds[0])
             args.update(new_args)
             args['cur_seed'] = i + 1
             logger.info(f"{'-'*30} Tuning [{i + 1}/{tune_times}] {'-'*30}")
@@ -137,7 +150,7 @@ def MMSA_run(
                 continue
             has_debuged.append(cur_param)
             # actual running
-            result = _run(args, model_save_dir, gpu_ids, num_workers, is_tune)
+            result = _run(args, num_workers, is_tune)
             # save result to csv file
             if Path(csv_file).is_file():
                 df2 = pd.read_csv(csv_file)
@@ -151,11 +164,21 @@ def MMSA_run(
             df2.to_csv(csv_file, index=None)
             logger.info(f"Results saved to {csv_file}.")
     else: # run normal
-        args = get_config_regression(config_file, model_name, dataset_name)
+        args = get_config_regression(model_name, dataset_name, config_file)
+        args['model_save_path'] = Path(model_save_dir) / f"{args['model_name']}-{args['dataset_name']}.pth"
+        args['device'] = assign_gpu(gpu_ids)
         args['train_mode'] = 'regression' # backward compatibility. TODO: remove all train_mode in code
         args['feature_T'] = feature_T
         args['feature_A'] = feature_A
         args['feature_V'] = feature_V
+        if config: # override some arguments
+            args.update(config)
+
+        # torch.cuda.set_device() encouraged by pytorch developer, although dicouraged in the doc.
+        # https://github.com/pytorch/pytorch/issues/70404#issuecomment-1001113109
+        # It solves the bug of RNN always running on gpu 0.
+        torch.cuda.set_device(args['device'])
+
         logger.info("Running with args:")
         logger.info(args)
         logger.info(f"Seeds: {seeds}")
@@ -167,7 +190,7 @@ def MMSA_run(
             args['cur_seed'] = i + 1
             logger.info(f"{'-'*30} Running with seed {seed} [{i + 1}/{len(seeds)}] {'-'*30}")
             # actual running
-            result = _run(args, model_save_dir, gpu_ids, num_workers, is_tune)
+            result = _run(args, num_workers, is_tune)
             logger.info(f"Result for seed {seed}: {result}")
             model_results.append(result)
         criterions = list(model_results[0].keys())
@@ -189,15 +212,7 @@ def MMSA_run(
         logger.info(f"Results saved to {csv_file}.")
 
 
-def _run(args, model_save_dir, gpu_ids, num_workers, is_tune):
-    args['model_save_path'] = Path(model_save_dir) / f"{args['model_name']}-{args['dataset_name']}.pth"
-    args['device'] = assign_gpu(gpu_ids)
-
-    # torch.cuda.set_device() encouraged by pytorch developer, although dicouraged in the doc.
-    # https://github.com/pytorch/pytorch/issues/70404#issuecomment-1001113109
-    # It solves the bug of RNN always running on gpu 0.
-    torch.cuda.set_device(args['device'])
-
+def _run(args, num_workers=4, is_tune=False, from_sena=False):
     # load data and models
     dataloader = MMDataLoader(args, num_workers)
     model = AMIO(args).to(args['device'])
@@ -210,14 +225,22 @@ def _run(args, model_save_dir, gpu_ids, num_workers, is_tune):
     #                                   output_device=args.gpu_ids[0])
     trainer = ATIO().getTrain(args)
     # do train
-    trainer.do_train(model, dataloader)
+    epoch_results = trainer.do_train(model, dataloader)
+    # epoch_results = trainer.do_train(model, dataloader, return_epoch_results=from_sena)
     # load trained model & do test
     assert Path(args['model_save_path']).exists()
     model.load_state_dict(torch.load(args['model_save_path']))
     model.to(args['device'])
-    if is_tune:
+    if from_sena:
+        final_results = {}
+        final_results['train'] = trainer.do_test(model, dataloader['train'], mode="TRAIN", return_sample_results=True)
+        final_results['valid'] = trainer.do_test(model, dataloader['valid'], mode="VALID", return_sample_results=True)
+        final_results['test'] = trainer.do_test(model, dataloader['test'], mode="TEST", return_sample_results=True)
+    elif is_tune:
         # use valid set to tune hyper parameters
         results = trainer.do_test(model, dataloader['valid'], mode="VALID")
+        # delete saved model
+        Path(args['model_save_path']).unlink(missing_ok=True)
     else:
         results = trainer.do_test(model, dataloader['test'], mode="TEST")
 
@@ -226,5 +249,53 @@ def _run(args, model_save_dir, gpu_ids, num_workers, is_tune):
     gc.collect()
     time.sleep(1)
 
-    return results
+    return {"epoch_results": epoch_results, 'final_results': final_results} if from_sena else results
 
+
+import datetime
+from multiprocessing import Queue
+
+try:
+    from flask_sqlalchemy import SQLAlchemy
+except ImportError:
+    pass
+
+def SENA_run(
+    db: SQLAlchemy, table: dict, task_id: int, progress_q: Queue,
+    parameters: str, model_name: str, dataset_name: str, is_tune: bool,
+    **kwargs
+) -> None:
+    """
+    Run M-SENA tasks. Should only be called from M-SENA Platform.
+
+    Parameters:
+        db (SQLAlchemy object): Used to store training results and task status.
+        table (dict): Name and definitions of database tables.
+        task_id (int): Task id.
+        progress_q (multiprocessing.Queue): Used to communicate with M-SENA Platform.
+        parameters (String): Parameters from M-SENA Platform.
+        model_name (String): Model name.
+        dataset_name (String): Dataset name.
+        is_tune (bool): Whether to tune hyper parameters.
+        kwargs (dict): Other parameters passed to MMSA_run.
+    """
+    try:
+        logger = logging.getLogger('app')
+        logger.info(f"M-SENA Task {task_id} started.")
+        cur_task = db.session.query(table['Task']).filter(table['Task'].id == task_id).first()
+
+        config = None
+        if parameters != "":
+            config = json.loads(parameters)
+        if config:
+            MMSA_run(model_name, dataset_name, )
+
+        cur_task.state = 1
+    except Exception as e:
+        logger.exception(e)
+        cur_task.state = 2
+    finally:
+        cur_task.end_time = datetime.now()
+        db.session.commit()
+        logger.info(f"Task {task_id} Finished.")
+        
