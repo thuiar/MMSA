@@ -8,3 +8,4 @@ logs
 *.egg-info
 test*
 experiment.py
+benchmark
