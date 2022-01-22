@@ -15,7 +15,7 @@ class MFM():
         self.criterion = nn.L1Loss() if args.train_mode == 'regression' else nn.CrossEntropyLoss()
         self.metrics = MetricsTop(args.train_mode).getMetics(args.dataset_name)
 
-    def do_train(self, model, dataloader):
+    def do_train(self, model, dataloader, return_epoch_results=False):
         optimizer = optim.Adam(model.parameters(), weight_decay=self.args.weight_decay)
         l1_loss = nn.L1Loss()
         l2_loss = nn.MSELoss()
@@ -25,6 +25,12 @@ class MFM():
         
         # initilize results
         epochs, best_epoch = 0, 0
+        if return_epoch_results:
+            epoch_results = {
+                'train': [],
+                'valid': [],
+                'test': []
+            }
         min_or_max = 'min' if self.args.KeyEval in ['Loss'] else 'max'
         best_valid = 1e8 if min_or_max == 'min' else 0
         # loop util earlystop
@@ -85,11 +91,18 @@ class MFM():
                 # save model
                 torch.save(model.cpu().state_dict(), self.args.model_save_path)
                 model.to(self.args.device)
+            # epoch results
+            if return_epoch_results:
+                train_results["Loss"] = train_loss
+                epoch_results['train'].append(train_results)
+                epoch_results['valid'].append(val_results)
+                test_results = self.do_test(model, dataloader['test'], mode="TEST")
+                epoch_results['test'].append(test_results)
             # early stop
             if epochs - best_epoch >= self.args.early_stop:
-                return
+                return epoch_results if return_epoch_results else None
 
-    def do_test(self, model, dataloader, mode="VAL"):
+    def do_test(self, model, dataloader, mode="VAL", return_sample_results=False):
         l1_loss = nn.L1Loss()
         l2_loss = nn.MSELoss()
         device = self.args.device
@@ -98,6 +111,15 @@ class MFM():
         model.eval()
         y_pred, y_true = [], []
         eval_loss = 0.0
+        if return_sample_results:
+            ids, sample_results = [], []
+            all_labels = []
+            features = {
+                "Feature_t": [],
+                "Feature_a": [],
+                "Feature_v": [],
+                "Feature_f": [],
+            }
         with torch.no_grad():
             with tqdm(dataloader) as td:
                 for batch_data in td:
@@ -113,6 +135,9 @@ class MFM():
                     decoded,mmd_loss,missing_loss = model(text, audio, vision)
                     [x_l_hat,x_a_hat,x_v_hat,y_hat] = decoded
                     y_hat = y_hat.squeeze(1)
+
+                    if return_sample_results:
+                        pass # TODO: return sample results
 
                     eval_loss += l1_loss(y_hat, labels).item()
 

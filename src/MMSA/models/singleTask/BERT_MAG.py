@@ -9,27 +9,10 @@ from transformers import BertPreTrainedModel
 from transformers.models.bert.modeling_bert import (BertEmbeddings,
                                                     BertEncoder, BertPooler)
 
-logger = logging.getLogger('MMSA')
-
-# MOSI SETTING
-# acoustic_dim = 74
-# visual_dim = 47
-# text_dim = 768
-
-# MOSEI SETTING
-# acoustic_dim = 74
-# visual_dim = 35
-# text_dim = 768
-
 
 class MAG(nn.Module):
     def __init__(self, config, args):
         super(MAG, self).__init__()
-        logger.info(
-            "Initializing MAG with beta_shift:{} hidden_prob:{}".format(
-                args.beta_shift, args.dropout_prob
-            )
-        )
         self.args = args
         text_dim, acoustic_dim, visual_dim = args.feature_dims
 
