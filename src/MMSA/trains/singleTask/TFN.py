@@ -121,8 +121,8 @@ class TFN():
                             features[item].append(outputs[item].cpu().detach().numpy())
                         all_labels.extend(labels.cpu().detach().tolist())
                         preds = outputs["M"].cpu().detach().numpy()
-                        test_preds_i = np.argmax(preds, axis=1)
-                        sample_results.extend(test_preds_i)
+                        # test_preds_i = np.argmax(preds, axis=1)
+                        sample_results.extend(preds.squeeze())
                     
                     loss = self.criterion(outputs['M'], labels)
                     eval_loss += loss.item()

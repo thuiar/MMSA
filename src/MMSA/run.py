@@ -3,6 +3,7 @@ import json
 import logging
 import multiprocessing as mp
 import os
+import pickle
 import random
 import time
 from multiprocessing import Pool
@@ -21,10 +22,12 @@ from .trains import ATIO
 from .utils import assign_gpu, count_parameters, setup_seed
 
 os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
+os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:2" # This is crucial for reproducibility
 
 
-# SUPPORTED_MODELS = ['lf_dnn', 'ef_lstm', 'tfn', 'lmf', 'mfn', 'graph_mfn', 'mult', 'misa', 'mlf_dnn', 'mtfn', 'mlmf', 'self_mm']
-# SUPPORTED_DATASETS = ['mosi', 'mosei', 'sims']
+SUPPORTED_MODELS = ['lf_dnn', 'ef_lstm', 'tfn', 'lmf', 'mfn', 'graph_mfn', 'mult', 'misa', 'mlf_dnn', 'mtfn', 'mlmf', 'self_mm']
+SUPPORTED_DATASETS = ['mosi', 'mosei', 'sims']
+
 logger = logging.getLogger('MMSA')
 
 
@@ -238,7 +241,8 @@ def _run(args, num_workers=4, is_tune=False, from_sena=False):
         final_results['test'] = trainer.do_test(model, dataloader['test'], mode="TEST", return_sample_results=True)
     elif is_tune:
         # use valid set to tune hyper parameters
-        results = trainer.do_test(model, dataloader['valid'], mode="VALID")
+        # results = trainer.do_test(model, dataloader['valid'], mode="VALID")
+        results = trainer.do_test(model, dataloader['test'], mode="TEST")
         # delete saved model
         Path(args['model_save_path']).unlink(missing_ok=True)
     else:
@@ -252,50 +256,218 @@ def _run(args, num_workers=4, is_tune=False, from_sena=False):
     return {"epoch_results": epoch_results, 'final_results': final_results} if from_sena else results
 
 
-import datetime
-from multiprocessing import Queue
-
+SENA_ENABLED = True
 try:
+    import datetime
+    from multiprocessing import Queue
+    from sklearn.decomposition import PCA
     from flask_sqlalchemy import SQLAlchemy
 except ImportError:
-    pass
+    SENA_ENABLED = False
 
-def SENA_run(
-    db: SQLAlchemy, table: dict, task_id: int, progress_q: Queue,
-    parameters: str, model_name: str, dataset_name: str, is_tune: bool,
-    **kwargs
-) -> None:
-    """
-    Run M-SENA tasks. Should only be called from M-SENA Platform.
+if SENA_ENABLED:
+    def SENA_run(
+        db: SQLAlchemy, table: dict, task_id: int, progress_q: Queue,
+        parameters: str, model_name: str, dataset_name: str, is_tune: bool,
+        tune_times: int, feature_T: str, feature_A: str, feature_V: str,
+        model_save_dir: str, res_save_dir: str, log_dir: str,
+        gpu_ids: list, num_workers: int, seed: int, desc: str
+    ) -> None:
+        """
+        Run M-SENA tasks. Should only be called from M-SENA Platform.
+        Run only one seed at a time.
 
-    Parameters:
-        db (SQLAlchemy object): Used to store training results and task status.
-        table (dict): Name and definitions of database tables.
-        task_id (int): Task id.
-        progress_q (multiprocessing.Queue): Used to communicate with M-SENA Platform.
-        parameters (String): Parameters from M-SENA Platform.
-        model_name (String): Model name.
-        dataset_name (String): Dataset name.
-        is_tune (bool): Whether to tune hyper parameters.
-        kwargs (dict): Other parameters passed to MMSA_run.
-    """
-    try:
-        logger = logging.getLogger('app')
-        logger.info(f"M-SENA Task {task_id} started.")
-        cur_task = db.session.query(table['Task']).filter(table['Task'].id == task_id).first()
+        Parameters:
+            db (SQLAlchemy object): Used to store training results and task status.
+            table (dict): Name and definitions of database tables.
+            task_id (int): Task id.
+            progress_q (multiprocessing.Queue): Used to communicate with M-SENA Platform.
+            parameters (str): Training parameters in JSON.
+            model_name (str): Model name.
+            dataset_name (str): Dataset name.
+            is_tune (bool): Whether to tune hyper parameters.
+            tune_times (int): Number of times to tune hyper parameters.
+            feature_T (str): Path to text feature file.
+            feature_A (str): Path to audio feature file.
+            feature_V (str): Path to video feature file.
+            model_save_dir (str): Path to save trained model.
+            res_save_dir (str): Path to save training results.
+            log_dir (str): Path to save training logs.
+            gpu_ids (list): GPU ids.
+            num_workers (int): Number of workers.
+            seed (int): Only one seed.
+            desc (str): Description.
+        """
+        try:
+            logger = logging.getLogger('app')
+            logger.info(f"M-SENA Task {task_id} started.")
+            cur_task = db.session.query(table['Task']).filter(table['Task'].task_id == task_id).first()
+            # load training parameters
+            if parameters == "": # use default config file
+                if is_tune: # TODO
+                    config_file = Path(__file__).parent / "config" / "config_tune.json"
+                    args = get_config_tune(model_name, dataset_name, config_file)
+                else:
+                    config_file = Path(__file__).parent / "config" / "config_regression.json"
+                    args = get_config_regression(model_name, dataset_name, config_file)
+            else: # load from JSON
+                args = json.loads(parameters)
+                args['model_name'] = model_name
+                args['dataset_name'] = dataset_name
+            args['feature_T'] = feature_T
+            args['feature_A'] = feature_A
+            args['feature_V'] = feature_V
+            args['device'] = assign_gpu(gpu_ids)
+            args['cur_seed'] = 1 # the _run function need this to print log
+            args['train_mode'] = 'regression' # backward compatibility. TODO: remove all train_mode in code
+            args = edict(args)
+            # create folders
+            Path(model_save_dir).mkdir(parents=True, exist_ok=True)
+            Path(res_save_dir).mkdir(parents=True, exist_ok=True)
+            Path(log_dir).mkdir(parents=True, exist_ok=True)
+            # create db record
+            args_dump = args.copy()
+            args_dump['device'] = str(args_dump['device'])
+            custom_feature = False if (feature_A == "" and feature_V == "" and feature_T == "") else True
+            db_result = table['Result'](
+                dataset_name=dataset_name, model_name=model_name,
+                is_tune=is_tune, args=json.dumps(args_dump), save_model_path='',
+                loss_value=0.0, accuracy=0.0, f1=0.0, mae=0.0, corr=0.0,
+                description=desc, custom_feature=custom_feature
+            )
+            db.session.add(db_result)
+            db.session.flush()
+            # result_id is allocated now, so model_save_path can be determined
+            args['model_save_path'] = Path(model_save_dir) / f"{args['model_name']}-{args['dataset_name']}-{db_result.result_id}.pth"
+            db_result.save_model_path = args['model_save_path']
+            # start training
+            try:
+                torch.cuda.set_device(args['device'])
+                logger.info(f"Running with seed {seed}:")
+                logger.info(f"Args:\n{args}")
+                setup_seed(seed)
+                # actual training
+                results_dict = _run(args, num_workers, is_tune, from_sena=True)
+                # db operations
+                sample_dict = {}
+                samples = db.session.query(table['Dsample']).filter_by(dataset_name=dataset_name).all()
+                for sample in samples:
+                    key = sample.video_id + '$_$' + sample.clip_id
+                    sample_dict[key] = [sample.sample_id, sample.annotation]
+                # update final results of test set
+                db_result.loss_value = results_dict['final_results']['test']['Loss']
+                db_result.accuracy = results_dict['final_results']['test']['Non0_acc_2']
+                db_result.f1 = results_dict['final_results']['test']['Non0_F1_score']
+                db_result.mae = results_dict['final_results']['test']['MAE']
+                db_result.corr = results_dict['final_results']['test']['Corr']
+                # save features
+                if not is_tune:
+                    logger.info("Running feature PCA ...")
+                    features = {
+                        k: results_dict['final_results'][k]['Features']
+                        for k in ['train', 'valid', 'test']
+                    }
+                    all_features = {}
+                    for select_modes in [['train', 'valid', 'test'], ['train', 'valid'], ['train', 'test'], \
+                                        ['valid', 'test'], ['train'], ['valid'], ['test']]:
+                        # create label index dict
+                        # {"Negative": [1,2,5,...], "Positive": [...], ...}
+                        cur_labels = []
+                        for mode in select_modes:
+                            cur_labels.extend(results_dict['final_results'][mode]['Labels'])
+                        cur_labels = np.array(cur_labels)
+                        label_index_dict = {}
+                        for k, v in args['annotations'].items():
+                            label_index_dict[k] = np.where(cur_labels == v)[0].tolist()
+                        # handle features
+                        cur_mode_features_2d = {}
+                        cur_mode_features_3d = {}
+                        for name in ['Feature_t', 'Feature_a', 'Feature_v', 'Feature_f']: 
+                            cur_features = []
+                            for mode in select_modes:
+                                cur_features.append(features[mode][name])
+                            cur_features = np.concatenate(cur_features, axis=0)
+                            # PCA analysis
+                            pca=PCA(n_components=3, whiten=True)
+                            features_3d = pca.fit_transform(cur_features)
+                            # split by labels
+                            cur_mode_features_3d[name] = {}
+                            for k, v in label_index_dict.items():
+                                cur_mode_features_3d[name][k] = features_3d[v].tolist()
+                            # PCA analysis
+                            pca=PCA(n_components=2, whiten=True)
+                            features_2d = pca.fit_transform(cur_features)
+                            # split by labels
+                            cur_mode_features_2d[name] = {}
+                            for k, v in label_index_dict.items():
+                                cur_mode_features_2d[name][k] = features_2d[v].tolist()
+                        all_features['-'.join(select_modes)] = {'2D': cur_mode_features_2d, '3D': cur_mode_features_3d}
+                    # save features
+                    save_path = args.model_save_path.parent / (args.model_save_path.stem + '.pkl')
+                    with open(save_path, 'wb') as fp:
+                        pickle.dump(all_features, fp, protocol = 4)
+                    logger.info(f'Feature saved at {save_path}.')
+                # update sample results
+                for mode in ['train', 'valid', 'test']:
+                    final_results = results_dict['final_results'][mode]
+                    for i, cur_id in enumerate(final_results["Ids"]):
+                        payload = table['SResults'](
+                            result_id=db_result.result_id,
+                            sample_id=sample_dict[cur_id][0],
+                            label_value=sample_dict[cur_id][1],
+                            predict_value= 'Negative' if final_results["SResults"][i] < 0 else 'Positive',
+                            predict_value_r = final_results["SResults"][i]
+                        )
+                        db.session.add(payload)
+                # update epoch results
+                cur_results = {}
+                for mode in ['train', 'valid', 'test']:
+                    cur_epoch_results = results_dict['final_results'][mode]
+                    cur_results[mode] = {
+                        "loss_value":cur_epoch_results["Loss"],
+                        "accuracy":cur_epoch_results["Non0_acc_2"],
+                        "f1":cur_epoch_results["Non0_F1_score"],
+                        "mae":cur_epoch_results["MAE"],
+                        "corr":cur_epoch_results["Corr"]
+                    }
+                payload = table['EResult'](
+                    result_id=db_result.result_id,
+                    epoch_num=-1,
+                    results=json.dumps(cur_results)
+                )
+                db.session.add(payload)
 
-        config = None
-        if parameters != "":
-            config = json.loads(parameters)
-        if config:
-            MMSA_run(model_name, dataset_name, )
+                epoch_num = len(results_dict['epoch_results']['train'])
+                for i in range(0, epoch_num):
+                    cur_results = {}
+                    for mode in ['train', 'valid', 'test']:
+                        cur_epoch_results = results_dict['epoch_results'][mode][i]
+                        cur_results[mode] = {
+                            "loss_value":cur_epoch_results["Loss"],
+                            "accuracy":cur_epoch_results["Non0_acc_2"],
+                            "f1":cur_epoch_results["Non0_F1_score"],
+                            "mae":cur_epoch_results["MAE"],
+                            "corr":cur_epoch_results["Corr"]
+                        }
+                    payload = table['EResult'](
+                        result_id=db_result.result_id,
+                        epoch_num=i + 1,
+                        results=json.dumps(cur_results)
+                    )
+                    db.session.add(payload)
+                db.session.commit()
+            except Exception as e:
+                logger.exception(e)
+                db.session.rollback()
+                # TODO: remove saved features
+                raise e
 
-        cur_task.state = 1
-    except Exception as e:
-        logger.exception(e)
-        cur_task.state = 2
-    finally:
-        cur_task.end_time = datetime.now()
-        db.session.commit()
-        logger.info(f"Task {task_id} Finished.")
-        
+            cur_task.state = 1
+        except Exception as e:
+            logger.exception(e)
+            cur_task.state = 2
+        finally:
+            cur_task.end_time = datetime.now()
+            db.session.commit()
+            logger.info(f"Task {task_id} Finished.")
+            
