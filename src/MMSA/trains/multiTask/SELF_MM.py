@@ -2,6 +2,7 @@ import logging
 import os
 import pickle as plk
 
+import numpy as np
 import torch
 from torch import optim
 from tqdm import tqdm
@@ -65,7 +66,7 @@ class SELF_MM():
             'V': 'vision'
         }
 
-    def do_train(self, model, dataloader):
+    def do_train(self, model, dataloader, return_epoch_results=False):
         bert_no_decay = ['bias', 'LayerNorm.bias', 'LayerNorm.weight']
         bert_params = list(model.Model.text_model.named_parameters())
         audio_params = list(model.Model.audio_model.named_parameters())
@@ -99,6 +100,12 @@ class SELF_MM():
         # initilize results
         logger.info("Start training...")
         epochs, best_epoch = 0, 0
+        if return_epoch_results:
+            epoch_results = {
+                'train': [],
+                'valid': [],
+                'test': []
+            }
         min_or_max = 'min' if self.args.KeyEval in ['Loss'] else 'max'
         best_valid = 1e8 if min_or_max == 'min' else 0
         # loop util earlystop
@@ -187,18 +194,34 @@ class SELF_MM():
                 tmp_save = {k: v.cpu().numpy() for k, v in self.label_map.items()}
                 tmp_save['ids'] = ids
                 saved_labels[epochs] = tmp_save
+            # epoch results
+            if return_epoch_results:
+                train_results["Loss"] = train_loss
+                epoch_results['train'].append(train_results)
+                epoch_results['valid'].append(val_results)
+                test_results = self.do_test(model, dataloader['test'], mode="TEST")
+                epoch_results['test'].append(test_results)
             # early stop
             if epochs - best_epoch >= self.args.early_stop:
                 if self.args.save_labels:
                     with open(os.path.join(self.args.res_save_dir, f'{self.args.model_name}-{self.args.dataset_name}-labels.pkl'), 'wb') as df:
                         plk.dump(saved_labels, df, protocol=4)
-                return
+                return epoch_results if return_epoch_results else None
 
-    def do_test(self, model, dataloader, mode="VAL"):
+    def do_test(self, model, dataloader, mode="VAL", return_sample_results=False):
         model.eval()
         y_pred = {'M': [], 'T': [], 'A': [], 'V': []}
         y_true = {'M': [], 'T': [], 'A': [], 'V': []}
         eval_loss = 0.0
+        if return_sample_results:
+            ids, sample_results = [], []
+            all_labels = []
+            features = {
+                "Feature_t": [],
+                "Feature_a": [],
+                "Feature_v": [],
+                "Feature_f": [],
+            }
         # criterion = nn.L1Loss()
         with torch.no_grad():
             with tqdm(dataloader) as td:
@@ -214,6 +237,16 @@ class SELF_MM():
 
                     labels_m = batch_data['labels']['M'].to(self.args.device).view(-1)
                     outputs = model(text, (audio, audio_lengths), (vision, vision_lengths))
+
+                    if return_sample_results:
+                        ids.extend(batch_data['id'])
+                        for item in features.keys():
+                            features[item].append(outputs[item].cpu().detach().numpy())
+                        all_labels.extend(labels_m.cpu().detach().tolist())
+                        preds = outputs["M"].cpu().detach().numpy()
+                        # test_preds_i = np.argmax(preds, axis=1)
+                        sample_results.extend(preds.squeeze())
+                    
                     loss = self.weighted_loss(outputs['M'], labels_m)
                     eval_loss += loss.item()
                     y_pred['M'].append(outputs['M'].cpu())
@@ -223,7 +256,16 @@ class SELF_MM():
         pred, true = torch.cat(y_pred['M']), torch.cat(y_true['M'])
         eval_results = self.metrics(pred, true)
         logger.info('M: >> ' + dict_to_str(eval_results))
-        eval_results['Loss'] = eval_loss
+        eval_results['Loss'] = round(eval_loss, 4)
+
+        if return_sample_results:
+            eval_results["Ids"] = ids
+            eval_results["SResults"] = sample_results
+            for k in features.keys():
+                features[k] = np.concatenate(features[k], axis=0)
+            eval_results['Features'] = features
+            eval_results['Labels'] = all_labels
+
         return eval_results
     
     def weighted_loss(self, y_pred, y_true, indexes=None, mode='fusion'):
