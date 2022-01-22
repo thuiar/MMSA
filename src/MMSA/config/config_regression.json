@@ -254,8 +254,7 @@
       "need_data_aligned": false,
       "need_model_aligned": false,
       "need_normalized": true,
-      "early_stop": 8,
-      "use_bert": false
+      "early_stop": 8
     },
     "datasetParams": {
       "mosi": {
@@ -371,12 +370,12 @@
   },
   "bert_mag": {
     "commonParams": {
-      "use_finetune": true,
       "need_data_aligned": true,
       "need_model_aligned": false,
       "use_bert": true,
-      "early_stop": 12,
-      "multi_label": false,
+      "pretrained": "bert-base-uncased",
+      "transformers": "bert",
+      "early_stop": 8,
       "need_normalize": false,
       "weight_decay": 0.0
     },
@@ -409,7 +408,9 @@
       "use_bert": false,
       "use_bert_finetune": false,
       "attn_mask": true,
-      "update_epochs": 8
+      "update_epochs": 8,
+      "transformers": "bert",
+      "pretrained": "bert-base-uncased"
     },
     "datasetParams": {
       "mosi": {
@@ -483,7 +484,9 @@
       "early_stop": 8,
       "update_epochs": 2,
       "rnncell": "lstm",
-      "use_cmd_sim": true
+      "use_cmd_sim": true,
+      "transformers": "bert",
+      "pretrained": "bert-base-uncased"
     },
     "datasetParams": {
       "mosi": {
@@ -678,6 +681,8 @@
       "need_normalized": false,
       "use_bert": true,
       "use_finetune": true,
+      "transformers": "bert",
+      "pretrained": "bert-base-uncased",
       "save_labels": false,
       "early_stop": 8,
       "update_epochs": 4

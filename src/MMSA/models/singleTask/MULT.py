@@ -16,7 +16,7 @@ class MULT(nn.Module):
     def __init__(self, args):
         super(MULT, self).__init__()
         if args.use_bert:
-            self.text_model = BertTextEncoder(language=args.language, use_finetune=args.use_bert_finetune)
+            self.text_model = BertTextEncoder(use_finetune=args.use_finetune, transformers=args.transformers, pretrained=args.pretrained)
         self.use_bert = args.use_bert
         # Mult Model Initialization.
         dst_feature_dims, nheads = args.dst_feature_dim_nheads

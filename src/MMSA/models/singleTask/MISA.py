@@ -53,7 +53,7 @@ class MISA(nn.Module):
     
         if config.use_bert:
             # text subnets
-            self.bertmodel = BertTextEncoder(language=config.language, use_finetune=config.use_finetune)
+            self.bertmodel = BertTextEncoder(use_finetune=config.use_finetune, transformers=config.transformers, pretrained=config.pretrained)
 
         self.vrnn1 = rnn(input_sizes[1], hidden_sizes[1], bidirectional=True)
         self.vrnn2 = rnn(2*hidden_sizes[1], hidden_sizes[1], bidirectional=True)

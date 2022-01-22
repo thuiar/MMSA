@@ -297,10 +297,10 @@
     "commonParams": {
       "need_data_aligned": true,
       "need_model_aligned": false,
-      "use_finetune": true,
       "use_bert": true,
+      "pretrained": "bert-base-uncased",
+      "transformers": "bert",
       "early_stop": 8,
-      "multi_label": true,
       "need_normalize": false,
       "weight_decay": 0.0
     },

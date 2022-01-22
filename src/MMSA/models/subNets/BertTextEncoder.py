@@ -4,38 +4,32 @@ from transformers import BertModel, BertTokenizer, RobertaModel, RobertaTokenize
 
 __all__ = ['BertTextEncoder']
 
+TRANSFORMERS_MAP = {
+    'bert': (BertModel, BertTokenizer),
+    'roberta': (RobertaModel, RobertaTokenizer),
+}
+
 class BertTextEncoder(nn.Module):
-    def __init__(self, language='en', use_finetune=False):
-        """
-        language: en / cn
-        """
-        super(BertTextEncoder, self).__init__()
+    def __init__(self, use_finetune=False, transformers='bert', pretrained='bert-base-uncased'):
+        super().__init__()
 
-        assert language in ['en', 'cn']
-
-        tokenizer_class = BertTokenizer
-        model_class = BertModel
-        
-        if language == 'en':
-            self.tokenizer = tokenizer_class.from_pretrained('bert-base-uncased', do_lower_case=True)
-            self.model = model_class.from_pretrained('bert-base-uncased')
-        elif language == 'cn':
-            self.tokenizer = tokenizer_class.from_pretrained('bert-base-chinese')
-            self.model = model_class.from_pretrained('bert-base-chinese')
-        
+        tokenizer_class = TRANSFORMERS_MAP[transformers][1]
+        model_class = TRANSFORMERS_MAP[transformers][0]
+        self.tokenizer = tokenizer_class.from_pretrained(pretrained)
+        self.model = model_class.from_pretrained(pretrained)
         self.use_finetune = use_finetune
     
     def get_tokenizer(self):
         return self.tokenizer
     
-    def from_text(self, text):
-        """
-        text: raw data
-        """
-        input_ids = self.get_id(text)
-        with torch.no_grad():
-            last_hidden_states = self.model(input_ids)[0]  # Models outputs are now tuples
-        return last_hidden_states.squeeze()
+    # def from_text(self, text):
+    #     """
+    #     text: raw data
+    #     """
+    #     input_ids = self.get_id(text)
+    #     with torch.no_grad():
+    #         last_hidden_states = self.model(input_ids)[0]  # Models outputs are now tuples
+    #     return last_hidden_states.squeeze()
     
     def forward(self, text):
         """
@@ -56,6 +50,3 @@ class BertTextEncoder(nn.Module):
                                                 attention_mask=input_mask,
                                                 token_type_ids=segment_ids)[0]  # Models outputs are now tuples
         return last_hidden_states
-    
-if __name__ == "__main__":
-    bert_normal = BertTextEncoder()
