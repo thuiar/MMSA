@@ -25,7 +25,10 @@ os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
 os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:2" # This is crucial for reproducibility
 
 
-SUPPORTED_MODELS = ['lf_dnn', 'ef_lstm', 'tfn', 'lmf', 'mfn', 'graph_mfn', 'mult', 'misa', 'mlf_dnn', 'mtfn', 'mlmf', 'self_mm']
+SUPPORTED_MODELS = [
+    'lf_dnn', 'ef_lstm', 'tfn', 'lmf', 'mfn', 'graph_mfn', 
+    'mult', 'misa', 'mlf_dnn', 'mtfn', 'mlmf', 'self_mm', 'mmim'
+]
 SUPPORTED_DATASETS = ['mosi', 'mosei', 'sims']
 
 logger = logging.getLogger('MMSA')
@@ -261,16 +264,17 @@ try:
     from datetime import datetime
     from multiprocessing import Queue
     from sklearn.decomposition import PCA
-    from flask_sqlalchemy import SQLAlchemy
+    import mysql.connector
 except ImportError:
     logger.warning("SENA_run is not loaded due to missing dependencies. This is ok if you are not using M-SENA.")
     SENA_ENABLED = False
 
 if SENA_ENABLED:
     def SENA_run(
-        db: SQLAlchemy, table: dict, task_id: int, progress_q: Queue,
-        parameters: str, model_name: str, dataset_name: str, is_tune: bool,
-        tune_times: int, feature_T: str, feature_A: str, feature_V: str,
+        task_id: int, progress_q: Queue, db_url: str,
+        parameters: str, model_name: str, dataset_name: str,
+        is_tune: bool, tune_times: int,
+        feature_T: str, feature_A: str, feature_V: str,
         model_save_dir: str, res_save_dir: str, log_dir: str,
         gpu_ids: list, num_workers: int, seed: int, desc: str
     ) -> None:
@@ -279,10 +283,9 @@ if SENA_ENABLED:
         Run only one seed at a time.
 
         Parameters:
-            db (SQLAlchemy object): Used to store training results and task status.
-            table (dict): Name and definitions of database tables.
             task_id (int): Task id.
             progress_q (multiprocessing.Queue): Used to communicate with M-SENA Platform.
+            db_url (str): Database url.
             parameters (str): Training parameters in JSON.
             model_name (str): Model name.
             dataset_name (str): Dataset name.
@@ -305,7 +308,18 @@ if SENA_ENABLED:
             logger = logging.getLogger('app')
             logger.info(f"M-SENA Task {task_id} started.")
             time.sleep(1) # make sure task status is committed by the parent process
-            cur_task = db.session.query(table['Task']).filter(table['Task'].task_id == task_id).first()
+            # get db parameters
+            db_params = db_url.split('//')[1].split('@')[0].split(':')
+            db_user = db_params[0]
+            db_pass = db_params[1]
+            db_params = db_url.split('//')[1].split('@')[1].split('/')
+            db_host = db_params[0]
+            db_name = db_params[1]
+            # connect to db
+            db = mysql.connector.connect(
+                user=db_user, password=db_pass, host=db_host, database=db_name
+            )
+            cursor = db.cursor()
             # load training parameters
             if parameters == "": # use default config file
                 if is_tune: # TODO
@@ -333,17 +347,20 @@ if SENA_ENABLED:
             args_dump = args.copy()
             args_dump['device'] = str(args_dump['device'])
             custom_feature = False if (feature_A == "" and feature_V == "" and feature_T == "") else True
-            db_result = table['Result'](
-                dataset_name=dataset_name, model_name=model_name,
-                is_tune=is_tune, args=json.dumps(args_dump), save_model_path='',
-                loss_value=0.0, accuracy=0.0, f1=0.0, mae=0.0, corr=0.0,
-                description=desc, custom_feature=custom_feature
+            cursor.execute(
+                """
+                    INSERT INTO Result (dataset_name, model_name, is_tune, custom_feature, args,
+                    save_model_path, loss_value, accuracy, f1, mae, corr, description)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                """,
+                (dataset_name, model_name, is_tune, custom_feature, json.dumps(args_dump), '', 0, 0, 0, 0, 0, desc)
             )
-            db.session.add(db_result)
-            db.session.flush()
+            result_id = cursor.lastrowid
             # result_id is allocated now, so model_save_path can be determined
-            args['model_save_path'] = Path(model_save_dir) / f"{args['model_name']}-{args['dataset_name']}-{db_result.result_id}.pth"
-            db_result.save_model_path = args['model_save_path']
+            args['model_save_path'] = Path(model_save_dir) / f"{args['model_name']}-{args['dataset_name']}-{result_id}.pth"
+            cursor.execute(
+                "UPDATE Result SET save_model_path = %s WHERE result_id = %s", (str(args['model_save_path']), result_id)
+            )
             # start training
             try:
                 torch.cuda.set_device(args['device'])
