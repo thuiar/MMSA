@@ -299,6 +299,8 @@ if SENA_ENABLED:
             seed (int): Only one seed.
             desc (str): Description.
         """
+
+        cur_task = None
         try:
             logger = logging.getLogger('app')
             logger.info(f"M-SENA Task {task_id} started.")
@@ -458,18 +460,20 @@ if SENA_ENABLED:
                     )
                     db.session.add(payload)
                 db.session.commit()
+                logger.info(f"Task {task_id} Finished.")
             except Exception as e:
                 logger.exception(e)
                 db.session.rollback()
                 # TODO: remove saved features
                 raise e
-
             cur_task.state = 1
         except Exception as e:
             logger.exception(e)
-            cur_task.state = 2
+            logger.error(f"Task {task_id} Error.")
+            if cur_task:
+                cur_task.state = 2
         finally:
-            cur_task.end_time = datetime.now()
-            db.session.commit()
-            logger.info(f"Task {task_id} Finished.")
+            if cur_task:
+                cur_task.end_time = datetime.now()
+                db.session.commit()
             
