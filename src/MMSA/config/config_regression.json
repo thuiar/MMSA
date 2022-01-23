@@ -534,7 +534,7 @@
     "commonParams": {
       "need_data_aligned": true,
       "need_model_aligned": true,
-      "need_normalized": true,
+      "need_normalized": false,
       "early_stop": 8,
       "zy_size": 32,
       "zl_size": 32,

@@ -63,7 +63,7 @@ class MFM():
                     x_a = audio.permute(1,0,2)
                     x_v = vision.permute(1,0,2)
                     gen_loss = self.args.lda_xl * l2_loss(x_l_hat,x_l) + self.args.lda_xa * l2_loss(x_a_hat,x_a) + self.args.lda_xv * l2_loss(x_v_hat,x_v)
-                    disc_loss = l1_loss(y_hat, labels)
+                    disc_loss = l1_loss(y_hat, labels.squeeze())
                     loss = disc_loss + gen_loss + mmd_loss + missing_loss
                     # backward
                     loss.backward()
@@ -127,10 +127,7 @@ class MFM():
                     audio = batch_data['audio'].to(self.args.device)
                     text = batch_data['text'].to(self.args.device)
                     labels = batch_data['labels']['M'].to(self.args.device)
-                    if self.args.train_mode == 'classification':
-                        labels = labels.view(-1).long()
-                    else:
-                        labels = labels.view(-1, 1)
+                    labels = labels.view(-1, 1)
 
                     decoded,mmd_loss,missing_loss = model(text, audio, vision)
                     [x_l_hat,x_a_hat,x_v_hat,y_hat] = decoded
@@ -139,7 +136,7 @@ class MFM():
                     if return_sample_results:
                         pass # TODO: return sample results
 
-                    eval_loss += l1_loss(y_hat, labels).item()
+                    eval_loss += l1_loss(y_hat, labels.squeeze()).item()
 
                     y_pred.append(y_hat.cpu())
                     y_true.append(labels.cpu())
