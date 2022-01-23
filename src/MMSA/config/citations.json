@@ -1,0 +1,90 @@
+{
+  "models": {
+    "lf_dnn": {
+      "title": "Benchmarking Multimodal Sentiment Analysis",
+      "paper_url": "https://link.springer.com/chapter/10.1007/978-3-319-77116-8_13",
+      "citation": "",
+      "description": "Late Fusion Network."
+    },
+    "tfn": {
+      "title": "Tensor Fusion Network for Multimodal Sentiment Analysis",
+      "paper_url": "https://www.aclweb.org/anthology/D17-1115.pdf",
+      "citation": "",
+      "description": "Tensor Fusion Network."
+    },
+    "ef_lstm": {
+      "title": "Recognizing Emotions in Video Using Multimodal DNN Feature Fusion",
+      "paper_url": "https://www.aclweb.org/anthology/W18-3302.pdf",
+      "citation": "",
+      "description": "Early Fusion Network Using LSTM."
+    },
+    "lmf": {
+      "title": "Efficient Low-rank Multimodal Fusion with Modality-Specific Factors",
+      "paper_url": "https://www.aclweb.org/anthology/P18-1209.pdf",
+      "citation": "",
+      "description": "Low-rank Memory Fusion Network."
+    },
+    "mfn": {
+      "title": "Memory Fusion Network for Multi-View Sequential Learning",
+      "paper_url": "https://arxiv.org/abs/1802.00927",
+      "citation": "",
+      "description": "Memory Fusion Network."
+    },
+    "graph_mfn": {
+      "title": "Multimodal Language Analysis in the Wild: CMU-MOSEI Dataset and Interpretable Dynamic Fusion Graph",
+      "paper_url": "https://www.aclweb.org/anthology/P18-1208.pdf",
+      "citation": "",
+      "description": "Dynamic Fusin Graph after Memory Fusion Network."
+    },
+    "mult": {
+      "title": "Multimodal Transformer for Unaligned Multimodal Language Sequences",
+      "paper_url": "https://github.com/yaohungt/Multimodal-Transformer",
+      "citation": "",
+      "description": "Multimodal Transformer for Unaligned Multimodal Language Sequences"
+    },
+    "misa": {
+      "title": "MISA: Modality-Invariant and -Specific Representations for Multimodal Sentiment Analysis",
+      "paper_url": "https://github.com/declare-lab/MISA",
+      "citation": "",
+      "description": "Modality-Invariant and -Specific Representations"
+    },
+    "mtfn": {
+      "title": "CH-SIMS: A Chinese Multimodal Sentiment Analysis Dataset with Fine-grained Annotations of Modality",
+      "paper_url": "https://www.aclweb.org/anthology/2020.acl-main.343.pdf",
+      "citation": "",
+      "description": "Multi-task Multimodal Learning Framework for TFN."
+    },
+    "mlf_dnn": {
+      "title": "CH-SIMS: A Chinese Multimodal Sentiment Analysis Dataset with Fine-grained Annotations of Modality",
+      "paper_url": "https://www.aclweb.org/anthology/2020.acl-main.343.pdf",
+      "citation": "",
+      "description": "Multi-task Multimodal Learning Framework for LF_DNN."
+    },
+    "mlmf": {
+      "title": "CH-SIMS: A Chinese Multimodal Sentiment Analysis Dataset with Fine-grained Annotations of Modality",
+      "paper_url": "https://www.aclweb.org/anthology/2020.acl-main.343.pdf",
+      "citation": "",
+      "description": "Multi-task Multimodal Learning Framework for LMF."
+    }
+  },
+  "datasets": {
+    "sims": {
+      "title": "CH-SIMS: A Chinese Multimodal Sentiment Analysis Dataset with Fine-grained Annotations of Modality",
+      "paper_url": "https://www.aclweb.org/anthology/2020.acl-main.343.pdf",
+      "citation": "",
+      "description": "Chinese Multimodal Sentiment Analysis Dataset."
+    },
+    "mosi": {
+      "title": "Multimodal Sentiment Intensity Analysis in Videos: Facial Gestures and Verbal Messages",
+      "paper_url": "https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=7742221",
+      "citation": "",
+      "description": "The CMU-MOSI Datset."
+    },
+    "mosei": {
+      "title": "Multimodal language analysis in the wild: Cmu-mosei dataset and interpretable dynamic fusion graph",
+      "paper_url": "https://aclanthology.org/P18-1208.pdf",
+      "citation": "",
+      "description": "The CMU-MOSEI Datset."
+    }
+  }
+}

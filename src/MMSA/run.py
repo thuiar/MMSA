@@ -258,11 +258,12 @@ def _run(args, num_workers=4, is_tune=False, from_sena=False):
 
 SENA_ENABLED = True
 try:
-    import datetime
+    from datetime import datetime
     from multiprocessing import Queue
     from sklearn.decomposition import PCA
     from flask_sqlalchemy import SQLAlchemy
 except ImportError:
+    logger.warning("SENA_run is not loaded due to missing dependencies. This is ok if you are not using M-SENA.")
     SENA_ENABLED = False
 
 if SENA_ENABLED:
@@ -301,6 +302,7 @@ if SENA_ENABLED:
         try:
             logger = logging.getLogger('app')
             logger.info(f"M-SENA Task {task_id} started.")
+            time.sleep(1) # make sure task status is committed by the parent process
             cur_task = db.session.query(table['Task']).filter(table['Task'].task_id == task_id).first()
             # load training parameters
             if parameters == "": # use default config file
