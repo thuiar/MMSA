@@ -8,3 +8,4 @@ from .BERT_MAG import BERT_MAG
 from .MULT import MULT
 from .MISA import MISA
 from .MFM import MFM
+from .MMIM import MMIM

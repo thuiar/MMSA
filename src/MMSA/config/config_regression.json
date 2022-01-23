@@ -676,16 +676,17 @@
   },
   "self_mm": {
     "commonParams": {
-      "need_data_aligned": false,
-      "need_model_aligned": false,
-      "need_normalized": false,
-      "use_bert": true,
-      "use_finetune": true,
-      "transformers": "bert",
-      "pretrained": "bert-base-uncased",
-      "save_labels": false,
-      "early_stop": 8,
-      "update_epochs": 4
+        "need_data_aligned": false,
+        "need_model_aligned": false,
+        "need_normalized": false,
+        "use_bert": true,
+        "use_finetune": false,
+        "save_labels": false,
+        "excludeZero": true,
+        "early_stop": 8,
+        "update_epochs": 4,
+        "transformers": "bert",
+        "pretrained": "bert-base-uncased"
     },
     "datasetParams": {
       "mosi": {
@@ -778,6 +779,116 @@
         "post_video_dropout": 0.0,
         "H": 1.0
       }
+    }
+  },
+  "mmim": {
+    "commonParams": {
+        "need_data_aligned": false,
+        "need_model_aligned": false,
+        "use_finetune": false,
+        "use_bert": true,
+        "early_stop": 8,
+        "update_epochs": 2,
+        "transformers": "bert",
+        "pretrained": "bert-base-uncased",
+        "add_va": false,
+        "mem_size": 1,
+        "contrast": true
+    },
+    "datasetParams": {
+        "mosi": {
+            "dropout_a": 0.1,
+            "dropout_v": 0.1,
+            "dropout_prj":0.1,
+            "n_layer": 1,
+            "cpc_layers": 1,
+            "d_vh": 16,
+            "d_ah": 16,
+            "d_vout": 16,
+            "d_aout": 16,
+            "bidirectional": true,
+            "d_prjh": 128,
+            "mmilb_mid_activation": "ReLU",
+            "mmilb_last_activation": "Tanh",
+            "cpc_activation": "Tanh",
+
+            "batch_size": 8,
+            "grad_clip": 1.0,
+            "lr_main": 1e-3,
+            "weight_decay_main": 1e-4,
+            "lr_bert": 5e-5,
+            "weight_decay_bert": 1e-4,
+            "lr_mmilb": 1e-3,
+            "weight_decay_mmilb": 1e-4,
+            "optim": "Adam",
+            "when": 20,
+
+
+            "alpha": 0.1,
+            "beta": 0.1
+
+        },
+        "mosei": {
+            "dropout_a": 0.1,
+            "dropout_v": 0.1,
+            "dropout_prj":0.1,
+            "n_layer": 1,
+            "cpc_layers": 1,
+            "d_vh": 16,
+            "d_ah": 16,
+            "d_vout": 16,
+            "d_aout": 16,
+            "bidirectional": true,
+            "d_prjh": 128,
+            "mmilb_mid_activation": "ReLU",
+            "mmilb_last_activation": "Tanh",
+            "cpc_activation": "Tanh",
+
+            "batch_size": 32,
+            "grad_clip": 1.0,
+            "lr_main": 1e-3,
+            "weight_decay_main": 1e-4,
+            "lr_bert": 5e-5,
+            "weight_decay_bert": 1e-4,
+            "lr_mmilb": 1e-3,
+            "weight_decay_mmilb": 1e-4,
+            "optim": "Adam",
+            "when": 20,
+
+
+            "alpha": 0.1,
+            "beta": 0.1
+        },
+        "sims": {
+            "dropout_a": 0.1,
+            "dropout_v": 0.1,
+            "dropout_prj":0.1,
+            "n_layer": 1,
+            "cpc_layers": 1,
+            "d_vh": 16,
+            "d_ah": 16,
+            "d_vout": 16,
+            "d_aout": 16,
+            "bidirectional": true,
+            "d_prjh": 128,
+            "mmilb_mid_activation": "ReLU",
+            "mmilb_last_activation": "Tanh",
+            "cpc_activation": "Tanh",
+
+            "batch_size": 32,
+            "grad_clip": 1.0,
+            "lr_main": 1e-3,
+            "weight_decay_main": 1e-4,
+            "lr_bert": 5e-5,
+            "weight_decay_bert": 1e-4,
+            "lr_mmilb": 1e-3,
+            "weight_decay_mmilb": 1e-4,
+            "optim": "Adam",
+            "when": 20,
+
+            "alpha": 0.1,
+            "beta": 0.1
+        }
     }
   }
 }

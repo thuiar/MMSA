@@ -133,8 +133,8 @@ class SELF_MM():
                     ids.extend(cur_id)
 
                     if not self.args.need_data_aligned:
-                        audio_lengths = batch_data['audio_lengths'].to(self.args.device)
-                        vision_lengths = batch_data['vision_lengths'].to(self.args.device)
+                        audio_lengths = batch_data['audio_lengths']
+                        vision_lengths = batch_data['vision_lengths']
                     else:
                         audio_lengths, vision_lengths = 0, 0
 
@@ -172,9 +172,9 @@ class SELF_MM():
                     # update
                     optimizer.step()
             train_loss = train_loss / len(dataloader['train'])
-            logger.info(
-                f"TRAIN-({self.args.model_name}) [{epochs - best_epoch}/{epochs}/{self.args.cur_seed}] >> loss: {round(train_loss, 4)} {dict_to_str(train_results)}"
-            )
+            # logger.info(
+            #     f"TRAIN-({self.args.model_name}) [{epochs - best_epoch}/{epochs}/{self.args.cur_seed}] >> loss: {round(train_loss, 4)} {dict_to_str(train_results)}"
+            # )
             for m in self.args.tasks:
                 pred, true = torch.cat(y_pred[m]), torch.cat(y_true[m])
                 train_results = self.metrics(pred, true)
@@ -230,8 +230,8 @@ class SELF_MM():
                     audio = batch_data['audio'].to(self.args.device)
                     text = batch_data['text'].to(self.args.device)
                     if not self.args.need_data_aligned:
-                        audio_lengths = batch_data['audio_lengths'].to(self.args.device)
-                        vision_lengths = batch_data['vision_lengths'].to(self.args.device)
+                        audio_lengths = batch_data['audio_lengths']
+                        vision_lengths = batch_data['vision_lengths']
                     else:
                         audio_lengths, vision_lengths = 0, 0
 

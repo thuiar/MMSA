@@ -23,6 +23,7 @@ class AMIO(nn.Module):
             'mult': MULT,
             'misa': MISA,
             'mfm': MFM,
+            'mmim': MMIM,
             # multi-task
             'mtfn': MTFN,
             'mlmf': MLMF,
@@ -38,7 +39,7 @@ class AMIO(nn.Module):
         lastModel = self.MODEL_MAP[args['model_name']]
         self.Model = lastModel(args)
 
-    def forward(self, text_x, audio_x, video_x):
+    def forward(self, text_x, audio_x, video_x, *args, **kwargs):
         if(self.need_model_aligned):
             text_x, audio_x, video_x = self.alignNet(text_x, audio_x, video_x)
-        return self.Model(text_x, audio_x, video_x)
+        return self.Model(text_x, audio_x, video_x, *args, **kwargs)

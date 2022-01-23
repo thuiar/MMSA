@@ -20,6 +20,7 @@ class ATIO():
             'bert_mag':BERT_MAG,
             'misa': MISA,
             'mfm': MFM,
+            'mmim': MMIM,
             # multi-task
             'mtfn': MTFN,
             'mlmf': MLMF,
