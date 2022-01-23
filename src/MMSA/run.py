@@ -258,11 +258,12 @@ def _run(args, num_workers=4, is_tune=False, from_sena=False):
 
 SENA_ENABLED = True
 try:
-    import datetime
+    from datetime import datetime
     from multiprocessing import Queue
     from sklearn.decomposition import PCA
     from flask_sqlalchemy import SQLAlchemy
 except ImportError:
+    logger.warning("SENA_run is not loaded due to missing dependencies. This is ok if you are not using M-SENA.")
     SENA_ENABLED = False
 
 if SENA_ENABLED:
@@ -298,9 +299,12 @@ if SENA_ENABLED:
             seed (int): Only one seed.
             desc (str): Description.
         """
+
+        cur_task = None
         try:
             logger = logging.getLogger('app')
             logger.info(f"M-SENA Task {task_id} started.")
+            time.sleep(1) # make sure task status is committed by the parent process
             cur_task = db.session.query(table['Task']).filter(table['Task'].task_id == task_id).first()
             # load training parameters
             if parameters == "": # use default config file
@@ -456,18 +460,20 @@ if SENA_ENABLED:
                     )
                     db.session.add(payload)
                 db.session.commit()
+                logger.info(f"Task {task_id} Finished.")
             except Exception as e:
                 logger.exception(e)
                 db.session.rollback()
                 # TODO: remove saved features
                 raise e
-
             cur_task.state = 1
         except Exception as e:
             logger.exception(e)
-            cur_task.state = 2
+            logger.error(f"Task {task_id} Error.")
+            if cur_task:
+                cur_task.state = 2
         finally:
-            cur_task.end_time = datetime.now()
-            db.session.commit()
-            logger.info(f"Task {task_id} Finished.")
+            if cur_task:
+                cur_task.end_time = datetime.now()
+                db.session.commit()
             
