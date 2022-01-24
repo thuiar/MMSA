@@ -54,16 +54,11 @@ class MFM():
                     # clear gradient
                     optimizer.zero_grad()
                     # forward
-                    decoded,mmd_loss,missing_loss = model(text, audio, vision)
+                    pred,gen_loss,mmd_loss,missing_loss = model(text, audio, vision)
                     # compute loss
-                    [x_l_hat,x_a_hat,x_v_hat,y_hat] = decoded
-                    y_hat = y_hat.squeeze(1)
+                    pred = pred.squeeze(1)
                     mmd_loss = self.args.lda_mmd * mmd_loss
-                    x_l = text.permute(1,0,2)
-                    x_a = audio.permute(1,0,2)
-                    x_v = vision.permute(1,0,2)
-                    gen_loss = self.args.lda_xl * l2_loss(x_l_hat,x_l) + self.args.lda_xa * l2_loss(x_a_hat,x_a) + self.args.lda_xv * l2_loss(x_v_hat,x_v)
-                    disc_loss = l1_loss(y_hat, labels.squeeze())
+                    disc_loss = l1_loss(pred, labels.squeeze())
                     loss = disc_loss + gen_loss + mmd_loss + missing_loss
                     # backward
                     loss.backward()
@@ -71,7 +66,7 @@ class MFM():
                     optimizer.step()
                     # store results
                     train_loss += loss.item()
-                    y_pred.append(y_hat.cpu())
+                    y_pred.append(pred.cpu())
                     y_true.append(labels.cpu())
             train_loss = train_loss / len(dataloader['train'])
             
@@ -129,16 +124,15 @@ class MFM():
                     labels = batch_data['labels']['M'].to(self.args.device)
                     labels = labels.view(-1, 1)
 
-                    decoded,mmd_loss,missing_loss = model(text, audio, vision)
-                    [x_l_hat,x_a_hat,x_v_hat,y_hat] = decoded
-                    y_hat = y_hat.squeeze(1)
+                    pred,gen_loss,mmd_loss,missing_loss = model(text, audio, vision)
+                    pred = pred.squeeze(1)
 
                     if return_sample_results:
                         pass # TODO: return sample results
 
-                    eval_loss += l1_loss(y_hat, labels.squeeze()).item()
+                    eval_loss += l1_loss(pred, labels.squeeze()).item()
 
-                    y_pred.append(y_hat.cpu())
+                    y_pred.append(pred.cpu())
                     y_true.append(labels.cpu())
         eval_loss = eval_loss / len(dataloader)
         pred, true = torch.cat(y_pred), torch.cat(y_true)

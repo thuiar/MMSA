@@ -84,110 +84,112 @@ class decoderLSTM(nn.Module):
 		return all_recons
 
 class MFM(nn.Module):
-	def __init__(self, args):
-		super(MFM, self).__init__()
-		self.d_l,self.d_a,self.d_v = args.feature_dims
-		self.dh_l,self.dh_a,self.dh_v = args.hidden_dims
-		self.args = args
-		total_h_dim = self.dh_l+self.dh_a+self.dh_v
-		zy_size = args.zy_size
-		zl_size = args.zl_size
-		za_size = args.za_size
-		zv_size = args.zv_size
-		fy_size = args.fy_size
-		fl_size = args.fl_size
-		fa_size = args.fa_size
-		fv_size = args.fv_size
-		zy_to_fy_dropout = args.zy_to_fy_dropout
-		zl_to_fl_dropout = args.zl_to_fl_dropout
-		za_to_fa_dropout = args.za_to_fa_dropout
-		zv_to_fv_dropout = args.zv_to_fv_dropout
-		fy_to_y_dropout = args.fy_to_y_dropout
-		self.mem_dim = args.memsize
-		window_dim = args.windowsize
-		output_dim = args.num_classes if args.train_mode == "classification" else 1
-		attInShape = total_h_dim*window_dim
-		gammaInShape = attInShape+self.mem_dim
-		final_out = total_h_dim+self.mem_dim
-		h_att1 = args.NN1Config["shapes"]
-		h_att2 = args.NN2Config["shapes"]
-		h_gamma1 = args.gamma1Config["shapes"]
-		h_gamma2 = args.gamma2Config["shapes"]
-		h_out = args.outConfig["shapes"]
-		att1_dropout = args.NN1Config["drop"]
-		att2_dropout = args.NN2Config["drop"]
-		gamma1_dropout = args.gamma1Config["drop"]
-		gamma2_dropout = args.gamma2Config["drop"]
-		out_dropout = args.outConfig["drop"]
-		last_mfn_size = total_h_dim + args.memsize
+    def __init__(self, args):
+        super(MFM, self).__init__()
+        self.d_l,self.d_a,self.d_v = args.feature_dims
+        self.dh_l,self.dh_a,self.dh_v = args.hidden_dims
+        self.args = args
+        total_h_dim = self.dh_l+self.dh_a+self.dh_v
+        zy_size = args.zy_size
+        zl_size = args.zl_size
+        za_size = args.za_size
+        zv_size = args.zv_size
+        fy_size = args.fy_size
+        fl_size = args.fl_size
+        fa_size = args.fa_size
+        fv_size = args.fv_size
+        zy_to_fy_dropout = args.zy_to_fy_dropout
+        zl_to_fl_dropout = args.zl_to_fl_dropout
+        za_to_fa_dropout = args.za_to_fa_dropout
+        zv_to_fv_dropout = args.zv_to_fv_dropout
+        fy_to_y_dropout = args.fy_to_y_dropout
+        self.mem_dim = args.memsize
+        window_dim = args.windowsize
+        output_dim = args.num_classes if args.train_mode == "classification" else 1
+        attInShape = total_h_dim*window_dim
+        gammaInShape = attInShape+self.mem_dim
+        final_out = total_h_dim+self.mem_dim
+        h_att1 = args.NN1Config["shapes"]
+        h_att2 = args.NN2Config["shapes"]
+        h_gamma1 = args.gamma1Config["shapes"]
+        h_gamma2 = args.gamma2Config["shapes"]
+        h_out = args.outConfig["shapes"]
+        att1_dropout = args.NN1Config["drop"]
+        att2_dropout = args.NN2Config["drop"]
+        gamma1_dropout = args.gamma1Config["drop"]
+        gamma2_dropout = args.gamma2Config["drop"]
+        out_dropout = args.outConfig["drop"]
+        last_mfn_size = total_h_dim + args.memsize
+
+        self.encoder_l = encoderLSTM(self.d_l,zl_size)
+        self.encoder_a = encoderLSTM(self.d_a,za_size)
+        self.encoder_v = encoderLSTM(self.d_v,zv_size)
+
+        self.decoder_l = decoderLSTM(fy_size+fl_size,self.d_l)
+        self.decoder_a = decoderLSTM(fy_size+fa_size,self.d_a)
+        self.decoder_v = decoderLSTM(fy_size+fv_size,self.d_v)
+
+        self.mfn_encoder = MFN(args)
+        self.last_to_zy_fc1 = nn.Linear(last_mfn_size,zy_size)
+
+        self.zy_to_fy_fc1 = nn.Linear(zy_size,fy_size)
+        self.zy_to_fy_fc2 = nn.Linear(fy_size,fy_size)
+        self.zy_to_fy_dropout = nn.Dropout(zy_to_fy_dropout)
+
+        self.zl_to_fl_fc1 = nn.Linear(zl_size,fl_size)
+        self.zl_to_fl_fc2 = nn.Linear(fl_size,fl_size)
+        self.zl_to_fl_dropout = nn.Dropout(zl_to_fl_dropout)
+
+        self.za_to_fa_fc1 = nn.Linear(za_size,fa_size)
+        self.za_to_fa_fc2 = nn.Linear(fa_size,fa_size)
+        self.za_to_fa_dropout = nn.Dropout(za_to_fa_dropout)
+
+        self.zv_to_fv_fc1 = nn.Linear(zv_size,fv_size)
+        self.zv_to_fv_fc2 = nn.Linear(fv_size,fv_size)
+        self.zv_to_fv_dropout = nn.Dropout(zv_to_fv_dropout)
+
+        self.fy_to_y_fc1 = nn.Linear(fy_size,fy_size)
+        self.fy_to_y_fc2 = nn.Linear(fy_size,output_dim)
+        self.fy_to_y_dropout = nn.Dropout(fy_to_y_dropout)
 		
-		self.encoder_l = encoderLSTM(self.d_l,zl_size)
-		self.encoder_a = encoderLSTM(self.d_a,za_size)
-		self.encoder_v = encoderLSTM(self.d_v,zv_size)
-
-		self.decoder_l = decoderLSTM(fy_size+fl_size,self.d_l)
-		self.decoder_a = decoderLSTM(fy_size+fa_size,self.d_a)
-		self.decoder_v = decoderLSTM(fy_size+fv_size,self.d_v)
-		
-		self.mfn_encoder = MFN(args)
-		self.last_to_zy_fc1 = nn.Linear(last_mfn_size,zy_size)
-
-		self.zy_to_fy_fc1 = nn.Linear(zy_size,fy_size)
-		self.zy_to_fy_fc2 = nn.Linear(fy_size,fy_size)
-		self.zy_to_fy_dropout = nn.Dropout(zy_to_fy_dropout)
-
-		self.zl_to_fl_fc1 = nn.Linear(zl_size,fl_size)
-		self.zl_to_fl_fc2 = nn.Linear(fl_size,fl_size)
-		self.zl_to_fl_dropout = nn.Dropout(zl_to_fl_dropout)
-
-		self.za_to_fa_fc1 = nn.Linear(za_size,fa_size)
-		self.za_to_fa_fc2 = nn.Linear(fa_size,fa_size)
-		self.za_to_fa_dropout = nn.Dropout(za_to_fa_dropout)
-
-		self.zv_to_fv_fc1 = nn.Linear(zv_size,fv_size)
-		self.zv_to_fv_fc2 = nn.Linear(fv_size,fv_size)
-		self.zv_to_fv_dropout = nn.Dropout(zv_to_fv_dropout)
-
-		self.fy_to_y_fc1 = nn.Linear(fy_size,fy_size)
-		self.fy_to_y_fc2 = nn.Linear(fy_size,output_dim)
-		self.fy_to_y_dropout = nn.Dropout(fy_to_y_dropout)
-		
-	def forward(self, text_x, audio_x, video_x):
-		'''
+    def forward(self, text_x, audio_x, video_x):
+        '''
         Args:
             audio_x: tensor of shape (batch_size, sequence_len, audio_in)
             video_x: tensor of shape (batch_size, sequence_len, video_in)
             text_x: tensor of shape (batch_size, sequence_len, text_in)
-		'''
-		x_l = text_x.permute(1,0,2)
-		x_a = audio_x.permute(1,0,2)
-		x_v = video_x.permute(1,0,2)
-		# x is t x n x d
-		n = x_l.size()[1]
-		t = x_l.size()[0]
-		zl = self.encoder_l.forward(x_l, self.args)
-		za = self.encoder_a.forward(x_a, self.args)
-		zv = self.encoder_v.forward(x_v, self.args)
+        '''
+        x_l = text_x.permute(1,0,2)
+        x_a = audio_x.permute(1,0,2)
+        x_v = video_x.permute(1,0,2)
+        # x is t x n x d
+        n = x_l.size()[1]
+        t = x_l.size()[0]
+        zl = self.encoder_l.forward(x_l, self.args)
+        za = self.encoder_a.forward(x_a, self.args)
+        zv = self.encoder_v.forward(x_v, self.args)
 
-		mfn_last = self.mfn_encoder.forward(text_x, audio_x, video_x)['L']
-		zy = self.last_to_zy_fc1(mfn_last)
-		mmd_loss = loss_MMD(zl, self.args)+loss_MMD(za, self.args)+loss_MMD(zv, self.args)+loss_MMD(zy, self.args)
-		missing_loss = 0.0
+        mfn_last = self.mfn_encoder.forward(text_x, audio_x, video_x)['L']
+        zy = self.last_to_zy_fc1(mfn_last)
+        mmd_loss = loss_MMD(zl, self.args)+loss_MMD(za, self.args)+loss_MMD(zv, self.args)+loss_MMD(zy, self.args)
+        missing_loss = 0.0
 
-		fy = F.relu(self.zy_to_fy_fc2(self.zy_to_fy_dropout(F.relu(self.zy_to_fy_fc1(zy)))))
-		fl = F.relu(self.zl_to_fl_fc2(self.zl_to_fl_dropout(F.relu(self.zl_to_fl_fc1(zl)))))
-		fa = F.relu(self.za_to_fa_fc2(self.za_to_fa_dropout(F.relu(self.za_to_fa_fc1(za)))))
-		fv = F.relu(self.zv_to_fv_fc2(self.zv_to_fv_dropout(F.relu(self.zv_to_fv_fc1(zv)))))
-		
-		fyfl = torch.cat([fy,fl], dim=1)
-		fyfa = torch.cat([fy,fa], dim=1)
-		fyfv = torch.cat([fy,fv], dim=1)
+        fy = F.relu(self.zy_to_fy_fc2(self.zy_to_fy_dropout(F.relu(self.zy_to_fy_fc1(zy)))))
+        fl = F.relu(self.zl_to_fl_fc2(self.zl_to_fl_dropout(F.relu(self.zl_to_fl_fc1(zl)))))
+        fa = F.relu(self.za_to_fa_fc2(self.za_to_fa_dropout(F.relu(self.za_to_fa_fc1(za)))))
+        fv = F.relu(self.zv_to_fv_fc2(self.zv_to_fv_dropout(F.relu(self.zv_to_fv_fc1(zv)))))
 
-		dec_len = t
-		x_l_hat = self.decoder_l.forward(fyfl,dec_len, self.args)
-		x_a_hat = self.decoder_a.forward(fyfa,dec_len, self.args)
-		x_v_hat = self.decoder_v.forward(fyfv,dec_len, self.args)
-		y_hat = self.fy_to_y_fc2(self.fy_to_y_dropout(F.relu(self.fy_to_y_fc1(fy))))
-		decoded = [x_l_hat,x_a_hat,x_v_hat,y_hat]
+        fyfl = torch.cat([fy,fl], dim=1)
+        fyfa = torch.cat([fy,fa], dim=1)
+        fyfv = torch.cat([fy,fv], dim=1)
 
-		return decoded,mmd_loss,missing_loss
+        dec_len = t
+        x_l_hat = self.decoder_l.forward(fyfl,dec_len, self.args)
+        x_a_hat = self.decoder_a.forward(fyfa,dec_len, self.args)
+        x_v_hat = self.decoder_v.forward(fyfv,dec_len, self.args)
+
+        y_hat = self.fy_to_y_fc2(self.fy_to_y_dropout(F.relu(self.fy_to_y_fc1(fy))))
+        
+        gen_loss = self.args.lda_xl * F.mse_loss(x_l_hat,x_l) + self.args.lda_xa * F.mse_loss(x_a_hat,x_a) + self.args.lda_xv * F.mse_loss(x_v_hat,x_v)
+
+        return y_hat,gen_loss,mmd_loss,missing_loss
