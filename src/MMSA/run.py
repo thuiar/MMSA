@@ -26,10 +26,10 @@ os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:2" # This is crucial for reproduc
 
 
 SUPPORTED_MODELS = [
-    'lf_dnn', 'ef_lstm', 'tfn', 'lmf', 'mfn', 'graph_mfn', 
-    'mult', 'misa', 'mlf_dnn', 'mtfn', 'mlmf', 'self_mm', 'mmim'
+    'LF_DNN', 'EF_LSTM', 'TFN', 'LMF', 'MFN', 'Graph_MFN', 'MFM',
+    'MulT', 'MISA', 'BERT_MAG', 'MLF_DNN', 'MTFN', 'MLMF', 'Self_MM', 'MMIM'
 ]
-SUPPORTED_DATASETS = ['mosi', 'mosei', 'sims']
+SUPPORTED_DATASETS = ['MOSI', 'MOSEI', 'SIMS']
 
 logger = logging.getLogger('MMSA')
 
@@ -302,7 +302,7 @@ if SENA_ENABLED:
             seed (int): Only one seed.
             desc (str): Description.
         """
-
+        # TODO: add progress report
         cursor = None
         try:
             logger = logging.getLogger('app')
@@ -335,6 +335,22 @@ if SENA_ENABLED:
             args['feature_T'] = feature_T
             args['feature_A'] = feature_A
             args['feature_V'] = feature_V
+            # determine feature_dims
+            if args['feature_T'] != "":
+                with open(args['feature_T'], 'rb') as f:
+                    data_T = pickle.load(f)
+                if 'use_bert' in args and args['use_bert']:
+                    args['feature_dims'][0] = 768
+                else:
+                    args['feature_dims'][0] = data_T['valid']['text'].shape[2]
+            if args['feature_A'] != "":
+                with open(args['feature_A'], 'rb') as f:
+                    data_A = pickle.load(f)
+                args['feature_dims'][1] = data_A['valid']['audio'].shape[2]
+            if args['feature_V'] != "":
+                with open(args['feature_V'], 'rb') as f:
+                    data_V = pickle.load(f)
+                args['feature_dims'][2] = data_V['valid']['vision'].shape[2]
             args['device'] = assign_gpu(gpu_ids)
             args['cur_seed'] = 1 # the _run function need this to print log
             args['train_mode'] = 'regression' # backward compatibility. TODO: remove all train_mode in code
@@ -498,4 +514,49 @@ if SENA_ENABLED:
             if cursor:
                 cursor.execute("UPDATE Task SET end_time = %s WHERE task_id = %s", (datetime.now(), task_id))
                 db.commit()
-            
+
+
+    def DEMO_run(db_url, feature_file, model_name, dataset_name, result_id, working_dir, seed):
+
+        db_params = db_url.split('//')[1].split('@')[0].split(':')
+        db_user = db_params[0]
+        db_pass = db_params[1]
+        db_params = db_url.split('//')[1].split('@')[1].split('/')
+        db_host = db_params[0]
+        db_name = db_params[1]
+        # connect to db
+        db = mysql.connector.connect(
+            user=db_user, password=db_pass, host=db_host, database=db_name
+        )
+        cursor = db.cursor()
+        cursor2 = db.cursor(named_tuple=True)
+        cursor2.execute(
+            "SELECT * FROM Result WHERE result_id = %s", (result_id,)
+        )
+        result = cursor2.fetchone()
+        save_model_path = result.save_model_path
+        assert Path(save_model_path).exists(), f"pkl file {save_model_path} not found."
+        result_args = json.loads(result.args)
+        args = get_config_regression(model_name, dataset_name)
+        args['train_mode'] = 'regression' # backward compatibility. TODO: remove all train_mode in code
+        args['cur_seed'] = 1
+        args.update(result_args)
+        args['feature_T'] = feature_file
+        args['feature_A'] = feature_file
+        args['feature_V'] = feature_file
+        args['device'] = assign_gpu([])
+        setup_seed(seed)
+        model = AMIO(args).to(args['device'])
+        model.load_state_dict(torch.load(save_model_path))
+        model.to(args['device'])
+        with open(feature_file, 'rb') as f:
+            features = pickle.load(f)
+        feature_a = torch.Tensor(features['audio']).unsqueeze(0)
+        feature_t = torch.Tensor(features['text']).unsqueeze(0)
+        feature_v = torch.Tensor(features['video']).unsqueeze(0)
+        if 'need_normalized' in args and args['need_normalized']:
+            feature_a = torch.mean(feature_a, dim=1, keepdims=True)
+            feature_v = torch.mean(feature_v, dim=1, keepdims=True)
+        model.eval()
+        with torch.no_grad():
+            outputs = model(feature_t, feature_a, feature_v)

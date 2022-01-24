@@ -155,7 +155,7 @@ class MetricsTop():
         for i in range(5):
             test_truth_a5[np.logical_and(test_truth > ms_5[i], test_truth <= ms_5[i+1])] = i
  
-        mae = np.mean(np.absolute(test_preds - test_truth))   # Average L1 distance between preds and truths
+        mae = np.mean(np.absolute(test_preds - test_truth)).astype(np.float64)   # Average L1 distance between preds and truths
         corr = np.corrcoef(test_preds, test_truth)[0][1]
         mult_a2 = self.__multiclass_acc(test_preds_a2, test_truth_a2)
         mult_a3 = self.__multiclass_acc(test_preds_a3, test_truth_a3)
@@ -163,12 +163,12 @@ class MetricsTop():
         f_score = f1_score(test_truth_a2, test_preds_a2, average='weighted')
 
         eval_results = {
-            "Mult_acc_2": mult_a2,
-            "Mult_acc_3": mult_a3,
-            "Mult_acc_5": mult_a5,
-            "F1_score": f_score,
-            "MAE": mae,
-            "Corr": corr, # Correlation Coefficient
+            "Mult_acc_2": round(mult_a2, 4),
+            "Mult_acc_3": round(mult_a3, 4),
+            "Mult_acc_5": round(mult_a5, 4),
+            "F1_score": round(f_score, 4),
+            "MAE": round(mae, 4),
+            "Corr": round(corr, 4), # Correlation Coefficient
         }
         return eval_results
     

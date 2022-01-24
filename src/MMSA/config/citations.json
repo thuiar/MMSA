@@ -1,86 +1,110 @@
 {
   "models": {
-    "lf_dnn": {
+    "LF_DNN": {
       "title": "Benchmarking Multimodal Sentiment Analysis",
       "paper_url": "https://link.springer.com/chapter/10.1007/978-3-319-77116-8_13",
       "citation": "",
       "description": "Late Fusion Network."
     },
-    "tfn": {
+    "TFN": {
       "title": "Tensor Fusion Network for Multimodal Sentiment Analysis",
       "paper_url": "https://www.aclweb.org/anthology/D17-1115.pdf",
       "citation": "",
       "description": "Tensor Fusion Network."
     },
-    "ef_lstm": {
+    "EF_LSTM": {
       "title": "Recognizing Emotions in Video Using Multimodal DNN Feature Fusion",
       "paper_url": "https://www.aclweb.org/anthology/W18-3302.pdf",
       "citation": "",
       "description": "Early Fusion Network Using LSTM."
     },
-    "lmf": {
+    "LMF": {
       "title": "Efficient Low-rank Multimodal Fusion with Modality-Specific Factors",
       "paper_url": "https://www.aclweb.org/anthology/P18-1209.pdf",
       "citation": "",
       "description": "Low-rank Memory Fusion Network."
     },
-    "mfn": {
+    "MFN": {
       "title": "Memory Fusion Network for Multi-View Sequential Learning",
       "paper_url": "https://arxiv.org/abs/1802.00927",
       "citation": "",
       "description": "Memory Fusion Network."
     },
-    "graph_mfn": {
+    "Graph_MFN": {
       "title": "Multimodal Language Analysis in the Wild: CMU-MOSEI Dataset and Interpretable Dynamic Fusion Graph",
       "paper_url": "https://www.aclweb.org/anthology/P18-1208.pdf",
       "citation": "",
       "description": "Dynamic Fusin Graph after Memory Fusion Network."
     },
-    "mult": {
+    "MFM": {
+      "title": "MFM",
+      "paper_url": "",
+      "citation": "",
+      "description": ""
+    },
+    "MulT": {
       "title": "Multimodal Transformer for Unaligned Multimodal Language Sequences",
       "paper_url": "https://github.com/yaohungt/Multimodal-Transformer",
       "citation": "",
       "description": "Multimodal Transformer for Unaligned Multimodal Language Sequences"
     },
-    "misa": {
+    "BERT_MAG": {
+      "title": "Integrating multimodal information in large pretrained transformers",
+      "paper_url": "https://aclanthology.org/2020.acl-main.214/",
+      "citation": "",
+      "description": ""
+    },
+    "MISA": {
       "title": "MISA: Modality-Invariant and -Specific Representations for Multimodal Sentiment Analysis",
       "paper_url": "https://github.com/declare-lab/MISA",
       "citation": "",
       "description": "Modality-Invariant and -Specific Representations"
     },
-    "mtfn": {
+    "SELF_MM": {
+      "title": "Learning Modality-Specific Representations with Self-Supervised Multi-Task Learning for Multimodal Sentiment Analysis",
+      "paper_url": "https://ojs.aaai.org/index.php/AAAI/article/view/17289",
+      "citation": "",
+      "description": ""
+    },
+    "MTFN": {
       "title": "CH-SIMS: A Chinese Multimodal Sentiment Analysis Dataset with Fine-grained Annotations of Modality",
       "paper_url": "https://www.aclweb.org/anthology/2020.acl-main.343.pdf",
       "citation": "",
       "description": "Multi-task Multimodal Learning Framework for TFN."
     },
-    "mlf_dnn": {
+    "MLF_DNN": {
       "title": "CH-SIMS: A Chinese Multimodal Sentiment Analysis Dataset with Fine-grained Annotations of Modality",
       "paper_url": "https://www.aclweb.org/anthology/2020.acl-main.343.pdf",
       "citation": "",
       "description": "Multi-task Multimodal Learning Framework for LF_DNN."
     },
-    "mlmf": {
+    "MLMF": {
       "title": "CH-SIMS: A Chinese Multimodal Sentiment Analysis Dataset with Fine-grained Annotations of Modality",
       "paper_url": "https://www.aclweb.org/anthology/2020.acl-main.343.pdf",
       "citation": "",
       "description": "Multi-task Multimodal Learning Framework for LMF."
+    },
+    "MMIM": {
+      "title": "MMIM",
+      "paper_url": "",
+      "citation": "",
+      "description": ""
     }
   },
   "datasets": {
-    "sims": {
+    "SIMS": {
       "title": "CH-SIMS: A Chinese Multimodal Sentiment Analysis Dataset with Fine-grained Annotations of Modality",
       "paper_url": "https://www.aclweb.org/anthology/2020.acl-main.343.pdf",
       "citation": "",
       "description": "Chinese Multimodal Sentiment Analysis Dataset."
     },
-    "mosi": {
+    "MOSI": {
       "title": "Multimodal Sentiment Intensity Analysis in Videos: Facial Gestures and Verbal Messages",
       "paper_url": "https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=7742221",
       "citation": "",
       "description": "The CMU-MOSI Datset."
     },
-    "mosei": {
+    "MOSEI": {
       "title": "Multimodal language analysis in the wild: Cmu-mosei dataset and interpretable dynamic fusion graph",
       "paper_url": "https://aclanthology.org/P18-1208.pdf",
       "citation": "",

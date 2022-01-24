@@ -65,8 +65,14 @@ class MMDataset(Dataset):
         logger.info(f"{self.mode} samples: {self.labels['M'].shape}")
 
         if not self.args['need_data_aligned']:
-            self.audio_lengths = data[self.mode]['audio_lengths']
-            self.vision_lengths = data[self.mode]['vision_lengths']
+            if self.args['feature_A'] != "":
+                self.audio_lengths = data_A[self.mode]['audio_lengths']
+            else:
+                self.audio_lengths = data[self.mode]['audio_lengths']
+            if self.args['feature_V'] != "":
+                self.vision_lengths = data_V[self.mode]['vision_lengths']
+            else:
+                self.vision_lengths = data[self.mode]['vision_lengths']
         self.audio[self.audio == -np.inf] = 0
 
         if 'need_normalized' in self.args and self.args['need_normalized']:
