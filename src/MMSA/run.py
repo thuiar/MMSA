@@ -544,7 +544,8 @@ if SENA_ENABLED:
         args['feature_T'] = feature_file
         args['feature_A'] = feature_file
         args['feature_V'] = feature_file
-        args['device'] = assign_gpu([])
+        # args['device'] = assign_gpu([])
+        args['device'] = 'cpu'
         setup_seed(seed)
         model = AMIO(args).to(args['device'])
         model.load_state_dict(torch.load(save_model_path))
@@ -560,3 +561,5 @@ if SENA_ENABLED:
         model.eval()
         with torch.no_grad():
             outputs = model(feature_t, feature_a, feature_v)
+        predict = outputs['M'].cpu().detach().squeeze().numpy().round(3)
+        return predict
