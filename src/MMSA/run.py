@@ -303,7 +303,7 @@ if SENA_ENABLED:
             desc (str): Description.
         """
 
-        cur_task = None
+        cursor = None
         try:
             logger = logging.getLogger('app')
             logger.info(f"M-SENA Task {task_id} started.")
@@ -349,11 +349,11 @@ if SENA_ENABLED:
             custom_feature = False if (feature_A == "" and feature_V == "" and feature_T == "") else True
             cursor.execute(
                 """
-                    INSERT INTO Result (dataset_name, model_name, is_tune, custom_feature, args,
-                    save_model_path, loss_value, accuracy, f1, mae, corr, description)
-                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                    INSERT INTO Result (dataset_name, model_name, is_tune, custom_feature, created_at,
+                     args, save_model_path, loss_value, accuracy, f1, mae, corr, description)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                 """,
-                (dataset_name, model_name, is_tune, custom_feature, json.dumps(args_dump), '', 0, 0, 0, 0, 0, desc)
+                (dataset_name, model_name, is_tune, custom_feature, datetime.now(), json.dumps(args_dump), '', 0, 0, 0, 0, 0, desc)
             )
             result_id = cursor.lastrowid
             # result_id is allocated now, so model_save_path can be determined
@@ -371,16 +371,25 @@ if SENA_ENABLED:
                 results_dict = _run(args, num_workers, is_tune, from_sena=True)
                 # db operations
                 sample_dict = {}
-                samples = db.session.query(table['Dsample']).filter_by(dataset_name=dataset_name).all()
+                cursor2 = db.cursor(named_tuple=True)
+                cursor2.execute("SELECT * FROM Dsample WHERE dataset_name=%s", (dataset_name,))
+                samples = cursor2.fetchall()
                 for sample in samples:
                     key = sample.video_id + '$_$' + sample.clip_id
-                    sample_dict[key] = [sample.sample_id, sample.annotation]
+                    sample_dict[key] = (sample.sample_id, sample.annotation)
                 # update final results of test set
-                db_result.loss_value = results_dict['final_results']['test']['Loss']
-                db_result.accuracy = results_dict['final_results']['test']['Non0_acc_2']
-                db_result.f1 = results_dict['final_results']['test']['Non0_F1_score']
-                db_result.mae = results_dict['final_results']['test']['MAE']
-                db_result.corr = results_dict['final_results']['test']['Corr']
+                cursor.execute(
+                    """UPDATE Result SET loss_value = %s, accuracy = %s, f1 = %s,
+                    mae = %s, corr = %s WHERE result_id = %s""",
+                    (
+                        results_dict['final_results']['test']['Loss'],
+                        results_dict['final_results']['test']['Non0_acc_2'],
+                        results_dict['final_results']['test']['Non0_F1_score'],
+                        results_dict['final_results']['test']['MAE'],
+                        results_dict['final_results']['test']['Corr'],
+                        result_id
+                    )
+                )
                 # save features
                 if not is_tune:
                     logger.info("Running feature PCA ...")
@@ -398,8 +407,9 @@ if SENA_ENABLED:
                             cur_labels.extend(results_dict['final_results'][mode]['Labels'])
                         cur_labels = np.array(cur_labels)
                         label_index_dict = {}
-                        for k, v in args['annotations'].items():
-                            label_index_dict[k] = np.where(cur_labels == v)[0].tolist()
+                        label_index_dict['Negative'] = np.where(cur_labels < 0)[0].tolist()
+                        label_index_dict['Neutral'] = np.where(cur_labels == 0)[0].tolist()
+                        label_index_dict['Positive'] = np.where(cur_labels > 0)[0].tolist()
                         # handle features
                         cur_mode_features_2d = {}
                         cur_mode_features_3d = {}
@@ -432,14 +442,13 @@ if SENA_ENABLED:
                 for mode in ['train', 'valid', 'test']:
                     final_results = results_dict['final_results'][mode]
                     for i, cur_id in enumerate(final_results["Ids"]):
-                        payload = table['SResults'](
-                            result_id=db_result.result_id,
-                            sample_id=sample_dict[cur_id][0],
-                            label_value=sample_dict[cur_id][1],
-                            predict_value= 'Negative' if final_results["SResults"][i] < 0 else 'Positive',
-                            predict_value_r = final_results["SResults"][i]
+                        cursor.execute(
+                            """ INSERT INTO SResults (result_id, sample_id, label_value, predict_value, predict_value_r)
+                            VALUES (%s, %s, %s, %s, %s)""",
+                            (result_id, sample_dict[cur_id][0], sample_dict[cur_id][1],
+                            'Negative' if final_results["SResults"][i] < 0 else 'Positive',
+                            float(final_results["SResults"][i]))
                         )
-                        db.session.add(payload)
                 # update epoch results
                 cur_results = {}
                 for mode in ['train', 'valid', 'test']:
@@ -451,12 +460,10 @@ if SENA_ENABLED:
                         "mae":cur_epoch_results["MAE"],
                         "corr":cur_epoch_results["Corr"]
                     }
-                payload = table['EResult'](
-                    result_id=db_result.result_id,
-                    epoch_num=-1,
-                    results=json.dumps(cur_results)
+                cursor.execute(
+                    "INSERT INTO EResult (result_id, epoch_num, results) VALUES (%s, %s, %s)",
+                    (result_id, -1, json.dumps(cur_results))
                 )
-                db.session.add(payload)
 
                 epoch_num = len(results_dict['epoch_results']['train'])
                 for i in range(0, epoch_num):
@@ -470,27 +477,25 @@ if SENA_ENABLED:
                             "mae":cur_epoch_results["MAE"],
                             "corr":cur_epoch_results["Corr"]
                         }
-                    payload = table['EResult'](
-                        result_id=db_result.result_id,
-                        epoch_num=i + 1,
-                        results=json.dumps(cur_results)
+                    cursor.execute(
+                        "INSERT INTO EResult (result_id, epoch_num, results) VALUES (%s, %s, %s)",
+                        (result_id, i+1, json.dumps(cur_results))
                     )
-                    db.session.add(payload)
-                db.session.commit()
+                db.commit()
                 logger.info(f"Task {task_id} Finished.")
             except Exception as e:
                 logger.exception(e)
-                db.session.rollback()
+                db.rollback()
                 # TODO: remove saved features
                 raise e
-            cur_task.state = 1
+            cursor.execute("UPDATE Task SET state = %s WHERE task_id = %s", (1, task_id))
         except Exception as e:
             logger.exception(e)
             logger.error(f"Task {task_id} Error.")
-            if cur_task:
-                cur_task.state = 2
+            if cursor:
+                cursor.execute("UPDATE Task SET state = %s WHERE task_id = %s", (2, task_id))
         finally:
-            if cur_task:
-                cur_task.end_time = datetime.now()
-                db.session.commit()
+            if cursor:
+                cursor.execute("UPDATE Task SET end_time = %s WHERE task_id = %s", (datetime.now(), task_id))
+                db.commit()
             
