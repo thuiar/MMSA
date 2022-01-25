@@ -377,7 +377,6 @@
       "need_data_aligned": true,
       "need_model_aligned": true,
       "use_bert": true,
-
       "early_stop": 8,
       "need_normalize": false,
       "weight_decay": 0.0

@@ -37,10 +37,10 @@
       "description": "Dynamic Fusin Graph after Memory Fusion Network."
     },
     "MFM": {
-      "title": "MFM",
-      "paper_url": "",
+      "title": "Memory fusion network for multiview sequential learning",
+      "paper_url": "https://ojs.aaai.org/index.php/AAAI/article/view/12021",
       "citation": "",
-      "description": ""
+      "description": "Memory fusion network for multiview sequential learning"
     },
     "MulT": {
       "title": "Multimodal Transformer for Unaligned Multimodal Language Sequences",
@@ -85,10 +85,10 @@
       "description": "Multi-task Multimodal Learning Framework for LMF."
     },
     "MMIM": {
-      "title": "MMIM",
-      "paper_url": "",
+      "title": "Improving Multimodal Fusion with Hierarchical Mutual Information Maximization for Multimodal Sentiment Analysis",
+      "paper_url": "https://arxiv.org/pdf/2109.00412.pdf",
       "citation": "",
-      "description": ""
+      "description": "MultiModal-InfoMax"
     }
   },
   "datasets": {

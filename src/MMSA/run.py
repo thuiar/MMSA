@@ -435,19 +435,20 @@ if SENA_ENABLED:
                                 cur_features.append(features[mode][name])
                             cur_features = np.concatenate(cur_features, axis=0)
                             # PCA analysis
-                            pca=PCA(n_components=3, whiten=True)
-                            features_3d = pca.fit_transform(cur_features)
-                            # split by labels
-                            cur_mode_features_3d[name] = {}
-                            for k, v in label_index_dict.items():
-                                cur_mode_features_3d[name][k] = features_3d[v].tolist()
-                            # PCA analysis
-                            pca=PCA(n_components=2, whiten=True)
-                            features_2d = pca.fit_transform(cur_features)
-                            # split by labels
-                            cur_mode_features_2d[name] = {}
-                            for k, v in label_index_dict.items():
-                                cur_mode_features_2d[name][k] = features_2d[v].tolist()
+                            if len(cur_features) != 0:
+                                pca=PCA(n_components=3, whiten=True)
+                                features_3d = pca.fit_transform(cur_features)
+                                # split by labels
+                                cur_mode_features_3d[name] = {}
+                                for k, v in label_index_dict.items():
+                                    cur_mode_features_3d[name][k] = features_3d[v].tolist()
+                                # PCA analysis
+                                pca=PCA(n_components=2, whiten=True)
+                                features_2d = pca.fit_transform(cur_features)
+                                # split by labels
+                                cur_mode_features_2d[name] = {}
+                                for k, v in label_index_dict.items():
+                                    cur_mode_features_2d[name][k] = features_2d[v].tolist()
                         all_features['-'.join(select_modes)] = {'2D': cur_mode_features_2d, '3D': cur_mode_features_3d}
                     # save features
                     save_path = args.model_save_path.parent / (args.model_save_path.stem + '.pkl')
