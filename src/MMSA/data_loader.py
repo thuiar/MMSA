@@ -66,11 +66,11 @@ class MMDataset(Dataset):
 
         if not self.args['need_data_aligned']:
             if self.args['feature_A'] != "":
-                self.audio_lengths = data_A[self.mode]['audio_lengths']
+                self.audio_lengths = list(data_A[self.mode]['audio_lengths'])
             else:
                 self.audio_lengths = data[self.mode]['audio_lengths']
             if self.args['feature_V'] != "":
-                self.vision_lengths = data_V[self.mode]['vision_lengths']
+                self.vision_lengths = list(data_V[self.mode]['vision_lengths'])
             else:
                 self.vision_lengths = data[self.mode]['vision_lengths']
         self.audio[self.audio == -np.inf] = 0

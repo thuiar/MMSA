@@ -516,7 +516,7 @@ if SENA_ENABLED:
                 db.commit()
 
 
-    def DEMO_run(db_url, feature_file, model_name, dataset_name, result_id, working_dir, seed):
+    def DEMO_run(db_url, feature_file, model_name, dataset_name, result_id, seed):
 
         db_params = db_url.split('//')[1].split('@')[0].split(':')
         db_user = db_params[0]
@@ -528,7 +528,6 @@ if SENA_ENABLED:
         db = mysql.connector.connect(
             user=db_user, password=db_pass, host=db_host, database=db_name
         )
-        cursor = db.cursor()
         cursor2 = db.cursor(named_tuple=True)
         cursor2.execute(
             "SELECT * FROM Result WHERE result_id = %s", (result_id,)
@@ -561,5 +560,5 @@ if SENA_ENABLED:
         model.eval()
         with torch.no_grad():
             outputs = model(feature_t, feature_a, feature_v)
-        predict = outputs['M'].cpu().detach().squeeze().numpy().round(3)
+        predict = round(float(outputs['M'].cpu().detach().squeeze()), 3)
         return predict
