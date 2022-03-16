@@ -25,9 +25,13 @@ class MLF_DNN():
         self.metrics = MetricsTop(args.train_mode).getMetics(args.datasetName)
 
     def do_train(self, model, dataloader):
+        model_params_other = [p for n, p in list(model.Model.named_parameters()) if 'text_subnet' not in n and \
+                                'audio_subnet' not in n and 'video_subnet' not in n]
+
         optimizer = optim.Adam([{"params": list(model.Model.text_subnet.parameters()), "weight_decay": self.args.text_weight_decay},
                                 {"params": list(model.Model.audio_subnet.parameters()), "weight_decay": self.args.audio_weight_decay},
-                                {"params": list(model.Model.video_subnet.parameters()), "weight_decay": self.args.video_weight_decay}],
+                                {"params": list(model.Model.video_subnet.parameters()), "weight_decay": self.args.video_weight_decay},
+                                {'params': model_params_other}],
                                 lr=self.args.learning_rate, weight_decay=self.args.weight_decay)
         # initilize results
         epochs, best_epoch = 0, 0
