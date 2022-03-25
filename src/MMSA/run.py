@@ -82,8 +82,8 @@ def MMSA_run(
         model_save_dir (str): Path to save trained models. Default: "~/MMSA/saved_models"
         res_save_dir (str): Path to save csv results. Default: "~/MMSA/results"
         log_dir (str): Path to save log files. Default: "~/MMSA/logs"
-        gpu_ids (list): Specify which gpus to use. If a empty list is supplied, will auto assign to the most memory-free gpu. Default: [0]
-                        Currently only support single gpu.
+        gpu_ids (list): Specify which gpus to use. If an empty list is supplied, will auto assign to the most memory-free gpu. Default: [0]
+                        Currently only supports single gpu.
         num_workers (int): Number of workers used to load data. Default: 4
         verbose_level (int): Verbose level of stdout. 0 for error, 1 for info, 2 for debug. Default: 1
     """
@@ -432,8 +432,10 @@ if SENA_ENABLED:
                         for name in ['Feature_t', 'Feature_a', 'Feature_v', 'Feature_f']: 
                             cur_features = []
                             for mode in select_modes:
-                                cur_features.append(features[mode][name])
-                            cur_features = np.concatenate(cur_features, axis=0)
+                                if name in features[mode]:
+                                    cur_features.append(features[mode][name])
+                            if cur_features != []:
+                                cur_features = np.concatenate(cur_features, axis=0)
                             # PCA analysis
                             if len(cur_features) != 0:
                                 pca=PCA(n_components=3, whiten=True)

@@ -12,12 +12,12 @@ def parse_args():
                         choices=['sims', 'mosi', 'mosei'], help='Name of dataset')
     parser.add_argument('-c', '--config', type=str, default='',
                         help='Path to config file. If not specified, default config file will be used.')
-    parser.add_argument('-t', '--tune', type=bool, default=False,
+    parser.add_argument('-t', '--tune', action='store_true',
                         help='Whether to tune hyper parameters. Default: False')
     parser.add_argument('-tt', '--tune-times', type=int, default=50,
                         help='Number of times to tune hyper parameters. Default: 50')
-    parser.add_argument('-s', '--seeds', type=list, default=[],
-                        help='List of seeds. Default: [1111, 1112, 1113, 1114, 1115]')
+    parser.add_argument('-s', '--seeds', action='append', type=int, default=[],
+                        help='Random seeds. Specify multiple times for multiple seeds. Default: [1111, 1112, 1113, 1114, 1115]')
     parser.add_argument('-n', '--num-workers', type=int, default=8,
                         help='Number of workers used to load data. Default: 4')
     parser.add_argument('-v', '--verbose', type=int, default=1,
@@ -28,17 +28,18 @@ def parse_args():
                         help='Path to save csv results. Default: "~/MMSA/results"')
     parser.add_argument('--log-dir', type=str, default='',
                         help='Path to save log files. Default: "~/MMSA/logs"')
-    parser.add_argument('--gpu-ids', type=list, default=[1],
-                        help='Specify which gpus to use. If a empty list is supplied, will automatically assign to the most memory-free gpu. \
-                              Currently only support single gpu. Default: [0]')
+    parser.add_argument('-g', '--gpu-ids', action='append', default=[],
+                        help='Specify which gpus to use. If an empty list is supplied, will automatically assign to the most memory-free gpu. \
+                              Currently only support single gpu. Default: []')
     parser.add_argument('-Ft', '--feature-T', type=str, default='',
-                        help='Path to text feature file. Default: ""')
+                        help='Path to custom text feature file. Default: ""')
     parser.add_argument('-Fa', '--feature-A', type=str, default='',
-                        help='Path to audio feature file. Default: ""')
+                        help='Path to custom audio feature file. Default: ""')
     parser.add_argument('-Fv', '--feature-V', type=str, default='',
-                        help='Path to video feature file. Default: ""')
+                        help='Path to custom video feature file. Default: ""')
     
     return parser.parse_args()
+
 
 if __name__ == '__main__':
     cmd_args = parse_args()
