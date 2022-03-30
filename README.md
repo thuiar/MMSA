@@ -15,6 +15,8 @@ MMSA is a unified framework for Multimodal Sentiment Analysis.
 - Easy to use, provides Python APIs and commandline tools.
 - Experiment with fully customized multimodal features extracted by [MMSA-FET](https://github.com/thuiar/MMSA-FET) toolkit.
 
+![Begging for Stars](https://github.com/thuiar/M-SENA/blob/main/star.gif)
+
 ## Get Started
 
 > **Note:** From version 2.0, we packaged the project and uploaded it to PyPI in the hope of making it easier to use. If you don't like the new structure, you can always switch back to `v_1.0` branch. 
@@ -168,3 +170,17 @@ Please cite our paper if you find our work useful for your research:
   year={2021}
 }
 ```
+
+```
+@article{mao2022m,
+  title={M-SENA: An Integrated Platform for Multimodal Sentiment Analysis},
+  author={Mao, Huisheng and Yuan, Ziqi and Xu, Hua and Yu, Wenmeng and Liu, Yihe and Gao, Kai},
+  journal={arXiv preprint arXiv:2203.12441},
+  year={2022}
+}
+```
+
+## License
+
+The MMSA Framework is licensed under the MIT License. 
+
