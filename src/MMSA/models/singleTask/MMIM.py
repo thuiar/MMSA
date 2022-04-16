@@ -119,16 +119,6 @@ class MMILB(nn.Module):
                 pos_history = mem['pos']
                 neg_history = mem['neg']
 
-                # Diagonal setting            
-                # pos_all = torch.cat(pos_history + [pos_y], dim=0) # n_pos, emb
-                # neg_all = torch.cat(neg_history + [neg_y], dim=0)
-                # mu_pos = pos_all.mean(dim=0)
-                # mu_neg = neg_all.mean(dim=0)
-
-                # sigma_pos = torch.mean(pos_all ** 2, dim = 0) - mu_pos ** 2 # (embed)
-                # sigma_neg = torch.mean(neg_all ** 2, dim = 0) - mu_neg ** 2 # (embed)
-                # H = 0.25 * (torch.sum(torch.log(sigma_pos)) + torch.sum(torch.log(sigma_neg)))
-
                 # compute the entire co-variance matrix
                 pos_all = torch.cat(pos_history + [pos_y], dim=0) # n_pos, emb
                 neg_all = torch.cat(neg_history + [neg_y], dim=0)
@@ -232,8 +222,6 @@ class MMIM(nn.Module):
         super().__init__()
 
         assert config.use_bert == True
-        # config is hp
-        # why output_dim????
         output_dim = config.num_classes if config.train_mode == "classification" else 1
         self.config = config
         self.add_va = config.add_va
@@ -328,7 +316,7 @@ class MMIM(nn.Module):
         if y is not None:
             lld_tv, tv_pn, H_tv = self.mi_tv(x=text_h, y=vision_h, labels=y, mem=mem['tv'])
             lld_ta, ta_pn, H_ta = self.mi_ta(x=text_h, y=audio_h, labels=y, mem=mem['ta'])
-            # for ablation use
+
             if self.add_va:
                 lld_va, va_pn, H_va = self.mi_va(x=vision_h, y=audio_h, labels=y, mem=mem['va'])
         else:
