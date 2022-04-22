@@ -10,7 +10,7 @@ MMSA is a unified framework for Multimodal Sentiment Analysis.
 ### Features
 
 - Train, test and compare multiple MSA models in a unified framework.
-- Supports [14](#3-supported-msa-models) MSA models, including recent works.
+- Supports [15](#3-supported-msa-models) MSA models, including recent works.
 - Supports 3 MSA datasets: [MOSI](https://ieeexplore.ieee.org/abstract/document/7742221), [MOSEI](https://aclanthology.org/P18-1208.pdf), and [CH-SIMS](https://aclanthology.org/2020.acl-main.343/).
 - Easy to use, provides Python APIs and commandline tools.
 - Experiment with fully customized multimodal features extracted by [MMSA-FET](https://github.com/thuiar/MMSA-FET) toolkit.
@@ -133,22 +133,25 @@ MMSA uses feature files that are organized as follows:
 
 ## 3. Supported MSA Models
 
-|    Type     |                   Model Name                   |                                          From                                          |
-| :---------: | :--------------------------------------------: | :------------------------------------------------------------------------------------: |
-| Single-Task |    [EF_LSTM](models/singleTask/EF_LSTM.py)     |               [MultimodalDNN](https://github.com/rhoposit/MultimodalDNN)               |
-| Single-Task |     [LF_DNN](models/singleTask/LF_DNN.py)      |                                           -                                            |
-| Single-Task |        [TFN](models/singleTask/TFN.py)         |        [Tensor-Fusion-Network](https://github.com/A2Zadeh/TensorFusionNetwork)         |
-| Single-Task |        [LMF](models/singleTask/LMF.py)         | [Low-rank-Multimodal-Fusion](https://github.com/Justin1904/Low-rank-Multimodal-Fusion) |
-| Single-Task |        [MFN](models/singleTask/MFN.py)         |               [Memory-Fusion-Network](https://github.com/pliang279/MFN)                |
-| Single-Task |  [Graph-MFN](models/singleTask/Graph_MFN.py)   |            [Graph-Memory-Fusion-Network](https://github.com/pliang279/MFN)             |
-| Single-Task | [MulT](models/singleTask/MulT.py)(without CTC) |      [Multimodal-Transformer](https://github.com/yaohungt/Multimodal-Transformer)      |
-| Single-Task |   [BERT-MAG](models/singleTask/BERT_MAG.py)    |        [MAG-BERT](https://github.com/WasifurRahman/BERT_multimodal_transformer)        |
-| Single-Task |        [MFM](models/singleTask/MFM.py)         |                                           -                                            |
-| Single-Task |       [MISA](models/singleTask/MISA.py)        |                      [MISA](https://github.com/declare-lab/MISA)                       |
-| Multi-Task  |     [MLF_DNN](models/multiTask/MLF_DNN.py)     |                         [MMSA](https://github.com/thuiar/MMSA)                         |
-| Multi-Task  |        [MTFN](models/multiTask/MTFN.py)        |                         [MMSA](https://github.com/thuiar/MMSA)                         |
-| Multi-Task  |        [MLMF](models/multiTask/MLMF.py)        |                         [MMSA](https://github.com/thuiar/MMSA)                         |
-| Multi-Task  |     [SELF_MM](models/multiTask/SELF_MM.py)     |                      [Self-MM](https://github.com/thuiar/Self-MM)                      |
+|    Type     |                   Model Name                            |                                          From                                          |    Published     |
+| :---------: | :-----------------------------------------------------: | :------------------------------------------------------------------------------------: | :---------------: |
+| Single-Task |        [TFN](src/MMSA/models/singleTask/TFN.py)         |        [Tensor-Fusion-Network](https://github.com/A2Zadeh/TensorFusionNetwork)         | EMNLP 2017    |
+| Single-Task |    [EF_LSTM](src/MMSA/models/singleTask/EF_LSTM.py)     |               [MultimodalDNN](https://github.com/rhoposit/MultimodalDNN)               | ACL 2018 Workshop |
+| Single-Task |     [LF_DNN](src/MMSA/models/singleTask/LF_DNN.py)      |               [MultimodalDNN](https://github.com/rhoposit/MultimodalDNN)               | ACL 2018 Workshop |
+| Single-Task |        [LMF](src/MMSA/models/singleTask/LMF.py)         | [Low-rank-Multimodal-Fusion](https://github.com/Justin1904/Low-rank-Multimodal-Fusion) | ACL 2018          |
+| Single-Task |        [MFN](src/MMSA/models/singleTask/MFN.py)         |               [Memory-Fusion-Network](https://github.com/pliang279/MFN)                | AAAI 2018          |
+| Single-Task |  [Graph-MFN](src/MMSA/models/singleTask/Graph_MFN.py)   |    [Graph-Memory-Fusion-Network](https://github.com/A2Zadeh/CMU-MultimodalSDK/)        | ACL 2018          |
+| Single-Task | [MulT](src/MMSA/models/singleTask/MulT.py)(without CTC) |      [Multimodal-Transformer](https://github.com/yaohungt/Multimodal-Transformer)      | ACL 2019          |
+| Single-Task |        [MFM](src/MMSA/models/singleTask/MFM.py)         |                     [MFM](https://github.com/pliang279/factorized/)                    | ICRL 2019          |
+| Multi-Task  |     [MLF_DNN](src/MMSA/models/multiTask/MLF_DNN.py)     |                         [MMSA](https://github.com/thuiar/MMSA)                         | ACL 2020          |
+| Multi-Task  |        [MTFN](src/MMSA/models/multiTask/MTFN.py)        |                         [MMSA](https://github.com/thuiar/MMSA)                         | ACL 2020          |
+| Multi-Task  |        [MLMF](src/MMSA/models/multiTask/MLMF.py)        |                         [MMSA](https://github.com/thuiar/MMSA)                         | ACL 2020          |
+| Single-Task |   [BERT-MAG](src/MMSA/models/singleTask/BERT_MAG.py)    |        [MAG-BERT](https://github.com/WasifurRahman/BERT_multimodal_transformer)        | ACL 2020          |
+| Single-Task |       [MISA](src/MMSA/models/singleTask/MISA.py)        |                      [MISA](https://github.com/declare-lab/MISA)                       | ACMMM 2020    |
+| Single-Task |     [SELF_MM](src/MMSA/models/multiTask/SELF_MM.py)     |                      [Self-MM](https://github.com/thuiar/Self-MM)                      | AAAI 2021          |
+| Single-Task |       [MMIM](src/MMSA/models/singleTask/MMIM.py)        |            [MMIM](https://github.com/declare-lab/Multimodal-Infomax)                   | EMNLP 2021    |
+| Single-Task |           BBFN (Work in Progress)                       |               [BBFN](https://github.com/declare-lab/BBFN)                              | ICMI 2021          |
+
 
 ## 4. Results
 
