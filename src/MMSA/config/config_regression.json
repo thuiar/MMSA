@@ -43,7 +43,7 @@
     },
     "sims": {
       "unaligned": {
-        "featurePath": "SIMS/Processed/unaligned_39.pkl",
+        "featurePath": "SIMS/Processed/features/unaligned_39.pkl",
         "seq_lens": [39, 400, 55],
         "feature_dims": [768, 33, 709],
         "train_samples": 1368,
@@ -1001,6 +1001,29 @@
         "transformers": "bert",
         "pretrained": "bert-base-chinese"
       }
+      
+    }
+  },
+
+  "mctn": {
+    "commonParams": {
+      "need_data_aligned": false,
+      "need_model_aligned": false,
+      "use_finetune": true,
+      "use_bert": false,
+      "early_stop": 8,
+      "update_epochs": 2,
+      "add_va": false,
+      "mem_size": 1,
+      "contrast": true
+    },
+    "datasetParams": {
+      "mosi": {
+        "init_lr": 0.0001,
+        "batch_size": 32,
+        "grad_clip": 1.0
+      }
+      
     }
   }
 }
