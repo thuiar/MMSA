@@ -43,7 +43,7 @@
     },
     "sims": {
       "unaligned": {
-        "featurePath": "SIMS/Processed/features/unaligned_39.pkl",
+        "featurePath": "SIMS/Processed/unaligned_39.pkl",
         "seq_lens": [39, 400, 55],
         "feature_dims": [768, 33, 709],
         "train_samples": 1368,
