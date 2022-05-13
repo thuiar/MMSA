@@ -16,7 +16,6 @@ logger = logging.getLogger('MCTN')
 class MCTN():
     def __init__(self, args):
         self.args = args
-        # self.criterion = nn.L1Loss() if args.train_mode == 'regression' else nn.CrossEntropyLoss()
         self.metrics = MetricsTop(args.train_mode).getMetics(args.dataset_name) #########
 
     def do_train(self, model, dataloader, return_epoch_results=False):
@@ -40,34 +39,24 @@ class MCTN():
             with tqdm(dataloader['train']) as td:
                 for i_batch, batch_data in enumerate(td):
 
-                    # for mosei we only use 50% dataset in stage 1
                     if self.args.dataset_name == "mosei":
                         if i_batch / len(dataloader) >= 0.5:
                             break
 
                     self.model.zero_grad()
                     text = batch_data['text'].to(self.args.device)
-                    text_lengths = torch.from_numpy(np.array([20,]*len(text)))
                     audio = batch_data['audio'].to(self.args.device)
-                    audio_lengths = batch_data['audio_lengths']
                     vision = batch_data['vision'].to(self.args.device)
-                    vision_lengths = batch_data['vision_lengths']
                     labels = batch_data['labels']['M'].to(self.args.device)
                     labels = labels.view(-1, 1)
-                    # text = pad_packed_sequence(text, total_length=text_lengths, batch_first=True, enforce_sorted=False)
-                    # audio = pad_packed_sequence(audio, total_length=text_lengths, batch_first=True, enforce_sorted=False)
-                    # vision = pad_packed_sequence(vision, total_length=text_lengths, batch_first=True, enforce_sorted=False)
-                    text = text[:,:20,:]
-                    audio = audio[:,:20,:]
-                    vision = vision[:,:20,:]
 
                     batch_size = text.size(0)
                 
-                    loss, pred = self.model(text, audio, vision, labels, lengths = None) ######################features=['f','a','t']
+                    loss, pred = self.model(text, audio, vision, labels, lengths = None) 
 
                     loss.backward()
                     
-                    torch.nn.utils.clip_grad_norm_(self.model.parameters(), self.args.grad_clip)####
+                    torch.nn.utils.clip_grad_norm_(self.model.parameters(), self.args.grad_clip)
                     self.optimizer.step()
                     
                     epoch_loss += loss.item() * batch_size
@@ -96,6 +85,7 @@ class MCTN():
             # early stop
             if epochs - best_epoch >= self.args.early_stop:
                 return
+
   
     def do_test(self, model, dataloader, mode="VAL", return_sample_results=False):
         model.eval()
@@ -116,15 +106,9 @@ class MCTN():
                     self.model.zero_grad()
                     text = batch_data['text'].to(self.args.device)
                     audio = batch_data['audio'].to(self.args.device)
-                    audio_lengths = batch_data['audio_lengths']
                     vision = batch_data['vision'].to(self.args.device)
-                    vision_lengths = batch_data['vision_lengths']
                     labels = batch_data['labels']['M'].to(self.args.device)
                     labels = labels.view(-1, 1)
-                    # we don't need lld and bound anymore
-                    text = text[:,:20,:]
-                    audio = audio[:,:20,:]
-                    vision = vision[:,:20,:]
                     loss, outputs = self.model(text, audio, vision, labels, lengths = None)
                     
                     eval_loss += loss.item()
