@@ -1010,7 +1010,7 @@
       "need_data_aligned": true,
       "need_model_aligned": false,
       "use_finetune": true,
-      "use_bert": true,
+      "use_bert": false,
       "early_stop": 8,
       "update_epochs": 2,
       "add_va": false,
@@ -1026,7 +1026,7 @@
         "output_dim": 768,
         "transformers": "bert",
         "pretrained": "bert-base-uncased",
-        "max_seq_len": 20
+        "max_seq_len": 50
       }
       
     }
