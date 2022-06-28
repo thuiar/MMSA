@@ -1001,6 +1001,34 @@
         "transformers": "bert",
         "pretrained": "bert-base-chinese"
       }
+      
+    }
+  },
+
+  "mctn": {
+    "commonParams": {
+      "need_data_aligned": true,
+      "need_model_aligned": false,
+      "use_finetune": true,
+      "use_bert": false,
+      "early_stop": 8,
+      "update_epochs": 2,
+      "add_va": false,
+      "mem_size": 1,
+      "contrast": true
+    },
+    "datasetParams": {
+      "mosi": {
+        "init_lr": 0.0001,
+        "batch_size": 32,
+        "grad_clip": 1.0,
+        "hid_dim": 32,
+        "output_dim": 768,
+        "transformers": "bert",
+        "pretrained": "bert-base-uncased",
+        "max_seq_len": 50
+      }
+      
     }
   }
 }
