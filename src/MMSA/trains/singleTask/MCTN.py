@@ -11,7 +11,9 @@ from ...utils import MetricsTop, dict_to_str
 
 from torch.nn.utils.rnn import pad_sequence, pack_padded_sequence, pad_packed_sequence #
 
-logger = logging.getLogger('MCTN')
+__all__ = ['MCTN']
+
+logger = logging.getLogger('MMSA')
 
 class MCTN():
     def __init__(self, args):

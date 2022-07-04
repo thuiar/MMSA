@@ -9,3 +9,4 @@ from .MULT import MULT
 from .MISA import MISA
 from .MFM import MFM
 from .MMIM import MMIM
+from .MCTN import MCTN

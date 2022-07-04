@@ -1,5 +1,5 @@
 """
-AIO -- All Trains in One
+ATIO -- All Trains in One
 """
 from .multiTask import *
 from .singleTask import *
@@ -17,6 +17,7 @@ class ATIO():
             'lf_dnn': LF_DNN,
             'graph_mfn': Graph_MFN,
             'mult': MULT,
+            'mctn': MCTN,
             'bert_mag':BERT_MAG,
             'misa': MISA,
             'mfm': MFM,

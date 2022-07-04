@@ -7,6 +7,8 @@ from collections import OrderedDict
 from ..subNets import BertTextEncoder
 import random
 
+__all__ = ['MCTN']
+
 class Encoder(nn.Module): # Encoder
     def __init__(self, input_dim, hid_dim, dropout, depth, bidirectional=True, lengths=None):
         super().__init__()
