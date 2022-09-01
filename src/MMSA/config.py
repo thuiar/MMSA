@@ -5,14 +5,16 @@ import random
 from easydict import EasyDict as edict
 
 
-def get_config_regression(model_name, dataset_name, config_file=""):
+def get_config_regression(
+    model_name: str, dataset_name: str, config_file: str = ""
+) -> dict:
     """
     Get the regression config of given dataset and model from config file.
 
     Parameters:
-        config_file (str): Path to config file, if given an empty string, will use default config file.
-        model_name (str): Name of model.
-        dataset_name (str): Name of dataset.
+        model_name: Name of model.
+        dataset_name: Name of dataset.
+        config_file: Path to config file, if given an empty string, will use default config file.
 
     Returns:
         config (dict): config of the given dataset and model
@@ -39,15 +41,18 @@ def get_config_regression(model_name, dataset_name, config_file=""):
     return config
 
 
-def get_config_tune(model_name, dataset_name, config_file="", random_choice=True):
+def get_config_tune(
+    model_name: str, dataset_name: str, config_file: str = "",
+    random_choice: bool = True
+) -> dict:
     """
     Get the tuning config of given dataset and model from config file.
 
     Parameters:
-        model_name (str): Name of model.
-        dataset_name (str): Name of dataset.
-        config_file (str): Path to config file, if given an empty string, will use default config file.
-        random_choice (bool): If True, will randomly choose a config from the list of configs.
+        model_name: Name of model.
+        dataset_name: Name of dataset.
+        config_file: Path to config file, if given an empty string, will use default config file.
+        random_choice: If True, will randomly choose a config from the list of configs.
 
     Returns:
         config (dict): config of the given dataset and model
@@ -87,16 +92,16 @@ def get_config_tune(model_name, dataset_name, config_file="", random_choice=True
     return config
 
 
-def get_config_all(config_file):
+def get_config_all(config_file: str) -> dict:
     """
     Get all default configs. This function is used to export default config file. 
     If you want to get config for a specific model, use "get_config_regression" or "get_config_tune" instead.
 
     Parameters:
-        config_file (str): "regression" or "tune"
+        config_file: "regression" or "tune"
     
     Returns:
-        config (dict): all default configs
+        config: all default configs
     """
     if config_file == "regression":
         config_file = Path(__file__).parent / "config" / "config_regression.json"
@@ -108,7 +113,7 @@ def get_config_all(config_file):
         config_all = json.load(f)
     return edict(config_all)
 
-def get_citations():
+def get_citations() -> dict:
     """
     Get paper titles and citations for models and datasets.
 

@@ -60,32 +60,42 @@ def _set_logger(log_dir, model_name, dataset_name, verbose_level):
 
 
 def MMSA_run(
-    model_name, dataset_name, config=None, config_file="", seeds=[], is_tune=False,
-    tune_times=50, feature_T="", feature_A="", feature_V="",
-    model_save_dir="", res_save_dir="", log_dir="",
-    gpu_ids=[0], num_workers=4, verbose_level=1
+    model_name: str, dataset_name: str, config_file: str = "",
+    config: dict = None, seeds: list = [], is_tune: bool = False,
+    tune_times: int = 50, feature_T: str = "", feature_A: str = "",
+    feature_V: str = "", model_save_dir: str = "", res_save_dir: str = "",
+    log_dir: str = "", gpu_ids: list = [0], num_workers: int = 4,
+    verbose_level: int = 1
 ):
-    """
-    Main function for running the MMSA framework.
+    """Main function for running the MMSA framework.
 
-    Parameters:
-        model_name (str): Name of model
-        dataset_name (str): Name of dataset
-        config (dict): Config dict. Used to override arguments in config_file. Ignored in tune mode.
-        config_file: Path to config file. If not specified, default config file will be used.
-        seeds (list): List of seeds. Default: [1111, 1112, 1113, 1114, 1115]
-        is_tune (bool): Whether to tune hyper parameters. Default: False
-        tune_times (int): Number of times to tune hyper parameters. Default: 50
-        feature_T (str): Path to text feature file. 
-        feature_A (str): Path to audio feature file. 
-        feature_V (str): Path to video feature file.
-        model_save_dir (str): Path to save trained models. Default: "~/MMSA/saved_models"
-        res_save_dir (str): Path to save csv results. Default: "~/MMSA/results"
-        log_dir (str): Path to save log files. Default: "~/MMSA/logs"
-        gpu_ids (list): Specify which gpus to use. If an empty list is supplied, will auto assign to the most memory-free gpu. Default: [0]
-                        Currently only supports single gpu.
-        num_workers (int): Number of workers used to load data. Default: 4
-        verbose_level (int): Verbose level of stdout. 0 for error, 1 for info, 2 for debug. Default: 1
+    Runs MSA experiments on datasets and models specified in parameters.
+
+    Args:
+        model_name: Name of MSA model.
+        dataset_name: Name of MSA dataset.
+        config_file: Path to config file. If not specified, default config
+            files will be used.
+        config: Config dict. Used to override arguments in config_file. 
+            Ignored in tune mode.
+        seeds: List of seeds. Default: [1111, 1112, 1113, 1114, 1115]
+        is_tune: Tuning mode switch. Default: False
+        tune_times: Sets of hyper parameters to tune. Default: 50
+        feature_T: Path to text feature file. Provide an empty string to use
+            default BERT features. Default: ""
+        feature_A: Path to audio feature file. Provide an empty string to use
+            default features provided by dataset creators. Default: ""
+        feature_V: Path to video feature file. Provide an empty string to use
+            default features provided by dataset creators. Default: ""
+        model_save_dir: Path to save trained models. Default: 
+            "~/MMSA/saved_models"
+        res_save_dir: Path to save csv results. Default: "~/MMSA/results"
+        log_dir: Path to save log files. Default: "~/MMSA/logs"
+        gpu_ids: GPUs to use. Will assign the most memory-free gpu if an empty
+            list is provided. Default: [0]. Currently only supports single gpu.
+        num_workers: Number of workers used to load data. Default: 4
+        verbose_level: Verbose level of stdout. 0 for error, 1 for info, 2 for
+            debug. Default: 1
     """
     # Initialization
     model_name = model_name.lower()
@@ -266,7 +276,7 @@ try:
     from sklearn.decomposition import PCA
     import mysql.connector
 except ImportError:
-    logger.warning("SENA_run is not loaded due to missing dependencies. This is ok if you are not using M-SENA.")
+    logger.debug("SENA_run is not loaded due to missing dependencies. Ignore this if you are not using M-SENA Platform.")
     SENA_ENABLED = False
 
 if SENA_ENABLED:
