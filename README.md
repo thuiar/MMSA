@@ -7,19 +7,19 @@
 
 MMSA is a unified framework for Multimodal Sentiment Analysis.
 
-## Features
+### Features
 
 - Train, test and compare multiple MSA models in a unified framework.
-- Supports [14]() MSA models, including recent works.
+- Supports [15](#3-supported-msa-models) MSA models, including recent works.
 - Supports 3 MSA datasets: [MOSI](https://ieeexplore.ieee.org/abstract/document/7742221), [MOSEI](https://aclanthology.org/P18-1208.pdf), and [CH-SIMS](https://aclanthology.org/2020.acl-main.343/).
 - Easy to use, provides Python APIs and commandline tools.
 - Experiment with fully customized multimodal features extracted by [MMSA-FET](https://github.com/thuiar/MMSA-FET) toolkit.
 
-## Get Started
+## 1. Get Started
 
 > **Note:** From version 2.0, we packaged the project and uploaded it to PyPI in the hope of making it easier to use. If you don't like the new structure, you can always switch back to `v_1.0` branch. 
 
-### 1. Use Python API
+### 1.1 Use Python API
 
 - Run `pip install MMSA` in your python virtual environment.
 - Import and use in any python file:
@@ -30,14 +30,22 @@ MMSA is a unified framework for Multimodal Sentiment Analysis.
   # run LMF on MOSI with default hyper parameters
   MMSA_run('lmf', 'mosi', seeds=[1111, 1112, 1113], gpu_ids=[0])
 
-  # tune TFN on MOSEI with default hyper parameter range
-  MMSA_run('tfn', 'mosei', seeds=[1111], gpu_ids=[1])
+  # tune Self_mm on MOSEI with default hyper parameter range
+  MMSA_run('self_mm', 'mosei', seeds=[1111], gpu_ids=[1])
 
+  # run TFN on SIMS with altered config
+  config = get_config_regression('tfn', 'mosi')
+  config['post_fusion_dim'] = 32
+  config['featurePath'] = '~/feature.pkl'
+  MMSA_run('tfn', 'mosi', config=config, seeds=[1111])
+
+  # run MTFN on SIMS with custom config file
+  MMSA_run('mtfn', 'sims', config_file='./config.json')
   ```
 
-- For more detailed usage, please refer to [this page]().
+- For more detailed usage, please refer to [APIs](https://github.com/thuiar/MMSA/wiki/APIs).
 
-### 2. Use Commandline Tool
+### 1.2 Use Commandline Tool
 
 - Run `pip install MMSA` in your python virtual environment.
 - Use from command line:
@@ -47,18 +55,24 @@ MMSA is a unified framework for Multimodal Sentiment Analysis.
   $ python -m MMSA -h
 
   # train & test LMF on MOSI with default parameters
-  $ python -m MMSA
+  $ python -m MMSA -d mosi -m lmf -s 1111 -s 1112
+
+  # tune 50 times of TFN on MOSEI with custom config file & custom save dir
+  $ python -m MMSA -d mosei -m tfn -t -tt 30 --model-save-dir ./models --res-save-dir ./results
+
+  # train & test self_mm on SIMS with custom audio features & use gpu2
+  $ python -m MMSA -d sims -m self_mm -Fa ./Features/Feature-A.pkl --gpu-ids 2
   ```
 
-- For more detailed usage, please refer to [this page]().
+- For more detailed usage, please refer to [Commandline Arguments](https://github.com/thuiar/MMSA/wiki/Commandline-Arguments).
 
-### 3. Clone & Edit the Code
+### 1.3 Clone & Edit the Code
 
 - Clone this repo and install requirements.
   ```bash
   $ git clone https://github.com/thuiar/MMSA
   ```
-- Edit the codes to your needs. Add a new model or alter the configs, etc.
+- Edit the codes to your needs. See [Code Structure](https://github.com/thuiar/MMSA/wiki/Code-Structure) for a basic review of our code structure.
 - After editing, run the following commands:
   ```bash
   $ cd MMSA-master # make sure you're in the top directory
@@ -70,14 +84,15 @@ MMSA is a unified framework for Multimodal Sentiment Analysis.
   $ pip uninstall MMSA
   $ pip install .
   ```
-- If you'd rather run the code without installation(like in v_1.0), please refer to [this page]().
+- If you'd rather run the code without installation(like in v_1.0), please refer to [Run Code without Installation](https://github.com/thuiar/MMSA/wiki/Run-Code-without-Installation).
 
-## Datasets
+## 2. Datasets
 
 MMSA currently supports MOSI, MOSEI, and CH-SIMS dataset. Use the following links to download raw videos, feature files and label files. You don't need to download raw videos if you're not planning to run end-to-end tasks. 
 
-- All files: [BaiduYun Disk](https://pan.baidu.com/s/1F2CgPCeG4eI6nmrRwp4ESA?pwd=7ppk)
-- Feature and label files only: [Google Drive](https://drive.google.com/drive/folders/1E5kojBirtd5VbfHsFp6FYWkQunk73Nsv?usp=sharing)
+- All files: [BaiduYun Disk](https://pan.baidu.com/s/1maIw13yINOco46d47KYhAg?pwd=3dcu)
+- Feature and label files only: [Google Drive](https://drive.google.com/drive/folders/12M5AeBnpjVzeNIcLromJRDq_-jNg0vHY?usp=sharing)
+- MOSEI unaligned_50.pkl: [Google Drive](https://drive.google.com/drive/folders/19Nurt_SbWbmZqXgLFepaWOGQOgxlSv_C?usp=sharing)
 
 SHA-256 for feature files:
 
@@ -116,30 +131,33 @@ MMSA uses feature files that are organized as follows:
 > **Note:** If you wish to extract customized multimodal features, please try out our [MMSA-FET](https://github.com/thuiar/MMSA-FET)
 
 
-## Supported MSA Models
+## 3. Supported MSA Models
 
-|    Type     |                   Model Name                   |                                          From                                          |
-| :---------: | :--------------------------------------------: | :------------------------------------------------------------------------------------: |
-| Single-Task |    [EF_LSTM](models/singleTask/EF_LSTM.py)     |               [MultimodalDNN](https://github.com/rhoposit/MultimodalDNN)               |
-| Single-Task |     [LF_DNN](models/singleTask/LF_DNN.py)      |                                           -                                            |
-| Single-Task |        [TFN](models/singleTask/TFN.py)         |        [Tensor-Fusion-Network](https://github.com/A2Zadeh/TensorFusionNetwork)         |
-| Single-Task |        [LMF](models/singleTask/LMF.py)         | [Low-rank-Multimodal-Fusion](https://github.com/Justin1904/Low-rank-Multimodal-Fusion) |
-| Single-Task |        [MFN](models/singleTask/MFN.py)         |               [Memory-Fusion-Network](https://github.com/pliang279/MFN)                |
-| Single-Task |  [Graph-MFN](models/singleTask/Graph_MFN.py)   |            [Graph-Memory-Fusion-Network](https://github.com/pliang279/MFN)             |
-| Single-Task | [MulT](models/singleTask/MulT.py)(without CTC) |      [Multimodal-Transformer](https://github.com/yaohungt/Multimodal-Transformer)      |
-| Single-Task |   [BERT-MAG](models/singleTask/BERT_MAG.py)    |        [MAG-BERT](https://github.com/WasifurRahman/BERT_multimodal_transformer)        |
-| Single-Task |        [MFM](models/singleTask/MFM.py)         |                                           -                                            |
-| Single-Task |       [MISA](models/singleTask/MISA.py)        |                      [MISA](https://github.com/declare-lab/MISA)                       |
-| Multi-Task  |     [MLF_DNN](models/multiTask/MLF_DNN.py)     |                         [MMSA](https://github.com/thuiar/MMSA)                         |
-| Multi-Task  |        [MTFN](models/multiTask/MTFN.py)        |                         [MMSA](https://github.com/thuiar/MMSA)                         |
-| Multi-Task  |        [MLMF](models/multiTask/MLMF.py)        |                         [MMSA](https://github.com/thuiar/MMSA)                         |
-| Multi-Task  |     [SELF_MM](models/multiTask/SELF_MM.py)     |                      [Self-MM](https://github.com/thuiar/Self-MM)                      |
+|    Type     |                   Model Name                            |                                          From                                          |    Published     |
+| :---------: | :-----------------------------------------------------: | :------------------------------------------------------------------------------------: | :---------------: |
+| Single-Task |        [TFN](src/MMSA/models/singleTask/TFN.py)         |        [Tensor-Fusion-Network](https://github.com/A2Zadeh/TensorFusionNetwork)         | EMNLP 2017    |
+| Single-Task |    [EF_LSTM](src/MMSA/models/singleTask/EF_LSTM.py)     |               [MultimodalDNN](https://github.com/rhoposit/MultimodalDNN)               | ACL 2018 Workshop |
+| Single-Task |     [LF_DNN](src/MMSA/models/singleTask/LF_DNN.py)      |               [MultimodalDNN](https://github.com/rhoposit/MultimodalDNN)               | ACL 2018 Workshop |
+| Single-Task |        [LMF](src/MMSA/models/singleTask/LMF.py)         | [Low-rank-Multimodal-Fusion](https://github.com/Justin1904/Low-rank-Multimodal-Fusion) | ACL 2018          |
+| Single-Task |        [MFN](src/MMSA/models/singleTask/MFN.py)         |               [Memory-Fusion-Network](https://github.com/pliang279/MFN)                | AAAI 2018          |
+| Single-Task |  [Graph-MFN](src/MMSA/models/singleTask/Graph_MFN.py)   |    [Graph-Memory-Fusion-Network](https://github.com/A2Zadeh/CMU-MultimodalSDK/)        | ACL 2018          |
+| Single-Task | [MulT](src/MMSA/models/singleTask/MulT.py)(without CTC) |      [Multimodal-Transformer](https://github.com/yaohungt/Multimodal-Transformer)      | ACL 2019          |
+| Single-Task |        [MFM](src/MMSA/models/singleTask/MFM.py)         |                     [MFM](https://github.com/pliang279/factorized/)                    | ICRL 2019          |
+| Multi-Task  |     [MLF_DNN](src/MMSA/models/multiTask/MLF_DNN.py)     |                         [MMSA](https://github.com/thuiar/MMSA)                         | ACL 2020          |
+| Multi-Task  |        [MTFN](src/MMSA/models/multiTask/MTFN.py)        |                         [MMSA](https://github.com/thuiar/MMSA)                         | ACL 2020          |
+| Multi-Task  |        [MLMF](src/MMSA/models/multiTask/MLMF.py)        |                         [MMSA](https://github.com/thuiar/MMSA)                         | ACL 2020          |
+| Single-Task |   [BERT-MAG](src/MMSA/models/singleTask/BERT_MAG.py)    |        [MAG-BERT](https://github.com/WasifurRahman/BERT_multimodal_transformer)        | ACL 2020          |
+| Single-Task |       [MISA](src/MMSA/models/singleTask/MISA.py)        |                      [MISA](https://github.com/declare-lab/MISA)                       | ACMMM 2020    |
+| Single-Task |     [SELF_MM](src/MMSA/models/multiTask/SELF_MM.py)     |                      [Self-MM](https://github.com/thuiar/Self-MM)                      | AAAI 2021          |
+| Single-Task |       [MMIM](src/MMSA/models/singleTask/MMIM.py)        |            [MMIM](https://github.com/declare-lab/Multimodal-Infomax)                   | EMNLP 2021    |
+| Single-Task |           BBFN (Work in Progress)                       |               [BBFN](https://github.com/declare-lab/BBFN)                              | ICMI 2021          |
 
-## Results
 
-> Baseline results are reported in [results/result-stat.md](results/result-stat.md)
+## 4. Results
 
-## Paper
+Baseline results are reported in [results/result-stat.md](results/result-stat.md)
+
+## 5. Citation
 
 - [CH-SIMS: A Chinese Multimodal Sentiment Analysis Dataset with Fine-grained Annotations of Modality](https://www.aclweb.org/anthology/2020.acl-main.343/)
 - [Learning Modality-Specific Representations with Self-Supervised Multi-Task Learning for Multimodal Sentiment Analysis](https://arxiv.org/abs/2102.04830)

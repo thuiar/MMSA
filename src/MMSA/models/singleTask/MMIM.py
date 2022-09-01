@@ -10,41 +10,15 @@ from torch import nn
 from torch.nn.utils.rnn import pack_padded_sequence
 import torch.nn.functional as F
 
+import time
+import math 
+
+from torch.nn.utils.rnn import pad_sequence, pack_padded_sequence, pad_packed_sequence #
+from transformers import BertModel, BertConfig
+
+
 __all__ = ['MMIM']
 
-class Fusion(nn.Module):
-    '''
-    The subnetwork that is used in TFN for video and audio in the pre-fusion stage
-    '''
-
-    def __init__(self, in_size, hidden_size, n_class, dropout):
-        '''
-        Args:
-            in_size: input dimension
-            hidden_size: hidden layer dimension
-            dropout: dropout probability
-        Output:
-            (return value in forward) a tensor of shape (batch_size, hidden_size)
-        '''
-        super(Fusion, self).__init__()
-        self.norm = nn.BatchNorm1d(in_size)
-        self.drop = nn.Dropout(p=dropout)
-        self.linear_1 = nn.Linear(in_size, hidden_size)
-        self.linear_2 = nn.Linear(hidden_size, hidden_size)
-        self.linear_3 = nn.Linear(hidden_size, n_class)
-
-    def forward(self, x):
-        '''
-        Args:
-            x: tensor of shape (batch_size, in_size)
-        '''
-        normed = self.norm(x)
-        dropped = self.drop(normed)
-        y_1 = F.relu(self.linear_1(dropped))
-        y_2 = F.relu(self.linear_2(y_1))
-        y_3 = F.relu(self.linear_3(y_2))
-
-        return y_1, y_3
 
 class RNNEncoder(nn.Module):
     def __init__(self, in_size, hidden_size, out_size, num_layers=1, dropout=0.2, bidirectional=False):
@@ -145,16 +119,6 @@ class MMILB(nn.Module):
                 pos_history = mem['pos']
                 neg_history = mem['neg']
 
-                # Diagonal setting            
-                # pos_all = torch.cat(pos_history + [pos_y], dim=0) # n_pos, emb
-                # neg_all = torch.cat(neg_history + [neg_y], dim=0)
-                # mu_pos = pos_all.mean(dim=0)
-                # mu_neg = neg_all.mean(dim=0)
-
-                # sigma_pos = torch.mean(pos_all ** 2, dim = 0) - mu_pos ** 2 # (embed)
-                # sigma_neg = torch.mean(neg_all ** 2, dim = 0) - mu_neg ** 2 # (embed)
-                # H = 0.25 * (torch.sum(torch.log(sigma_pos)) + torch.sum(torch.log(sigma_neg)))
-
                 # compute the entire co-variance matrix
                 pos_all = torch.cat(pos_history + [pos_y], dim=0) # n_pos, emb
                 neg_all = torch.cat(neg_history + [neg_y], dim=0)
@@ -166,6 +130,7 @@ class MMILB(nn.Module):
                 H = 0.25 * (torch.logdet(sigma_pos) + torch.logdet(sigma_neg))
 
         return lld, sample_dict, H
+
 
 class CPC(nn.Module):
     """
@@ -212,6 +177,41 @@ class CPC(nn.Module):
         return nce
 
 
+class Fusion(nn.Module): #SubNet
+    '''
+    The subnetwork that is used in TFN for video and audio in the pre-fusion stage
+    '''
+
+    def __init__(self, in_size, hidden_size, n_class, dropout, modal_name='text'):
+        '''
+        Args:
+            in_size: input dimension
+            hidden_size: hidden layer dimension
+            dropout: dropout probability
+        Output:
+            (return value in forward) a tensor of shape (batch_size, hidden_size)
+        '''
+        super(Fusion, self).__init__() #SubNet
+        # self.norm = nn.BatchNorm1d(in_size)
+        self.drop = nn.Dropout(p=dropout)
+        self.linear_1 = nn.Linear(in_size, hidden_size)
+        self.linear_2 = nn.Linear(hidden_size, hidden_size)
+        self.linear_3 = nn.Linear(hidden_size, n_class)
+
+    def forward(self, x):
+        '''
+        Args:
+            x: tensor of shape (batch_size, in_size)
+        '''
+        # normed = self.norm(x)
+        dropped = self.drop(x)
+        y_1 = torch.tanh(self.linear_1(dropped))
+        fusion = self.linear_2(y_1)
+        y_2 = torch.tanh(self.linear_2(y_1))
+        y_3 = self.linear_3(y_2)
+        return y_2, y_3
+
+
 class MMIM(nn.Module):
     def __init__(self, config):
         """Construct MultiMoldal InfoMax model.
@@ -229,7 +229,7 @@ class MMIM(nn.Module):
 
         if config.use_bert:
             # text subnets
-            self.bertmodel = BertTextEncoder(use_finetune=config.use_finetune, transformers=config.transformers, pretrained=config.pretrained)
+            self.bertmodel = BertTextEncoder(use_finetune=config.use_finetune, transformers=config.transformers, pretrained=config.pretrained) #######
 
         self.visual_enc = RNNEncoder(
             in_size = config.feature_dims[2],
@@ -307,6 +307,7 @@ class MMIM(nn.Module):
         For Bert input, the length of text is "seq_len + 2"
         """
         enc_word = self.bertmodel(text) # (batch_size, seq_len, emb_size)
+        
         text_h = enc_word[:,0,:] # (batch_size, emb_size)
 
         audio_h = self.acoustic_enc(audio, audio_lengths)
@@ -315,7 +316,7 @@ class MMIM(nn.Module):
         if y is not None:
             lld_tv, tv_pn, H_tv = self.mi_tv(x=text_h, y=vision_h, labels=y, mem=mem['tv'])
             lld_ta, ta_pn, H_ta = self.mi_ta(x=text_h, y=audio_h, labels=y, mem=mem['ta'])
-            # for ablation use
+
             if self.add_va:
                 lld_va, va_pn, H_va = self.mi_va(x=vision_h, y=audio_h, labels=y, mem=mem['va'])
         else:

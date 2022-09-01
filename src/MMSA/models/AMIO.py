@@ -19,6 +19,7 @@ class AMIO(nn.Module):
             'ef_lstm': EF_LSTM,
             'lf_dnn': LF_DNN,
             'graph_mfn': Graph_MFN,
+            'mctn': MCTN,
             'bert_mag': BERT_MAG,
             'mult': MULT,
             'misa': MISA,
