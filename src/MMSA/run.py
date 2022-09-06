@@ -1,14 +1,12 @@
+import errno
 import gc
 import json
 import logging
-import multiprocessing as mp
 import os
 import pickle
 import random
 import time
-from multiprocessing import Pool
 from pathlib import Path
-from webbrowser import get
 
 import numpy as np
 import pandas as pd
@@ -67,9 +65,12 @@ def MMSA_run(
     log_dir: str = "", gpu_ids: list = [0], num_workers: int = 4,
     verbose_level: int = 1
 ):
-    """Main function for running the MMSA framework.
+    """Train and Test MSA models.
 
-    Runs MSA experiments on datasets and models specified in parameters.
+    Given a set of hyper-parameters(via config), will train models on training
+    and validation set, then test on test set and report the results. If 
+    `is_tune` is set, will accept lists as hyper-parameters and conduct a grid
+    search to find the optimal values.
 
     Args:
         model_name: Name of MSA model.
@@ -109,7 +110,7 @@ def MMSA_run(
         else:
             config_file = Path(__file__).parent / "config" / "config_regression.json"
     if not config_file.is_file():
-        raise ValueError(f"Config file {str(config_file)} not found.")
+        raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT), config)
     if model_save_dir == "": # use default model save dir
         model_save_dir = Path.home() / "MMSA" / "saved_models"
     Path(model_save_dir).mkdir(parents=True, exist_ok=True)
@@ -269,12 +270,77 @@ def _run(args, num_workers=4, is_tune=False, from_sena=False):
     return {"epoch_results": epoch_results, 'final_results': final_results} if from_sena else results
 
 
+def MMSA_test(
+    model_name: str,
+    config: dict | str,
+    weights_path: str,
+    feature_path: str, 
+    # seeds: list = [], 
+    gpu_id: int = 0, 
+):
+    """Test MSA models on a single sample.
+
+    Load weights and configs of a saved model, input pre-extracted
+    features of a video, then get sentiment prediction results.
+
+    Args:
+        model_name: Name of MSA model.
+        config: Config dict or path to config file. 
+        weights_path: Pkl file path of saved model weights.
+        feature_path: Pkl file path of pre-extracted features.
+        gpu_id: Specify which gpu to use. Use cpu if value < 0.
+    """
+    model_name = model_name.lower()
+    if type(config) == str or type(config) == Path:
+        config = Path(config)
+        with open(config, 'r') as f:
+            args = json.load(f)
+    elif type(config) == dict or type(config) == edict:
+        args = config
+    else:
+        raise ValueError(f"'config' should be string or dict, not {type(config)}")
+    args['train_mode'] = 'regression' # backward compatibility.
+
+    if gpu_id > 0:
+        device = torch.device('cpu')
+    else:
+        device = torch.device(f'cuda:{gpu_id}')
+    with open(feature_path, "rb") as f:
+        feature = pickle.load(f)
+    
+    model = AMIO(args)
+    model.load_state_dict(torch.load(weights_path))
+    model.to(device)
+    model.eval()
+    with torch.no_grad():
+        if type(text := feature['text']) == np.ndarray:
+            text = torch.from_numpy(text).float()
+        if type(audio := feature['audio']) == np.ndarray:
+            audio = torch.from_numpy(audio).float()
+        if type(vision := feature['vision']) == np.ndarray:
+            vision = torch.from_numpy(vision).float()
+        text = text.unsqueeze(0).to(device)
+        audio = audio.unsqueeze(0).to(device)
+        vision = vision.unsqueeze(0).to(device)
+        if 'need_normalized' in args and args['need_normalized']:
+            audio = torch.mean(audio, dim=1, keepdims=True)
+            vision = torch.mean(vision, dim=1, keepdims=True)
+        try:
+            output = model(text, audio, vision)
+        except TypeError: # for Self_MM and MMIM
+            output = model(text, (audio, audio.shape[0]), (vision, vision.shape[0]))
+        if type(output) == dict:
+            output = output['M'].cpu().detach().numpy()
+    return output
+        
+
 SENA_ENABLED = True
 try:
     from datetime import datetime
     from multiprocessing import Queue
-    from sklearn.decomposition import PCA
+
     import mysql.connector
+    from sklearn.decomposition import PCA
 except ImportError:
     logger.debug("SENA_run is not loaded due to missing dependencies. Ignore this if you are not using M-SENA Platform.")
     SENA_ENABLED = False
