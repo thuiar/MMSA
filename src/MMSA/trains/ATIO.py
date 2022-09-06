@@ -3,6 +3,7 @@ ATIO -- All Trains in One
 """
 from .multiTask import *
 from .singleTask import *
+from .missingTask import *
 
 __all__ = ['ATIO']
 
@@ -27,6 +28,8 @@ class ATIO():
             'mlmf': MLMF,
             'mlf_dnn': MLF_DNN,
             'self_mm': SELF_MM,
+            # missing-task
+            'tfr_net': TFR_NET,
         }
     
     def getTrain(self, args):

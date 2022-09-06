@@ -23,7 +23,7 @@ class MMDataset(Dataset):
     def __init_mosi(self):
         with open(self.args['featurePath'], 'rb') as f:
             data = pickle.load(f)
-        if 'use_bert' in self.args and self.args['use_bert']:
+        if self.args.get('use_bert', None):
             self.text = data[self.mode]['text_bert'].astype(np.float32)
         else:
             self.text = data[self.mode]['text'].astype(np.float32)
@@ -37,7 +37,7 @@ class MMDataset(Dataset):
         if self.args['feature_T'] != "":
             with open(self.args['feature_T'], 'rb') as f:
                 data_T = pickle.load(f)
-            if 'use_bert' in self.args and self.args['use_bert']:
+            if self.args.get('use_bert', None):
                 self.text = data_T[self.mode]['text_bert'].astype(np.float32)
                 self.args['feature_dims'][0] = 768 # TODO: fix this
             else:
@@ -75,7 +75,21 @@ class MMDataset(Dataset):
                 self.vision_lengths = data[self.mode]['vision_lengths']
         self.audio[self.audio == -np.inf] = 0
 
-        if 'need_normalized' in self.args and self.args['need_normalized']:
+        if self.args.get('data_missing'):
+            # Currently only support unaligned data missing.
+            self.text_m, self.text_length, self.text_mask, self.text_missing_mask = self.generate_m(self.text[:,0,:], self.text[:,1,:], None,
+                                                                                        self.args.missing_rate[0], self.args.missing_seed[0], mode='text')
+            Input_ids_m = np.expand_dims(self.text_m, 1)
+            Input_mask = np.expand_dims(self.text_mask, 1)
+            Segment_ids = np.expand_dims(self.text[:,2,:], 1)
+            self.text_m = np.concatenate((Input_ids_m, Input_mask, Segment_ids), axis=1)
+
+            self.audio_m, self.audio_length, self.audio_mask, self.audio_missing_mask = self.generate_m(self.audio, None, self.audio_lengths,
+                                                                                        self.args.missing_rate[1], self.args.missing_seed[1], mode='audio')
+            self.vision_m, self.vision_length, self.vision_mask, self.vision_missing_mask = self.generate_m(self.vision, None, self.vision_lengths,
+                                                                                        self.args.missing_rate[2], self.args.missing_seed[2], mode='vision')
+
+        if self.args.get('need_normalized'):
             self.__normalize()
     
     def __init_mosei(self):
@@ -83,6 +97,28 @@ class MMDataset(Dataset):
 
     def __init_sims(self):
         return self.__init_mosi()
+
+    def generate_m(self, modality, input_mask, input_len, missing_rate, missing_seed, mode='text'):
+        
+        if mode == 'text':
+            input_len = np.argmin(input_mask, axis=1)
+        elif mode == 'audio' or mode == 'vision':
+            input_mask = np.array([np.array([1] * length + [0] * (modality.shape[1] - length)) for length in input_len])
+        np.random.seed(missing_seed)
+        missing_mask = (np.random.uniform(size=input_mask.shape) > missing_rate) * input_mask
+        
+        assert missing_mask.shape == input_mask.shape
+        
+        if mode == 'text':
+            # CLS SEG Token unchanged.
+            for i, instance in enumerate(missing_mask):
+                instance[0] = instance[input_len[i] - 1] = 1
+            
+            modality_m = missing_mask * modality + (100 * np.ones_like(modality)) * (input_mask - missing_mask) # UNK token: 100.
+        elif mode == 'audio' or mode == 'vision':
+            modality_m = missing_mask.reshape(modality.shape[0], modality.shape[1], 1) * modality
+        
+        return modality_m, input_len, input_mask, missing_mask
 
     def __truncate(self):
         # NOTE: truncate input to specific length.
@@ -150,6 +186,18 @@ class MMDataset(Dataset):
         if not self.args['need_data_aligned']:
             sample['audio_lengths'] = self.audio_lengths[index]
             sample['vision_lengths'] = self.vision_lengths[index]
+        if self.args.get('data_missing'):
+            sample['text_m'] = torch.Tensor(self.text_m[index])
+            sample['text_missing_mask'] = torch.Tensor(self.text_missing_mask[index])
+            sample['audio_m'] = torch.Tensor(self.audio_m[index])
+            sample['audio_lengths'] = self.audio_lengths[index]
+            sample['audio_mask'] = self.audio_mask[index]
+            sample['audio_missing_mask'] = torch.Tensor(self.audio_missing_mask[index])
+            sample['vision_m'] = torch.Tensor(self.vision_m[index])
+            sample['vision_lengths'] = self.vision_lengths[index]
+            sample['vision_mask'] = self.vision_mask[index]
+            sample['vision_missing_mask'] = torch.Tensor(self.vision_missing_mask[index])
+
         return sample
 
 def MMDataLoader(args, num_workers):

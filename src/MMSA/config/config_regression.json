@@ -9,7 +9,9 @@
         "train_samples": 1284,
         "num_classes": 3,
         "language": "en",
-        "KeyEval": "Loss"
+        "KeyEval": "Loss",
+        "missing_rate": [0.2, 0.2, 0.2],
+        "missing_seed": [1111, 1111, 1111]
       },
       "unaligned": {
         "featurePath": "MOSI/Processed/unaligned_50.pkl",
@@ -18,7 +20,9 @@
         "train_samples": 1284,
         "num_classes": 3,
         "language": "en",
-        "KeyEval": "Loss"
+        "KeyEval": "Loss",
+        "missing_rate": [0.2, 0.2, 0.2],
+        "missing_seed": [1111, 1111, 1111]
       }
     },
     "mosei": {
@@ -49,7 +53,9 @@
         "train_samples": 1368,
         "num_classes": 3,
         "language": "cn",
-        "KeyEval": "Loss"
+        "KeyEval": "Loss",
+        "missing_rate": [0.2, 0.2, 0.2],
+        "missing_seed": [1111, 1111, 1111]
       }
     }
   },
@@ -1001,7 +1007,6 @@
         "transformers": "bert",
         "pretrained": "bert-base-chinese"
       }
-      
     }
   },
 
@@ -1028,7 +1033,101 @@
         "pretrained": "bert-base-uncased",
         "max_seq_len": 50
       }
-      
+    }
+  },
+  "tfr_net": {
+    "commonParams": {
+      "data_missing": true,
+      "deal_missing": true,
+      "need_data_aligned": false,
+      "alignmentModule": "crossmodal_attn",
+      "generatorModule": "linear",
+      "fusionModule": "c_gate",
+      "recloss_type": "combine",
+      "without_generator": false,
+      "early_stop": 6,
+      "use_bert": true,
+      "use_bert_finetune": true,
+      "attn_mask": true,
+      "update_epochs": 4
+    },
+    "datasetParams": {
+      "mosi": {
+        "pretrained": "bert-base-uncased",
+        "text_dropout": 0.2,
+        "conv1d_kernel_size_l": 1,
+        "conv1d_kernel_size_a": 5,
+        "conv1d_kernel_size_v": 3,
+        "attn_dropout": 0.2,
+        "attn_dropout_a": 0.1,
+        "attn_dropout_v": 0.0,
+        "relu_dropout": 0.2,
+        "embed_dropout": 0.2,
+        "res_dropout": 0.2,
+        "dst_feature_dim_nheads": [30, 6],
+        "nlevels": 3,
+        "fusion_t_in": 90,
+        "fusion_a_in": 90,
+        "fusion_v_in": 90,
+        "fusion_t_hid": 36,
+        "fusion_a_hid": 20,
+        "fusion_v_hid": 48,
+        "fusion_gru_layers": 3,
+        "use_linear": true,
+        "fusion_drop": 0.2,
+        "cls_hidden_dim": 128,
+        "cls_dropout": 0.0,
+        "grad_clip": 0.8,
+        "batch_size": 24,
+        "learning_rate_bert": 1e-5,
+        "learning_rate_other": 0.002,
+        "patience": 5,
+        "weight_decay_bert": 0.0001,
+        "weight_decay_other": 0.001,
+        "weight_gen_loss": [5, 2, 20],
+        "weight_sim_loss": 5
+      },
+      "sims": {
+        "pretrained": "bert-base-chinese",
+        "text_dropout": 0.2,
+        "conv1d_kernel_size_l": 1,
+        "conv1d_kernel_size_a": 5,
+        "conv1d_kernel_size_v": 3,
+        "attn_dropout": 0.2,
+        "attn_dropout_a": 0.1,
+        "attn_dropout_v": 0.0,
+        "relu_dropout": 0.0,
+        "embed_dropout": 0.1,
+        "res_dropout": 0.2,
+        "dst_feature_dim_nheads": [30, 6],
+        "nlevels": 2,
+        "trans_hid_t": 40,
+        "trans_hid_t_drop": 0.0,
+        "trans_hid_a": 80,
+        "trans_hid_a_drop": 0.1,
+        "trans_hid_v": 48,
+        "trans_hid_v_drop": 0.3,
+        "fusion_t_in": 90,
+        "fusion_a_in": 90,
+        "fusion_v_in": 90,
+        "fusion_t_hid": 36,
+        "fusion_a_hid": 20,
+        "fusion_v_hid": 48,
+        "fusion_gru_layers": 3,
+        "use_linear": true,
+        "fusion_drop": 0.2,
+        "cls_hidden_dim": 128,
+        "cls_dropout": 0.1,
+        "grad_clip": 0.8,
+        "batch_size": 16,
+        "learning_rate_bert": 1e-5,
+        "learning_rate_other": 0.002,
+        "patience": 10,
+        "weight_decay_bert": 0.0001,
+        "weight_decay_other": 0.001,
+        "weight_gen_loss": [1, 0.01, 0.0001],
+        "weight_sim_loss": 5
+      }
     }
   }
 }

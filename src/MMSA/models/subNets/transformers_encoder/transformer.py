@@ -23,13 +23,16 @@ class TransformerEncoder(nn.Module):
     """
 
     def __init__(self, embed_dim, num_heads, layers, attn_dropout=0.0, relu_dropout=0.0, res_dropout=0.0,
-                 embed_dropout=0.0, attn_mask=False):
+                 embed_dropout=0.0, attn_mask=False, position_embedding=False):
         super().__init__()
         self.dropout = embed_dropout      # Embedding dropout
         self.attn_dropout = attn_dropout
         self.embed_dim = embed_dim
         self.embed_scale = math.sqrt(embed_dim)
-        self.embed_positions = SinusoidalPositionalEmbedding(embed_dim)
+        if position_embedding:
+            self.embed_positions = SinusoidalPositionalEmbedding(embed_dim)
+        else:
+            self.embed_positions = None
         
         self.attn_mask = attn_mask
 

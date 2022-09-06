@@ -5,6 +5,7 @@ import torch.nn as nn
 
 from .multiTask import *
 from .singleTask import *
+from .missingTask import *
 from .subNets import AlignSubNet
 
 
@@ -29,9 +30,11 @@ class AMIO(nn.Module):
             'mtfn': MTFN,
             'mlmf': MLMF,
             'mlf_dnn': MLF_DNN,
-            'self_mm': SELF_MM
+            'self_mm': SELF_MM,
+            # missing-task
+            'tfr_net': TFR_NET
         }
-        self.need_model_aligned = args['need_model_aligned']
+        self.need_model_aligned = args.get('need_model_aligned', None)
         # simulating word-align network (for seq_len_T == seq_len_A == seq_len_V)
         if(self.need_model_aligned):
             self.alignNet = AlignSubNet(args, 'avg_pool')

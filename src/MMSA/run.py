@@ -307,6 +307,7 @@ def MMSA_test(
         device = torch.device('cpu')
     else:
         device = torch.device(f'cuda:{gpu_id}')
+    args['device'] = device
     with open(feature_path, "rb") as f:
         feature = pickle.load(f)
     
