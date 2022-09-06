@@ -301,7 +301,7 @@ class MMIM(nn.Module):
             dropout = config.dropout_prj
         )
             
-    def forward(self, text, audio, vision, audio_lengths, vision_lengths, y=None, mem=None):
+    def forward(self, text, audio, vision, y=None, mem=None):
         """
         text, audio, and vision should have dimension [batch_size, seq_len, n_features]
         For Bert input, the length of text is "seq_len + 2"
@@ -310,6 +310,8 @@ class MMIM(nn.Module):
         
         text_h = enc_word[:,0,:] # (batch_size, emb_size)
 
+        audio , audio_lengths = audio
+        vision, vision_lengths = vision
         audio_h = self.acoustic_enc(audio, audio_lengths)
         vision_h = self.visual_enc(vision, vision_lengths)
 

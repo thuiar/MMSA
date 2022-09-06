@@ -39,8 +39,7 @@ class MMIM():
                 
                 batch_size = text.size(0)
 
-                results = self.model(text, audio, vision, audio_lengths=audio_lengths, 
-                                                vision_lengths=vision_lengths, y=None, mem=None)
+                results = self.model(text, (audio, audio_lengths), (vision, vision_lengths))
 
                 loss = -results['lld']
                 loss.backward()
@@ -82,8 +81,8 @@ class MMIM():
                 else:
                     mem = {'tv': None, 'ta': None, 'va': None}
 
-                results = self.model(text, audio, vision, audio_lengths=audio_lengths, 
-                                                vision_lengths=vision_lengths, y=labels, mem=mem)
+                results = self.model(text, (audio, audio_lengths), (vision, vision_lengths),
+                                            y=labels, mem=mem)
                 y_loss = self.criterion(results['M'], labels)
 
                 if len(mem_pos_tv) < self.args.mem_size:
@@ -221,8 +220,8 @@ class MMIM():
                     labels = batch_data['labels']['M'].to(self.args.device)
                     labels = labels.view(-1, 1)
                     # we don't need lld and bound anymore
-                    outputs = self.model(text, audio, vision, audio_lengths=audio_lengths, 
-                                                vision_lengths=vision_lengths)['M']
+                    outputs = self.model(text, (audio, audio_lengths), 
+                                            (vision, vision_lengths))['M']
                     loss = self.criterion(outputs, labels)
                     eval_loss += loss.item()
                     y_pred.append(outputs.cpu())
