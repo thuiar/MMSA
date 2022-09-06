@@ -131,6 +131,6 @@ class AuViSubNet(nn.Module):
         '''
         packed_sequence = pack_padded_sequence(x, lengths, batch_first=True, enforce_sorted=False)
         _, final_states = self.rnn(packed_sequence)
-        h = self.dropout(final_states[0].squeeze())
+        h = self.dropout(final_states[0].squeeze(0))
         y_1 = self.linear_1(h)
         return y_1

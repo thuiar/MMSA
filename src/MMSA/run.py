@@ -60,10 +60,10 @@ def _set_logger(log_dir, model_name, dataset_name, verbose_level):
 def MMSA_run(
     model_name: str, dataset_name: str, config_file: str = "",
     config: dict = None, seeds: list = [], is_tune: bool = False,
-    tune_times: int = 50, feature_T: str = "", feature_A: str = "",
-    feature_V: str = "", model_save_dir: str = "", res_save_dir: str = "",
-    log_dir: str = "", gpu_ids: list = [0], num_workers: int = 4,
-    verbose_level: int = 1
+    tune_times: int = 50, custom_feature: str = "", feature_T: str = "", 
+    feature_A: str = "", feature_V: str = "", model_save_dir: str = "",
+    res_save_dir: str = "", log_dir: str = "", gpu_ids: list = [0],
+    num_workers: int = 4, verbose_level: int = 1
 ):
     """Train and Test MSA models.
 
@@ -82,6 +82,9 @@ def MMSA_run(
         seeds: List of seeds. Default: [1111, 1112, 1113, 1114, 1115]
         is_tune: Tuning mode switch. Default: False
         tune_times: Sets of hyper parameters to tune. Default: 50
+        custom_feature: Path to custom feature file. The custom feature should
+            contain features of all three modalities. If only one modality has
+            customized features, use `feature_*` below. 
         feature_T: Path to text feature file. Provide an empty string to use
             default BERT features. Default: ""
         feature_A: Path to audio feature file. Provide an empty string to use
@@ -185,6 +188,7 @@ def MMSA_run(
         args['model_save_path'] = Path(model_save_dir) / f"{args['model_name']}-{args['dataset_name']}.pth"
         args['device'] = assign_gpu(gpu_ids)
         args['train_mode'] = 'regression' # backward compatibility. TODO: remove all train_mode in code
+        args['custom_feature'] = custom_feature
         args['feature_T'] = feature_T
         args['feature_A'] = feature_A
         args['feature_V'] = feature_V
@@ -271,7 +275,6 @@ def _run(args, num_workers=4, is_tune=False, from_sena=False):
 
 
 def MMSA_test(
-    model_name: str,
     config: dict | str,
     weights_path: str,
     feature_path: str, 
@@ -290,7 +293,6 @@ def MMSA_test(
         feature_path: Pkl file path of pre-extracted features.
         gpu_id: Specify which gpu to use. Use cpu if value < 0.
     """
-    model_name = model_name.lower()
     if type(config) == str or type(config) == Path:
         config = Path(config)
         with open(config, 'r') as f:
@@ -313,8 +315,12 @@ def MMSA_test(
     model.to(device)
     model.eval()
     with torch.no_grad():
-        if type(text := feature['text']) == np.ndarray:
-            text = torch.from_numpy(text).float()
+        if args.get('use_bert', None):
+            if type(text := feature['text_bert']) == np.ndarray:
+                text = torch.from_numpy(text).float()
+        else:
+            if type(text := feature['text']) == np.ndarray:
+                text = torch.from_numpy(text).float()
         if type(audio := feature['audio']) == np.ndarray:
             audio = torch.from_numpy(audio).float()
         if type(vision := feature['vision']) == np.ndarray:
@@ -327,11 +333,11 @@ def MMSA_test(
             vision = torch.mean(vision, dim=1, keepdims=True)
         try:
             output = model(text, audio, vision)
-        except TypeError: # for Self_MM and MMIM
-            output = model(text, (audio, audio.shape[0]), (vision, vision.shape[0]))
+        except ValueError: # for Self_MM and MMIM
+            output = model(text, (audio, torch.tensor(audio.shape[1]).unsqueeze(0)), (vision, torch.tensor(vision.shape[1]).unsqueeze(0)))
         if type(output) == dict:
-            output = output['M'].cpu().detach().numpy()
-    return output
+            output = output['M']
+    return output.cpu().detach().numpy()[0][0]
         
 
 SENA_ENABLED = True
