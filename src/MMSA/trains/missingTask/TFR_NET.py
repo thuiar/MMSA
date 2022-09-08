@@ -149,7 +149,6 @@ class TFR_NET():
                     vision_missing_mask = batch_data['vision_missing_mask'].to(self.args.device)
                     labels = batch_data['labels']['M'].to(self.args.device)
 
-                    labels = batch_data['labels']['M'].to(self.args.device)
                     if self.args.train_mode == 'classification':
                         labels = labels.view(-1).long()
                     else:

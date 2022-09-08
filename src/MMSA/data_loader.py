@@ -21,34 +21,44 @@ class MMDataset(Dataset):
         DATASET_MAP[args['dataset_name']]()
 
     def __init_mosi(self):
-        with open(self.args['featurePath'], 'rb') as f:
-            data = pickle.load(f)
+        if self.args['custom_feature']:
+            # use custom feature file extracted with MMSA-FET
+            with open(self.args['custom_feature'], 'rb') as f:
+                data = pickle.load(f)
+        else:
+            # use deault feature file specified in config file
+            with open(self.args['featurePath'], 'rb') as f:
+                data = pickle.load(f)
+        
         if self.args.get('use_bert', None):
             self.text = data[self.mode]['text_bert'].astype(np.float32)
+            self.args['feature_dims'][0] = 768
         else:
             self.text = data[self.mode]['text'].astype(np.float32)
-        self.vision = data[self.mode]['vision'].astype(np.float32)
+            self.args['feature_dims'][0] = self.text.shape[2]
         self.audio = data[self.mode]['audio'].astype(np.float32)
+        self.args['feature_dims'][1] = self.audio.shape[2]
+        self.vision = data[self.mode]['vision'].astype(np.float32)
+        self.args['feature_dims'][2] = self.vision.shape[2]
         self.raw_text = data[self.mode]['raw_text']
         self.ids = data[self.mode]['id']
 
-        # use custom features
-        use_custom_features = (self.args['feature_T'] != "" or self.args['feature_A'] != "" or self.args['feature_V'] != "")
-        if self.args['feature_T'] != "":
+        # Overide with custom modality features
+        if self.args['feature_T']:
             with open(self.args['feature_T'], 'rb') as f:
                 data_T = pickle.load(f)
             if self.args.get('use_bert', None):
                 self.text = data_T[self.mode]['text_bert'].astype(np.float32)
-                self.args['feature_dims'][0] = 768 # TODO: fix this
+                self.args['feature_dims'][0] = 768
             else:
                 self.text = data_T[self.mode]['text'].astype(np.float32)
                 self.args['feature_dims'][0] = self.text.shape[2]
-        if self.args['feature_A'] != "":
+        if self.args['feature_A']:
             with open(self.args['feature_A'], 'rb') as f:
                 data_A = pickle.load(f)
             self.audio = data_A[self.mode]['audio'].astype(np.float32)
             self.args['feature_dims'][1] = self.audio.shape[2]
-        if self.args['feature_V'] != "":
+        if self.args['feature_V']:
             with open(self.args['feature_V'], 'rb') as f:
                 data_V = pickle.load(f)
             self.vision = data_V[self.mode]['vision'].astype(np.float32)
@@ -65,11 +75,11 @@ class MMDataset(Dataset):
         logger.info(f"{self.mode} samples: {self.labels['M'].shape}")
 
         if not self.args['need_data_aligned']:
-            if self.args['feature_A'] != "":
+            if self.args['feature_A']:
                 self.audio_lengths = list(data_A[self.mode]['audio_lengths'])
             else:
                 self.audio_lengths = data[self.mode]['audio_lengths']
-            if self.args['feature_V'] != "":
+            if self.args['feature_V']:
                 self.vision_lengths = list(data_V[self.mode]['vision_lengths'])
             else:
                 self.vision_lengths = data[self.mode]['vision_lengths']

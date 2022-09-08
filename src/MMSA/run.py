@@ -58,12 +58,14 @@ def _set_logger(log_dir, model_name, dataset_name, verbose_level):
 
 
 def MMSA_run(
-    model_name: str, dataset_name: str, config_file: str = "",
+    model_name: str, dataset_name: str, config_file: str = None,
     config: dict = None, seeds: list = [], is_tune: bool = False,
-    tune_times: int = 50, custom_feature: str = "", feature_T: str = "", 
-    feature_A: str = "", feature_V: str = "", model_save_dir: str = "",
-    res_save_dir: str = "", log_dir: str = "", gpu_ids: list = [0],
-    num_workers: int = 4, verbose_level: int = 1
+    tune_times: int = 50, custom_feature: str = None, feature_T: str = None, 
+    feature_A: str = None, feature_V: str = None, gpu_ids: list = [0],
+    num_workers: int = 4, verbose_level: int = 1,
+    model_save_dir: str = Path().home() / "MMSA" / "saved_models",
+    res_save_dir: str = Path().home() / "MMSA" / "results",
+    log_dir: str = Path().home() / "MMSA" / "logs",
 ):
     """Train and Test MSA models.
 
@@ -91,21 +93,21 @@ def MMSA_run(
             default features provided by dataset creators. Default: ""
         feature_V: Path to video feature file. Provide an empty string to use
             default features provided by dataset creators. Default: ""
-        model_save_dir: Path to save trained models. Default: 
-            "~/MMSA/saved_models"
-        res_save_dir: Path to save csv results. Default: "~/MMSA/results"
-        log_dir: Path to save log files. Default: "~/MMSA/logs"
         gpu_ids: GPUs to use. Will assign the most memory-free gpu if an empty
             list is provided. Default: [0]. Currently only supports single gpu.
         num_workers: Number of workers used to load data. Default: 4
         verbose_level: Verbose level of stdout. 0 for error, 1 for info, 2 for
             debug. Default: 1
+        model_save_dir: Path to save trained model weights. Default: 
+            "~/MMSA/saved_models"
+        res_save_dir: Path to save csv results. Default: "~/MMSA/results"
+        log_dir: Path to save log files. Default: "~/MMSA/logs"
     """
     # Initialization
     model_name = model_name.lower()
     dataset_name = dataset_name.lower()
     
-    if config_file != "":
+    if config_file is not None:
         config_file = Path(config_file)
     else: # use default config files
         if is_tune:
@@ -114,13 +116,13 @@ def MMSA_run(
             config_file = Path(__file__).parent / "config" / "config_regression.json"
     if not config_file.is_file():
         raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT), config)
-    if model_save_dir == "": # use default model save dir
+    if model_save_dir is None: # use default model save dir
         model_save_dir = Path.home() / "MMSA" / "saved_models"
     Path(model_save_dir).mkdir(parents=True, exist_ok=True)
-    if res_save_dir == "": # use default result save dir
+    if res_save_dir is None: # use default result save dir
         res_save_dir = Path.home() / "MMSA" / "results"
     Path(res_save_dir).mkdir(parents=True, exist_ok=True)
-    if log_dir == "": # use default log save dir
+    if log_dir is None: # use default log save dir
         log_dir = Path.home() / "MMSA" / "logs"
     Path(log_dir).mkdir(parents=True, exist_ok=True)
     seeds = seeds if seeds != [] else [1111, 1112, 1113, 1114, 1115]
@@ -135,6 +137,7 @@ def MMSA_run(
         initial_args['model_save_path'] = Path(model_save_dir) / f"{initial_args['model_name']}-{initial_args['dataset_name']}.pth"
         initial_args['device'] = assign_gpu(gpu_ids)
         initial_args['train_mode'] = 'regression' # backward compatibility. TODO: remove all train_mode in code
+        initial_args['custom_feature'] = custom_feature
         initial_args['feature_T'] = feature_T
         initial_args['feature_A'] = feature_A
         initial_args['feature_V'] = feature_V
@@ -419,18 +422,18 @@ if SENA_ENABLED:
             args['feature_A'] = feature_A
             args['feature_V'] = feature_V
             # determine feature_dims
-            if args['feature_T'] != "":
+            if args['feature_T']:
                 with open(args['feature_T'], 'rb') as f:
                     data_T = pickle.load(f)
                 if 'use_bert' in args and args['use_bert']:
                     args['feature_dims'][0] = 768
                 else:
                     args['feature_dims'][0] = data_T['valid']['text'].shape[2]
-            if args['feature_A'] != "":
+            if args['feature_A']:
                 with open(args['feature_A'], 'rb') as f:
                     data_A = pickle.load(f)
                 args['feature_dims'][1] = data_A['valid']['audio'].shape[2]
-            if args['feature_V'] != "":
+            if args['feature_V']:
                 with open(args['feature_V'], 'rb') as f:
                     data_V = pickle.load(f)
                 args['feature_dims'][2] = data_V['valid']['vision'].shape[2]

@@ -27,7 +27,10 @@ def get_config_regression(
     model_dataset_args = config_all[model_name]['datasetParams'][dataset_name]
     dataset_args = config_all['datasetCommonParams'][dataset_name]
     # use aligned feature if the model requires it, otherwise use unaligned feature
-    dataset_args = dataset_args['aligned'] if (model_common_args['need_data_aligned'] and 'aligned' in dataset_args) else dataset_args['unaligned']
+    if model_common_args['need_data_aligned'] and 'aligned' in dataset_args:
+        dataset_args = dataset_args['aligned']
+    else:
+        dataset_args = dataset_args['unaligned']
 
     config = {}
     config['model_name'] = model_name
