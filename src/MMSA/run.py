@@ -313,7 +313,9 @@ def MMSA_test(
     args['device'] = device
     with open(feature_path, "rb") as f:
         feature = pickle.load(f)
-    
+    args['feature_dims'][0] = feature['text'].shape[1]
+    args['feature_dims'][1] = feature['audio'].shape[1]
+    args['feature_dims'][2] = feature['vision'].shape[1]
     model = AMIO(args)
     model.load_state_dict(torch.load(weights_path))
     model.to(device)
@@ -332,7 +334,7 @@ def MMSA_test(
         text = text.unsqueeze(0).to(device)
         audio = audio.unsqueeze(0).to(device)
         vision = vision.unsqueeze(0).to(device)
-        if 'need_normalized' in args and args['need_normalized']:
+        if args.get('need_normalized', None):
             audio = torch.mean(audio, dim=1, keepdims=True)
             vision = torch.mean(vision, dim=1, keepdims=True)
         try:
