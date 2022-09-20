@@ -306,7 +306,7 @@ def MMSA_test(
         raise ValueError(f"'config' should be string or dict, not {type(config)}")
     args['train_mode'] = 'regression' # backward compatibility.
 
-    if gpu_id > 0:
+    if gpu_id < 0:
         device = torch.device('cpu')
     else:
         device = torch.device(f'cuda:{gpu_id}')

@@ -94,6 +94,10 @@ class MMDataset(Dataset):
             Segment_ids = np.expand_dims(self.text[:,2,:], 1)
             self.text_m = np.concatenate((Input_ids_m, Input_mask, Segment_ids), axis=1)
 
+            if self.args['need_data_aligned']:
+                self.audio_lengths = np.sum(self.text[:,1,:], axis=1, dtype=np.int32)
+                self.vision_lengths = np.sum(self.text[:,1,:], axis=1, dtype=np.int32)
+
             self.audio_m, self.audio_length, self.audio_mask, self.audio_missing_mask = self.generate_m(self.audio, None, self.audio_lengths,
                                                                                         self.args.missing_rate[1], self.args.missing_seed[1], mode='audio')
             self.vision_m, self.vision_length, self.vision_mask, self.vision_missing_mask = self.generate_m(self.vision, None, self.vision_lengths,

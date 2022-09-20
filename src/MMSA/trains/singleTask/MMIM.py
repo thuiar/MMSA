@@ -31,11 +31,14 @@ class MMIM():
                 self.model.zero_grad()
                 text = batch_data['text'].to(self.args.device)
                 audio = batch_data['audio'].to(self.args.device)
-                audio_lengths = batch_data['audio_lengths']
                 vision = batch_data['vision'].to(self.args.device)
-                vision_lengths = batch_data['vision_lengths']
                 labels = batch_data['labels']['M'].to(self.args.device)
                 labels = labels.view(-1, 1)
+                if not self.args.need_data_aligned:
+                    audio_lengths = batch_data['audio_lengths']
+                    vision_lengths = batch_data['vision_lengths']
+                else:
+                    audio_lengths, vision_lengths = 0, 0
                 
                 batch_size = text.size(0)
 
@@ -66,11 +69,14 @@ class MMIM():
                 self.model.zero_grad()
                 text = batch_data['text'].to(self.args.device)
                 audio = batch_data['audio'].to(self.args.device)
-                audio_lengths = batch_data['audio_lengths']
                 vision = batch_data['vision'].to(self.args.device)
-                vision_lengths = batch_data['vision_lengths']
                 labels = batch_data['labels']['M'].to(self.args.device)
                 labels = labels.view(-1, 1)
+                if not self.args.need_data_aligned:
+                    audio_lengths = batch_data['audio_lengths']
+                    vision_lengths = batch_data['vision_lengths']
+                else:
+                    audio_lengths, vision_lengths = 0, 0
                 
                 batch_size = text.size(0)
 
@@ -214,11 +220,14 @@ class MMIM():
                     self.model.zero_grad()
                     text = batch_data['text'].to(self.args.device)
                     audio = batch_data['audio'].to(self.args.device)
-                    audio_lengths = batch_data['audio_lengths']
                     vision = batch_data['vision'].to(self.args.device)
-                    vision_lengths = batch_data['vision_lengths']
                     labels = batch_data['labels']['M'].to(self.args.device)
                     labels = labels.view(-1, 1)
+                    if not self.args.need_data_aligned:
+                        audio_lengths = batch_data['audio_lengths']
+                        vision_lengths = batch_data['vision_lengths']
+                    else:
+                        audio_lengths, vision_lengths = 0, 0
                     # we don't need lld and bound anymore
                     outputs = self.model(text, (audio, audio_lengths), 
                                             (vision, vision_lengths))['M']

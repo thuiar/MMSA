@@ -224,6 +224,7 @@ class MMIM(nn.Module):
         assert config.use_bert == True
         output_dim = config.num_classes if config.train_mode == "classification" else 1
         self.config = config
+        self.aligned = config.need_data_aligned
         self.add_va = config.add_va
         config.d_tout = config.feature_dims[0]
 
@@ -312,8 +313,15 @@ class MMIM(nn.Module):
 
         audio , audio_lengths = audio
         vision, vision_lengths = vision
-        audio_h = self.acoustic_enc(audio, audio_lengths)
-        vision_h = self.visual_enc(vision, vision_lengths)
+
+        if self.aligned:
+            mask_len = torch.sum(text[:,1,:], dim=1, keepdim=True)
+            text_lengths = mask_len.squeeze().int().detach().cpu()
+            audio_h = self.acoustic_enc(audio, text_lengths)
+            vision_h = self.visual_enc(vision, text_lengths)
+        else:
+            audio_h = self.acoustic_enc(audio, audio_lengths)
+            vision_h = self.visual_enc(vision, vision_lengths)
 
         if y is not None:
             lld_tv, tv_pn, H_tv = self.mi_tv(x=text_h, y=vision_h, labels=y, mem=mem['tv'])
