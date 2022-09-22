@@ -16,6 +16,7 @@ from ...subNets.transformers_encoder.transformer import TransformerEncoder
 class CM_ATTN(nn.Module):
     def __init__(self, args):
         super(CM_ATTN, self).__init__()
+        self.args = args
         self.seq_lens = args.seq_lens
         dst_feature_dims, nheads = args.dst_feature_dim_nheads
         self.orig_d_l, self.orig_d_a, self.orig_d_v = args.feature_dims
@@ -75,11 +76,11 @@ class CM_ATTN(nn.Module):
         elif self_type == 'v_mem':
             embed_dim, attn_dropout, num_heads, position_embedding = self.d_v, self.attn_dropout, self.num_heads, True
         elif self_type == 'l_final':
-            embed_dim, attn_dropout, num_heads, position_embedding = self.seq_lens[0], self.attn_dropout, 25, False
+            embed_dim, attn_dropout, num_heads, position_embedding = self.seq_lens[0], self.attn_dropout, self.args["num_temporal_head"], False
         elif self_type == 'a_final':
-            embed_dim, attn_dropout, num_heads, position_embedding = self.seq_lens[1], self.attn_dropout, 25, False
+            embed_dim, attn_dropout, num_heads, position_embedding = self.seq_lens[1], self.attn_dropout, self.args["num_temporal_head"], False
         elif self_type == 'v_final':
-            embed_dim, attn_dropout, num_heads, position_embedding = self.seq_lens[2], self.attn_dropout, 25, False
+            embed_dim, attn_dropout, num_heads, position_embedding = self.seq_lens[2], self.attn_dropout, self.args["num_temporal_head"], False
         else:
             raise ValueError("Unknown network type")
         

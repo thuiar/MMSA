@@ -15,7 +15,7 @@
       },
       "unaligned": {
         "featurePath": "MOSI/Processed/unaligned_50.pkl",
-        "seq_lens": [50, 50, 50],
+        "seq_lens": [50, 500, 375],
         "feature_dims": [768, 5, 20],
         "train_samples": 1284,
         "num_classes": 3,
@@ -1083,13 +1083,14 @@
         "cls_dropout": 0.0,
         "grad_clip": 0.8,
         "batch_size": 24,
-        "learning_rate_bert": 1e-5,
-        "learning_rate_other": 0.002,
+        "learning_rate_bert": 2e-6,
+        "learning_rate_other": 0.001,
         "patience": 5,
         "weight_decay_bert": 0.0001,
         "weight_decay_other": 0.001,
         "weight_gen_loss": [5, 2, 20],
-        "weight_sim_loss": 5
+        "weight_sim_loss": 5,
+        "num_temporal_head": 25
       },
       "mosei": {
         "pretrained": "bert-base-uncased",
@@ -1123,8 +1124,9 @@
         "patience": 5,
         "weight_decay_bert": 0.0001,
         "weight_decay_other": 0.001,
-        "weight_gen_loss": [5, 2, 20],
-        "weight_sim_loss": 5
+        "weight_gen_loss": [5e-6, 2e-6, 2e-5],
+        "weight_sim_loss": 5,
+        "num_temporal_head": 25
       },
       "sims": {
         "pretrained": "bert-base-chinese",
@@ -1165,7 +1167,8 @@
         "weight_decay_bert": 0.0001,
         "weight_decay_other": 0.001,
         "weight_gen_loss": [1, 0.01, 0.0001],
-        "weight_sim_loss": 5
+        "weight_sim_loss": 5,
+        "num_temporal_head": 25
       }
     }
   }
