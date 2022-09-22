@@ -80,7 +80,6 @@ def MMSA_run(
         config_file: Path to config file. If not specified, default config
             files will be used.
         config: Config dict. Used to override arguments in config_file. 
-            Ignored in tune mode.
         seeds: List of seeds. Default: [1111, 1112, 1113, 1114, 1115]
         is_tune: Tuning mode switch. Default: False
         tune_times: Sets of hyper parameters to tune. Default: 50
@@ -115,7 +114,7 @@ def MMSA_run(
         else:
             config_file = Path(__file__).parent / "config" / "config_regression.json"
     if not config_file.is_file():
-        raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT), config)
+        raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT), config_file)
     if model_save_dir is None: # use default model save dir
         model_save_dir = Path.home() / "MMSA" / "saved_models"
     Path(model_save_dir).mkdir(parents=True, exist_ok=True)
@@ -131,7 +130,6 @@ def MMSA_run(
     logger.info("======================================== Program Start ========================================")
     
     if is_tune: # run tune
-        setup_seed(seeds[0])
         logger.info(f"Tuning with seed {seeds[0]}")
         initial_args = get_config_tune(model_name, dataset_name, config_file)
         initial_args['model_save_path'] = Path(model_save_dir) / f"{initial_args['model_name']}-{initial_args['dataset_name']}.pth"
@@ -160,8 +158,11 @@ def MMSA_run(
             args = edict(**initial_args)
             random.seed(time.time())
             new_args = get_config_tune(model_name, dataset_name, config_file)
-            random.seed(seeds[0])
             args.update(new_args)
+            if config:
+                if config.get('model_name'):
+                    assert(config['model_name'] == args['model_name'])
+                args.update(config)
             args['cur_seed'] = i + 1
             logger.info(f"{'-'*30} Tuning [{i + 1}/{tune_times}] {'-'*30}")
             logger.info(f"Args: {args}")
@@ -171,9 +172,10 @@ def MMSA_run(
                 logger.info(f"This set of parameters has been run. Skip.")
                 time.sleep(1)
                 continue
-            has_debuged.append(cur_param)
             # actual running
+            setup_seed(seeds[0])
             result = _run(args, num_workers, is_tune)
+            has_debuged.append(cur_param)
             # save result to csv file
             if Path(csv_file).is_file():
                 df2 = pd.read_csv(csv_file)
@@ -196,6 +198,8 @@ def MMSA_run(
         args['feature_A'] = feature_A
         args['feature_V'] = feature_V
         if config: # override some arguments
+            if config.get('model_name'):
+                assert(config['model_name'] == args['model_name'])
             args.update(config)
 
         # torch.cuda.set_device() encouraged by pytorch developer, although dicouraged in the doc.
