@@ -56,7 +56,7 @@ class SELF_MM(nn.Module):
         video, video_lengths = video
 
         mask_len = torch.sum(text[:,1,:], dim=1, keepdim=True)
-        text_lengths = mask_len.squeeze().int().detach().cpu()
+        text_lengths = mask_len.squeeze(1).int().detach().cpu()
         text = self.text_model(text)[:,0,:]
 
         if self.aligned:

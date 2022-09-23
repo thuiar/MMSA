@@ -316,7 +316,7 @@ class MMIM(nn.Module):
 
         if self.aligned:
             mask_len = torch.sum(text[:,1,:], dim=1, keepdim=True)
-            text_lengths = mask_len.squeeze().int().detach().cpu()
+            text_lengths = mask_len.squeeze(1).int().detach().cpu()
             audio_h = self.acoustic_enc(audio, text_lengths)
             vision_h = self.visual_enc(vision, text_lengths)
         else:

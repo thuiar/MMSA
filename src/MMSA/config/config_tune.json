@@ -9,8 +9,7 @@
         "train_samples": 1284,
         "num_classes": 3,
         "language": "en",
-        "KeyEval": "Loss",
-        "H": 3.0
+        "KeyEval": "Loss"
       },
       "unaligned": {
         "featurePath": "MOSI/Processed/unaligned_50.pkl",
@@ -19,8 +18,7 @@
         "train_samples": 1284,
         "num_classes": 3,
         "language": "en",
-        "KeyEval": "Loss",
-        "H": 3.0
+        "KeyEval": "Loss"
       }
     },
     "mosei": {
@@ -31,8 +29,7 @@
         "train_samples": 16326,
         "num_classes": 3,
         "language": "en",
-        "KeyEval": "Loss",
-        "H": 3.0
+        "KeyEval": "Loss"
       },
       "unaligned": {
         "featurePath": "MOSEI/Processed/unaligned_50.pkl",
@@ -41,8 +38,7 @@
         "train_samples": 16326,
         "num_classes": 3,
         "language": "en",
-        "KeyEval": "Loss",
-        "H": 3.0
+        "KeyEval": "Loss"
       }
     },
     "sims": {
@@ -53,8 +49,7 @@
         "train_samples": 1368,
         "num_classes": 3,
         "language": "cn",
-        "KeyEval": "Loss",
-        "H": 1.0
+        "KeyEval": "Loss"
       }
     }
   },
@@ -381,7 +376,9 @@
       "early_stop": 8,
       "update_epochs": 2,
       "rnncell": "lstm",
-      "use_cmd_sim": true
+      "use_cmd_sim": true,
+      "transformers": "bert",
+      "pretrained": "bert-base-uncased"
     },
     "debugParams": {
       "d_paras": [
@@ -758,7 +755,8 @@
       "post_fusion_dropout": [0.1, 0.0],
       "post_text_dropout": [0.1, 0.0],
       "post_audio_dropout": [0.1, 0.0],
-      "post_video_dropout": [0.1, 0.0]
+      "post_video_dropout": [0.1, 0.0],
+      "H": [3.0]
     }
   },
   "mmim": {
@@ -778,7 +776,8 @@
       "cpc_activation": "Tanh",
       "optim": "Adam",
       "mem_size": 1,
-      "when": 20
+      "when": 20,
+      "bidirectional": true
     },
     "debugParams": {
       "d_paras": [

@@ -25,7 +25,7 @@ class MMIM():
 
                 # for mosei we only use 50% dataset in stage 1
                 if self.args.dataset_name == "mosei":
-                    if i_batch / len(dataloader) >= 0.5:
+                    if i_batch / len(dataloader['train']) >= 0.5:
                         break
 
                 self.model.zero_grad()
