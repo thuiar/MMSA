@@ -317,11 +317,10 @@ def MMSA_test(
     args['device'] = device
     with open(feature_path, "rb") as f:
         feature = pickle.load(f)
-    args['feature_dims'][0] = feature['text'].shape[1]
-    args['feature_dims'][1] = feature['audio'].shape[1]
-    args['feature_dims'][2] = feature['vision'].shape[1]
+    args['feature_dims'] = [feature['text'].shape[1], feature['audio'].shape[1], feature['vision'].shape[1]]
+    args['seq_lens'] = [feature['text'].shape[0], feature['audio'].shape[0], feature['vision'].shape[0]]
     model = AMIO(args)
-    model.load_state_dict(torch.load(weights_path))
+    model.load_state_dict(torch.load(weights_path), strict=False)
     model.to(device)
     model.eval()
     with torch.no_grad():
@@ -341,10 +340,14 @@ def MMSA_test(
         if args.get('need_normalized', None):
             audio = torch.mean(audio, dim=1, keepdims=True)
             vision = torch.mean(vision, dim=1, keepdims=True)
-        try:
-            output = model(text, audio, vision)
-        except ValueError: # for Self_MM and MMIM
+        # TODO: write a do_single_test function for each model in trains
+        if args['model_name'] == 'self_mm' or args['model_name'] == 'mmim':
             output = model(text, (audio, torch.tensor(audio.shape[1]).unsqueeze(0)), (vision, torch.tensor(vision.shape[1]).unsqueeze(0)))
+        elif args['model_name'] == 'tfr_net':
+            input_mask = torch.tensor(feature['text_bert'][1]).unsqueeze(0).to(device)
+            output, _ = model((text, text, None), (audio, audio, input_mask, None), (vision, vision, input_mask, None))
+        else:
+            output = model(text, audio, vision)
         if type(output) == dict:
             output = output['M']
     return output.cpu().detach().numpy()[0][0]
