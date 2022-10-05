@@ -90,7 +90,7 @@ MMSA is a unified framework for Multimodal Sentiment Analysis.
 
 MMSA currently supports MOSI, MOSEI, and CH-SIMS dataset. Use the following links to download raw videos, feature files and label files. You don't need to download raw videos if you're not planning to run end-to-end tasks. 
 
-- [BaiduYun Disk](https://pan.baidu.com/s/1U75smJMuCeiu5GCWgUeSag?pwd=t0d7)
+- [BaiduYun Disk](https://pan.baidu.com/s/14dDwya98MK4fFI0qn-ujhw?pwd=gsxk)
 - [Google Drive](https://drive.google.com/drive/folders/1A2S4pqCHryGmiqnNSPLv7rEg63WvjCSk?usp=sharing)
 
 SHA-256 for feature files:
