@@ -9,3 +9,5 @@ logs
 test*
 experiment.py
 benchmark
+result
+results

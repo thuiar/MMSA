@@ -6,13 +6,13 @@ jobs:
   build-n-publish:
     name: Build and publish Python distributions to PyPI
     if: startsWith(github.ref, 'refs/tags')
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Set up Python 3.9
-        uses: actions/setup-python@v1
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
         with:
-          python-version: 3.9
+          python-version: 3.10
       - name: Install pypa/build
         run: >-
           python -m
@@ -23,7 +23,11 @@ jobs:
         run: >-
           python -m
           build
+          --sdist
+          --wheel
+          --outdir dist/
+          .
       - name: Publish distribution to PyPI
-        uses: pypa/gh-action-pypi-publish@master
+        uses: pypa/gh-action-pypi-publish@release/v1
         with:
           password: ${{ secrets.PYPI_API_TOKEN }}
