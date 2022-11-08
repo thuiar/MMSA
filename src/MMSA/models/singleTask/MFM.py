@@ -9,79 +9,79 @@ from .MFN import MFN
 __all__ = ['MFM']
 
 def compute_kernel(x, y):
-	x_size = x.size(0)
-	y_size = y.size(0)
-	dim = x.size(1)
-	x = x.unsqueeze(1) # (x_size, 1, dim)
-	y = y.unsqueeze(0) # (1, y_size, dim)
-	tiled_x = x.expand(x_size, y_size, dim)
-	tiled_y = y.expand(x_size, y_size, dim)
-	kernel_input = (tiled_x - tiled_y).pow(2).mean(2)/float(dim)
-	return torch.exp(-kernel_input) # (x_size, y_size)
+    x_size = x.size(0)
+    y_size = y.size(0)
+    dim = x.size(1)
+    x = x.unsqueeze(1) # (x_size, 1, dim)
+    y = y.unsqueeze(0) # (1, y_size, dim)
+    tiled_x = x.expand(x_size, y_size, dim)
+    tiled_y = y.expand(x_size, y_size, dim)
+    kernel_input = (tiled_x - tiled_y).pow(2).mean(2)/float(dim)
+    return torch.exp(-kernel_input) # (x_size, y_size)
 
 def loss_MMD(zy, args):
-	zy_real_gauss = Variable(torch.randn(zy.size())) # no need to be the same size
+    zy_real_gauss = Variable(torch.randn(zy.size())) # no need to be the same size
 
-	#if args.cuda:
-	zy_real_gauss = zy_real_gauss.to(args.device)
-	zy_real_kernel = compute_kernel(zy_real_gauss, zy_real_gauss)
-	zy_fake_kernel = compute_kernel(zy, zy)
-	zy_kernel = compute_kernel(zy_real_gauss, zy)
-	zy_mmd = zy_real_kernel.mean() + zy_fake_kernel.mean() - 2.0*zy_kernel.mean()
-	return zy_mmd
+    #if args.cuda:
+    zy_real_gauss = zy_real_gauss.to(args.device)
+    zy_real_kernel = compute_kernel(zy_real_gauss, zy_real_gauss)
+    zy_fake_kernel = compute_kernel(zy, zy)
+    zy_kernel = compute_kernel(zy_real_gauss, zy)
+    zy_mmd = zy_real_kernel.mean() + zy_fake_kernel.mean() - 2.0*zy_kernel.mean()
+    return zy_mmd
 
 class encoderLSTM(nn.Module):
-	def __init__(self, d, h): #, n_layers, bidirectional, dropout):
-		super(encoderLSTM, self).__init__()
-		self.lstm = nn.LSTMCell(d, h)
-		self.fc1 = nn.Linear(h, h)
-		self.h = h
+    def __init__(self, d, h): #, n_layers, bidirectional, dropout):
+        super(encoderLSTM, self).__init__()
+        self.lstm = nn.LSTMCell(d, h)
+        self.fc1 = nn.Linear(h, h)
+        self.h = h
 
-	def forward(self, x, args):
-		# x is t x n x h
-		t = x.shape[0]
-		n = x.shape[1]
-		self.hx = torch.zeros(n, self.h).to(args.device)
-		self.cx = torch.zeros(n, self.h).to(args.device)
-		all_hs = []
-		all_cs = []
-		for i in range(t):
-			self.hx, self.cx = self.lstm(x[i], (self.hx, self.cx))
-			all_hs.append(self.hx)
-			all_cs.append(self.cx)
-		# last hidden layer last_hs is n x h
-		last_hs = all_hs[-1]
-		last_hs = self.fc1(last_hs)
-		return last_hs
+    def forward(self, x, args):
+        # x is t x n x h
+        t = x.shape[0]
+        n = x.shape[1]
+        self.hx = torch.zeros(n, self.h).to(args.device)
+        self.cx = torch.zeros(n, self.h).to(args.device)
+        all_hs = []
+        all_cs = []
+        for i in range(t):
+            self.hx, self.cx = self.lstm(x[i], (self.hx, self.cx))
+            all_hs.append(self.hx)
+            all_cs.append(self.cx)
+        # last hidden layer last_hs is n x h
+        last_hs = all_hs[-1]
+        last_hs = self.fc1(last_hs)
+        return last_hs
 
 class decoderLSTM(nn.Module):
-	def __init__(self, h, d):
-		super(decoderLSTM, self).__init__()
-		self.lstm = nn.LSTMCell(h, h)
-		self.fc1 = nn.Linear(h, d)
-		self.d = d
-		self.h = h
-		
-	def forward(self, hT, t, args): # only embedding vector
-		# x is n x d
-		n = hT.shape[0]
-		h = hT.shape[1]
-		self.hx = torch.zeros(n, self.h).to(args.device)
-		self.cx = torch.zeros(n, self.h).to(args.device)
-		final_hs = []
-		all_hs = []
-		all_cs = []
-		for i in range(t):
-			if i == 0:
-				self.hx, self.cx = self.lstm(hT, (self.hx, self.cx))
-			else:
-				self.hx, self.cx = self.lstm(all_hs[-1], (self.hx, self.cx))
-			all_hs.append(self.hx)
-			all_cs.append(self.cx)
-			final_hs.append(self.hx.view(1,n,h))
-		final_hs = torch.cat(final_hs, dim=0)
-		all_recons = self.fc1(final_hs)
-		return all_recons
+    def __init__(self, h, d):
+        super(decoderLSTM, self).__init__()
+        self.lstm = nn.LSTMCell(h, h)
+        self.fc1 = nn.Linear(h, d)
+        self.d = d
+        self.h = h
+        
+    def forward(self, hT, t, args): # only embedding vector
+        # x is n x d
+        n = hT.shape[0]
+        h = hT.shape[1]
+        self.hx = torch.zeros(n, self.h).to(args.device)
+        self.cx = torch.zeros(n, self.h).to(args.device)
+        final_hs = []
+        all_hs = []
+        all_cs = []
+        for i in range(t):
+            if i == 0:
+                self.hx, self.cx = self.lstm(hT, (self.hx, self.cx))
+            else:
+                self.hx, self.cx = self.lstm(all_hs[-1], (self.hx, self.cx))
+            all_hs.append(self.hx)
+            all_cs.append(self.cx)
+            final_hs.append(self.hx.view(1,n,h))
+        final_hs = torch.cat(final_hs, dim=0)
+        all_recons = self.fc1(final_hs)
+        return all_recons
 
 class MFM(nn.Module):
     def __init__(self, args):
@@ -151,7 +151,7 @@ class MFM(nn.Module):
         self.fy_to_y_fc1 = nn.Linear(fy_size,fy_size)
         self.fy_to_y_fc2 = nn.Linear(fy_size,output_dim)
         self.fy_to_y_dropout = nn.Dropout(fy_to_y_dropout)
-		
+        
     def forward(self, text_x, audio_x, video_x):
         '''
         Args:
