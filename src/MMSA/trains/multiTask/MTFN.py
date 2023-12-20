@@ -78,9 +78,6 @@ class MTFN():
                         y_true[m].append(labels['M'].cpu())
             train_loss = train_loss / len(dataloader['train'])
 
-            logger.info(
-                f"TRAIN-({self.args.model_name}) [{epochs - best_epoch}/{epochs}/{self.args.cur_seed}] >> loss: {round(train_loss, 4)} {dict_to_str(train_results)}"
-            )
             for m in self.args.tasks:
                 pred, true = torch.cat(y_pred[m]), torch.cat(y_true[m])
                 train_results = self.metrics(pred, true)

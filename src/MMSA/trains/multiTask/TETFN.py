@@ -1,17 +1,15 @@
 import logging
 import os
 import pickle as plk
-
 import numpy as np
 import torch
 from torch import optim
 from tqdm import tqdm
-
 from ...utils import MetricsTop, dict_to_str
 
 logger = logging.getLogger('MMSA')
 
-class SELF_MM():
+class TETFN():
     def __init__(self, args):
         assert args.train_mode == 'regression'
 
@@ -90,7 +88,7 @@ class SELF_MM():
 
         saved_labels = {}
         # init labels
-        logger.info("Init labels...")
+        logger.info("Init labels")
         with tqdm(dataloader['train']) as td:
             for batch_data in td:
                 labels_m = batch_data['labels']['M'].view(-1).to(self.args.device)
@@ -98,7 +96,7 @@ class SELF_MM():
                 self.init_labels(indexes, labels_m)
 
         # initilize results
-        logger.info("Start training...")
+        logger.info("Start training")
         epochs, best_epoch = 0, 0
         if return_epoch_results:
             epoch_results = {
@@ -137,7 +135,7 @@ class SELF_MM():
                         vision_lengths = batch_data['vision_lengths']
                     else:
                         audio_lengths, vision_lengths = 0, 0
-
+                        
                     # forward
                     outputs = model(text, (audio, audio_lengths), (vision, vision_lengths))
                     # store results
@@ -172,7 +170,9 @@ class SELF_MM():
                     # update
                     optimizer.step()
             train_loss = train_loss / len(dataloader['train'])
-            
+            # logger.info(
+            #     f"TRAIN-({self.args.model_name}) [{epochs - best_epoch}/{epochs}/{self.args.cur_seed}] >> loss: {round(train_loss, 4)} {dict_to_str(train_results)}"
+            # )
             for m in self.args.tasks:
                 pred, true = torch.cat(y_pred[m]), torch.cat(y_true[m])
                 train_results = self.metrics(pred, true)

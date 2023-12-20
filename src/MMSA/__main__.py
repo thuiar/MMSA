@@ -6,8 +6,8 @@ def parse_args():
     parser = argparse.ArgumentParser()
     
     parser.add_argument('-m', '--model', type=str, default='lf_dnn', help='Name of model',
-                        choices=['lf_dnn', 'ef_lstm', 'tfn', 'lmf', 'mfn', 'graph_mfn', 'mult', 'bert_mag', 
-                                 'misa', 'mfm', 'mlf_dnn', 'mtfn', 'mlmf', 'self_mm', 'mmim'])
+                        choices=['lf_dnn', 'ef_lstm', 'tfn', 'mctn','lmf', 'mfn', 'graph_mfn', 'mult', 'bert_mag', 
+                                 'misa', 'mfm', 'mlf_dnn', 'mtfn', 'mlmf', 'self_mm', 'mmim','tfr_net','tetfn','cenet'])
     parser.add_argument('-d', '--dataset', type=str, default='sims',
                         choices=['sims', 'mosi', 'mosei'], help='Name of dataset')
     parser.add_argument('-c', '--config', type=str, default='',
