@@ -85,10 +85,10 @@ class AlignSubNet(nn.Module):
                 pad_len = self.dst_len - raw_seq_len % self.dst_len
                 pool_size = raw_seq_len // self.dst_len + 1
             pad_x = x[:, -1, :].unsqueeze(1).expand([x.size(0), pad_len, x.size(-1)])
-            x = torch.cat([x, pad_x], dim=1).view(x.size(0), pool_size, self.dst_len, -1)
-            x = x.mean(dim=1)
+            x = torch.cat([x, pad_x], dim=1).view(x.size(0), self.dst_len, pool_size, -1)
+            x = x.mean(dim=2)
             return x
-        text_x = align(text_x)
+        # text_x = align(text_x)
         audio_x = align(audio_x)
         video_x = align(video_x)
         return text_x, audio_x, video_x
@@ -101,6 +101,20 @@ class AlignSubNet(nn.Module):
  
     def forward(self, text_x, audio_x, video_x):
         # already aligned
-        if text_x.size(1) == audio_x.size(1) == video_x.size(1):
+        
+        # The input audio and video are of the same type
+        if isinstance(audio_x, tuple):
+            audio = audio_x[0]
+            video = video_x[0]
+        else:
+            audio = audio_x
+            video = video_x
+        
+        if self.dst_len == audio.size(1) == video.size(1):
             return text_x, audio_x, video_x
-        return self.ALIGN_WAY[self.mode](text_x, audio_x, video_x)
+        result_tmp = self.ALIGN_WAY[self.mode](text_x, audio, video)
+
+        if isinstance(audio_x, tuple):
+            return (result_tmp[0],(result_tmp[1],audio_x[1]),(result_tmp[2],video_x[1]))
+        else:
+            return result_tmp

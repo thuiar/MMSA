@@ -7,7 +7,7 @@ from .multiTask import *
 from .singleTask import *
 from .missingTask import *
 from .subNets import AlignSubNet
-
+from pytorch_transformers import BertConfig
 
 class AMIO(nn.Module):
     def __init__(self, args):
@@ -26,11 +26,13 @@ class AMIO(nn.Module):
             'misa': MISA,
             'mfm': MFM,
             'mmim': MMIM,
+            'cenet': CENET,
             # multi-task
             'mtfn': MTFN,
             'mlmf': MLMF,
             'mlf_dnn': MLF_DNN,
             'self_mm': SELF_MM,
+            'tetfn': TETFN,
             # missing-task
             'tfr_net': TFR_NET
         }
@@ -41,7 +43,12 @@ class AMIO(nn.Module):
             if 'seq_lens' in args.keys():
                 args['seq_lens'] = self.alignNet.get_seq_len()
         lastModel = self.MODEL_MAP[args['model_name']]
-        self.Model = lastModel(args)
+
+        if args.model_name == 'cenet':
+            config = BertConfig.from_pretrained(args.pretrained, num_labels=1, finetuning_task='sst')
+            self.Model = CENET.from_pretrained(args.pretrained, config=config, pos_tag_embedding=True, senti_embedding=True, polarity_embedding=True, args=args)
+        else:
+            self.Model = lastModel(args)
 
     def forward(self, text_x, audio_x, video_x, *args, **kwargs):
         if(self.need_model_aligned):

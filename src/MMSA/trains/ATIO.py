@@ -23,11 +23,13 @@ class ATIO():
             'misa': MISA,
             'mfm': MFM,
             'mmim': MMIM,
+            'cenet':CENET,
             # multi-task
             'mtfn': MTFN,
             'mlmf': MLMF,
             'mlf_dnn': MLF_DNN,
             'self_mm': SELF_MM,
+            'tetfn': TETFN,
             # missing-task
             'tfr_net': TFR_NET,
         }
