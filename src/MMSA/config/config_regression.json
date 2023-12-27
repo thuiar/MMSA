@@ -107,6 +107,14 @@
         "dropouts": [0.4, 0.4, 0.4, 0.4],
         "batch_size": 32,
         "learning_rate": 0.0005
+      },
+      "simsv2": {
+        "hidden_dims": [128, 32, 128],
+        "text_out": 128,
+        "post_fusion_dim": 32,
+        "dropouts": [0.3, 0.3, 0.3, 0.5],
+        "batch_size": 128,
+        "learning_rate": 0.002
       }
     }
   },
@@ -144,6 +152,15 @@
         "learning_rate": 0.002,
         "factor_lr": 0.0005,
         "weight_decay": 0.005
+      },
+      "simsv2": {
+        "hidden_dims": [64, 32, 64],
+        "dropouts": [0.3, 0.3, 0.3, 0.5],
+        "rank": 4,
+        "batch_size": 32,
+        "learning_rate": 0.002,
+        "factor_lr": 0.0005,
+        "weight_decay": 0.0001
       }
     }
   },
@@ -238,6 +255,34 @@
         "batch_size": 32,
         "learning_rate": 0.001,
         "weight_decay": 0.0
+      },
+      "simsv2": {
+        "hidden_dims": [128, 16, 128],
+        "memsize": 400,
+        "windowsize": 2,
+        "NN1Config": {
+          "drop": 0.2,
+          "shapes": 32
+        },
+        "NN2Config": {
+          "drop": 0.5,
+          "shapes": 128
+        },
+        "gamma1Config": {
+          "drop": 0.5,
+          "shapes": 32
+        },
+        "gamma2Config": {
+          "drop": 0.2,
+          "shapes": 32
+        },
+        "outConfig": {
+          "drop": 0.2,
+          "shapes": 64
+        },
+        "batch_size": 64,
+        "learning_rate": 0.001,
+        "weight_decay": 0.0
       }
     }
   },
@@ -272,6 +317,14 @@
         "batch_size": 128,
         "learning_rate": 0.0005,
         "weight_decay": 0.001
+      },
+      "simsv2": {
+        "hidden_dims": 128,
+        "num_layers": 3,
+        "dropout": 0.2,
+        "batch_size": 32,
+        "learning_rate": 0.0005,
+        "weight_decay": 0.0
       }
     }
   },
@@ -310,6 +363,15 @@
         "batch_size": 128,
         "learning_rate": 0.005,
         "weight_decay": 0.005
+      },
+      "simsv2": {
+        "hidden_dims": [64, 32, 64],
+        "text_out": 256,
+        "post_fusion_dim": 32,
+        "dropouts": [0.4, 0.4, 0.4, 0.4],
+        "batch_size": 128,
+        "learning_rate": 0.005,
+        "weight_decay": 0.0
       }
     }
   },
@@ -392,6 +454,30 @@
         "batch_size": 64,
         "learning_rate": 0.0005,
         "weight_decay": 0.001
+      },
+      "simsv2": {
+        "hidden_dims": [64, 16, 64],
+        "memsize": 400,
+        "inner_node_dim": 32,
+        "NNConfig": {
+          "drop": 0.7,
+          "shapes": 32
+        },
+        "gamma1Config": {
+          "drop": 0.5,
+          "shapes": 256
+        },
+        "gamma2Config": {
+          "drop": 0.2,
+          "shapes": 256
+        },
+        "outConfig": {
+          "drop": 0.2,
+          "shapes": 256
+        },
+        "batch_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0
       }
     }
   },
@@ -507,6 +593,28 @@
         "weight_decay": 0.001,
         "transformers": "bert",
         "pretrained": "bert-base-chinese"
+      },
+      "simsv2": {
+        "attn_dropout_a": 0.2,
+        "attn_dropout_v": 0.0,
+        "relu_dropout": 0.1,
+        "embed_dropout": 0.2,
+        "res_dropout": 0.0,
+        "dst_feature_dim_nheads": [30, 6],
+        "batch_size": 16,
+        "learning_rate": 0.0005,
+        "nlevels": 4,
+        "conv1d_kernel_size_l": 5,
+        "conv1d_kernel_size_a": 3,
+        "conv1d_kernel_size_v": 1,
+        "text_dropout": 0.5,
+        "attn_dropout": 0.1,
+        "output_dropout": 0.3,
+        "grad_clip": 1.0,
+        "patience": 10,
+        "weight_decay": 0.005,
+        "transformers": "bert",
+        "pretrained": "bert-base-chinese"
       }
     }
   },
@@ -563,6 +671,21 @@
         "sp_weight": 1.0,
         "recon_weight": 0.8,
         "grad_clip": 1.0,
+        "weight_decay": 5e-5,
+        "transformers": "bert",
+        "pretrained": "bert-base-chinese"
+      },
+      "simsv2": {
+        "batch_size": 16,
+        "learning_rate": 0.0001,
+        "hidden_size": 64,
+        "dropout": 0.5,
+        "reverse_grad_weight": 0.5,
+        "diff_weight": 0.5,
+        "sim_weight": 1.0,
+        "sp_weight": 0.0,
+        "recon_weight": 0.5,
+        "grad_clip": 0.8,
         "weight_decay": 5e-5,
         "transformers": "bert",
         "pretrained": "bert-base-chinese"
@@ -741,6 +864,26 @@
         "audio_weight_decay": 0.0001,
         "video_weight_decay": 1e-5,
         "weight_decay": 0.005
+      },
+      "simsv2": {
+        "hidden_dims": [64, 16, 64],
+        "text_out": 32,
+        "post_fusion_dim": 64,
+        "post_text_dim": 16,
+        "post_audio_dim": 5,
+        "post_video_dim": 64,
+        "dropouts": [0.3, 0.3, 0.3],
+        "post_dropouts": [0.5, 0.5, 0.5, 0.5],
+        "batch_size": 32,
+        "learning_rate": 0.0005,
+        "M": 1.0,
+        "T": 0.4,
+        "A": 0.4,
+        "V": 0.8,
+        "text_weight_decay": 0.00001,
+        "audio_weight_decay": 0.0001,
+        "video_weight_decay": 0.0001,
+        "weight_decay": 0.01
       }
     }
   },
@@ -771,6 +914,26 @@
         "audio_weight_decay": 0.0,
         "video_weight_decay": 0.0001,
         "weight_decay": 0.005
+      },
+      "simsv2": {
+        "hidden_dims": [64, 16, 64],
+        "post_text_dim": 16,
+        "post_audio_dim": 5,
+        "post_video_dim": 16,
+        "post_dropouts": [0.4, 0.4, 0.4, 0.4],
+        "dropouts": [0.3, 0.3, 0.3],
+        "rank": 6,
+        "batch_size": 64,
+        "learning_rate": 0.005,
+        "factor_lr": 0.0005,
+        "M": 0.4,
+        "T": 0.0,
+        "A": 0.4,
+        "V": 1.0,
+        "text_weight_decay": 0.0,
+        "audio_weight_decay": 0.00001,
+        "video_weight_decay": 0.00001,
+        "weight_decay": 0.001
       }
     }
   },
@@ -801,6 +964,26 @@
         "audio_weight_decay": 0.001,
         "video_weight_decay": 0.0001,
         "weight_decay": 0.0
+      },
+      "simsv2": {
+        "hidden_dims": [128, 32, 128],
+        "text_out": 32,
+        "post_fusion_dim": 64,
+        "post_text_dim": 32,
+        "post_audio_dim": 4,
+        "post_video_dim": 64,
+        "dropouts": [0.2, 0.2, 0.2],
+        "post_dropouts": [0.3, 0.3, 0.3, 0.3],
+        "batch_size": 64,
+        "learning_rate": 0.005,
+        "M": 0.8,
+        "T": 1.0,
+        "A": 0.6,
+        "V": 0.8,
+        "text_weight_decay": 0.0,
+        "audio_weight_decay": 0.00001,
+        "video_weight_decay": 0.00001,
+        "weight_decay": 0.0001
       }
     }
   },
@@ -910,6 +1093,38 @@
         "post_audio_dropout": 0.1,
         "post_video_dropout": 0.0,
         "H": 1.0,
+        "transformers": "bert",
+        "pretrained": "bert-base-chinese"
+      },
+      "simsv2": {
+        "batch_size": 16,
+        "learning_rate_bert": 5e-5,
+        "learning_rate_audio": 0.001,
+        "learning_rate_video": 0.001,
+        "learning_rate_other": 0.001,
+        "weight_decay_bert": 0.01,
+        "weight_decay_audio": 0.0,
+        "weight_decay_video": 0.0,
+        "weight_decay_other": 0.001,
+        "a_lstm_hidden_size": 16,
+        "v_lstm_hidden_size": 64,
+        "a_lstm_layers": 1,
+        "v_lstm_layers": 1,
+        "text_out": 768,
+        "audio_out": 16,
+        "video_out": 32,
+        "a_lstm_dropout": 0.0,
+        "v_lstm_dropout": 0.0,
+        "t_bert_dropout": 0.1,
+        "post_fusion_dim": 128,
+        "post_text_dim": 64,
+        "post_audio_dim": 32,
+        "post_video_dim": 32,
+        "post_fusion_dropout": 0.0,
+        "post_text_dropout": 0.0,
+        "post_audio_dropout": 0.1,
+        "post_video_dropout": 0.0,
+        "H": 3.0,
         "transformers": "bert",
         "pretrained": "bert-base-chinese"
       }
@@ -1026,7 +1241,6 @@
       }
     }
   },
-
   "mctn": {
     "commonParams": {
       "need_data_aligned": true,

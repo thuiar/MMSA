@@ -89,6 +89,18 @@
       "paper_url": "https://arxiv.org/pdf/2109.00412.pdf",
       "citation": "",
       "description": "MultiModal-InfoMax"
+    },
+    "TETFN": {
+      "title": "TETFN: A text enhanced transformer fusion network for multimodal sentiment analysis",
+      "paper_url": "https://www.sciencedirect.com/science/article/pii/S0031320322007385",
+      "citation": "",
+      "description": ""
+    },
+    "CENET": {
+      "title": "Cross-modal Enhancement Network for Multimodal Sentiment Analysis",
+      "paper_url": "https://ieeexplore.ieee.org/abstract/document/9797846",
+      "citation": "",
+      "description": ""
     }
   },
   "datasets": {
@@ -109,6 +121,12 @@
       "paper_url": "https://aclanthology.org/P18-1208.pdf",
       "citation": "",
       "description": "The CMU-MOSEI Datset."
+    },
+    "SIMSv2": {
+      "title": "Make Acoustic and Visual Cues Matter: CH-SIMS v2.0 Dataset and AV-Mixup Consistent Module",
+      "paper_url": "https://dl.acm.org/doi/pdf/10.1145/3536221.3556630",
+      "citation": "",
+      "description": "CH-SIMSv2: Chinese Multimodal Sentiment Analysis Dataset."
     }
   }
 }

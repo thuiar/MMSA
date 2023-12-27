@@ -17,6 +17,7 @@ class MMDataset(Dataset):
             'mosi': self.__init_mosi,
             'mosei': self.__init_mosei,
             'sims': self.__init_sims,
+            'simsv2':self.__init_simsv2,
         }
         DATASET_MAP[args['dataset_name']]()
 
@@ -68,7 +69,7 @@ class MMDataset(Dataset):
             # 'M': data[self.mode][self.args['train_mode']+'_labels'].astype(np.float32)
             'M': np.array(data[self.mode]['regression_labels']).astype(np.float32)
         }
-        if self.args['dataset_name'] == 'sims':
+        if 'sims' in self.args['dataset_name']:
             for m in "TAV":
                 self.labels[m] = data[self.mode]['regression' + '_labels_' + m].astype(np.float32)
 
@@ -110,6 +111,9 @@ class MMDataset(Dataset):
         return self.__init_mosi()
 
     def __init_sims(self):
+        return self.__init_mosi()
+    
+    def __init_simsv2(self):
         return self.__init_mosi()
 
     def generate_m(self, modality, input_mask, input_len, missing_rate, missing_seed, mode='text'):

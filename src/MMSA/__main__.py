@@ -9,7 +9,7 @@ def parse_args():
                         choices=['lf_dnn', 'ef_lstm', 'tfn', 'mctn','lmf', 'mfn', 'graph_mfn', 'mult', 'bert_mag', 
                                  'misa', 'mfm', 'mlf_dnn', 'mtfn', 'mlmf', 'self_mm', 'mmim','tfr_net','tetfn','cenet'])
     parser.add_argument('-d', '--dataset', type=str, default='sims',
-                        choices=['sims', 'mosi', 'mosei'], help='Name of dataset')
+                        choices=['sims', 'mosi', 'mosei', 'simsv2'], help='Name of dataset')
     parser.add_argument('-c', '--config', type=str, default='',
                         help='Path to config file. If not specified, default config file will be used.')
     parser.add_argument('-t', '--tune', action='store_true',

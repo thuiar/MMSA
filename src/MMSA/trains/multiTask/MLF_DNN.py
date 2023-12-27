@@ -12,7 +12,7 @@ logger = logging.getLogger('MMSA')
 
 class MLF_DNN():
     def __init__(self, args):
-        assert args.dataset_name == 'sims'
+        assert 'sims' in args.dataset_name
 
         self.args = args
         self.args.tasks = "MTAV"
