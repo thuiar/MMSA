@@ -152,6 +152,7 @@ MMSA uses feature files that are organized as follows:
 | Single-Task |           BBFN (Work in Progress)                       |               [BBFN](https://github.com/declare-lab/BBFN)                              | ICMI 2021         |
 | Single-Task |           [CENET](src/MMSA/models/singleTask/CENET.py)  |               [CENET](https://github.com/Say2L/CENet)                                  | TMM 2022          |
 | Multi-Task  |     [TETFN](src/MMSA/models/multiTask/TETFN.py)         |                      TETFN                                                             | PR 2023           |  
+| Single-Task |           [ALMT](src/MMSA/models/singleTask/ALMT.py)  |               [ALMT](https://github.com/Haoyu-ha/ALMT)                                  | EMNLP 2023          |
 
 
 ## 4. Results
