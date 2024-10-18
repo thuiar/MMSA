@@ -1628,5 +1628,81 @@
         "batch_size":64
       }
     }
+  },
+  "almt":{
+    "commonParams": {
+      "need_data_aligned": false,
+      "need_model_aligned": false,
+      "need_normalized": false,
+      "use_bert": true,
+      "use_finetune": true,
+      "max_epochs": 200,
+      "early_stop": 32
+    },
+    "datasetParams": {
+      "mosi": {
+        "transformers": "bert",
+        "pretrained": "bert-base-uncased",
+        "learning_rate":0.0001,
+        "weight_decay":0.0001,
+        "max_grad_norm":2,
+        "batch_size":64,
+        "feature_dims": [768, 5, 20],
+        "feature_length": [50, 375, 500],
+        "dst_feature_dims": 128,
+        "dst_feature_hidden_dims": 128,
+        "dst_embedding_length": 8,
+        "embedding_depth": [1, 1, 1],
+        "embedding_heads": [8, 8, 8],
+        "l_encoder_heads": 8,
+        "AHL_depth": 3,
+        "h_hyper_layer_heads": 8,
+        "fusion_hidden_d": 128,
+        "fusion_heads": 8,
+        "fusion_layer_depth": 2
+      },
+      "mosei":{
+        "transformers": "bert",
+        "pretrained": "bert-base-uncased",
+        "learning_rate":0.0001,
+        "weight_decay":0.0001,
+        "max_grad_norm":2,
+        "batch_size":64,
+        "feature_dims": [768, 74, 35],
+        "feature_length": [50, 500, 500],
+        "dst_feature_dims": 128,
+        "dst_feature_hidden_dims": 128,
+        "dst_embedding_length": 8,
+        "embedding_depth": [1, 1, 1],
+        "embedding_heads": [8, 8, 8],
+        "l_encoder_heads": 8,
+        "AHL_depth": 3,
+        "h_hyper_layer_heads": 8,
+        "fusion_hidden_d": 128,
+        "fusion_heads": 8,
+        "fusion_layer_depth": 4
+      },
+      "sims":{
+        "transformers": "bert",
+        "pretrained": "bert-base-chinese",
+        "learning_rate":0.0001,
+        "weight_decay":0.0001,
+        "max_grad_norm":2,
+        "batch_size":64,
+        "feature_dims": [768, 33, 709],
+        "feature_length": [39, 400, 55],
+        "dst_feature_dims": 128,
+        "dst_feature_hidden_dims": 128,
+        "dst_embedding_length": 8,
+        "embedding_depth": [1, 1, 1],
+        "embedding_heads": [8, 8, 8],
+        "l_encoder_heads": 8,
+        "AHL_depth": 3,
+        "h_hyper_layer_heads": 8,
+        "fusion_hidden_d": 128,
+        "fusion_heads": 8,
+        "fusion_layer_depth": 4
+      }
+    }
   }
 }

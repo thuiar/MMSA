@@ -101,6 +101,12 @@
       "paper_url": "https://ieeexplore.ieee.org/abstract/document/9797846",
       "citation": "",
       "description": ""
+    },
+    "ALMT": {
+      "title": "Learning Language-guided Adaptive Hyper-modality Representation for Multimodal Sentiment Analysis",
+      "paper_url": "https://aclanthology.org/2023.emnlp-main.49",
+      "citation": "",
+      "description": "Multi-task Multimodal Learning Framework for ALMT."
     }
   },
   "datasets": {

@@ -11,3 +11,4 @@ from .MFM import MFM
 from .MMIM import MMIM
 from .MCTN import MCTN
 from .CENET import CENET
+from .ALMT import ALMT
